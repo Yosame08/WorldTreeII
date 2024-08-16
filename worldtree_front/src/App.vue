@@ -26,7 +26,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 0;
 }
 
 #nav {
@@ -39,9 +38,8 @@ html, body {
   text-decoration: none;
   color: white;
   padding: 10px 20px;
-  margin: 0 10px;
+  margin: 0px 0;
   background-color: #333;
-  border-radius: 5px;
   transition: background-color 0.3s;
 }
 
@@ -50,7 +48,7 @@ html, body {
 }
 
 .nav-link-active {
-  background-color: #ff4500;
+  background-color: #f40;
   font-weight: bold;
 }
 </style>
