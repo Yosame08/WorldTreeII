@@ -1,10 +1,10 @@
-package com.fdalg.worldtree_front;
+package com.fdalg.worldtree_back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WorldtreeFrontApplicationTests {
+class WorldtreeBackApplicationTests {
 
     @Test
     void contextLoads() {

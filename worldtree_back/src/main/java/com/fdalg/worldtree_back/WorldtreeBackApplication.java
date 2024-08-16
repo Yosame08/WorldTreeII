@@ -1,13 +1,13 @@
-package com.fdalg.worldtree_front;
+package com.fdalg.worldtree_back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorldtreeFrontApplication {
+public class WorldtreeBackApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WorldtreeFrontApplication.class, args);
+        SpringApplication.run(WorldtreeBackApplication.class, args);
     }
 
 }

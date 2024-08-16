@@ -1,4 +1,4 @@
-package com.fdalg.worldtree_front.controllers;
+package com.fdalg.worldtree_back.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

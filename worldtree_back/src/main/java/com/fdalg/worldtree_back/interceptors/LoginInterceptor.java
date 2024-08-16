@@ -1,4 +1,4 @@
-package com.fdalg.worldtree_front.interceptors;
+package com.fdalg.worldtree_back.interceptors;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fdalg</groupId>
-    <artifactId>worldtree_front</artifactId>
+    <artifactId>worldtree_back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>worldtree_front</name>
-    <description>worldtree_front</description>
+    <name>worldtree_back</name>
+    <description>worldtree_back</description>
     <url/>
     <licenses>
         <license/>
