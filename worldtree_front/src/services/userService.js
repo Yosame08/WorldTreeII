@@ -1,12 +1,16 @@
 // src/services/userService.js
 import axios from 'axios';
 
-export const login = (credentials) => {
-    return axios.post('/api/login', credentials);
+export const signup = (data) => {
+    return axios.post('/api/signup', data);
 };
 
-export const signup = (credentials) => {
-    return axios.post('/api/signup', credentials);
+export const fetchCaptcha = () => {
+    return axios.get('/api/captcha');
+};
+
+export const login = (data) => {
+    return axios.post('/api/login', data);
 };
 
 export const logout = () => {
