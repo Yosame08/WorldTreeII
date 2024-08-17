@@ -59,3 +59,31 @@ Mock.mock('/api/logout', 'post', {
     code: 200,
     data: {}
 });
+
+Mock.mock('/api/rank', 'get', () => {
+    return {
+        "code": 3050,
+        "tableData": [
+            {
+                "rank": 1,
+                "name": "Tom",
+                "point": 100,
+            },
+            {
+                "rank": 2,
+                "name": "Alice",
+                "point": 90,
+            },
+            {
+                "rank": 2,
+                "name": "Bob",
+                "point": 90,
+            },
+            {
+                "rank": 4,
+                "name": "Emily",
+                "point": 80,
+            },
+        ],
+    };
+});
