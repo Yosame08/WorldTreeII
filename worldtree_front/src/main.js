@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from './router/router'
 import './mock.js'
 
-axios.defaults.baseURL = 'http://localhost:8088'
+// axios.defaults.baseURL = 'http://localhost:8088'
 
 const app = createApp(App)
 // app.config.globalProperties.$axios = axios
