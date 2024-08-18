@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
 
 Mock.setup({
-    timeout: '200-600'
+    timeout: '400-3000'
 })
 
 Mock.mock('/api/login', 'post', {
@@ -62,8 +62,8 @@ Mock.mock('/api/logout', 'post', {
 
 Mock.mock('/api/rank', 'get', () => {
     return {
-        "code": 3050,
-        "tableData": [
+        code: 3050,
+        tableData: [
             {
                 "rank": 1,
                 "name": "Tom",
@@ -85,5 +85,23 @@ Mock.mock('/api/rank', 'get', () => {
                 "point": 80,
             },
         ],
+        trendData: [
+            {
+                "name": "Tom",
+                "data": [
+                    ["2024-08-18 10:00:00", 0],
+                    ["2024-08-18 14:23:02", 50],
+                    ["2024-08-18 15:33:36", 100],
+                ],
+            },
+            {
+                "name": "Alice",
+                "data": [
+                    ["2024-08-18 10:00:00", 0],
+                    ["2024-08-18 16:00:05", 90],
+                ],
+            },
+        ],
+        timeNow: "2024-08-19 01:01:02",
     };
 });

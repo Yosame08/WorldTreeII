@@ -2,13 +2,17 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import router from './router/router'
-import './mock.js'
+
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import ECharts from 'vue-echarts'
+import * as echarts from 'echarts'
 
-// axios.defaults.baseURL = 'http://localhost:8088'
+import './mock.js'
+import store from './services/loadService'
 
 const app = createApp(App)
-// app.config.globalProperties.$axios = axios
-
-app.use(router).use(ElementPlus).mount('#app')
+app.component("v-chart", ECharts)
+app.config.globalProperties.$echarts = echarts
+// axios.defaults.baseURL = 'http://localhost:8088'
+app.use(router).use(ElementPlus).use(store).mount('#app')

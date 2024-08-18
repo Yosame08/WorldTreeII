@@ -16,18 +16,41 @@
       </template>
     </div>
   </div>
+  <el-progress
+      v-if="this.$store.state.load > 0"
+      :percentage="50"
+      :indeterminate="true"
+      :show-text="false"
+      :color="customColors"
+      :duration="2.5"
+      :stroke-width="3"
+  />
 </template>
 
 <script>
 import { logout } from '@/services/userService';
+
+const customColors = [
+  { color: '#f40'},
+]
 
 export default {
   name: 'NavBar',
   data() {
     return {
       isLoggedIn: false,
-      username: ''
+      username: '',
+      customColors: customColors,
     };
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      this.$store.commit('load');
+      next();
+    });
+    this.$router.afterEach(() => {
+      this.$store.commit('finish');
+    });
   },
   methods: {
     async logout() {

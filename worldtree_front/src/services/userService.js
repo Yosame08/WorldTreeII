@@ -1,18 +1,47 @@
 // src/services/userService.js
 import axios from 'axios';
+import store from '@/services/loadService';
 
-export const signup = (data) => {
-    return axios.post('/api/signup', data);
+export const fetchCaptcha = async () => {
+    store.commit('load');
+    try {
+        return await axios.get('/api/captcha');
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
 };
 
-export const fetchCaptcha = () => {
-    return axios.get('/api/captcha');
+export const signup = async (data) => {
+    store.commit('load');
+    try {
+        return await axios.post('/api/signup', data);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
 };
 
-export const login = (data) => {
-    return axios.post('/api/login', data);
+export const login = async (data) => {
+    store.commit('load');
+    try {
+        return await axios.post('/api/login', data);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
 };
 
-export const logout = () => {
-    return axios.post('/api/logout');
+export const logout = async (token) => {
+    store.commit('load');
+    try {
+        return await axios.post('/api/logout', token);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
 };

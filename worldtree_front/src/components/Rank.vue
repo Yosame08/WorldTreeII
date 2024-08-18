@@ -1,6 +1,6 @@
 <template>
   <h1>This is Rank.</h1>
-  <h2>H2 template</h2>
+  <v-chart :option="chartOptions" autoresize style="height: 300px;"></v-chart>
   <el-table
       :data="tableData"
       style="width: 100%"
@@ -13,14 +13,16 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import {fetchRankData} from "@/services/infoService";
+import { fetchRankData } from "@/services/infoService";
 
-export default defineComponent({
+export default ({
   name: 'Rank',
   data() {
     return {
       tableData: [],
+      trendData: [],
+      timeNow: "",
+      chartOptions: undefined,
     };
   },
   created() {
@@ -30,9 +32,11 @@ export default defineComponent({
     async loadRankData() {
       try {
         const response = await fetchRankData();
-        console.log(response);
         if (response.data.code === 3050) {
           this.tableData = response.data.tableData;
+          this.trendData = response.data.trendData;
+          this.timeNow = response.data.timeNow;
+          await this.initEcharts();
         } else {
           this.$router.push('/login');
         }
@@ -42,7 +46,6 @@ export default defineComponent({
       }
     },
     tableRowClassName({ row }) {
-      console.log(row);
       if (row.rank === 1) {
         return 'golden-row';
       } else if (row.rank === 2) {
@@ -51,6 +54,76 @@ export default defineComponent({
         return 'bronze-row';
       }
       return '';
+    },
+    getDateFromString(str) {
+      const reg = /^(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+)/;
+      const temp = str.match(reg);
+      let result = "";
+      if (temp) {
+        result = new Date(temp[1], temp[2] - 1, temp[3], temp[4], temp[5], temp[6]);
+      }
+      return result;
+    },
+    async initEcharts() {
+      this.trendData = this.trendData.map(item => {
+        const lastPoint = item.data[item.data.length - 1];
+        const newPoint = [ this.timeNow, lastPoint[1] ];
+        return {
+          ...item,
+          type: "line",
+          step: "end",
+          data: [...item.data, newPoint]
+        };
+      });
+
+      let startTime = this.getDateFromString("2024-08-18 10:00:00");
+      let nowTime = this.getDateFromString(this.timeNow);
+      this.chartOptions = {
+        title: {
+          text: "Rank Trend",
+          subtext: "subtitle",
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        toolbox: {
+          show: true,
+        },
+        formatter: function (params) {
+          console.log(params);
+          return params[0].data[0] + "<br/>" + "积分：" + params[0].data[1];
+        },
+        xAxis: [
+          {
+            // data: diffDate,
+            //设置类别
+            type: "time",
+            interval: 1 * 60 * 60 * 1000, // 固定x轴时间间隔 间隔24小时，也就是一天
+            // 自己想固定间隔多长时间可以改成自己的间隔时间
+            min: startTime, // 开始时间时间戳
+            max: nowTime, // 结束时间时间戳 如果实际的最大日期不确定，也可以不设定这个属性
+            // x轴的字
+            axisLabel: {
+              show: true,
+              showMinLabel: true,
+              showMaxLabel: true
+            },
+          },
+        ],
+        yAxis: {
+          type: "value",
+          axisLabel: {
+            formatter: "{value}",
+          },
+          axisPointer: {
+            snap: true,
+          },
+        },
+        series: this.trendData,
+      };
     },
   },
 });
