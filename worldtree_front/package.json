@@ -12,7 +12,8 @@
     "element-plus": "^2.8.0",
     "mockjs": "^1.1.0",
     "vue": "^3.2.13",
-    "vue-router": "^4.4.3"
+    "vue-router": "^4.4.3",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

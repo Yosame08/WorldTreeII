@@ -30,7 +30,6 @@ export default defineComponent({
     async loadRankData() {
       try {
         const response = await fetchRankData();
-        console.log(response);
         if (response.data.code === 3050) {
           this.tableData = response.data.tableData;
         } else {
@@ -42,7 +41,6 @@ export default defineComponent({
       }
     },
     tableRowClassName({ row }) {
-      console.log(row);
       if (row.rank === 1) {
         return 'golden-row';
       } else if (row.rank === 2) {
