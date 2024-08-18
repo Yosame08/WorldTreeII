@@ -10,9 +10,11 @@ const store = createStore({
     mutations: {
         load (state) {
             state.load++;
+            console.log('load', state.load);
         },
         finish (state) {
             state.load--;
+            console.log('finish', state.load);
         }
     }
 })
