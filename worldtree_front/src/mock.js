@@ -60,7 +60,7 @@ Mock.mock('/api/logout', 'post', {
     data: {}
 });
 
-Mock.mock('/api/rank', 'get', () => {
+Mock.mock('/api/rank', 'post', (token) => {
     return {
         code: 3050,
         tableData: [
@@ -103,5 +103,27 @@ Mock.mock('/api/rank', 'get', () => {
             },
         ],
         timeNow: "2024-08-19 01:01:02",
+    };
+});
+
+Mock.mock('/api/bbs', 'post', (token) => {
+    return {
+        code: 3050,
+        list: [
+            {
+                "id": 2,
+                "user": "Admin",
+                "title": "New message",
+                "point": 0,
+                "special": 1,
+            },
+            {
+                "id": 1,
+                "user": "Alice",
+                "title": "Ask for help",
+                "point": 50,
+                "special": 0,
+            },
+        ],
     };
 });
