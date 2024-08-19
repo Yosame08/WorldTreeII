@@ -111,9 +111,18 @@ Mock.mock('/api/bbs', 'post', (token) => {
         code: 3050,
         list: [
             {
+                "id": 2,
+                "user": "Admin",
+                "title": "New message",
+                "point": 0,
+                "special": 1,
+            },
+            {
+                "id": 1,
                 "user": "Alice",
                 "title": "Ask for help",
                 "point": 50,
+                "special": 0,
             },
         ],
     };

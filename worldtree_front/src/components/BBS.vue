@@ -4,6 +4,7 @@
       :data="list"
       style="width: 100%"
       :row-class-name="tableRowClassName"
+      @row-click="goToDetail"
   >
     <el-table-column prop="user" label="用户名" width="180" />
     <el-table-column prop="title" label="标题" width="180" />
@@ -40,10 +41,14 @@ export default ({
       }
     },
     tableRowClassName({row}) {
+      console.log(row);
       if (row.special !== 0) {
         return 'special-row';
       }
       return '';
+    },
+    goToDetail(row) {
+      this.$router.push(`/bbs/${row.id}`);
     },
   }
 });
@@ -51,6 +56,6 @@ export default ({
 
 <style>
 .el-table .special-row {
-  --el-table-tr-bg-color: #cd7f32;
+  --el-table-tr-bg-color: #ffeba8;
 }
 </style>
