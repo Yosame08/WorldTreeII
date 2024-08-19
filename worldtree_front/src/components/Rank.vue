@@ -23,6 +23,7 @@ export default ({
       trendData: [],
       timeNow: "",
       chartOptions: undefined,
+      token: "placeholder",
     };
   },
   created() {
@@ -31,7 +32,7 @@ export default ({
   methods: {
     async loadRankData() {
       try {
-        const response = await fetchRankData();
+        const response = await fetchRankData(this.token);
         if (response.data.code === 3050) {
           this.tableData = response.data.tableData;
           this.trendData = response.data.trendData;
