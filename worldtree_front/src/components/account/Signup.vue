@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ErrorMsg :message="errorMessage" />
     <h1>Sign Up</h1>
     <div>
       <label for="username">Username:</label>
@@ -14,15 +15,18 @@
       <input type="text" v-model="captcha" placeholder="Enter captcha" />
     </div>
     <button @click="signup">Sign up</button>
-    <div v-if="errorMessage" class="error-box">{{ errorMessage }}</div>
   </div>
 </template>
 
 <script>
 import { signup, fetchCaptcha } from '@/services/userService';
+import ErrorMsg from "@/components/ErrorMsg.vue";
 
 export default {
   name: 'Signup',
+  components: {
+    ErrorMsg
+  },
   data() {
     return {
       username: '',
@@ -90,8 +94,5 @@ export default {
 </script>
 
 <style>
-.error-box {
-  color: red;
-  margin-top: 10px;
-}
+
 </style>
