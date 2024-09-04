@@ -15,8 +15,8 @@
     </div>
 
     <!-- Task bubbles -->
-    <div v-for="task in filteredTasks" :key="task.id" class="task-bubble"
-      :style="bubbleStyle(task)" @click="selectTask(task)">
+    <div v-for="task in filteredTasks" :key="task.id" class="task-bubble" :style="bubbleStyle(task)"
+      @click="selectTask(task)">
       {{ task.title }}
     </div>
 
@@ -27,12 +27,12 @@
         <p>{{ selectedTask.description }}</p>
         <p>积分: {{ selectedTask.points }}</p>
         <p>通过后能得到的货币数量: {{ selectedTask.reward }}</p>
-        <button @click="getHint">花费 {{ hintCost }} 货币获取提示</button>
+        <el-button @click="getHint">花费 {{ hintCost }} 货币获取提示</el-button>
         <div v-if="selectedTask.requiresInput">
-          <input v-model="taskAnswer" placeholder="Enter your answer" />
-          <button @click="submitAnswer">Submit</button>
+          <el-input v-model="taskAnswer" placeholder="Enter your answer"></el-input>
+          <el-button @click="submitAnswer">Submit</el-button>
         </div>
-        <button @click="closeSidebar">Close</button>
+        <el-button @click="closeSidebar">Close</el-button>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { ElSwitch } from 'element-plus';
+import { ElSwitch, ElButton, ElInput } from 'element-plus';
 
 const tasks = [
   { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1', points: 10, reward: 5, requiresInput: true },
@@ -74,9 +74,9 @@ const mapStyle = computed(() => ({
 }));
 
 const bubbleStyle = (task) => ({
-  left: `${task.x * scale.value + translateX.value}px`,
-  top: `${task.y * scale.value + translateY.value}px`,
-  transform: `translate(-50%, -100%) scale(${scale.value})`,
+  left: `${task.x * scale.value + translateX.value * scale.value}px`,
+  top: `${task.y * scale.value + translateY.value * scale.value}px`,
+  transform: `translate(-50%, -100%)`,
 });
 
 const zoom = (delta, event) => {
@@ -260,7 +260,8 @@ const filteredTasks = computed(() => {
 .task-sidebar {
   position: fixed;
   top: 0;
-  right: -300px;
+  right: -100vw;
+  /* Hide sidebar by default */
   width: 300px;
   height: 100%;
   background-color: #fff;
@@ -278,12 +279,12 @@ const filteredTasks = computed(() => {
   margin-top: 0;
 }
 
-.task-sidebar input {
+.task-sidebar .el-input {
   width: calc(100% - 20px);
   margin-bottom: 10px;
 }
 
-.task-sidebar button {
+.task-sidebar .el-button {
   display: block;
   margin-top: 10px;
 }
