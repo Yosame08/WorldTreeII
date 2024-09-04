@@ -10,9 +10,10 @@ import * as echarts from 'echarts'
 
 import './mock.js'
 import store from './services/loadService'
+import { quillEditor } from "vue3-quill";
 
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
 // axios.defaults.baseURL = 'http://localhost:8088'
-app.use(router).use(ElementPlus).use(store).mount('#app')
+app.use(quillEditor).use(router).use(ElementPlus).use(store).mount('#app')

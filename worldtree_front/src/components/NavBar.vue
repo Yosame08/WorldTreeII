@@ -11,7 +11,7 @@
         <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
       </template>
       <template v-else>
-        <span>{{ username }}</span>
+        <button @click="goToUserSettings">{{ username }}</button>
         <button @click="logout">Log out</button>
       </template>
     </div>
@@ -61,7 +61,10 @@ export default {
       } catch (error) {
         console.error('Logout failed', error);
       }
-    }
+    },
+    goToUserSettings() {
+      this.$router.push('/usersettings');
+    },
   }
 }
 </script>
