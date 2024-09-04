@@ -3,6 +3,11 @@
     @wheel="onWheel" @touchstart="startTouch" @touchmove="onTouchMove" @touchend="endTouch">
     <img :src="require('@/assets/fudan_map.png')" :style="mapStyle" ref="mapImage" />
 
+    <!-- Filter slider -->
+    <div class="filter-slider">
+      <el-switch v-model="showUncompletedOnly" active-text="只显示未完成的题目"></el-switch>
+    </div>
+
     <!-- Zoom controls -->
     <div class="zoom-controls">
       <button @click="zoomIn">+</button>
@@ -10,7 +15,7 @@
     </div>
 
     <!-- Task bubbles -->
-    <div v-for="task in tasks" :key="task.id" class="task-bubble"
+    <div v-for="task in filteredTasks" :key="task.id" class="task-bubble"
       :style="bubbleStyle(task)" @click="selectTask(task)">
       {{ task.title }}
     </div>
@@ -20,6 +25,9 @@
       <div v-if="selectedTask">
         <h3>{{ selectedTask.title }}</h3>
         <p>{{ selectedTask.description }}</p>
+        <p>积分: {{ selectedTask.points }}</p>
+        <p>通过后能得到的货币数量: {{ selectedTask.reward }}</p>
+        <button @click="getHint">花费 {{ hintCost }} 货币获取提示</button>
         <div v-if="selectedTask.requiresInput">
           <input v-model="taskAnswer" placeholder="Enter your answer" />
           <button @click="submitAnswer">Submit</button>
@@ -32,12 +40,14 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { ElSwitch } from 'element-plus';
 
 const tasks = [
-  { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1', requiresInput: true },
-  { id: 2, title: 'Task 2', x: 300, y: 400, description: 'Description for Task 2', requiresInput: false },
+  { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1', points: 10, reward: 5, requiresInput: true },
+  { id: 2, title: 'Task 2', x: 300, y: 400, description: 'Description for Task 2', points: 20, reward: 10, requiresInput: false },
   // More tasks
 ];
+
 
 const scale = ref(1);
 const minScale = 1;
@@ -50,6 +60,8 @@ const dragging = ref(false);
 const touchStartDistance = ref(0);
 const selectedTask = ref(null);
 const taskAnswer = ref('');
+const hintCost = ref(2); // 提示的花费货币数量
+const showUncompletedOnly = ref(false);
 
 const mapImage = ref(null);
 
@@ -191,6 +203,17 @@ const submitAnswer = () => {
   taskAnswer.value = '';
   closeSidebar();
 };
+
+const getHint = () => {
+  console.log(`Hint requested for task ${selectedTask.value.title}, cost: ${hintCost.value} currency`);
+  // 提示逻辑
+};
+
+const filteredTasks = computed(() => {
+  return showUncompletedOnly.value
+    ? tasks.filter(task => !task.completed)
+    : tasks;
+});
 </script>
 
 <style>
@@ -263,5 +286,16 @@ const submitAnswer = () => {
 .task-sidebar button {
   display: block;
   margin-top: 10px;
+}
+
+.filter-slider {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 </style>
