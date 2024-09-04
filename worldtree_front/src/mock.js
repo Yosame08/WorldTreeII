@@ -77,7 +77,7 @@ Mock.mock('/api/rank', 'post', (token) => {
             {
                 "rank": 2,
                 "name": "Bob",
-                "point": 90,
+                "point": 80,
             },
             {
                 "rank": 4,
@@ -125,5 +125,11 @@ Mock.mock('/api/bbs', 'post', (token) => {
                 "special": 0,
             },
         ],
+    };
+});
+
+Mock.mock('/api/user', 'post', (info) => {
+    return {
+        code: 3050,
     };
 });
