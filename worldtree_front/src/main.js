@@ -9,7 +9,7 @@ import ECharts from 'vue-echarts'
 import * as echarts from 'echarts'
 
 import './mock.js'
-import store from './services/loadService'
+import store from './services/storeService'
 import { quillEditor } from "vue3-quill";
 
 // 添加请求拦截器
@@ -30,3 +30,14 @@ app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
 // axios.defaults.baseURL = 'http://localhost:8088'
 app.use(quillEditor).use(router).use(ElementPlus).use(store).mount('#app')
+
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
+library.add(fas, far, fab)
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('font-awesome-layers', FontAwesomeLayers)
+app.component('font-awesome-layers-text', FontAwesomeLayersText)

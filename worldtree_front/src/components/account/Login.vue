@@ -21,7 +21,9 @@
 
 <script>
 import { login, fetchCaptcha } from '@/services/userService';
+import store from '@/services/storeService';
 import ErrorMsg from '@/components/ErrorMsg.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
@@ -60,9 +62,12 @@ export default {
           verify: this.captcha
         });
         const code = response.data.code;
+        console.log(code);
         if (code === 3040) {
           this.errorMessage = '';
-          localStorage.setItem('token', response.data.data.token); // Store the token
+          localStorage.setItem('token', response.data.data); // Store the token
+          store.commit('setLoginState', true);
+          await store.dispatch('fetchUserInfo');
           this.$router.push('/'); // Navigate to home page
         } else {
           this.errorMessage = response.data.message;

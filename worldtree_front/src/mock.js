@@ -4,21 +4,36 @@ Mock.setup({
     timeout: '400-3000'
 })
 
-Mock.mock('/api/login', 'post', {
+Mock.mock('/api/user/login', 'post', {
     code: 3040,
-    data: {
-        username: 'TestUser'
+    data: 'this_is_a_token',
+});
+
+Mock.mock('/api/user/get_info', 'get', {
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+        "id": 2,
+        "username": "Yosame",
+        "password": "27b5dcb55789707e71fdcbd9d447dcb2",
+        "nickname": "",
+        "email": "",
+        "userPic": "",
+        "createTime": "2024-09-05T13:45:52",
+        "updateTime": "2024-09-05T15:33:48",
+        "coin": 5,
+        "point": 910,
     }
 });
 
-Mock.mock('/api/captcha', 'get', () => {
+Mock.mock('/api/user/captcha', 'get', () => {
     return {
         pic_token: Mock.Random.guid(),
         pic: Mock.Random.dataImage('80x20', 'CAPTCHA')
     };
 });
 
-Mock.mock('/api/signup', 'post', (options) => {
+Mock.mock('/api/user/signup', 'post', (options) => {
     const { username, password, pic_token, verify } = JSON.parse(options.body);
 
     // Mock different error codes based on input data
@@ -50,11 +65,6 @@ Mock.mock('/api/signup', 'post', (options) => {
         code: 3040,
         message: "",
     };
-});
-
-Mock.mock('/api/logout', 'post', {
-    code: 200,
-    data: {}
 });
 
 Mock.mock('/api/rank', 'post', (token) => {
@@ -122,11 +132,5 @@ Mock.mock('/api/bbs', 'post', (token) => {
                 "special": 0,
             },
         ],
-    };
-});
-
-Mock.mock('/api/user', 'post', (info) => {
-    return {
-        code: 3050,
     };
 });

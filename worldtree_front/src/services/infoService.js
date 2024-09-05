@@ -1,6 +1,6 @@
 // src/services/infoService.js
 import axios from 'axios';
-import store from '@/services/loadService';
+import store from '@/services/storeService';
 
 export const fetchRankData = async (token) => {
     store.commit('load');

@@ -11,8 +11,8 @@
         <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
       </template>
       <template v-else>
-        <button @click="goToUserSettings">{{ username }}</button>
-        <button @click="logout">Log out</button>
+        <button @click="goToUserSettings" class="nav-link">{{ username }}</button>
+        <button @click="logout" class="nav-link">Log out</button>
       </template>
     </div>
   </div>
@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { logout } from '@/services/userService';
+import { computed } from 'vue';
+import store from "@/services/storeService";
 
 const customColors = [
   { color: '#f40'},
@@ -38,8 +39,8 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      isLoggedIn: false,
-      username: '',
+      isLoggedIn: computed(() => store.state.isLoggedIn),
+      username: computed(() => store.state.userInfo.username),
       customColors: customColors,
     };
   },
@@ -53,14 +54,10 @@ export default {
     });
   },
   methods: {
-    async logout() {
-      try {
-        await logout();
-        this.isLoggedIn = false;
-        this.username = '';
-      } catch (error) {
-        console.error('Logout failed', error);
-      }
+    logout() {
+      store.commit('setLoginState', false);
+      store.commit('setUserInfo', {});
+      localStorage.removeItem('token');
     },
     goToUserSettings() {
       this.$router.push('/usersettings');
@@ -109,13 +106,14 @@ export default {
 }
 
 .auth-section button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #333;
+  text-decoration: none;
   color: white;
+  padding: 10px 15px;
+  background-color: #333;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 16px;
 }
 
 .auth-section button:hover {
