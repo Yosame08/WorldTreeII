@@ -26,7 +26,7 @@
 import { ElForm, ElFormItem, ElUpload, ElButton } from 'element-plus';
 
 export default {
-  name: 'UserSettings',
+  name: 'UserSetting',
   components: {
     ElForm,
     ElFormItem,

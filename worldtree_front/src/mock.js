@@ -1,66 +1,73 @@
 import Mock from 'mockjs'
 
 Mock.setup({
-    timeout: '400-3000'
+    timeout: '200-1500'
 })
 
-Mock.mock('/api/login', 'post', {
+Mock.mock('/api/user/login', 'post', {
     code: 3040,
-    data: {
-        username: 'TestUser'
+    data: 'this_is_a_token',
+});
+
+Mock.mock('/api/user/get_info', 'get', {
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+        "id": 2,
+        "username": "Yosame",
+        "password": "27b5dcb55789707e71fdcbd9d447dcb2",
+        "nickname": "",
+        "email": "",
+        "userPic": "",
+        "createTime": "2024-09-05T13:45:52",
+        "updateTime": "2024-09-05T15:33:48",
+        "coin": 5,
+        "point": 910,
     }
 });
 
-Mock.mock('/api/captcha', 'get', () => {
+Mock.mock('/api/user/captcha', 'get', () => {
     return {
         pic_token: Mock.Random.guid(),
         pic: Mock.Random.dataImage('80x20', 'CAPTCHA')
     };
 });
 
-Mock.mock('/api/signup', 'post', (options) => {
+Mock.mock('/api/user/signup', 'post', (options) => {
     const { username, password, pic_token, verify } = JSON.parse(options.body);
 
     // Mock different error codes based on input data
     if (verify === 'expectedCaptcha') {
         return {
-            code: 3031,
-            data: {}
+            code: 3041,
+            message: "Captcha verification failed",
         };
     }
     if (username === 'existingUser') {
         return {
-            code: 3032,
-            data: {}
+            code: 3041,
+            message: "Username already exists",
         };
     }
     if (!/^[a-zA-Z0-9]{3,}$/.test(username)) {
         return {
-            code: 3033,
-            data: {}
+            code: 3041,
+            message: "Username must be at least 3 characters long and contain only letters and numbers",
         };
     }
     if (password.length < 6) {
         return {
-            code: 3034,
-            data: {}
+            code: 3041,
+            message: "Password must be at least 6 characters long",
         };
     }
     return {
-        code: 3030,
-        data: {
-            username: "Yosame",
-            token: "aaa"
-        }
+        code: 3040,
+        message: "",
     };
 });
 
-Mock.mock('/api/logout', 'post', {
-    code: 200,
-    data: {}
-});
-
-Mock.mock('/api/rank', 'post', (token) => {
+Mock.mock('/api/rank', 'get', () => {
     return {
         code: 3050,
         tableData: [
@@ -106,7 +113,7 @@ Mock.mock('/api/rank', 'post', (token) => {
     };
 });
 
-Mock.mock('/api/bbs', 'post', (token) => {
+Mock.mock('/api/bbs', 'get', () => {
     return {
         code: 3050,
         list: [
@@ -125,11 +132,5 @@ Mock.mock('/api/bbs', 'post', (token) => {
                 "special": 0,
             },
         ],
-    };
-});
-
-Mock.mock('/api/user', 'post', (info) => {
-    return {
-        code: 3050,
     };
 });

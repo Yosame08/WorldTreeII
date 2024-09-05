@@ -1,11 +1,11 @@
 // src/services/infoService.js
 import axios from 'axios';
-import store from '@/services/loadService';
+import store from '@/services/storeService';
 
-export const fetchRankData = async (token) => {
+export const fetchRankData = async () => {
     store.commit('load');
     try {
-        return await axios.post('/api/rank', token);
+        return await axios.get('/api/rank');
     } catch (error) {
         throw error;
     } finally {
@@ -13,10 +13,10 @@ export const fetchRankData = async (token) => {
     }
 };
 
-export const fetchBbsTitles = async (token) => {
+export const fetchBbsTitles = async () => {
     store.commit('load');
     try {
-        return await axios.post('/api/bbs', token);
+        return await axios.get('/api/bbs');
     } catch (error) {
         throw error;
     } finally {

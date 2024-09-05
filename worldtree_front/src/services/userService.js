@@ -1,11 +1,11 @@
 // src/services/userService.js
 import axios from 'axios';
-import store from '@/services/loadService';
+import store from '@/services/storeService';
 
 export const fetchCaptcha = async () => {
     store.commit('load');
     try {
-        return await axios.get('/api/captcha');
+        return await axios.get('/api/user/captcha');
     } catch (error) {
         throw error;
     } finally {
@@ -16,7 +16,7 @@ export const fetchCaptcha = async () => {
 export const signup = async (data) => {
     store.commit('load');
     try {
-        return await axios.post('/api/signup', data);
+        return await axios.post('/api/user/signup', data);
     } catch (error) {
         throw error;
     } finally {
@@ -27,7 +27,7 @@ export const signup = async (data) => {
 export const login = async (data) => {
     store.commit('load');
     try {
-        return await axios.post('/api/login', data);
+        return await axios.post('/api/user/login', data);
     } catch (error) {
         throw error;
     } finally {
@@ -35,10 +35,21 @@ export const login = async (data) => {
     }
 };
 
-export const logout = async (token) => {
+export const set_info = async (data) => {
     store.commit('load');
     try {
-        return await axios.post('/api/logout', token);
+        return await axios.post('/api/user/set_info', data);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
+};
+
+export const get_info = async () => {
+    store.commit('load');
+    try {
+        return await axios.get('/api/user/get_info');
     } catch (error) {
         throw error;
     } finally {
