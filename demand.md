@@ -10,8 +10,11 @@ $prefix = /api/user
 
 ```json
 {
-    "pic_token": "aaa",
-    "pic": （图片的base64）
+    "code": 3040,
+    "data":{
+        "pic_token": "aaa",
+        "pic": （图片的base64)
+    }
 }
 ```
 
@@ -41,10 +44,7 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 ```json
 {
     "code":3030,
-    "data": {
-        "username": "Yosame",
-        "token": "aaa"
-    }
+    "data": "aaa"
 }
 ```
 
@@ -74,38 +74,11 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 ```json
 {
     "code":3040,
-    "data": {
-        "username": "Yosame",
-        "token": "aaa"
-    }
+    "data": "aaa"
 }
 ```
 
-## 4. 登出API：$preifx/logout (post token)
-
-约定登出状态码，暂定3049登出成功，0其他错误请重试。
-
-### Question
-
-是否是我传入token？
-
-### 参数
-
-```json
-{
-    "token": "aaa"
-}
-```
-
-### 返回值
-
-```json
-{
-    "code":3049
-}
-```
-
-## 5. 个人信息API: $preifx/user
+## 4. 更新个人信息: $preifx/set_info
 
 仅允许登录状态下访问，传入token并验证，一并传入头像、个性签名等内容。返回状态码（验证token是否有效，约定3050有效，其他无效）
 
@@ -113,11 +86,12 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 
 ```json
 {
-    "token": "aaa",
     "avatar": （图片的base64）,
     "qianming(?)": "我去，初音未来！"
 }
 ```
+
+## 5. 获取个人信息：$preifx/get_info
 
 ### 返回值
 
@@ -154,7 +128,7 @@ $prefix = /api/func
 ```json
 {
     "code":3050,
-    "tableData": [
+    "data": [
         {
             "rank": 1,
             "name": "Tom",
@@ -214,7 +188,7 @@ $prefix = /api/func
 ```json
 {
     "code":3050,
-    "list": [
+    "data": [
         {
             "id": 1,
             "user": "Alice",
