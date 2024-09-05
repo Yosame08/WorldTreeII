@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @Validated
 public class UserController {
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -49,7 +49,9 @@ public class UserController {
         }
     }
     @PostMapping("/login")
-    public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username,@Pattern(regexp = "^\\S{5,16}$") String password) {
+    public Result<String> login(@RequestBody Map<String, String> params) {
+        String username = params.get("username");
+        String password = params.get("password");
         User loginUser = userService.findByUserName(username);
         if(loginUser==null) {
             return Result.error("用户名不存在");
