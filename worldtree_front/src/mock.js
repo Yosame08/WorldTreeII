@@ -75,12 +75,12 @@ Mock.mock('/api/rank', 'post', (token) => {
                 "point": 90,
             },
             {
-                "rank": 2,
+                "rank": 3,
                 "name": "Bob",
                 "point": 80,
             },
             {
-                "rank": 4,
+                "rank": 3,
                 "name": "Emily",
                 "point": 80,
             },
