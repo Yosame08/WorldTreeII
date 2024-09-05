@@ -1,4 +1,5 @@
 <template>
+  <ErrorMsg :message="errorMessage" />
   <h1>This is BBS.</h1>
   <el-table
       :data="list"
@@ -14,13 +15,17 @@
 
 <script>
 import { fetchBbsTitles } from "@/services/infoService";
+import ErrorMsg from "@/components/ErrorMsg.vue";
 
 export default ({
   name: 'BBS',
+  components: {
+    ErrorMsg
+  },
   data() {
     return {
       list: [],
-      token: "placeholder",
+      errorMessage: ''
     };
   },
   created() {
@@ -29,15 +34,15 @@ export default ({
   methods: {
     async loadBbsData() {
       try {
-        const response = await fetchBbsTitles(this.token);
+        const response = await fetchBbsTitles();
         if (response.data.code === 3050) {
           this.list = response.data.list;
         } else {
-          this.$router.push('/login');
+          this.errorMessage = response.data.message;
         }
       } catch (error) {
-        console.error('Failed to fetch rank data', error);
-        this.$router.push('/login');
+        console.error('Failed to fetch BBS data', error);
+        this.errorMessage = 'Failed to fetch BBS data';
       }
     },
     tableRowClassName({row}) {

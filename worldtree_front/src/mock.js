@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
 
 Mock.setup({
-    timeout: '400-3000'
+    timeout: '200-1500'
 })
 
 Mock.mock('/api/user/login', 'post', {
@@ -67,7 +67,7 @@ Mock.mock('/api/user/signup', 'post', (options) => {
     };
 });
 
-Mock.mock('/api/rank', 'post', (token) => {
+Mock.mock('/api/rank', 'get', () => {
     return {
         code: 3050,
         tableData: [
@@ -113,7 +113,7 @@ Mock.mock('/api/rank', 'post', (token) => {
     };
 });
 
-Mock.mock('/api/bbs', 'post', (token) => {
+Mock.mock('/api/bbs', 'get', () => {
     return {
         code: 3050,
         list: [

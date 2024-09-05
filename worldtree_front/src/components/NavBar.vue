@@ -11,7 +11,7 @@
         <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
       </template>
       <template v-else>
-        <button @click="goToUserSettings" class="nav-link">{{ username }}</button>
+        <button @click="goToUserSetting" class="nav-link">{{ username }}</button>
         <button @click="logout" class="nav-link">Log out</button>
       </template>
     </div>
@@ -59,8 +59,8 @@ export default {
       store.commit('setUserInfo', {});
       localStorage.removeItem('token');
     },
-    goToUserSettings() {
-      this.$router.push('/usersettings');
+    goToUserSetting() {
+      this.$router.push('/usersetting');
     },
   }
 }

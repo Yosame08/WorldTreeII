@@ -2,6 +2,7 @@
   <div class="index-container">
     <div class="sidebar">
       <template v-if="isLoggedIn">
+        <p>Welcome, {{ userInfo.username }}</p>
         <p>Nickname: {{ userInfo.nickname }}</p>
         <p>Create Time: {{ userInfo.createTime }}</p>
         <p>Coin: {{ userInfo.coin }}</p>

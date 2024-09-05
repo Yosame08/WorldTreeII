@@ -16,7 +16,7 @@ const store = createStore({
             console.log('load', state.load);
         },
         finish (state) {
-            state.load--;
+            if (state.load) state.load--;
             console.log('finish', state.load);
         },
         setLoginState(state, isLoggedIn) {
