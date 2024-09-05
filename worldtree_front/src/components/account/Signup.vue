@@ -59,36 +59,17 @@ export default {
           verify: this.captcha
         });
         const code = response.data.code;
-        if (code === 3030) {
+        if (code === 3040) {
           this.errorMessage = '';
-          localStorage.setItem('token', response.data.data.token); // Store the token
-          this.$router.push('/'); // Navigate to home page
+          this.$router.push('/login'); // Navigate to login page
         } else {
-          this.handleError(code);
+          this.errorMessage = response.data.message;
         }
       } catch (error) {
         this.errorMessage = 'Other error, please try again.';
         console.error('Signup failed', error);
       }
     },
-    handleError(code) {
-      switch (code) {
-        case 3031:
-          this.errorMessage = 'Captcha error.';
-          break;
-        case 3032:
-          this.errorMessage = 'Username already exists.';
-          break;
-        case 3033:
-          this.errorMessage = 'Username does not meet requirements.';
-          break;
-        case 3034:
-          this.errorMessage = 'Password does not meet requirements.';
-          break;
-        default:
-          this.errorMessage = 'Other error, please try again.';
-      }
-    }
   }
 }
 </script>

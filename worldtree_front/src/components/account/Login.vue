@@ -63,25 +63,15 @@ export default {
         if (code === 3040) {
           this.errorMessage = '';
           localStorage.setItem('token', response.data.data.token); // Store the token
-          localStorage.setItem('username', response.data.data.username); // Store the username
           this.$router.push('/'); // Navigate to home page
         } else {
-          this.handleError(code);
+          this.errorMessage = response.data.message;
         }
       } catch (error) {
         this.errorMessage = 'Login failed, please try again.';
         console.error('Login failed', error);
       }
     },
-    handleError(code) {
-      switch (code) {
-        case 3041:
-          this.errorMessage = 'Invalid username or password.';
-          break;
-        default:
-          this.errorMessage = 'Login failed, please try again.';
-      }
-    }
   }
 }
 </script>

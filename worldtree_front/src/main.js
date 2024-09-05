@@ -12,6 +12,19 @@ import './mock.js'
 import store from './services/loadService'
 import { quillEditor } from "vue3-quill";
 
+// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+    // 在发送请求之前做些什么
+    // 判断是否存在token,如果存在将每个页面header添加token
+    if (sessionStorage.getItem("token")) {
+        config.headers.common['Authorization'] = sessionStorage.getItem("token");
+    }
+    return config
+}, function (error) {
+    router.push('/login')
+    return Promise.reject(error)
+})
+
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts

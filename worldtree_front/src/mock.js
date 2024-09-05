@@ -24,34 +24,31 @@ Mock.mock('/api/signup', 'post', (options) => {
     // Mock different error codes based on input data
     if (verify === 'expectedCaptcha') {
         return {
-            code: 3031,
-            data: {}
+            code: 3041,
+            message: "Captcha verification failed",
         };
     }
     if (username === 'existingUser') {
         return {
-            code: 3032,
-            data: {}
+            code: 3041,
+            message: "Username already exists",
         };
     }
     if (!/^[a-zA-Z0-9]{3,}$/.test(username)) {
         return {
-            code: 3033,
-            data: {}
+            code: 3041,
+            message: "Username must be at least 3 characters long and contain only letters and numbers",
         };
     }
     if (password.length < 6) {
         return {
-            code: 3034,
-            data: {}
+            code: 3041,
+            message: "Password must be at least 6 characters long",
         };
     }
     return {
-        code: 3030,
-        data: {
-            username: "Yosame",
-            token: "aaa"
-        }
+        code: 3040,
+        message: "",
     };
 });
 
