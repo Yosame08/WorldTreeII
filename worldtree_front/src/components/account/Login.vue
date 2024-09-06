@@ -65,7 +65,7 @@ export default {
         console.log(code);
         if (code === 3040) {
           this.errorMessage = '';
-          localStorage.setItem('token', response.data.data); // Store the token
+          sessionStorage.setItem('token', response.data.data); // Store the token
           store.commit('setLoginState', true);
           await store.dispatch('fetchUserInfo');
           this.$router.push('/'); // Navigate to home page

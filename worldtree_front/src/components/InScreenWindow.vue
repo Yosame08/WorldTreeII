@@ -59,7 +59,6 @@ export default {
         } else {
           this.style.left = `${newLeft}px`;
         }
-        console.log(this.style.top, this.style.left);
       }
     },
     stopDrag() {
