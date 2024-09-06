@@ -46,7 +46,6 @@ export default ({
       }
     },
     tableRowClassName({row}) {
-      console.log(row);
       if (row.special !== 0) {
         return 'special-row';
       }

@@ -99,7 +99,6 @@ export default ({
           show: true,
         },
         formatter: function (params) {
-          console.log(params);
           return params[0].data[0] + "<br/>" + "积分：" + params[0].data[1];
         },
         xAxis: [

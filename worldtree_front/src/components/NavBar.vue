@@ -57,7 +57,7 @@ export default {
     logout() {
       store.commit('setLoginState', false);
       store.commit('setUserInfo', {});
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
     },
     goToUserSetting() {
       this.$router.push('/usersetting');
