@@ -40,7 +40,8 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { ElSwitch, ElButton, ElInput } from 'element-plus';
+import { ElSwitch, ElButton, ElInput, ElMessage } from 'element-plus';
+import { submitTask, requestHint } from "@/services/taskService";
 
 const tasks = [
   { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1', points: 10, reward: 5, requiresInput: true },
@@ -198,15 +199,31 @@ const closeSidebar = () => {
   selectedTask.value = null;
 };
 
-const submitAnswer = () => {
+const submitAnswer = async () => {
   console.log(`Answer submitted for task ${selectedTask.value.title}:`, taskAnswer.value);
+
+  try {
+    const res = await submitTask(selectedTask.value.id, taskAnswer.value);
+    if(res.data.code === 200) {
+      ElMessage.success('回答正确');
+    } else {
+      ElMessage.error('回答错误');
+    }
+    // Handle response
+  } catch (err) { console.error(err); }
+
   taskAnswer.value = '';
   closeSidebar();
 };
 
-const getHint = () => {
+const getHint = async () => {
   console.log(`Hint requested for task ${selectedTask.value.title}, cost: ${hintCost.value} currency`);
-  // 提示逻辑
+  
+  try {
+    const msg = await requestHint(selectedTask.value.id);
+
+    ElMessage.info(msg);
+  } catch (err) { console.error(err); }
 };
 
 const filteredTasks = computed(() => {
@@ -299,4 +316,4 @@ const filteredTasks = computed(() => {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-</style>
+</style>@/services/taskService
