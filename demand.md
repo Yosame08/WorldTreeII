@@ -4,7 +4,7 @@ example:
 
 ```json
 {
-    "code": 3040,
+    "code": 0,
     "message": "success",
     "data": "aaa"
 }
@@ -12,7 +12,7 @@ example:
 
 code表示响应的状态，message表示状态的描述，data表示返回的数据。
 
-3040表示成功响应，3041表示失败响应
+0表示成功响应，0表示失败响应
 
 除了注册和登录接口以外，其他的接口都请携带上token放在请求头里面
 
@@ -32,7 +32,7 @@ $prefix = /api/user
 
 ```json
 {
-    "code": 3040,
+    "code": 0,
     "data":{
         "pic_token": "aaa",
         "pic": （图片的base64)
@@ -63,7 +63,7 @@ $prefix = /api/user
 
 ```json
 {
-    "code":3040,
+    "code":0,
     "message": "success"
 }
 ```
@@ -92,7 +92,7 @@ $prefix = /api/user
 
 ```json
 {
-    "code":3040,
+    "code":0,
     "data": "token_example"
 }
 ```
@@ -127,7 +127,7 @@ $prefix = /api/user
 
 ```json
 {
-    "code": 3040,
+    "code": 0,
     "message": "success"
 }
 ```
@@ -188,7 +188,7 @@ data里直接放用户的id
 
 ```json 
 {
-    "code": 3040,
+    "code": 0,
     "data": 2
 }
 ```
@@ -197,7 +197,71 @@ data里直接放用户的id
 
 $prefix = /api/task
 
-## 1. 地图界面：请求任务（在切换到该页面时）$preifx/task
+## 1. 地图界面：请求任务列表（在切换到该页面时）$preifx/get_task_list
+
+### 请求类型：get请求
+
+### 接口备注
+
+获取所有的任务包括他们的状态
+
+### 参数
+
+无
+
+### 返回值
+
+```json
+{
+    "code": 0,
+    "data":[
+        {
+            "task_id": 1,
+            "task_title": "haunted three building",
+            "task_status": 0,
+            "pos": [1,1]
+        },
+        {
+            "task_id": 2,
+            "task_title": "haunted three building",
+            "task_status": 1,
+            "pos": [1,1]
+        }
+    ]
+}
+```
+
+##  2. 查询任务信息
+
+### 请求类型：post请求
+
+### 接口备注
+
+通过task_id获取task的详细信息
+
+### 参数
+
+```json
+{
+    "task_id": 1
+}
+```
+
+### 返回值
+
+```json
+{
+    "code": 0,
+    "data": {
+        "task_title": "misterious two building",
+        "task_desciption": "just fucking go to two building and fuck yourself, dumbass",
+        "uri": "game/nim",
+        "task_point": 50,
+        "task_coin": 100,
+        "hint_price": 100,
+    }
+}
+```
 
 # 三、功能相关
 
@@ -219,7 +283,7 @@ $prefix = /api/func
 
 ```json
 {
-    "code":3040,
+    "code":0,
     "data": [
         {
             "rank": 1,
@@ -269,7 +333,7 @@ $prefix = /api/func
 
 ```json
 {
-    "code": 3040,
+    "code": 0,
     "data": [
         {
             "time": "2024-08-18T10:00:00",
@@ -288,32 +352,7 @@ $prefix = /api/func
 
 ```
 
-## 3. 增加用户的积分: $prefix/update_user_point
-
-### 请求类型：post请求
-
-### 接口备注
-
-传入用户id和增加的积分值，返回更新后的积分值
-
-### 参数
-
-```json
-{
-    "id": 2,
-    "point": 50
-}
-```
-
-### 返回值
-```json
-{
-    "code": 3040,
-    "data": 50
-}
-```
-
-## 4. 讨论版首页：$preifx/bbs 
+## 3. 讨论版首页：$preifx/bbs 
 
 get 请求
 
@@ -329,7 +368,7 @@ get 请求
 
 ```json
 {
-    "code":3040,
+    "code":0,
     "data": [
         {
             "post_id": 1,
@@ -343,7 +382,7 @@ get 请求
 }
 ```
 
-## 5. 查看某个帖子: $prefix/bbs_get_post
+## 4. 查看某个帖子: $prefix/bbs_get_post
 
 ### 请求类型：post 请求
 
@@ -368,7 +407,7 @@ get 请求
 
 ```json 
 {
-    "code": 3040,
+    "code": 0,
     "data": [
         {
             "message_id": 1,
@@ -387,6 +426,31 @@ get 请求
     ],
 }
 
+```
+
+## 5. 通用任务答案提交：$prefix/task/submit
+
+### 请求类型：post请求
+
+### 接口备注
+
+对于提交答案的题目，往这个接口里直接传提交的flag
+
+### 参数
+
+```json
+{
+    "flag": "brawl star"
+}
+```
+
+### 返回值
+
+```json
+{
+    "code": 0,
+    "data": 1
+}
 ```
 
 # 四、通用工具
@@ -409,7 +473,7 @@ $prefix=/api/util
 
 ```json
 {
-    "code": 3040,
+    "code": 0,
     "data": "2024-09-05T15:34:48"
 }
 ```
