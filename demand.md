@@ -36,40 +36,7 @@ $prefix = /api/user
 
 ## 2. 注册API: $preifx/signup
 
-传入明文账号密码以及验证码答案，返回状态码，密码记得在后端加盐。
-
-### Question
-
-Json是否能正确处理用户名和密码带引号的场景？是否能防止SQL注入？
-
-### 参数
-
-```json
-{
-    "username": "Yosame",
-    "password": "aminuosi",
-    "pic_token": "aaa",
-    "verify": 5
-}
-```
-
-### 返回值
-
-```json
-{
-    "code":3040
-}
-```
-
-## 3. 登录API：$preifx/login
-
-传入明文账号密码以及验证码，返回状态码，若登陆成功同时返回用户名（还需要返回什么后面再说）。
-
-约定登录状态码，暂定3040登陆成功，3041登录失败，0其他错误请重试。
-
-### Question
-
-需要返回token并在前端记录吗？
+传入明文账号密码以及验证码答案。
 
 ### 参数
 
@@ -87,13 +54,41 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 ```json
 {
     "code":3040,
-    "data": "aaa"
+    "message": "success"
+}
+```
+
+## 3. 登录API：$preifx/login
+
+传入明文账号密码以及验证码，返回状态码和token（还需要返回什么后面再说）。
+
+约定登录状态码，暂定3040登陆成功，3041登录失败。
+
+### 参数
+
+```json
+{
+    "username": "Yosame",
+    "password": "aminuosi",
+    "pic_token": "aaa",
+    "verify": 5
+}
+```
+
+### 返回值
+
+```json
+{
+    "code":3040,
+    "data": "token_example"
 }
 ```
 
 ## 4. 更新个人信息: $preifx/set_info
 
 ### 参数
+
+参数中一定要有id这一项，id一定要和token匹配
 
 ```json
 {
@@ -108,7 +103,20 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 }
 ```
 
-## 5. 获取个人信息：$preifx/get_info
+### 返回值
+
+```json
+{
+    "code": 3040,
+    "message": "success"
+}
+```
+
+## 5. 获取个人信息：$preifx/get_info(get)
+
+### 参数
+
+无
 
 ### 返回值
 
@@ -131,6 +139,30 @@ Json是否能正确处理用户名和密码带引号的场景？是否能防止S
 }
 ```
 
+## 6. 根据用户名查询用户的id: $prefix/get_id
+
+传入用户的名字查询他的id
+
+### 参数
+
+```json
+{
+    "username": "Alice"
+}
+
+```
+
+### 返回值
+
+data里直接放用户的id
+
+```json 
+{
+    "code": 3040,
+    "data": 2
+}
+```
+
 # 二、任务相关
 
 $prefix = /api/task
@@ -141,17 +173,13 @@ $prefix = /api/task
 
 $prefix = /api/func
 
-## 1. 积分排名：$preifx/rank (post token)
+## 1. 积分排名：$preifx/rank (get)
 
 传入用户token，返回状态码（验证token是否有效，约定3050有效，其他无效），返回积分排名的信息（一个数组），每个元素包含rank、name和point；返回排名前十的用户的积分变化时间点（见返回值）；返回当前时间戳
 
 ### 参数
 
-```json
-{
-    "token": "aaa"
-}
-```
+无
 
 ### 返回值
 
@@ -201,23 +229,19 @@ $prefix = /api/func
 }
 ```
 
-## 2. 讨论版首页：$preifx/bbs (post token)
+## 2. 讨论版首页：$preifx/bbs (get)
 
-传入用户token，返回状态码（验证token是否有效，约定3040有效，其他无效），所有帖子按最后一次回复排序，按序返回{帖子ID,发帖人，标题，所用积分,特殊帖}，最后一个作为保留值，后续开发可能用到。后续要点击帖子详情，访问的API是/bbs/{ID}。
+获取所有帖子，按最后一次回复排序，按序返回{帖子ID,发帖人，标题，所用积分,特殊帖}，最后一个作为保留值，后续开发可能用到。
 
 ### 参数
 
-```json
-{
-    "token": "aaa"
-}
-```
+无
 
 ### 返回值
 
 ```json
 {
-    "code":3050,
+    "code":3040,
     "data": [
         {
             "id": 1,
@@ -228,4 +252,46 @@ $prefix = /api/func
         },
     ],
 }
+```
+
+## 3. 查看某个帖子: $prefix/bbs_get_post
+
+### 参数
+
+发送帖子的id，请求帖子的内容
+
+```json
+{
+    "post_id": 1
+}
+
+```
+
+### 返回值
+
+按照回帖时间列出所有该帖子的回复message
+
+注意这里的message_id表示message在所有message中的排序，并不代表在该帖子中的顺序，可以直接忽略，发回来是为了方便（
+
+```json 
+{
+    "code": 3040,
+    "data": [
+        {
+            "message_id": 1,
+            "user_id": 1,
+            "username": "Alice",
+            "content": "fuck me bro",
+            "reply_time": "2024-09-05T15:33:48"
+        },
+        {
+            "message_id": 3,
+            "user_id": 2,
+            "user_name": "Bob",
+            "content": "give me wjx",
+            "reply_time": "2024-09-05T15:34:48"
+        }
+    ],
+}
+
 ```
