@@ -26,7 +26,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log('to', to.path, 'from', from.path, 'isLoggedIn', store.state.isLoggedIn);
     if (to.path !== '/' && to.path !== '/signup' && to.path !== '/login' && !store.state.isLoggedIn) {
         next('/login');
     } else {
