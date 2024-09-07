@@ -1,5 +1,5 @@
 # 返回结果约定：
- 
+
 example:
 
 ```json
@@ -10,7 +10,7 @@ example:
 }
 ```
 
-code表示响应的状态，message表示状态的描述，data表示返回的数据。
+code 表示响应的状态，message 表示状态的描述，data 表示返回的数据。
 
 0表示成功响应，0表示失败响应
 
@@ -26,7 +26,7 @@ $prefix = /api/user
 
 ### 接口备注
 
-需要传回一个验证码图片，可以是一个算式或者字符，用OpenCV随便整一整生成一张图片，每张图片有对应的token，等待用户返回结果
+需要传回一个验证码图片，可以是一个算式或者字符，用 OpenCV 随便整一整生成一张图片，每张图片有对应的 token，等待用户返回结果
 
 ### 返回值
 
@@ -52,10 +52,10 @@ $prefix = /api/user
 
 ```json
 {
-    "username": "Yosame",
-    "password": "aminuosi",
-    "pic_token": "aaa",
-    "verify": 5
+  "username": "Yosame",
+  "password": "aminuosi",
+  "pic_token": "aaa",
+  "verify": 5
 }
 ```
 
@@ -68,7 +68,7 @@ $prefix = /api/user
 }
 ```
 
-## 3. 登录API：$preifx/login
+## 3. 登录 API：$preifx/login
 
 ### 请求类型：post请求
 
@@ -81,10 +81,10 @@ $prefix = /api/user
 
 ```json
 {
-    "username": "Yosame",
-    "password": "aminuosi",
-    "pic_token": "aaa",
-    "verify": 5
+  "username": "Yosame",
+  "password": "aminuosi",
+  "pic_token": "aaa",
+  "verify": 5
 }
 ```
 
@@ -112,14 +112,14 @@ $prefix = /api/user
 
 ```json
 {
-    "id": 2,
-    "username": "Yosame",
-    "password": "27b5dcb55789707e71fdcbd9d447dcb2",
-    "nickname": "",
-    "email": "",
-    "userPic": "",
-    "coin": 5,
-    "point": 911
+  "id": 2,
+  "username": "Yosame",
+  "password": "27b5dcb55789707e71fdcbd9d447dcb2",
+  "nickname": "",
+  "email": "",
+  "userPic": "",
+  "coin": 5,
+  "point": 911
 }
 ```
 
@@ -148,20 +148,20 @@ $prefix = /api/user
 
 ```json
 {
-    "code": 0,
-    "message": "操作成功",
-    "data": {
-        "id": 2,
-        "username": "Yosame",
-        "password": "27b5dcb55789707e71fdcbd9d447dcb2",
-        "nickname": "",
-        "email": "",
-        "userPic": "",
-        "createTime": "2024-09-05T13:45:52",
-        "updateTime": "2024-09-05T15:33:48",
-        "coin": 5,
-        "point": 910
-    }
+  "code": 0,
+  "message": "操作成功",
+  "data": {
+    "id": 2,
+    "username": "Yosame",
+    "password": "27b5dcb55789707e71fdcbd9d447dcb2",
+    "nickname": "",
+    "email": "",
+    "userPic": "",
+    "createTime": "2024-09-05T13:45:52",
+    "updateTime": "2024-09-05T15:33:48",
+    "coin": 5,
+    "point": 910
+  }
 }
 ```
 
@@ -171,22 +171,21 @@ $prefix = /api/user
 
 ### 接口备注
 
-传入用户的名字查询他的id
+传入用户的名字查询他的 id
 
 ### 参数
 
 ```json
 {
-    "username": "Alice"
+  "username": "Alice"
 }
-
 ```
 
 ### 返回值
 
-data里直接放用户的id
+data 里直接放用户的 id
 
-```json 
+```json
 {
     "code": 0,
     "data": 2
@@ -313,7 +312,7 @@ $prefix = /api/func
 }
 ```
 
-## 2. 根据用户id查询用户trend_data: $prefix/get_user_trend
+## 2. 根据用户 id 查询用户 trend_data: $prefix/get_user_trend
 
 ### 请求类型：post请求
 
@@ -325,7 +324,7 @@ $prefix = /api/func
 
 ```json
 {
-    "user_id": 1
+  "user_id": 1
 }
 ```
 
@@ -349,7 +348,6 @@ $prefix = /api/func
         }
     ]
 }
-
 ```
 
 ## 3. 讨论版首页：$preifx/bbs 
@@ -394,18 +392,17 @@ get 请求
 
 ```json
 {
-    "post_id": 1
+  "post_id": 1
 }
-
 ```
 
 ### 返回值
 
-按照回帖时间列出所有该帖子的回复message
+按照回帖时间列出所有该帖子的回复 message
 
-注意这里的message_id表示message在所有message中的排序，并不代表在该帖子中的顺序，可以直接忽略，发回来是为了方便（
+注意这里的 message_id 表示 message 在所有 message 中的排序，并不代表在该帖子中的顺序，可以直接忽略，发回来是为了方便（
 
-```json 
+```json
 {
     "code": 0,
     "data": [
@@ -475,5 +472,80 @@ $prefix=/api/util
 {
     "code": 0,
     "data": "2024-09-05T15:34:48"
+}
+```
+
+# 子项目
+
+## 1. NIM 游戏初始化：/api/nim/init
+
+```json
+{
+  "player_first": true, // 若为 false 则为人机先走
+  "len": 6
+}
+```
+
+返回
+
+```json
+{
+  "code": 0,
+  "data": {
+    "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
+    "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
+  }
+}
+```
+
+## 2. NIM 游戏步骤：/api/nim/step
+
+```json
+{
+  "game_token": "A_RANDOM_TOKEN",
+  "take_from": 2, // 0-indexed
+  "num_taken": 2
+}
+```
+
+返回
+
+```json
+{
+  "code": 0,
+  "data": {
+    "status": "NOT_FINISHED",
+    "take_from": 3,
+    "num_taken": 1
+  }
+}
+```
+
+```json
+{
+  "code": 1,
+  "message": "Cannot take from column 2 anymore"
+}
+```
+
+```json
+{
+  "code": 0,
+  "data": {
+    "status": "FINISHED",
+    "winner": "player"
+  }
+}
+```
+
+```json
+{
+    "code": 0,
+    "data": {
+        "status": "FINISHED"
+        "take_from": 3,
+        "num_taken": 1,
+        "winner": "com"
+    }
 }
 ```
