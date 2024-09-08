@@ -78,7 +78,13 @@ public class UserController {
     public Result update(@RequestBody User user) {
         userService.update(user);
         return Result.success();
+    }
 
+    @PostMapping("/get_id")
+    public Result get_id(@RequestBody Map<String, String> params) {
+        String username = params.get("username");
+        int id = userService.findByUserName(username).getId();
+        return Result.success(id);
     }
 
     @PatchMapping("/updateAvatar")
