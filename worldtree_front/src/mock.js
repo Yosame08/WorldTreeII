@@ -134,3 +134,24 @@ Mock.mock('/api/bbs', 'get', () => {
         ],
     };
 });
+
+
+Mock.mock('/api/nim/init', 'get', () => {
+    return {
+        code: 0,
+        data: {
+            "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
+            "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
+        }
+    }
+});
+
+Mock.mock('/api/nim/step', 'get', () => {
+    return {
+        code: 0,
+        data: {
+            "status": "NOT_FINISHED",
+            "array": [1, 1, 4, 5, 0, 0] // 初始的石子个数序列
+        }
+    }
+});
