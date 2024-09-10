@@ -28,10 +28,6 @@ $prefix = /api/user
 
 需要传回一个验证码图片，可以是一个算式或者字符，用 OpenCV 随便整一整生成一张图片，每张图片有对应的 token，等待用户返回结果
 
-### 参数
-
-无
-
 ### 返回值
 
 ```json
@@ -215,44 +211,6 @@ $prefix = /api/task
 ```json
 {
     "code": 0,
-    "data":[
-        {
-            "task_id": 1,
-            "task_title": "haunted three building",
-            "task_status": 0,
-            "task_pos": [1,1]
-        },
-        {
-            "task_id": 2,
-            "task_title": "haunted three building",
-            "task_status": 1,
-            "task_pos": [1,1]
-        }
-    ]
-}
-```
-
-## 2. 查询任务信息
-
-### 请求类型：post 请求
-
-### 接口备注
-
-通过 task_id 获取 task 的详细信息
-
-### 参数
-
-```json
-{
-  "task_id": 1
-}
-```
-
-### 返回值
-
-```json
-{
-    "code": 0,
     "message": "操作成功",
     "data": [
         {
@@ -263,8 +221,10 @@ $prefix = /api/task
             "taskDescription": "this is true music",
             "uri": "true music uri",
             "taskPoint": 50,
+            "getPoint": 30,
             "taskCoin": 100,
-            "hintPrice": 100
+            "hintPrice": 100,
+            "taskStatus": 1
         }
     ]
 }
