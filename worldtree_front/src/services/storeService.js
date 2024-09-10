@@ -6,7 +6,7 @@ const store = createStore({
     state () {
         return {
             load: 0,
-            isLoggedIn: false,
+            isLoggedIn: !!sessionStorage.getItem('token'),
             showNavBar: true,
             userInfo: {},
         }
@@ -19,9 +19,6 @@ const store = createStore({
         finish (state) {
             if (state.load) state.load--;
             // console.log('finish', state.load);
-        },
-        setLoginState(state, isLoggedIn) {
-            state.isLoggedIn = isLoggedIn;
         },
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;

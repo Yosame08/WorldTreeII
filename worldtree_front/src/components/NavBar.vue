@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     logout() {
-      store.commit('setLoginState', false);
       store.commit('setUserInfo', {});
       sessionStorage.removeItem('token');
       this.$router.push('/beginning');
