@@ -20,9 +20,10 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import InScreenWindow from './InScreenWindow.vue';
+import store from "@/services/storeService";
 
 export default {
   components: {
@@ -32,6 +33,11 @@ export default {
     const store = useStore();
     const userInfo = computed(() => store.state.userInfo);
     const isLoggedIn = computed(() => store.state.isLoggedIn);
+
+    onMounted(async () => {
+      await store.dispatch('fetchUserInfo');
+    });
+
     return {
       userInfo,
       isLoggedIn,

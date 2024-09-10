@@ -4,8 +4,49 @@ Mock.setup({
     timeout: '200-1500'
 })
 
+Mock.mock('/api/user/captcha', 'get', () => {
+    return {
+        pic_token: Mock.Random.guid(),
+        pic: Mock.Random.dataImage('80x20', 'CAPTCHA')
+    };
+});
+
+Mock.mock('/api/user/signup', 'post', (options) => {
+    const { username, password, pic_token, verify } = JSON.parse(options.body);
+
+    // Mock different error codes based on input data
+    if (verify === 'expectedCaptcha') {
+        return {
+            code: 1,
+            message: "Captcha verification failed",
+        };
+    }
+    if (username === 'existingUser') {
+        return {
+            code: 1,
+            message: "Username already exists",
+        };
+    }
+    if (!/^[a-zA-Z0-9]{3,}$/.test(username)) {
+        return {
+            code: 1,
+            message: "Username must be at least 3 characters long and contain only letters and numbers",
+        };
+    }
+    if (password.length < 6) {
+        return {
+            code: 1,
+            message: "Password must be at least 6 characters long",
+        };
+    }
+    return {
+        code: 0,
+        message: "success",
+    };
+});
+
 Mock.mock('/api/user/login', 'post', {
-    code: 3040,
+    code: 0,
     data: 'this_is_a_token',
 });
 
@@ -26,45 +67,9 @@ Mock.mock('/api/user/get_info', 'get', {
     }
 });
 
-Mock.mock('/api/user/captcha', 'get', () => {
-    return {
-        pic_token: Mock.Random.guid(),
-        pic: Mock.Random.dataImage('80x20', 'CAPTCHA')
-    };
-});
-
-Mock.mock('/api/user/signup', 'post', (options) => {
-    const { username, password, pic_token, verify } = JSON.parse(options.body);
-
-    // Mock different error codes based on input data
-    if (verify === 'expectedCaptcha') {
-        return {
-            code: 3041,
-            message: "Captcha verification failed",
-        };
-    }
-    if (username === 'existingUser') {
-        return {
-            code: 3041,
-            message: "Username already exists",
-        };
-    }
-    if (!/^[a-zA-Z0-9]{3,}$/.test(username)) {
-        return {
-            code: 3041,
-            message: "Username must be at least 3 characters long and contain only letters and numbers",
-        };
-    }
-    if (password.length < 6) {
-        return {
-            code: 3041,
-            message: "Password must be at least 6 characters long",
-        };
-    }
-    return {
-        code: 3040,
-        message: "",
-    };
+Mock.mock('/api/user/get_id', 'post', {
+    code: 0,
+    data: 2,
 });
 
 Mock.mock('/api/rank', 'get', () => {
@@ -133,4 +138,25 @@ Mock.mock('/api/bbs', 'get', () => {
             },
         ],
     };
+});
+
+
+Mock.mock('/api/nim/init', 'get', () => {
+    return {
+        code: 0,
+        data: {
+            "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
+            "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
+        }
+    }
+});
+
+Mock.mock('/api/nim/step', 'get', () => {
+    return {
+        code: 0,
+        data: {
+            "status": "NOT_FINISHED",
+            "array": [1, 1, 4, 5, 0, 0] // 初始的石子个数序列
+        }
+    }
 });
