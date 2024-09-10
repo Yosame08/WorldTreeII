@@ -63,11 +63,10 @@ export default {
         });
         const code = response.data.code;
         console.log(code);
-        if (code === 3040) {
+        if (code === 0) {
           this.errorMessage = '';
           sessionStorage.setItem('token', response.data.data); // Store the token
-          store.commit('setLoginState', true);
-          await store.dispatch('fetchUserInfo');
+          store.commit('setLoggedIn', true);
           this.$router.push('/'); // Navigate to home page
         } else {
           this.errorMessage = response.data.message;

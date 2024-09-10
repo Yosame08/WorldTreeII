@@ -1,21 +1,23 @@
 <!-- src/components/NavBar.vue -->
 <template>
-  <div id="nav">
-    <router-link to="/" class="nav-link" active-class="nav-link-active">Home</router-link>
-    <router-link to="/map" class="nav-link" active-class="nav-link-active">Map</router-link>
-    <router-link to="/rank" class="nav-link" active-class="nav-link-active">Rank</router-link>
-    <router-link to="/bbs" class="nav-link" active-class="nav-link-active">BBS</router-link>
-    <div class="auth-section">
-      <template v-if="!isLoggedIn">
-        <router-link to="/login" class="nav-link" active-class="nav-link-active">Log in</router-link>
-        <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
-      </template>
-      <template v-else>
-        <button @click="goToUserSetting" class="nav-link">{{ username }}</button>
-        <button @click="logout" class="nav-link">Log out</button>
-      </template>
+  <nav v-if="showNavBar">
+    <div id="nav">
+      <router-link to="/" class="nav-link" active-class="nav-link-active">Home</router-link>
+      <router-link to="/map" class="nav-link" active-class="nav-link-active">Map</router-link>
+      <router-link to="/rank" class="nav-link" active-class="nav-link-active">Rank</router-link>
+      <router-link to="/bbs" class="nav-link" active-class="nav-link-active">BBS</router-link>
+      <div class="auth-section">
+        <template v-if="!isLoggedIn">
+          <router-link to="/login" class="nav-link" active-class="nav-link-active">Log in</router-link>
+          <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
+        </template>
+        <template v-else>
+          <button @click="goToUserSetting" class="nav-link">{{ username }}</button>
+          <button @click="logout" class="nav-link">Log out</button>
+        </template>
+      </div>
     </div>
-  </div>
+  </nav>
   <el-progress
       v-if="this.$store.state.load > 0"
       :percentage="50"
@@ -37,6 +39,10 @@ const customColors = [
 
 export default {
   name: 'NavBar',
+  setup() {
+    const showNavBar = computed(() => store.state.showNavBar);
+    return { showNavBar };
+  },
   data() {
     return {
       isLoggedIn: computed(() => store.state.isLoggedIn),
@@ -55,9 +61,10 @@ export default {
   },
   methods: {
     logout() {
-      store.commit('setLoginState', false);
       store.commit('setUserInfo', {});
       sessionStorage.removeItem('token');
+      store.commit('setLoggedIn', false);
+      this.$router.push('/beginning');
     },
     goToUserSetting() {
       this.$router.push('/usersetting');
