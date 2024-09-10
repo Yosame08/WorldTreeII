@@ -14,6 +14,8 @@ public class Task {
     private String taskDescription;
     private String uri;
     private Integer taskPoint;
+    private Integer getPoint;
     private Integer taskCoin;
     private Integer hintPrice;
+    private Integer taskStatus;
 }
