@@ -14,7 +14,6 @@ import store from "@/services/storeService";
 
 export default {
   mounted() {
-    console.log(store.state.isLoggedIn)
     if (store.state.isLoggedIn) {
       this.$router.push('/');
     }

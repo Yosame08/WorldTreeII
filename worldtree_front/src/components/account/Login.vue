@@ -66,6 +66,7 @@ export default {
         if (code === 3040) {
           this.errorMessage = '';
           sessionStorage.setItem('token', response.data.data); // Store the token
+          store.commit('setLoggedIn', true);
           await store.dispatch('fetchUserInfo');
           this.$router.push('/'); // Navigate to home page
         } else {

@@ -26,6 +26,9 @@ const store = createStore({
         setShowNavBar(state, value) {
             state.showNavBar = value;
         },
+        setLoggedIn(state, value) {
+            state.isLoggedIn = value;
+        },
     },
     actions: {
         async fetchUserInfo({ commit }) {
