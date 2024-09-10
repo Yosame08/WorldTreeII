@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Index from '@/components/Index.vue'
+import Index from '@/components/Home.vue'
 import Map from '@/components/Map.vue'
 import Rank from '@/components/Rank.vue'
 import BBS from '@/components/BBS.vue'
 import Login from '@/components/account/Login.vue'
 import Signup from "@/components/account/Signup.vue";
 import UserSetting from "@/components/account/UserSetting.vue";
+import Beginning from "@/components/Beginning.vue";
 
 import store from '@/services/storeService';
 
@@ -18,6 +19,7 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/usersetting', component: UserSetting },
+    { path: '/beginning', component: Beginning },
 ]
 
 const router = createRouter({
@@ -26,7 +28,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path !== '/' && to.path !== '/signup' && to.path !== '/login' && !store.state.isLoggedIn) {
+    if (to.path === '/' && !store.state.isLoggedIn){
+        next('/beginning');
+    }
+    else if (to.path !== '/beginning' && to.path !== '/signup' && to.path !== '/login' && !store.state.isLoggedIn) {
         next('/login');
     } else {
         next();

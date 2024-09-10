@@ -7,6 +7,7 @@ const store = createStore({
         return {
             load: 0,
             isLoggedIn: false,
+            showNavBar: true,
             userInfo: {},
         }
     },
@@ -24,7 +25,9 @@ const store = createStore({
         },
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
-            console.log(userInfo);
+        },
+        setShowNavBar(state, value) {
+            state.showNavBar = value;
         },
     },
     actions: {
