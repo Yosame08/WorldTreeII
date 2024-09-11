@@ -7,6 +7,7 @@ import BBS from '@/components/BBS.vue'
 import Login from '@/components/account/Login.vue'
 import Signup from "@/components/account/Signup.vue";
 import UserSetting from "@/components/account/UserSetting.vue";
+import Nim from "@/components/Nim.vue";
 
 import store from '@/services/storeService';
 
@@ -18,6 +19,7 @@ const routes = [
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/usersetting', component: UserSetting },
+    { path: '/nim_game', component: Nim},
 ]
 
 const router = createRouter({
