@@ -44,4 +44,6 @@ public interface UserMapper {
     @Select("select style from user where id=#{id}")
     String getStyle(Integer id);
 
+    @Select("select * from user ORDER BY point DESC")
+    List<User> getUserSortByPoint();
 }
