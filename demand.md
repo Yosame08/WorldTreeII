@@ -543,14 +543,13 @@ $prefix=/api/subtask
 
 ```json
 {
-  "rank": 1,
-  "usernamea": "Alice",
-  "usernameb": "Bob",
+  "usernameA": "Meyosa",
+  "usernameB": "Sakuria",
   "telegramId": 1,
-  "total_point": 100,
-  "monster_point": 50,
-  "time": 30,
-  "hp": 100
+  "score": 200,
+  "monsterScore": 50,
+  "time": 600,
+  "hp": 1
 }
 ```
 
@@ -558,7 +557,9 @@ $prefix=/api/subtask
 
 ```json
 {
-  "code": 0
+  "code": 0,
+  "message": "操作成功",
+  "data": null
 }
 ```
 
@@ -578,38 +579,54 @@ $prefix=/api/subtask
 
 ```json
 {
-  "code": 0,
-  "data": [
-    {
-      "rank": 1,
-      "usernamea": "Alice",
-      "usernameb": "Bob",
-      "telegramId": 1,
-      "total_point": 100,
-      "monster_point": 50,
-      "time": 30,
-      "hp": 100
-    },
-    {
-      "rank": 2,
-      "usernamea": "Tom",
-      "usernameb": "Emily",
-      "telegramId": 2,
-      "total_point": 90,
-      "monster_point": 40,
-      "time": 40,
-      "hp": 90
-    },
-    {
-      "rank": 3,
-      "usernamea": "Bob",
-      "usernameb": "Alice",
-      "telegramId": 3,
-      "total_point": 80,
-      "monster_point": 30,
-      "time": 50,
-      "hp": 80
-    }
-  ]
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+            "rank": 1,
+            "usernameA": "Meyosa",
+            "usernameB": "Sakuria",
+            "telegramId": 2,
+            "score": 200,
+            "monsterScore": 50,
+            "time": 600,
+            "hp": 1
+        },
+        {
+            "rank": 2,
+            "usernameA": "Yosame",
+            "usernameB": "Sameyo",
+            "telegramId": 1,
+            "score": 100,
+            "monsterScore": 50,
+            "time": 50,
+            "hp": 50
+        }
+    ]
+}
+```
+
+### 3. 电报员游戏获取用户玩过的关卡：$prefix/telegram/submit
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+通过用户的token获取用户玩过的关卡
+
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        1
+    ]
 }
 ```
