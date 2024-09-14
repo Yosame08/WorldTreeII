@@ -406,6 +406,7 @@ get 请求
 
 ```json
 {
+  "task_id": 1,
   "flag": "brawl star"
 }
 ```
@@ -446,7 +447,11 @@ $prefix=/api/util
 
 # 子项目
 
-## 1. NIM 游戏初始化：/api/nim/init
+$prefix=/api/subtask
+
+## Nim游戏
+
+### 1. NIM 游戏初始化：$prefix/nim/init
 
 ```json
 {
@@ -467,7 +472,7 @@ $prefix=/api/util
 }
 ```
 
-## 2. NIM 游戏步骤：/api/nim/step
+### 2. NIM 游戏步骤：$prefix/nim/step
 
 ```json
 {
@@ -514,5 +519,90 @@ $prefix=/api/util
     "array": [0, 0, 0, 0, 0, 0],
     "winner": "com"
   }
+}
+```
+
+## 电报员
+
+### 1. 电报员游戏结果提交：$prefix/telegram/submit
+
+#### 请求类型：post 请求
+
+#### 接口备注
+
+提交电报员游戏结果
+
+#### 参数
+
+```json
+{
+  "rank": 1,
+  "usernamea": "Alice",
+  "usernameb": "Bob",
+  "telegramId": 1,
+  "total_point": 100,
+  "monster_point": 50,
+  "time": 30,
+  "hp": 100
+}
+```
+
+#### 返回值
+
+```json
+{
+  "code": 0
+}
+```
+
+### 2. 电报员游戏排名list获取：$prefix/telegram/rank
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+获取电报员游戏排名
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "data": [
+    {
+      "rank": 1,
+      "usernamea": "Alice",
+      "usernameb": "Bob",
+      "telegramId": 1,
+      "total_point": 100,
+      "monster_point": 50,
+      "time": 30,
+      "hp": 100
+    },
+    {
+      "rank": 2,
+      "usernamea": "Tom",
+      "usernameb": "Emily",
+      "telegramId": 2,
+      "total_point": 90,
+      "monster_point": 40,
+      "time": 40,
+      "hp": 90
+    },
+    {
+      "rank": 3,
+      "usernamea": "Bob",
+      "usernameb": "Alice",
+      "telegramId": 3,
+      "total_point": 80,
+      "monster_point": 30,
+      "time": 50,
+      "hp": 80
+    }
+  ]
 }
 ```
