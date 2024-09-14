@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Index from '@/components/Home.vue'
+import Index from '@/components/Index.vue'
 import Map from '@/components/Map.vue'
 import Rank from '@/components/Rank.vue'
 import BBS from '@/components/BBS.vue'
