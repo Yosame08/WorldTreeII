@@ -453,26 +453,40 @@ $prefix=/api/subtask
 
 ### 1. NIM 游戏初始化：$prefix/nim/init
 
+#### 请求类型：post请求
+
+#### 接口备注
+
+请求开始一局nim游戏
+
 ```json
 {
   "player_first": true, // 若为 false 则为人机先走
-  "len": 6
 }
 ```
 
-返回
+#### 返回值
+
+返回石子堆数，游戏的token，初始的石子序列
 
 ```json
 {
   "code": 0,
   "data": {
+    "len": 6,
     "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
-    "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
+    "array": [1, 2, 4, 5, 1, 4] // 初始的石子个数序列
   }
 }
 ```
 
 ### 2. NIM 游戏步骤：$prefix/nim/step
+
+#### 请求类型：post请求
+
+#### 接口备注
+
+玩家进行一次游戏，传入游戏的token，以及玩家操作后的石子序列
 
 ```json
 {
@@ -481,7 +495,7 @@ $prefix=/api/subtask
 }
 ```
 
-返回
+#### 返回值
 
 ```json
 {
@@ -490,13 +504,6 @@ $prefix=/api/subtask
     "status": "NOT_FINISHED",
     "array": [1, 0, 4, 5, 1, 4]
   }
-}
-```
-
-```json
-{
-  "code": 1,
-  "message": "Cannot take from column 2 anymore"
 }
 ```
 
