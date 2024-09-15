@@ -29,9 +29,8 @@ const route = useRoute(); // Get the current route object
 let token;
 // Fetch data on component mount
 onMounted(() => {
-    axios.get("/api/nim/init", {
+    axios.get("/api/subtask/nim/init", {
         player_first: route.query.player_first ? 1 : 0,
-        len: 6
     }).then((resp) => {
         piles.value = resp.data.data.array.map(remaining => ({ remaining }));
         originalPiles.value = JSON.parse(JSON.stringify(piles.value)); // Make deep copy
@@ -43,7 +42,7 @@ onMounted(() => {
 });
 
 function submit() {
-    axios.get("/api/nim/step", {
+    axios.post("/api/subtask/nim/step", {
         game_token: token,
         array: piles.value
     }).then((resp) => {
