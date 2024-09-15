@@ -194,6 +194,31 @@ data 里直接放用户的 id
 }
 ```
 
+## 7. 查询用户身份码: $prefix/qrcode
+
+### 参数
+
+传入用户的 token
+
+```json
+{
+  "token": "1p1p1p2p3p4p6p7p8p9p9p9p0p"
+}
+```
+
+### 返回值
+
+返回用户的身份码
+
+```json
+{
+  "code": 0,
+  "data": {
+    "qrCodeString": "Tsumo Nyaa!"
+  }
+}
+```
+
 # 二、任务相关
 
 $prefix = /api/task
@@ -214,21 +239,21 @@ $prefix = /api/task
 
 ```json
 {
-    "code": 0,
-    "data":[
-        {
-            "task_id": 1,
-            "task_title": "haunted three building",
-            "task_status": 0,
-            "task_pos": [1,1]
-        },
-        {
-            "task_id": 2,
-            "task_title": "haunted three building",
-            "task_status": 1,
-            "task_pos": [1,1]
-        }
-    ]
+  "code": 0,
+  "data": [
+    {
+      "task_id": 1,
+      "task_title": "haunted three building",
+      "task_status": 0,
+      "task_pos": [1, 1]
+    },
+    {
+      "task_id": 2,
+      "task_title": "haunted three building",
+      "task_status": 1,
+      "task_pos": [1, 1]
+    }
+  ]
 }
 ```
 
@@ -252,21 +277,21 @@ $prefix = /api/task
 
 ```json
 {
-    "code": 0,
-    "message": "操作成功",
-    "data": [
-        {
-            "taskId": 1,
-            "taskTitle": "true music",
-            "taskPosX": 1,
-            "taskPosY": 1,
-            "taskDescription": "this is true music",
-            "uri": "true music uri",
-            "taskPoint": 50,
-            "taskCoin": 100,
-            "hintPrice": 100
-        }
-    ]
+  "code": 0,
+  "message": "操作成功",
+  "data": [
+    {
+      "taskId": 1,
+      "taskTitle": "true music",
+      "taskPosX": 1,
+      "taskPosY": 1,
+      "taskDescription": "this is true music",
+      "uri": "true music uri",
+      "taskPoint": 50,
+      "taskCoin": 100,
+      "hintPrice": 100
+    }
+  ]
 }
 ```
 
