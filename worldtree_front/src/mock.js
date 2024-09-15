@@ -155,3 +155,13 @@ Mock.mock('/api/nim/step', 'get', () => {
         }
     }
 });
+
+
+Mock.mock('/api/user/qrcode', 'get', () => {
+    return {
+        code: 0,
+        data: {
+            "qrCodeString": "Tsumo nyaa!"
+        }
+    }
+});
