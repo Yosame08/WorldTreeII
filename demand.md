@@ -28,10 +28,6 @@ $prefix = /api/user
 
 需要传回一个验证码图片，可以是一个算式或者字符，用 OpenCV 随便整一整生成一张图片，每张图片有对应的 token，等待用户返回结果
 
-### 参数
-
-无
-
 ### 返回值
 
 ```json
@@ -191,6 +187,7 @@ data 里直接放用户的 id
 {
   "code": 0,
   "data": 2
+<<<<<<< HEAD
 }
 ```
 
@@ -216,6 +213,8 @@ data 里直接放用户的 id
   "data": {
     "qrCodeString": "Tsumo Nyaa!"
   }
+=======
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -239,6 +238,7 @@ $prefix = /api/task
 
 ```json
 {
+<<<<<<< HEAD
   "code": 0,
   "data": [
     {
@@ -292,6 +292,25 @@ $prefix = /api/task
       "hintPrice": 100
     }
   ]
+=======
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+            "taskId": 1,
+            "taskTitle": "true music",
+            "taskPosX": 1,
+            "taskPosY": 1,
+            "taskDescription": "this is true music",
+            "uri": "true music uri",
+            "taskPoint": 50,
+            "getPoint": 30,
+            "taskCoin": 100,
+            "hintPrice": 100,
+            "taskStatus": 1
+        }
+    ]
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -366,6 +385,7 @@ $prefix = /api/func
 ```json
 {
   "code": 0,
+<<<<<<< HEAD
   "data": [
     {
       "time": "2024-08-18T10:00:00",
@@ -378,6 +398,24 @@ $prefix = /api/func
     {
       "time": "2024-08-18T15:33:36",
       "point": 100
+=======
+  "message": "操作成功",
+  "data": [
+    {
+      "userId": 5,
+      "point": 0,
+      "time": "2024-05-12T22:38:27"
+    },
+    {
+      "userId": 5,
+      "point": 1,
+      "time": "2024-09-12T22:38:38"
+    },
+    {
+      "userId": 5,
+      "point": 5,
+      "time": "2024-09-12T22:38:54"
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
     }
   ]
 }
@@ -467,6 +505,10 @@ get 请求
 
 ```json
 {
+<<<<<<< HEAD
+=======
+  "task_id": 1,
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
   "flag": "brawl star"
 }
 ```
@@ -507,28 +549,46 @@ $prefix=/api/util
 
 # 子项目
 
-## 1. NIM 游戏初始化：/api/nim/init
+$prefix=/api/subtask
+
+## Nim游戏
+
+### 1. NIM 游戏初始化：$prefix/nim/init
+
+#### 请求类型：post请求
+
+#### 接口备注
+
+请求开始一局nim游戏
 
 ```json
 {
   "player_first": true, // 若为 false 则为人机先走
-  "len": 6
 }
 ```
 
-返回
+#### 返回值
+
+返回石子堆数，游戏的token，初始的石子序列
 
 ```json
 {
   "code": 0,
   "data": {
+    "len": 6,
     "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
-    "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
+    "array": [1, 2, 4, 5, 1, 4] // 初始的石子个数序列
   }
 }
 ```
 
-## 2. NIM 游戏步骤：/api/nim/step
+### 2. NIM 游戏步骤：$prefix/nim/step
+
+#### 请求类型：post请求
+
+#### 接口备注
+
+玩家进行一次游戏，传入游戏的token，以及玩家操作后的石子序列
 
 ```json
 {
@@ -537,7 +597,7 @@ $prefix=/api/util
 }
 ```
 
-返回
+#### 返回值
 
 ```json
 {
@@ -546,13 +606,6 @@ $prefix=/api/util
     "status": "NOT_FINISHED",
     "array": [1, 0, 4, 5, 1, 4]
   }
-}
-```
-
-```json
-{
-  "code": 1,
-  "message": "Cannot take from column 2 anymore"
 }
 ```
 
@@ -574,6 +627,266 @@ $prefix=/api/util
     "status": "FINISHED",
     "array": [0, 0, 0, 0, 0, 0],
     "winner": "com"
+  }
+}
+```
+
+## 电报员
+
+### 1. 电报员游戏结果提交：$prefix/telegram/submit
+
+#### 请求类型：post 请求
+
+#### 接口备注
+
+提交电报员游戏结果
+
+#### 参数
+
+```json
+{
+  "usernameA": "Meyosa",
+  "usernameB": "Sakuria",
+  "telegramId": 1,
+  "score": 200,
+  "monsterScore": 50,
+  "time": 600,
+  "hp": 1
+}
+```
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "操作成功",
+  "data": null
+}
+```
+
+### 2. 电报员游戏排名list获取：$prefix/telegram/rank
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+获取电报员游戏排名
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+            "rank": 1,
+            "usernameA": "Meyosa",
+            "usernameB": "Sakuria",
+            "telegramId": 2,
+            "score": 200,
+            "monsterScore": 50,
+            "time": 600,
+            "hp": 1
+        },
+        {
+            "rank": 2,
+            "usernameA": "Yosame",
+            "usernameB": "Sameyo",
+            "telegramId": 1,
+            "score": 100,
+            "monsterScore": 50,
+            "time": 50,
+            "hp": 50
+        }
+    ]
+}
+```
+
+### 3. 电报员游戏获取用户玩过的关卡：$prefix/telegram/submit
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+通过用户的token获取用户玩过的关卡
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        1
+    ]
+}
+```
+
+## 时间二分
+
+### 1.查询今日有没有提交过时间二分的答案：$prefix/binsearch/check
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+通过token获取，True代表已经提交过
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": true
+}
+```
+
+### 2.提交今日答案：$prefix/binsearch/query
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+提交一个请求，按（服务器？）当前时间作为今天用户query的时间，精确到分钟，返回对了(0)/早了(1)/晚了(2)，如果对了后端自动标注任务完成并加分
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+    "code": 0,
+    "message": "操作成功",
+    "data": 0
+}
+```
+
+## 蛋挞
+
+### 接口备注
+
+访问到某个指定网页，后端自动标注任务完成并加分，但是好像并没有与后端交互？怎么实现
+
+## 反向二十四点
+
+### 请拷打lc，我现在还不知道是啥情况
+
+## 日记本/菜谱
+
+### 1.生成题目和token：$prefix/recipe/init
+
+#### 请求类型：get 请求
+
+#### 接口备注
+
+请求生成5条日记本题目（从题库里面选），返回题目内容和token（不能只传ID不传token，否则可以直接把别人过题时发的请求复制过来，直接就过了）
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "data": {
+    "token": "recipe",
+    "content": ["喵", "汪", "咩", "哞", "嘎"],
+  }
+}
+```
+
+### 2.回答答案：$prefix/recipe/answer
+
+#### 请求类型：post 请求
+
+#### 接口备注
+
+回答上面一个请求给出的问题，只有5个标签全部答对才算通过，后端加积分，返回1代表通过（如果没过，token作废，重新获取题目）
+
+### 参数
+
+```json
+{
+  "token": "recipe",
+  "answer": [1, 0, 0, 1, 1],
+}
+```
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "data": {
+    "result": 1,
+  }
+}
+```
+
+## 激活水晶/点蜡烛/生日蛋糕
+
+### 请拷打lc，我现在还不知道是啥情况
+
+设想：
+if 能保证唯一解:
+  后端判断hash
+else:
+  所有条件的判断都要在后端实现
+
+## 卷意面
+
+## 诗
+
+每道题都要保存进度，防止意外关闭网页，感觉得开个新表
+
+## 校园定向
+
+## 马尔科夫链
+
+### 1.后端随机生成序列：$prefix/markov/init
+
+#### 请求类型：post 请求
+
+#### 接口备注
+
+传入按的是哪个按钮（也就是第一个声音是什么），一定要后端生成序列，不然直接就能在前端看到概率了（先把图画好想好答案，按这个概率来）
+
+编号0~8，返回长60的序列（可以播放30s）
+
+#### 参数
+
+```json
+{
+  "start": 0
+}
+```
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "data": {
+    "sequence": [1, 2, 0, 0, 6, 8, 5, ..., 3]
   }
 }
 ```

@@ -1,95 +1,35 @@
-<template>
-  <div class="index-container">
-    <div class="sidebar">
-      <template v-if="isLoggedIn">
-        <p>Welcome, {{ userInfo.username }}</p>
-        <p>Nickname: {{ userInfo.nickname }}</p>
-        <p>Create Time: {{ userInfo.createTime }}</p>
-        <p>Coin: {{ userInfo.coin }}</p>
-        <p>Point: {{ userInfo.point }}</p>
-      </template>
-      <template v-else>
-        <p>Please log in</p>
-      </template>
-    </div>
-    <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" />
-    <button v-if="isLoggedIn" @click="showWindowAndReset" class="floating-button">
-      <font-awesome-icon :icon="['far', 'calendar-check']" />
-    </button>
-  </div>
-</template>
+<script setup>
+import { ref } from 'vue';
+import Home from './Home.vue';
+import MapComponent from './Map.vue';
+import { ElButton } from 'element-plus';
+import 'element-plus/dist/index.css';
+import { Location } from '@element-plus/icons-vue';
+import TaskList from './TaskList.vue';
 
-<script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-import InScreenWindow from './InScreenWindow.vue';
+const currentView = ref('home');
 
-export default {
-  components: {
-    InScreenWindow,
-  },
-  setup() {
-    const store = useStore();
-    const userInfo = computed(() => store.state.userInfo);
-    const isLoggedIn = computed(() => store.state.isLoggedIn);
-    return {
-      userInfo,
-      isLoggedIn,
-    };
-  },
-  data() {
-    return {
-      showWindow: false,
-    };
-  },
-  methods: {
-    showWindowAndReset() {
-      this.showWindow = true;
-      this.$nextTick(() => {
-        this.$refs.window.resetPosition();
-      });
-    },
-  },
+const toggleView = () => {
+  currentView.value = currentView.value === 'home' ? 'map' : 'home';
 };
 </script>
 
-<style>
-.index-container {
-  display: flex;
-  background-image: url('@/assets/background.png'); /* Ensure the image is placed in the src/assets directory */
-  background-size: cover;
-  width: 100%;
-  height: calc(100vh - 39px); /* Adjust 39px to the actual height of your NavBar */
-  position: relative;
-  overflow: hidden; /* Hide any overflow content */
-}
-
-.sidebar {
-  width: 200px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 20px;
-}
-
-.main-content {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.floating-button {
-  position: absolute;
-  right: 20%;
-  top: 20%;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: white;
-  width: 20px;
-  height: 20px;
-}
-
-.floating-button:hover {
-  color: #f40;
-}
-</style>
+<template>
+  <div style="display: flex;">
+    <el-button
+      type="primary"
+      icon="Location"
+      @click="toggleView"
+      style="position: fixed; top: 42px; right: 20px; z-index: 1000;"
+    >
+      {{ currentView === 'home' ? '显示地图' : '显示主页' }}
+    </el-button>
+    <div v-if="currentView === 'home'" style="display: flex; flex: 1;">
+      <Home style="flex: 1;" />
+      <TaskList style="width: 300px; border-left: 1px solid #ddd; padding: 10px;" />
+    </div>
+    <div v-else style="flex: 1;">
+      <MapComponent style="flex: 1;" />
+    </div>
+  </div>
+</template>

@@ -13,8 +13,8 @@ public interface UserMapper {
     @Select("select * from user where username=#{username}")
     User findByUserName(String username);
 
-    @Insert("insert into user (username, password, create_time, update_time)" +
-    " values(#{username}, #{password}, now(), now())")
+    @Insert("insert into user (username, password, create_time, update_time, random_value)" +
+    " values(#{username}, #{password}, now(), now(), UUID())")
     void add(String username, String password);
 
     @Update("update user set username=#{username}, nickname=#{nickname}, email=#{email}, update_time=#{updateTime}, coin=#{coin}, point=#{point} where id = #{id}")
@@ -44,4 +44,6 @@ public interface UserMapper {
     @Select("select style from user where id=#{id}")
     String getStyle(Integer id);
 
+    @Select("select * from user ORDER BY point DESC")
+    List<User> getUserSortByPoint();
 }

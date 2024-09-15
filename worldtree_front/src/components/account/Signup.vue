@@ -59,7 +59,7 @@ export default {
           verify: this.captcha
         });
         const code = response.data.code;
-        if (code === 3040) {
+        if (code === 0) {
           this.errorMessage = '';
           this.$router.push('/login'); // Navigate to login page
         } else {

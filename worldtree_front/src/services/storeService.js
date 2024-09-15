@@ -6,7 +6,8 @@ const store = createStore({
     state () {
         return {
             load: 0,
-            isLoggedIn: false,
+            isLoggedIn: !!sessionStorage.getItem('token'),
+            showNavBar: true,
             userInfo: {},
         }
     },
@@ -19,18 +20,22 @@ const store = createStore({
             if (state.load) state.load--;
             // console.log('finish', state.load);
         },
-        setLoginState(state, isLoggedIn) {
-            state.isLoggedIn = isLoggedIn;
-        },
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
-            console.log(userInfo);
+        },
+        setShowNavBar(state, value) {
+            state.showNavBar = value;
+        },
+        setLoggedIn(state, value) {
+            state.isLoggedIn = value;
         },
     },
     actions: {
         async fetchUserInfo({ commit }) {
             try {
+                console.log("Try to fetch")
                 const response = await get_info();
+                console.log("Fetched: " + response)
                 commit('setUserInfo', response.data.data);
             } catch (error) {
                 console.error('Failed to fetch user info', error);
