@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import NimPile from "@/components/NimPile.vue";
+import NimPile from "@/components/tasks/NimPile.vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 

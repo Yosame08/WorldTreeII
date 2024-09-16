@@ -10,6 +10,9 @@ import UserSetting from "@/components/account/UserSetting.vue";
 import Nim from "@/components/Nim.vue";
 import Beginning from "@/components/Beginning.vue";
 
+import Nim from "@/components/tasks/Nim.vue";
+import Skittles from "@/components/tasks/Skittles.vue";
+
 import store from '@/services/storeService';
 
 const routes = [
@@ -22,6 +25,9 @@ const routes = [
     { path: '/usersetting', component: UserSetting },
     { path: '/nim_game', component: Nim},
     { path: '/beginning', component: Beginning },
+
+    { path: '/tasks/nim', component: Nim },
+    { path: '/tasks/skittles', component: Skittles },
 ]
 
 const router = createRouter({

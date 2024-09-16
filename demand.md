@@ -862,7 +862,7 @@ else:
 
 ## 马尔科夫链
 
-### 1.后端随机生成序列：$prefix/markov/init
+### 1.后端随机生成序列：$prefix/skittles/init
 
 #### 请求类型：post 请求
 
