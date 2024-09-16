@@ -26,6 +26,7 @@
 
 <script>
 import { ref } from 'vue';
+import axios from 'axios';
 
 export default {
   setup() {
@@ -63,11 +64,9 @@ export default {
 
     const handleSubmit = async () => {
       try {
-        const response = await fetch('/api/validate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ grid: grid.value }),
-        });
+        const response = await axios.post('/api/subtask/zhengyan/validate', JSON.stringify({
+            "answer": grid.value,
+        }));
         const result = await response.json();
         alert(result.message);
       } catch (error) {
