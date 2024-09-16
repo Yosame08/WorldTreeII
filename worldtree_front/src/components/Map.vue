@@ -21,30 +21,21 @@
     </div>
 
     <!-- Task description sidebar -->
-    <div class="task-sidebar" :class="{ open: selectedTask }">
-      <div v-if="selectedTask">
-        <h3>{{ selectedTask.title }}</h3>
-        <p>{{ selectedTask.description }}</p>
-        <p>积分: {{ selectedTask.points }}</p>
-        <p>通过后能得到的货币数量: {{ selectedTask.reward }}</p>
-        <el-button @click="getHint">花费 {{ hintCost }} 货币获取提示</el-button>
-        <div v-if="selectedTask.requiresInput">
-          <el-input v-model="taskAnswer" placeholder="Enter your answer"></el-input>
-          <el-button @click="submitAnswer">Submit</el-button>
-        </div>
-        <el-button @click="closeSidebar">Close</el-button>
-      </div>
+    <div class="task-sidebar" :class="{ open: selectedTask }" v-if="selectedTask">
+      <task-info :id="selectedTask.id" />
+      <el-button @click="closeSidebar">Close</el-button>
     </div>
   </div>
 </template>
 
 <script setup>
+import TaskInfo from './TaskInfo.vue';
 import { ref, computed } from 'vue';
-import { ElSwitch, ElButton, ElInput, ElMessage } from 'element-plus';
+import { ElSwitch, ElButton, ElMessage } from 'element-plus';
 import { submitTask, requestHint } from "@/services/taskService";
 
 const tasks = [
-  { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1', points: 10, reward: 5, requiresInput: true },
+  { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1\n\nThank you for you participation.', points: 10, reward: 5, requiresInput: true },
   { id: 2, title: 'Task 2', x: 300, y: 400, description: 'Description for Task 2', points: 20, reward: 10, requiresInput: false },
   // More tasks
 ];
@@ -60,8 +51,6 @@ const translateY = ref(0);
 const dragging = ref(false);
 const touchStartDistance = ref(0);
 const selectedTask = ref(null);
-const taskAnswer = ref('');
-const hintCost = ref(2); // 提示的花费货币数量
 const showUncompletedOnly = ref(false);
 
 const mapImage = ref(null);
@@ -197,33 +186,6 @@ const selectTask = (task) => {
 
 const closeSidebar = () => {
   selectedTask.value = null;
-};
-
-const submitAnswer = async () => {
-  console.log(`Answer submitted for task ${selectedTask.value.title}:`, taskAnswer.value);
-
-  try {
-    const res = await submitTask(selectedTask.value.id, taskAnswer.value);
-    if(res.data.code === 200) {
-      ElMessage.success('回答正确');
-    } else {
-      ElMessage.error('回答错误');
-    }
-    // Handle response
-  } catch (err) { console.error(err); }
-
-  taskAnswer.value = '';
-  closeSidebar();
-};
-
-const getHint = async () => {
-  console.log(`Hint requested for task ${selectedTask.value.title}, cost: ${hintCost.value} currency`);
-  
-  try {
-    const msg = await requestHint(selectedTask.value.id);
-
-    ElMessage.info(msg);
-  } catch (err) { console.error(err); }
 };
 
 const filteredTasks = computed(() => {
