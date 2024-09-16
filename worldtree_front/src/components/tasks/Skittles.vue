@@ -76,10 +76,24 @@ const stopPlayback = () => {
   stopTimer();
   audioTimeouts.forEach(clearTimeout);
   audioTimeouts = [];
+  // 移除 pressed 类
+  document.querySelectorAll('.key').forEach(button => button.classList.remove('pressed'));
 };
 
 const handleButtonClick = async (num) => {
   try {
+    // 停止当前的音频播放序列
+    stopPlayback();
+
+    // 移除所有按钮的 pressed 类
+    document.querySelectorAll('.key').forEach(button => button.classList.remove('pressed'));
+
+    // 添加 pressed 类到用户点击的按钮
+    const button = document.querySelector(`.key:nth-child(${num + 1})`);
+    if (button) {
+      button.classList.add('pressed');
+    }
+
     const response = await axios.post('/api/subtask/skittles/init', { start: num });
     if (response.data.code === 0) {
       playSequence(response.data.data.sequence);
@@ -108,6 +122,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   position: relative;
+  height: calc(100vh - 39px);
 }
 
 .skittles-container {
@@ -151,6 +166,12 @@ onUnmounted(() => {
 }
 
 .key:active {
+  background-color: #777;
+  box-shadow: 0 2px #333;
+  transform: translateY(2px);
+}
+
+.key.pressed {
   background-color: #777;
   box-shadow: 0 2px #333;
   transform: translateY(2px);

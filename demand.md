@@ -747,13 +747,15 @@ $prefix=/api/subtask
 
 ## 反向二十四点/大锅饭
 
+前端我想的是数字两个两个地计算，为了防止用户修改数字，后端也要存当前用户还剩下什么数字？一共4关，后端还要在表中维护用户当前过了几关（如果已完全通关，仍然可以继续游玩，就返回最后一关）。
+
 ### 1.新一局游戏：$prefix/bigpot/init
 
 #### 请求类型：get请求
 
 #### 接口备注
 
-返回4个能保证有解的数字
+返回关卡level、token、4个能保证有解的数字以及对应的哈希
 
 #### 参数
 
@@ -764,9 +766,42 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
+  "message": "",
   "data": {
+    "level": "1",
     "game_token": "A_RANDOM_TOKEN", 
     "array": [1, 1, 8, 16],
+  }
+}
+```
+
+### 2.合并两个数字：$prefix/bigpot/cook
+
+#### 请求类型：post请求
+
+#### 接口备注
+
+给两个数和操作符，后端检查用户是否真的有这两个数。操作符约定0为and，1为or，2为xor。如果数字用完且得到24，后端记录通过并返回"pass":1，否则"pass":0。用result返回运算结果（包括pass:1的情况也返回一个24）。
+
+#### 参数
+
+```json
+{
+  "game_token": "A_RANDOM_TOKEN",
+  "num": [1, 8],
+  "operator": 1,
+}
+```
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "",
+  "data": {
+    "pass": 0,
+    "result": 9,
   }
 }
 ```
@@ -790,6 +825,7 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
+  "message": "",
   "data": {
     "token": "recipe",
     "content": ["喵", "汪", "咩", "哞", "嘎"],
@@ -819,6 +855,7 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
+  "message": "",
   "data": true
 }
 ```
@@ -846,10 +883,10 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
+  "message": "",
   "data": "111111111"
 }
 ```
-
 
 ## 卷意面
 
@@ -884,6 +921,7 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
+  "message": "",
   "data": {
     "sequence": [1, 2, 0, 0, 6, 8, 5, ..., 3]
   }

@@ -186,3 +186,46 @@ Mock.mock('/api/subtask/skittles/init', 'post', (options) => {
         },
     }
 });
+
+Mock.mock('/api/bigpot/init', 'get', () => {
+    return {
+        code: 0,
+        message: "",
+        data: {
+            level: 1,
+            game_token: "A_RANDOM_TOKEN",
+            array: [1, 1, 8, 16],
+        }
+    }
+});
+
+Mock.mock('/api/bigpot/cook', 'post', (options) => {
+    // from options get (array) num and (int) operator
+    console.log(options.body);
+    let num = JSON.parse(options.body).num;
+    let operator = JSON.parse(options.body).operator;
+    // return the result
+    let result;
+    switch (operator) {
+        case 0: // AND
+            result = num[0] & num[1];
+            break;
+        case 1: // OR
+            result = num[0] | num[1];
+            break;
+        case 2: // XOR
+            result = num[0] ^ num[1];
+            break;
+        default:
+            return res.json({ code: 1, message: 'Invalid operator' });
+    }
+    let p = result === 24;
+    return {
+        code: 0,
+        message: "",
+        data: {
+            pass: p ? 1 : 0,
+            result: result,
+        }
+    }
+});

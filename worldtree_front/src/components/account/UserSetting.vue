@@ -47,6 +47,7 @@ import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import axios from 'axios'
 import QRCode from 'qrcode'
+import {set_info} from "@/services/userService";
 
 const imageUrl = ref('') // For image preview
 const avatarBase64 = ref('') // Base64-encoded avatar
@@ -101,9 +102,7 @@ const saveSettings = async () => {
   }
 
   try {
-    const { data } = await axios.post('/api/user/set_info', payload, {
-      headers: { 'Content-Type': 'application/json' },
-    })
+    const { data } = set_info(payload)
     ElMessage.success('Settings saved successfully!')
   } catch (error) {
     console.error('Error saving settings:', error)

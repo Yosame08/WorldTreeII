@@ -2,6 +2,17 @@
 import axios from 'axios';
 import store from '@/services/storeService';
 
+export const universalGet = async (url) => {
+    store.commit('load');
+    try {
+        return await axios.get(url);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
+}
+
 export const fetchCaptcha = async () => {
     store.commit('load');
     try {
@@ -38,7 +49,9 @@ export const login = async (data) => {
 export const set_info = async (data) => {
     store.commit('load');
     try {
-        return await axios.post('/api/user/set_info', data);
+        return await axios.post('/api/user/set_info', data, {
+            headers: { 'Content-Type': 'application/json' },
+        });
     } catch (error) {
         throw error;
     } finally {
