@@ -1,6 +1,17 @@
 import axios from "axios";
 import store from "@/services/storeService";
 
+export const getTask = async (taskID) => {
+    store.commit('load');
+    try {
+        return await axios.get(`/api/task/${taskID}`);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
+};
+
 export const submitTask = async (taskID, answer) => {
     store.commit('load');
     try {

@@ -26,7 +26,9 @@ const toggleView = () => {
     </el-button>
     <div v-if="currentView === 'home'" style="display: flex; flex: 1;">
       <Home style="flex: 1;" />
+      <!--
       <TaskList style="width: 300px; border-left: 1px solid #ddd; padding: 10px;" />
+      -->
     </div>
     <div v-else style="flex: 1;">
       <MapComponent style="flex: 1;" />
