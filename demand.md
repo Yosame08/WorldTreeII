@@ -187,7 +187,6 @@ data 里直接放用户的 id
 {
   "code": 0,
   "data": 2
-<<<<<<< HEAD
 }
 ```
 
@@ -213,8 +212,6 @@ data 里直接放用户的 id
   "data": {
     "qrCodeString": "Tsumo Nyaa!"
   }
-=======
->>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -238,7 +235,6 @@ $prefix = /api/task
 
 ```json
 {
-<<<<<<< HEAD
   "code": 0,
   "data": [
     {
@@ -277,22 +273,6 @@ $prefix = /api/task
 
 ```json
 {
-  "code": 0,
-  "message": "操作成功",
-  "data": [
-    {
-      "taskId": 1,
-      "taskTitle": "true music",
-      "taskPosX": 1,
-      "taskPosY": 1,
-      "taskDescription": "this is true music",
-      "uri": "true music uri",
-      "taskPoint": 50,
-      "taskCoin": 100,
-      "hintPrice": 100
-    }
-  ]
-=======
     "code": 0,
     "message": "操作成功",
     "data": [
@@ -310,7 +290,6 @@ $prefix = /api/task
             "taskStatus": 1
         }
     ]
->>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -385,20 +364,6 @@ $prefix = /api/func
 ```json
 {
   "code": 0,
-<<<<<<< HEAD
-  "data": [
-    {
-      "time": "2024-08-18T10:00:00",
-      "point": 0
-    },
-    {
-      "time": "2024-08-18T14:23:02",
-      "point": 50
-    },
-    {
-      "time": "2024-08-18T15:33:36",
-      "point": 100
-=======
   "message": "操作成功",
   "data": [
     {
@@ -415,7 +380,6 @@ $prefix = /api/func
       "userId": 5,
       "point": 5,
       "time": "2024-09-12T22:38:54"
->>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
     }
   ]
 }
@@ -505,10 +469,7 @@ get 请求
 
 ```json
 {
-<<<<<<< HEAD
-=======
   "task_id": 1,
->>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
   "flag": "brawl star"
 }
 ```
@@ -784,9 +745,31 @@ $prefix=/api/subtask
 
 访问到某个指定网页，后端自动标注任务完成并加分，但是好像并没有与后端交互？怎么实现
 
-## 反向二十四点
+## 反向二十四点/大锅饭
 
-### 请拷打lc，我现在还不知道是啥情况
+### 1.新一局游戏：$prefix/bigpot/init
+
+#### 请求类型：get请求
+
+#### 接口备注
+
+返回4个能保证有解的数字
+
+#### 参数
+
+无
+
+#### 返回值
+
+```json
+{
+  "code": 0,
+  "data": {
+    "game_token": "A_RANDOM_TOKEN", 
+    "array": [1, 1, 8, 16],
+  }
+}
+```
 
 ## 日记本/菜谱
 
