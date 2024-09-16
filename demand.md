@@ -187,6 +187,34 @@ data 里直接放用户的 id
 {
   "code": 0,
   "data": 2
+<<<<<<< HEAD
+}
+```
+
+## 7. 查询用户身份码: $prefix/qrcode
+
+### 参数
+
+传入用户的 token
+
+```json
+{
+  "token": "1p1p1p2p3p4p6p7p8p9p9p9p0p"
+}
+```
+
+### 返回值
+
+返回用户的身份码
+
+```json
+{
+  "code": 0,
+  "data": {
+    "qrCodeString": "Tsumo Nyaa!"
+  }
+=======
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -210,6 +238,61 @@ $prefix = /api/task
 
 ```json
 {
+<<<<<<< HEAD
+  "code": 0,
+  "data": [
+    {
+      "task_id": 1,
+      "task_title": "haunted three building",
+      "task_status": 0,
+      "task_pos": [1, 1]
+    },
+    {
+      "task_id": 2,
+      "task_title": "haunted three building",
+      "task_status": 1,
+      "task_pos": [1, 1]
+    }
+  ]
+}
+```
+
+## 2. 查询任务信息
+
+### 请求类型：post 请求
+
+### 接口备注
+
+通过 task_id 获取 task 的详细信息
+
+### 参数
+
+```json
+{
+  "task_id": 1
+}
+```
+
+### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "操作成功",
+  "data": [
+    {
+      "taskId": 1,
+      "taskTitle": "true music",
+      "taskPosX": 1,
+      "taskPosY": 1,
+      "taskDescription": "this is true music",
+      "uri": "true music uri",
+      "taskPoint": 50,
+      "taskCoin": 100,
+      "hintPrice": 100
+    }
+  ]
+=======
     "code": 0,
     "message": "操作成功",
     "data": [
@@ -227,6 +310,7 @@ $prefix = /api/task
             "taskStatus": 1
         }
     ]
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
 }
 ```
 
@@ -301,6 +385,20 @@ $prefix = /api/func
 ```json
 {
   "code": 0,
+<<<<<<< HEAD
+  "data": [
+    {
+      "time": "2024-08-18T10:00:00",
+      "point": 0
+    },
+    {
+      "time": "2024-08-18T14:23:02",
+      "point": 50
+    },
+    {
+      "time": "2024-08-18T15:33:36",
+      "point": 100
+=======
   "message": "操作成功",
   "data": [
     {
@@ -317,6 +415,7 @@ $prefix = /api/func
       "userId": 5,
       "point": 5,
       "time": "2024-09-12T22:38:54"
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
     }
   ]
 }
@@ -406,7 +505,10 @@ get 请求
 
 ```json
 {
+<<<<<<< HEAD
+=======
   "task_id": 1,
+>>>>>>> 6860285582a28f2bb9f013978b572ddb15f84614
   "flag": "brawl star"
 }
 ```
