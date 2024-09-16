@@ -201,6 +201,7 @@ Mock.mock('/api/bigpot/init', 'get', () => {
 
 Mock.mock('/api/bigpot/cook', 'post', (options) => {
     // from options get (array) num and (int) operator
+    console.log(options.body);
     let num = JSON.parse(options.body).num;
     let operator = JSON.parse(options.body).operator;
     // return the result
