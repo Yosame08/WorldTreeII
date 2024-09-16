@@ -11,6 +11,7 @@ import Beginning from "@/components/Beginning.vue";
 
 import Nim from "@/components/tasks/Nim.vue";
 import Skittles from "@/components/tasks/Skittles.vue";
+import BigPot from "@/components/tasks/BigPot.vue";
 import ZhengYan from "@/components/tasks/ZhengYan.vue";
 
 import store from '@/services/storeService';
@@ -28,6 +29,7 @@ const routes = [
 
     { path: '/tasks/nim', component: Nim },
     { path: '/tasks/skittles', component: Skittles },
+    { path: '/tasks/bigpot', component: BigPot },
     { path: '/tasks/zhengyan', component: ZhengYan },
 ]
 
