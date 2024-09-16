@@ -819,9 +819,7 @@ $prefix=/api/subtask
 ```json
 {
   "code": 0,
-  "data": {
-    "result": 1,
-  }
+  "data": true
 }
 ```
 
