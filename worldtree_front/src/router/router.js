@@ -7,7 +7,6 @@ import BBS from '@/components/BBS.vue'
 import Login from '@/components/account/Login.vue'
 import Signup from "@/components/account/Signup.vue";
 import UserSetting from "@/components/account/UserSetting.vue";
-import Nim from "@/components/Nim.vue";
 import Beginning from "@/components/Beginning.vue";
 
 import Nim from "@/components/tasks/Nim.vue";
