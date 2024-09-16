@@ -11,6 +11,7 @@ import Beginning from "@/components/Beginning.vue";
 
 import Nim from "@/components/tasks/Nim.vue";
 import Skittles from "@/components/tasks/Skittles.vue";
+import ZhengYan from "@/components/tasks/ZhengYan.vue";
 
 import store from '@/services/storeService';
 
@@ -27,6 +28,7 @@ const routes = [
 
     { path: '/tasks/nim', component: Nim },
     { path: '/tasks/skittles', component: Skittles },
+    { path: '/tasks/zhengyan', component: ZhengYan },
 ]
 
 const router = createRouter({
