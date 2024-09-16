@@ -62,7 +62,6 @@ export default {
           verify: this.captcha
         });
         const code = response.data.code;
-        console.log(code);
         if (code === 0) {
           this.errorMessage = '';
           sessionStorage.setItem('token', response.data.data); // Store the token
