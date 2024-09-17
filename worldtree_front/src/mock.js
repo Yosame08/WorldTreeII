@@ -201,7 +201,6 @@ Mock.mock('/api/bigpot/init', 'get', () => {
 
 Mock.mock('/api/bigpot/cook', 'post', (options) => {
     // from options get (array) num and (int) operator
-    console.log(options.body);
     let num = JSON.parse(options.body).num;
     let operator = JSON.parse(options.body).operator;
     // return the result
@@ -227,5 +226,14 @@ Mock.mock('/api/bigpot/cook', 'post', (options) => {
             pass: p ? 1 : 0,
             result: result,
         }
+    }
+});
+
+Mock.mock('/api/cake/submit', 'post', (options) => {
+    let light = Math.random() > 0.5;
+    return {
+        code: 0,
+        message: "",
+        data: light ? "111110000" : "010101010",
     }
 });

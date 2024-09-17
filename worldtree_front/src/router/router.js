@@ -13,6 +13,7 @@ import Nim from "@/components/tasks/Nim.vue";
 import Skittles from "@/components/tasks/Skittles.vue";
 import BigPot from "@/components/tasks/BigPot.vue";
 import ZhengYan from "@/components/tasks/ZhengYan.vue";
+import Cake from "@/components/tasks/Cake.vue";
 
 import store from '@/services/storeService';
 
@@ -31,6 +32,7 @@ const routes = [
     { path: '/tasks/skittles', component: Skittles },
     { path: '/tasks/bigpot', component: BigPot },
     { path: '/tasks/zhengyan', component: ZhengYan },
+    { path: '/tasks/cake', component: Cake },
 ]
 
 const router = createRouter({
