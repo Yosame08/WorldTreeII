@@ -765,13 +765,17 @@ $prefix=/api/subtask
 
 ```json
 {
-  "code": 0,
-  "message": "",
-  "data": {
-    "level": "1",
-    "game_token": "A_RANDOM_TOKEN", 
-    "array": [1, 1, 8, 16],
-  }
+    "code": 0,
+    "message": "操作成功",
+    "data": {
+      "level": 1,
+      "gameToken": "2e94997c-dc50-400c-b740-7d1ce043b6ab",
+      "len": 4,
+      "x": 1,
+      "y": 2,
+      "z": 3,
+      "w": 4
+    }
 }
 ```
 
