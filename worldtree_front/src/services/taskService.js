@@ -1,15 +1,9 @@
 import axios from "axios";
 import store from "@/services/storeService";
+import {universalGet} from "@/services/universalService";
 
 export const getTask = async (taskID) => {
-    store.commit('load');
-    try {
-        return await axios.get(`/api/task/${taskID}`);
-    } catch (error) {
-        throw error;
-    } finally {
-        store.commit('finish');
-    }
+    return await universalGet(`/api/task/${taskID}`);
 };
 
 export const submitTask = async (taskID, answer) => {
@@ -24,12 +18,5 @@ export const submitTask = async (taskID, answer) => {
 };
 
 export const requestHint = async (taskID) => {
-    store.commit('load');
-    try {
-        return await axios.get(`/api/tasks/${taskID}/hint`);
-    } catch (error) {
-        throw error;
-    } finally {
-        store.commit('finish');
-    }
+    return await universalGet(`/api/tasks/${taskID}/hint`);
 }

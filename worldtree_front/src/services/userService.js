@@ -1,27 +1,10 @@
 // src/services/userService.js
 import axios from 'axios';
 import store from '@/services/storeService';
-
-export const universalGet = async (url) => {
-    store.commit('load');
-    try {
-        return await axios.get(url);
-    } catch (error) {
-        throw error;
-    } finally {
-        store.commit('finish');
-    }
-}
+import {universalGet} from "@/services/universalService";
 
 export const fetchCaptcha = async () => {
-    store.commit('load');
-    try {
-        return await axios.get('/api/user/captcha');
-    } catch (error) {
-        throw error;
-    } finally {
-        store.commit('finish');
-    }
+    return await universalGet('/api/user/captcha');
 };
 
 export const signup = async (data) => {
@@ -60,12 +43,5 @@ export const set_info = async (data) => {
 };
 
 export const get_info = async () => {
-    store.commit('load');
-    try {
-        return await axios.get('/api/user/get_info');
-    } catch (error) {
-        throw error;
-    } finally {
-        store.commit('finish');
-    }
+    return await universalGet('/api/user/get_info');
 };

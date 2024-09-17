@@ -16,6 +16,7 @@
 <script>
 import { fetchRankData } from "@/services/infoService";
 import ErrorMsg from '@/components/ErrorMsg.vue';
+import {universalGet} from "@/services/universalService";
 
 export default ({
   name: 'Rank',
@@ -37,7 +38,7 @@ export default ({
   methods: {
     async loadRankData() {
       try {
-        const response = await fetchRankData();
+        const response = await universalGet('/api/rank');
         if (response.data.code === 3050) {
           this.tableData = response.data.tableData;
           this.trendData = response.data.trendData;
