@@ -14,6 +14,7 @@ import Skittles from "@/components/tasks/Skittles.vue";
 import BigPot from "@/components/tasks/BigPot.vue";
 import ZhengYan from "@/components/tasks/ZhengYan.vue";
 import Cake from "@/components/tasks/Cake.vue";
+import Visiting from "@/components/tasks/Visiting.vue";
 
 import store from '@/services/storeService';
 
@@ -33,6 +34,7 @@ const routes = [
     { path: '/tasks/bigpot', component: BigPot },
     { path: '/tasks/zhengyan', component: ZhengYan },
     { path: '/tasks/cake', component: Cake },
+    { path: '/tasks/visiting', component: Visiting },
 ]
 
 const router = createRouter({
