@@ -2,6 +2,7 @@ package com.transAI.service.impl;
 
 import com.transAI.mapper.BigpotMapper;
 import com.transAI.pojo.Bigpot;
+import com.transAI.pojo.BigpotResult;
 import com.transAI.service.BigpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,81 @@ public class BigpotServiceImpl implements BigpotService {
         return bigpot;
     }
 
+    @Override
+    public BigpotResult cook(int id, String gameToken, int x, int y, int operator) {
+        Bigpot bigpot = bigpotMapper.getBigpot(id, gameToken);
+        if(bigpot == null) {
+            return null;
+        }
+        int len = bigpot.getLen();
+        int[] arr = new int[4];
+        int index = 0;
+        if(bigpot.getX() > 0) {
+            arr[index++] = bigpot.getX();
+        }
+        if(bigpot.getY() > 0) {
+            arr[index++] = bigpot.getY();
+        }
+        if(bigpot.getZ() > 0) {
+            arr[index++] = bigpot.getZ();
+        }
+        if(bigpot.getW() > 0) {
+            arr[index++] = bigpot.getW();
+        }
+        if(index != len) {
+            return null;
+        }
+        boolean flagx = false, flagy = false;
+        int indexx = -1, indexy = -1;
+        for(int i = 0;i < len;i++) {
+            if(arr[i] == x) {
+                flagx = true;
+                indexx = i;
+                continue;
+            }
+            if(arr[i] == y) {
+                flagy = true;
+                indexy = i;
+                continue;
+            }
+        }
+        if(!flagx || !flagy) {
+            return null;
+        }
+        BigpotResult bigpotResult = new BigpotResult();
+
+        int result = 0;
+        switch (operator) {
+            case 1:
+                result = arr[indexx] & arr[indexy];
+                break;
+            case 2:
+                result = arr[indexx] | arr[indexy];
+                break;
+            case 3:
+                result = arr[indexx] ^ arr[indexy];
+                break;
+            default:
+                return null;
+        }
+        arr[indexx] = result;
+        arr[indexy] = -1;
+
+        bigpot.setLen(len - 1);
+
+        bigpot.setX(arr[0]);
+        bigpot.setY(arr[1]);
+        bigpot.setZ(arr[2]);
+        bigpot.setW(arr[3]);
+
+        bigpotMapper.update(bigpot);
+
+        if(len == 2 && result == 24) {
+            bigpotResult.setPass(1);
+        } else {
+            bigpotResult.setPass(0);
+        }
+        bigpotResult.setResult(result);
+        return bigpotResult;
+    }
 }
