@@ -792,8 +792,9 @@ $prefix=/api/subtask
 ```json
 {
   "game_token": "A_RANDOM_TOKEN",
-  "num": [1, 8],
-  "operator": 1,
+  "x": 1,
+  "y": 8,
+  "operator": 1
 }
 ```
 
