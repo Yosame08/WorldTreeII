@@ -64,8 +64,20 @@ export default {
 
     const handleSubmit = async () => {
       try {
+        const map = {
+          "丨零": 0,
+          "丨一": 1,
+          "丨二": 2,
+          "丨三": 3,
+          "丨四": 4,
+          "丨五": 5,
+          "丨六": 6,
+          "丨七": 7,
+          "丨八": 8,
+        };
+        const answer = grid.value.map(icon => map[icon]);
         const response = await axios.post('/api/subtask/zhengyan/validate', JSON.stringify({
-            "answer": grid.value,
+            "answer": answer,
         }));
         const result = await response.json();
         alert(result.message);
