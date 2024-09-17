@@ -40,6 +40,10 @@ public class BinsearchServiceImpl implements BinsearchService {
             binsearchMapper.submitDateTime(id, now);
         }
         else {
+            // 如果有存储且日期相同，直接返回
+            if(dateTime.toLocalDate().isEqual(now.toLocalDate())) {
+                return -1;
+            }
             binsearchMapper.updateDateTime(id, now);
         }
         // 如果有存储且日期相同，返回true
