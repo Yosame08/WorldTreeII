@@ -1,11 +1,10 @@
-// src/services/infoService.js
 import axios from 'axios';
 import store from '@/services/storeService';
 
-export const fetchBbsTitles = async () => {
+export const universalGet = async (url) => {
     store.commit('load');
     try {
-        return await axios.get('/api/bbs');
+        return await axios.get(url);
     } catch (error) {
         throw error;
     } finally {

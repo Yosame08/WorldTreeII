@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios';
-import {universalGet} from "@/services/userService";
+import {universalGet} from "@/services/universalService";
 
 export default {
   data() {

@@ -862,7 +862,7 @@ $prefix=/api/subtask
 
 ## 生日蛋糕
 
-### 1. 提交答案
+### 1. 提交答案：$prefix/cake/submit
 
 #### 请求类型：post请求
 
