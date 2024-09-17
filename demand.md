@@ -922,9 +922,8 @@ $prefix=/api/subtask
 {
   "code": 0,
   "message": "",
-  "data": {
-    "sequence": [1, 2, 0, 0, 6, 8, 5, ..., 3]
-  }
+  "data": [1, 2, 0, 0, 6, 8, 5, ..., 3]
+  
 }
 ```
 
