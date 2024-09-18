@@ -20,11 +20,14 @@
       {{ task.title }}
     </div>
 
-    <!-- Task description sidebar -->
-    <div class="task-sidebar" :class="{ open: selectedTask }" v-if="selectedTask">
-      <task-info :id="selectedTask.id" />
-      <el-button @click="closeSidebar">Close</el-button>
-    </div>
+    <!-- Task description sidebar with transition -->
+    <transition name="slide">
+      <div class="task-sidebar" v-if="selectedTask">
+        <task-info :id="selectedTask.id" />
+        <div style="margin-top: 10px;"></div>
+        <el-button @click="closeSidebar">Close</el-button>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -32,7 +35,6 @@
 import TaskInfo from './TaskInfo.vue';
 import { ref, computed } from 'vue';
 import { ElSwitch, ElButton, ElMessage } from 'element-plus';
-import { submitTask, requestHint } from "@/services/taskService";
 
 const tasks = [
   { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1\n\nThank you for you participation.', points: 10, reward: 5, requiresInput: true },
@@ -201,12 +203,6 @@ const filteredTasks = computed(() => {
   overflow: hidden;
   width: 100%;
   height: calc(100vh - 39px);
-  /* Adjust this value based on your NavBar height */
-}
-
-.map-container img {
-  display: block;
-  user-select: none;
 }
 
 .zoom-controls {
@@ -217,55 +213,25 @@ const filteredTasks = computed(() => {
   flex-direction: column;
 }
 
-.zoom-controls button {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 5px;
-  margin: 2px;
-  cursor: pointer;
-}
-
 .task-bubble {
   position: absolute;
   background-color: #ffeb3b;
   border: 1px solid #f0c02b;
   border-radius: 50%;
   padding: 5px 10px;
-  white-space: nowrap;
   cursor: pointer;
-  transform: translate(-50%, -100%);
 }
 
 .task-sidebar {
   position: fixed;
-  top: 0;
-  right: -100vw;
-  /* Hide sidebar by default */
+  top: 39px; /* Start 39px from the top */
+  right: 0;
   width: 300px;
-  height: 100%;
+  height: calc(100% - 39px); /* Adjust height to take into account the offset */
   background-color: #fff;
   border-left: 1px solid #ccc;
   padding: 20px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
-}
-
-.task-sidebar.open {
-  right: 0;
-}
-
-.task-sidebar h3 {
-  margin-top: 0;
-}
-
-.task-sidebar .el-input {
-  width: calc(100% - 20px);
-  margin-bottom: 10px;
-}
-
-.task-sidebar .el-button {
-  display: block;
-  margin-top: 10px;
 }
 
 .filter-slider {
@@ -277,5 +243,18 @@ const filteredTasks = computed(() => {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Enter and leave transitions for the sidebar */
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from, .slide-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-enter-to, .slide-leave-from {
+  transform: translateX(0);
 }
 </style>
