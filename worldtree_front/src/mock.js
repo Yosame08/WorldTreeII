@@ -187,7 +187,7 @@ Mock.mock('/api/subtask/skittles/init', 'post', (options) => {
     }
 });
 
-Mock.mock('/api/bigpot/init', 'get', () => {
+Mock.mock('/api/subtask/bigpot/init', 'get', () => {
     return {
         code: 0,
         message: "",
@@ -199,7 +199,7 @@ Mock.mock('/api/bigpot/init', 'get', () => {
     }
 });
 
-Mock.mock('/api/bigpot/cook', 'post', (options) => {
+Mock.mock('/api/subtask/bigpot/cook', 'post', (options) => {
     // from options get (array) num and (int) operator
     let num = JSON.parse(options.body).num;
     let operator = JSON.parse(options.body).operator;
@@ -229,11 +229,29 @@ Mock.mock('/api/bigpot/cook', 'post', (options) => {
     }
 });
 
-Mock.mock('/api/cake/submit', 'post', (options) => {
+Mock.mock('/api/subtask/cake/submit', 'post', (options) => {
     let light = Math.random() > 0.5;
     return {
         code: 0,
         message: "",
         data: light ? "111110000" : "010101010",
+    }
+});
+
+Mock.mock('/api/subtask/visiting/get_info', 'get', () => {
+    return {
+        "code": 0,
+        "message": "操作成功",
+        "data": {
+            "position": [
+                [121.4998, 31.3098],
+                [121.4999, 31.3099],
+                [121.5000, 31.3010],
+                [121.5001, 31.3011],
+                [121.5002, 31.3012],
+            ],
+            "indoor": [true, true, true, true, false],
+            "floor": [5, 2, 2, 4, 0],
+        }
     }
 });

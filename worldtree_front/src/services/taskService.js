@@ -6,6 +6,10 @@ export const getTask = async (taskID) => {
     return await universalGet(`/api/task/${taskID}`);
 };
 
+export const requestHint = async (taskID) => {
+    return await universalGet(`/api/tasks/${taskID}/hint`);
+}
+
 export const submitTask = async (taskID, answer) => {
     store.commit('load');
     try {
@@ -17,6 +21,13 @@ export const submitTask = async (taskID, answer) => {
     }
 };
 
-export const requestHint = async (taskID) => {
-    return await universalGet(`/api/tasks/${taskID}/hint`);
+export const updateVisiting = async (options) => {
+    store.commit('load');
+    try {
+        return await axios.post(`/api/subtask/visiting/update`, options);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
 }

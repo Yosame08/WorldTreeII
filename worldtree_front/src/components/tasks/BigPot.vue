@@ -52,7 +52,7 @@ export default {
   methods: {
     async initGame() {
       try {
-        const response = await universalGet('/api/bigpot/init');
+        const response = await universalGet('/api/subtask/bigpot/init');
         if (response && response.data && response.data.code === 0) {
           this.numbers = response.data.data.array;
           this.gameToken = response.data.data.game_token;
@@ -94,7 +94,7 @@ export default {
     },
     async cook() {
       try {
-        const response = await axios.post('/api/bigpot/cook', {
+        const response = await axios.post('/api/subtask/bigpot/cook', {
           game_token: this.gameToken,
           num: this.pot,
           operator: this.operator,
