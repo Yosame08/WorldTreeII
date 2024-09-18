@@ -1,5 +1,15 @@
 <!-- src/components/NavBar.vue -->
 <template>
+  <el-progress
+      v-if="this.$store.state.load > 0"
+      :percentage="50"
+      :indeterminate="true"
+      :show-text="false"
+      :color="customColors"
+      :duration="2.5"
+      :stroke-width="3"
+      class="progress-bar"
+  />
   <nav v-if="showNavBar">
     <div id="nav">
       <router-link to="/" class="nav-link" active-class="nav-link-active">Home</router-link>
@@ -18,15 +28,6 @@
       </div>
     </div>
   </nav>
-  <el-progress
-      v-if="this.$store.state.load > 0"
-      :percentage="50"
-      :indeterminate="true"
-      :show-text="false"
-      :color="customColors"
-      :duration="2.5"
-      :stroke-width="3"
-  />
 </template>
 
 <script>
@@ -125,5 +126,10 @@ export default {
 
 .auth-section button:hover {
   background-color: #555;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
 }
 </style>

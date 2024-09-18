@@ -7,9 +7,10 @@
       style="width: 100%"
       :row-class-name="tableRowClassName"
   >
-    <el-table-column prop="rank" label="排名" width="180" />
-    <el-table-column prop="name" label="用户名" width="180" />
-    <el-table-column prop="point" label="积分" />
+    <el-table-column prop="rank" label="排名" width="100" />
+    <el-table-column prop="name" label="用户" width="180" />
+    <el-table-column prop="point" label="积分" width="100"/>
+    <el-table-column prop="point" label="个性签名"/>
   </el-table>
 </template>
 
