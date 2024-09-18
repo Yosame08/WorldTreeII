@@ -52,6 +52,7 @@ import { ref, onMounted, computed } from 'vue';
 import { ElForm, ElFormItem, ElSwitch, ElInputNumber, ElButton } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {universalGet} from "@/services/universalService";
+import {updateVisiting} from "@/services/taskService";
 
 const images = ref([
   { src: require('@/assets/visiting/level1.jpg') },
@@ -106,7 +107,7 @@ const handleMarkerClick = (marker) => {
 };
 
 const updateAnswers = async () => {
-  const response = await fetch('/visiting/update', {
+  const response = await updateVisiting({
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -115,18 +116,18 @@ const updateAnswers = async () => {
       floor: markers.value.map(marker => marker.indoor ? marker.floor : 0),
     }),
   });
-  const result = await response.json();
+  const result = response.data.data;
   if (result.code === 0) {
     alert('操作成功');
-    fetchCurrentAnswers();
+    await fetchCurrentAnswers();
   } else {
     alert('操作失败');
   }
 };
 
 const fetchCurrentAnswers = async () => {
-  const response = universalGet('/api/subtask/visiting/get_info');
-  const result = await response.json();
+  let result = await universalGet('/api/subtask/visiting/get_info');
+  result = result.data;
   if (result.code === 0) {
     markers.value = result.data.position.map((pos, index) => ({
       position: pos,
@@ -134,6 +135,7 @@ const fetchCurrentAnswers = async () => {
       floor: result.data.floor[index],
     }));
   }
+  console.log(markers.value);
 };
 
 onMounted(fetchCurrentAnswers);
@@ -290,14 +292,29 @@ const calculateLatLng = (x, y) => {
 };
 
 const getMarkerStyle = (position) => {
-  const { lat, lng } = position;
+  const [ lng, lat ] = position;
   const rect = mapImage.value.getBoundingClientRect();
-  const x = (lat - 31.309626) / (31.309587 - 31.309626) * rect.width;
-  const y = (lng - 121.498952) / (121.498791 - 121.498952) * rect.height;
+  console.log(lng, lat);
+
+  // 四个角的经纬度
+  const topLeft = [121.498952, 31.309626];
+  const topRight = [121.519335, 31.309587];
+  const bottomLeft = [121.498791, 31.294858];
+  const bottomRight = [121.519173, 31.295028];
+
+  const height_ratio = (lat - bottomLeft[1]) / (topLeft[1] - bottomLeft[1]);
+  const lng_interval = [
+    bottomLeft[0] + (topLeft[0] - bottomLeft[0]) * height_ratio,
+    bottomRight[0] + (topRight[0] - bottomRight[0]) * height_ratio
+  ];
+  const width_ratio = (lng - lng_interval[0]) / (lng_interval[1] - lng_interval[0]);
+  const x = width_ratio * rect.width + rect.left;
+  const y = height_ratio * rect.height + rect;
+
   return {
     position: 'absolute',
     left: `${x}px`,
-    top: `${y}px`,
+    bottom: `${y}px`,
     transform: 'translateY(-100%)', // Align bottom of the icon with the position
   };
 };
