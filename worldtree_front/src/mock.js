@@ -238,20 +238,37 @@ Mock.mock('/api/subtask/cake/submit', 'post', (options) => {
     }
 });
 
+let visitingMock = {
+    "position": [
+        [121.500, 31.3018],
+        [121.502, 31.3019],
+        [121.5030, 31.3020],
+        [121.5041, 31.3021],
+        [121.5062, 31.3022],
+    ],
+    "indoor": [true, true, true, true, false],
+    "floor": [5, 2, 2, 4, 0],
+}
+
 Mock.mock('/api/subtask/visiting/get_info', 'get', () => {
     return {
         "code": 0,
         "message": "操作成功",
         "data": {
-            "position": [
-                [121.4998, 31.3098],
-                [121.4999, 31.3099],
-                [121.5000, 31.3010],
-                [121.5001, 31.3011],
-                [121.5002, 31.3012],
-            ],
-            "indoor": [true, true, true, true, false],
-            "floor": [5, 2, 2, 4, 0],
+            "position": visitingMock.position,
+            "indoor": visitingMock.indoor,
+            "floor": visitingMock.floor,
         }
+    }
+});
+
+Mock.mock('/api/subtask/visiting/update', 'post', (options) => {
+    let { position, indoor, floor } = JSON.parse(options.body);
+    visitingMock.position = position;
+    visitingMock.indoor = indoor;
+    visitingMock.floor = floor;
+    return {
+        "code": 0,
+        "message": "操作成功",
     }
 });

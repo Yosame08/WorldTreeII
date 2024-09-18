@@ -1,5 +1,9 @@
 <template>
   <div class="visiting-container">
+    <!-- 提示窗口 -->
+    <div v-if="nowSetting" class="position-hint">
+      点击选择图片的位置
+    </div>
     <!-- This is the Map -->
     <div class="map-container" @mousedown="startDrag" @mousemove="onDrag" @mouseup="endDrag" @mouseleave="endDrag"
          @wheel="onWheel" @touchstart="startTouch" @touchmove="onTouchMove" @touchend="endTouch" @click="handleMapClick">
@@ -13,22 +17,25 @@
 
       <!-- Markers -->
       <div v-for="(marker, index) in markers" :key="index" :style="getMarkerStyle(marker.position)" class="marker">
-        <font-awesome-icon :icon="['fas', 'location-dot']" :style="{ color: getMarkerColor(index) }" @mouseover="showMarkerInfo(marker)" @mouseleave="hideMarkerInfo" />
-        <div v-if="hoveredMarker === marker" class="marker-info">
-          <p>{{ marker.indoor ? `Indoor, Floor: ${marker.floor}` : 'Outdoor' }}</p>
+        <font-awesome-icon :icon="['fas', 'location-dot']" :style="{ color: getMarkerColor(index), fontSize: 32 }" @click="handleMarkerClick(index)" />
+        <div v-if="clickedMarker === index" class="marker-info">
+          <p>{{ `图${index}` }}</p>
+          <p>{{ `(${marker.position[0]}, ${marker.position[1]})` }}</p>
+          <p>{{ marker.indoor ? `室内${marker.floor}层` : '室外' }}</p>
+          <el-button @click="startSettingPosition(index)">修改位置</el-button>
         </div>
       </div>
     </div>
     <!-- This is the container of the images -->
     <div class="images-container">
-      <img v-for="(image, index) in images" :key="index" :src="image.src" @click="showImage(index)" @contextmenu.prevent="saveImage(image.src)" />
+      <img v-for="(image, index) in images" :key="index" :src="image.src" @click="showImage(index)"/>
     </div>
     <div v-if="selectedImage !== null" class="image-modal" @click.self="closeImageModal">
       <img :src="images[selectedImage].src" />
       <div class="image-modal-buttons">
         <button @click="closeImageModal">关闭显示</button>
         <button @click="saveImage(images[selectedImage].src)">下载图片</button>
-        <button @click="startSettingPosition">设置位置</button>
+        <button @click="startSettingPosition(selectedImage)">设置位置</button>
       </div>
     </div>
     <!-- This is the dialog for setting the marker -->
@@ -40,6 +47,7 @@
         <el-form-item v-if="markerForm.indoor" label="楼层">
           <el-input-number v-model="markerForm.floor" :min="1" :max="10"></el-input-number>
         </el-form-item>
+        <el-button @click="cancelMarker">复原</el-button>
         <el-button @click="confirmMarker">确定</el-button>
       </el-form>
     </div>
@@ -61,17 +69,22 @@ const images = ref([
   { src: require('@/assets/visiting/level3.jpg') },
   { src: require('@/assets/visiting/level3.jpg') },
 ]);
+
+const clickedMarker = ref(null);
 const selectedImage = ref(null);
+const nowSetting = ref(null);
 const showMarkerDialog = ref(false);
-const markerForm = ref({ indoor: false, floor: 1, position: null });
+const markerForm = ref({ indoor: false, floor: 1 });
+const oldPosition = ref([0, 0])
 const markers = ref([]);
-const settingPosition = ref(false);
-const hoveredMarker = ref(null);
 
 const showImage = (index) => {
+  if (nowSetting.value) return;
   selectedImage.value = index;
+  clickedMarker.value = null;
 };
 
+// 3个按钮的功能
 const closeImageModal = () => {
   selectedImage.value = null;
 };
@@ -83,27 +96,95 @@ const saveImage = (src) => {
   link.click();
 };
 
-const startSettingPosition = () => {
-  settingPosition.value = true;
-  selectedImage.value = null;
+const startSettingPosition = (index) => {
+  selectedImage.value = clickedMarker.value = null;
+  showMarkerDialog.value = false;
+  oldPosition.value = markers.value[index].position;
+  // 添加短暂的延迟，避免立即触发 handleMapClick
+  setTimeout(() => {
+    nowSetting.value = index;
+  }, 50); // 50 毫秒的延迟
+};
+
+const handleMarkerClick = (index) => {
+  if (selectedImage.value || nowSetting.value) return;
+  clickedMarker.value = index;
+};
+
+const handleMapClick = (event) => {
+  if (nowSetting.value) {
+    // 检查点击的目标是否是加减按钮
+    if (event.target.closest('.zoom-controls')) {
+      return;
+    }
+    const rect = mapImage.value.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    const position = calculateLatLng(x, y);
+    handleMarkerSet(position);
+  }
 };
 
 const handleMarkerSet = (position) => {
-  if (settingPosition.value) {
-    markerForm.value.position = position;
+  if (nowSetting.value) {
+    markers.value[nowSetting.value].position = position;
     showMarkerDialog.value = true;
-    settingPosition.value = false;
+  }
+};
+
+const cancelMarker = () => {
+  if (nowSetting.value) {
+    markers.value[nowSetting].position = oldPosition.value;
+    showMarkerDialog.value = false;
+    nowSetting.value = null;
   }
 };
 
 const confirmMarker = () => {
-  markers.value.push({ ...markerForm.value });
-  showMarkerDialog.value = false;
+  if (nowSetting.value) {
+    markers.value[nowSetting].indoor = markerForm.value.indoor;
+    markers.value[nowSetting].floor = markerForm.value.floor;
+    showMarkerDialog.value = false;
+    nowSetting.value = null;
+  }
 };
 
-const handleMarkerClick = (marker) => {
-  markerForm.value = { ...marker };
-  showMarkerDialog.value = true;
+const calculateLatLng = (x, y) => {
+  const lng = 121.498872 + (121.519254 - 121.498872) * x;
+  const lat = 31.309607 - (31.309607 - 31.294943) * y;
+  return [ lng, lat ];
+};
+
+const getMarkerStyle = (position) => {
+  const [ lng, lat ] = position;
+  const rect = mapImage.value.getBoundingClientRect();
+
+  // 四个角的经纬度
+  const topLeft = [121.498872, 31.309607];
+  const topRight = [121.519254, 31.309607];
+  const bottomLeft = [121.498872, 31.294943];
+  const bottomRight = [121.519254, 31.294943];
+
+  const height_ratio = (lat - bottomLeft[1]) / (topLeft[1] - bottomLeft[1]);
+  const lng_interval = [
+    bottomLeft[0] + (topLeft[0] - bottomLeft[0]) * height_ratio,
+    bottomRight[0] + (topRight[0] - bottomRight[0]) * height_ratio
+  ];
+  const width_ratio = (lng - lng_interval[0]) / (lng_interval[1] - lng_interval[0]);
+  const x = width_ratio * rect.width + rect.left;
+  const y = (1 - height_ratio) * rect.height + rect.top;
+
+  return {
+    position: 'absolute',
+    left: `${x}px`,
+    top: `${y - 39}px`,
+    transform: 'translate(-50%, -100%)', // Align bottom of the icon with the position
+  };
+};
+
+const getMarkerColor = (index) => {
+  const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
+  return colors[index % colors.length];
 };
 
 const updateAnswers = async () => {
@@ -135,7 +216,6 @@ const fetchCurrentAnswers = async () => {
       floor: result.data.floor[index],
     }));
   }
-  console.log(markers.value);
 };
 
 onMounted(fetchCurrentAnswers);
@@ -143,7 +223,7 @@ onMounted(fetchCurrentAnswers);
 /* This is the script for the Map */
 const scale = ref(1);
 const minScale = 1;
-const maxScale = 5;
+const maxScale = 4;
 const startX = ref(0);
 const startY = ref(0);
 const translateX = ref(0);
@@ -204,7 +284,7 @@ const onWheel = (event) => {
 };
 
 const startDrag = (event) => {
-  if (dragging.value) return;
+  if (dragging.value || nowSetting.value !== -1) return;
   event.preventDefault();
   const rect = mapImage.value.getBoundingClientRect();
   if (
@@ -220,6 +300,7 @@ const startDrag = (event) => {
 };
 
 const onDrag = (event) => {
+  if (nowSetting.value !== -1) return;
   if (dragging.value) {
     translateX.value = event.clientX - startX.value;
     translateY.value = event.clientY - startY.value;
@@ -271,66 +352,6 @@ const checkBounds = () => {
   translateY.value = Math.min(Math.max(translateY.value, minTranslateY), 0);
 };
 
-const handleMapClick = (event) => {
-  if (settingPosition.value) {
-    const rect = mapImage.value.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-    const position = calculateLatLng(x, y);
-    handleMarkerSet(position);
-  }
-};
-
-const calculateLatLng = (x, y) => {
-  const latTop = 31.309626 + (31.309587 - 31.309626) * x;
-  const latBottom = 31.294858 + (31.295028 - 31.294858) * x;
-  const lngLeft = 121.498952 + (121.498791 - 121.498952) * y;
-  const lngRight = 121.519335 + (121.519173 - 121.519335) * y;
-  const lat = latTop + (latBottom - latTop) * y;
-  const lng = lngLeft + (lngRight - lngLeft) * x;
-  return { lat, lng };
-};
-
-const getMarkerStyle = (position) => {
-  const [ lng, lat ] = position;
-  const rect = mapImage.value.getBoundingClientRect();
-  console.log(lng, lat);
-
-  // 四个角的经纬度
-  const topLeft = [121.498952, 31.309626];
-  const topRight = [121.519335, 31.309587];
-  const bottomLeft = [121.498791, 31.294858];
-  const bottomRight = [121.519173, 31.295028];
-
-  const height_ratio = (lat - bottomLeft[1]) / (topLeft[1] - bottomLeft[1]);
-  const lng_interval = [
-    bottomLeft[0] + (topLeft[0] - bottomLeft[0]) * height_ratio,
-    bottomRight[0] + (topRight[0] - bottomRight[0]) * height_ratio
-  ];
-  const width_ratio = (lng - lng_interval[0]) / (lng_interval[1] - lng_interval[0]);
-  const x = width_ratio * rect.width + rect.left;
-  const y = height_ratio * rect.height + rect;
-
-  return {
-    position: 'absolute',
-    left: `${x}px`,
-    bottom: `${y}px`,
-    transform: 'translateY(-100%)', // Align bottom of the icon with the position
-  };
-};
-
-const getMarkerColor = (index) => {
-  const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
-  return colors[index % colors.length];
-};
-
-const showMarkerInfo = (marker) => {
-  hoveredMarker.value = marker;
-};
-
-const hideMarkerInfo = () => {
-  hoveredMarker.value = null;
-};
 </script>
 
 <style scoped>
@@ -363,7 +384,7 @@ const hideMarkerInfo = () => {
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .image-modal img {
@@ -394,8 +415,7 @@ const hideMarkerInfo = () => {
 .marker-dialog {
   position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(20%, -120%);
   background-color: white;
   padding: 20px;
   z-index: 1000;
@@ -454,13 +474,23 @@ const hideMarkerInfo = () => {
 
 .marker-info {
   position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translate(20%, -120%);
   background-color: white;
-  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
   white-space: nowrap;
+  font-size: 0.8em;
+  z-index: 1200;
+}
+
+.position-hint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
 }
 </style>
