@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, nextTick } from 'vue';
 import { useStore } from 'vuex';
 import InScreenWindow from './InScreenWindow.vue';
 import moment from "moment";
@@ -39,12 +39,15 @@ export default {
     const isLoggedIn = computed(() => store.state.isLoggedIn);
     const showWindow = ref(false);
     const isSidebarHidden = ref(false);
+    const windowRef = ref(null);
     let timerId = null;
 
     const showWindowAndReset = () => {
       showWindow.value = true;
-      this.$nextTick(() => {
-        this.$refs.window.resetPosition();
+      nextTick(() => {
+        if (windowRef.value) {
+          windowRef.value.resetPosition();
+        }
       });
     };
 
@@ -70,7 +73,8 @@ export default {
       isSidebarHidden,
       showWindowAndReset,
       toggleSidebar,
-      moment
+      moment,
+      windowRef
     };
   }
 };
@@ -85,6 +89,14 @@ export default {
   height: calc(100vh - 39px); /* Adjust 39px to the actual height of your NavBar */
   position: relative;
   overflow: hidden; /* Hide any overflow content */
+  user-select: none; /* 禁止用户选择文本 */
+  -webkit-user-select: none; /* 适用于Webkit浏览器 */
+  -moz-user-select: none; /* 适用于Firefox */
+  -ms-user-select: none; /* 适用于IE10+ */
+  -webkit-user-drag: none; /* 适用于Webkit浏览器 */
+  -moz-user-drag: none; /* 适用于Firefox */
+  -ms-user-drag: none; /* 适用于IE10+ */
+  user-drag: none; /* 标准属性 */
 }
 
 .sidebar {

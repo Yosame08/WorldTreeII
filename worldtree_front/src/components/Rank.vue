@@ -1,5 +1,4 @@
 <template>
-  <ErrorMsg :message="errorMessage" />
   <h1>This is Rank.</h1>
   <v-chart :option="chartOptions" autoresize style="height: 300px;"></v-chart>
   <el-table
@@ -15,22 +14,17 @@
 </template>
 
 <script>
-import { fetchRankData } from "@/services/infoService";
-import ErrorMsg from '@/components/ErrorMsg.vue';
-import {universalGet} from "@/services/universalService";
+import { universalGet } from "@/services/universalService";
+import store from "@/services/storeService";
 
 export default ({
   name: 'Rank',
-  components: {
-    ErrorMsg
-  },
   data() {
     return {
       tableData: [],
       trendData: [],
       timeNow: "",
       chartOptions: undefined,
-      errorMessage: ''
     };
   },
   created() {
@@ -40,18 +34,14 @@ export default ({
     async loadRankData() {
       try {
         const response = await universalGet('/api/rank');
-        if (response.data.code === 3050) {
+        if (response.data.code === 0) {
+          store.commit("clearErrorMsg");
           this.tableData = response.data.tableData;
           this.trendData = response.data.trendData;
           this.timeNow = response.data.timeNow;
           await this.initEcharts();
-        } else {
-          this.errorMessage = response.data.message;
         }
-      } catch (error) {
-        console.error('Failed to fetch rank data', error);
-        this.errorMessage = 'Failed to fetch rank data';
-      }
+      } catch (error) {}
     },
     tableRowClassName({ row }) {
       if (row.rank === 1) {

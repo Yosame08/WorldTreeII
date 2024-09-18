@@ -1,7 +1,6 @@
 <!-- src/components/account/Signup.vue -->
 <template>
   <div>
-    <ErrorMsg :message="errorMessage" />
     <h1 class="form-title">欢迎来到穿越时空的旅程</h1>
     <el-form :model="form" ref="form" label-width="80px" class="login-form">
       <el-form-item label="用户名">
@@ -32,13 +31,10 @@
 
 <script>
 import { signup, fetchCaptcha } from '@/services/userService';
-import ErrorMsg from '@/components/ErrorMsg.vue';
+import store from "@/services/storeService";
 
 export default {
   name: 'Signup',
-  components: {
-    ErrorMsg
-  },
   data() {
     return {
       form: {
@@ -49,7 +45,6 @@ export default {
       },
       pic_token: '', // Token for the captcha image
       captchaImage: '', // Base64 image data
-      errorMessage: ''
     };
   },
   created() {
@@ -67,27 +62,22 @@ export default {
     },
     async signup() {
       if (this.form.password !== this.form.confirmPassword) {
-        this.errorMessage = '密码和确认密码不一致';
+        store.commit("setErrorMsg", '密码和确认密码不一致');
         return;
       }
-      try {
+      try{
         const response = await signup({
           username: this.form.username,
           password: this.form.password,
           pic_token: this.pic_token,
           verify: this.form.captcha
         });
-        const code = response.data.code;
-        if (code === 0) {
-          this.errorMessage = '';
+        if (response.data.code === 0) {
+          store.commit("clearErrorMsg");
           this.$router.push('/login'); // Navigate to login page
-        } else {
-          this.errorMessage = response.data.message;
         }
-      } catch (error) {
-        this.errorMessage = 'Signup failed, please try again.';
-        console.error('Signup failed', error);
       }
+      catch (error) {}
     },
   }
 }

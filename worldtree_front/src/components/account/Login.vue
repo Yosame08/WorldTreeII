@@ -1,6 +1,5 @@
 <template>
   <div>
-    <ErrorMsg :message="errorMessage" />
     <h1 class="form-title">欢迎再次回到穿越时空的旅程</h1>
     <el-form :model="form" ref="form" label-width="80px" class="login-form">
       <el-form-item label="用户名">
@@ -29,14 +28,9 @@
 <script>
 import { login, fetchCaptcha } from '@/services/userService';
 import store from '@/services/storeService';
-import ErrorMsg from '@/components/ErrorMsg.vue';
-import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
-  components: {
-    ErrorMsg
-  },
   data() {
     return {
       form: {
@@ -46,7 +40,6 @@ export default {
       },
       pic_token: '', // Token for the captcha image
       captchaImage: '', // Base64 image data
-      errorMessage: ''
     };
   },
   created() {
@@ -63,7 +56,7 @@ export default {
       }
     },
     async login() {
-      try {
+      try{
         const response = await login({
           username: this.form.username,
           password: this.form.password,
@@ -72,17 +65,13 @@ export default {
         });
         const code = response.data.code;
         if (code === 0) {
-          this.errorMessage = '';
+          store.commit("clearErrorMsg");
           sessionStorage.setItem('token', response.data.data); // Store the token
           store.commit('setLoggedIn', true);
           this.$router.push('/'); // Navigate to home page
-        } else {
-          this.errorMessage = response.data.message;
         }
-      } catch (error) {
-        this.errorMessage = 'Login failed, please try again.';
-        console.error('Login failed', error);
       }
+      catch (error) {}
     },
   }
 }

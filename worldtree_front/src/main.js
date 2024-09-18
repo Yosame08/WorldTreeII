@@ -27,6 +27,21 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error)
 })
 
+axios.interceptors.response.use(
+    response => {
+        if (response.data.code !== 0) {
+            store.commit("setErrorMsg", response.data.message);
+            return Promise.reject(response.data.message);
+        }
+        else store.commit("clearErrorMsg");
+        return response;
+    },
+    error => {
+        store.commit("setErrorMsg", error.message);
+        return Promise.reject(error);
+    }
+);
+
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
