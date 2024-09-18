@@ -18,7 +18,7 @@
 
 <script setup>
 import {onMounted, onUnmounted, ref} from 'vue';
-import SevenSegmentDisplay from '@/components/tasks/SevenSegmentDisplay.vue';
+import SevenSegmentDisplay from '@/components/effects/SevenSegmentDisplay.vue';
 import axios from 'axios';
 
 const timerValue = ref(0);

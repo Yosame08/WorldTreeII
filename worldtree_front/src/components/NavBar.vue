@@ -1,23 +1,5 @@
 <!-- src/components/NavBar.vue -->
 <template>
-  <nav v-if="showNavBar">
-    <div id="nav">
-      <router-link to="/" class="nav-link" active-class="nav-link-active">Home</router-link>
-      <router-link to="/map" class="nav-link" active-class="nav-link-active">Map</router-link>
-      <router-link to="/rank" class="nav-link" active-class="nav-link-active">Rank</router-link>
-      <router-link to="/bbs" class="nav-link" active-class="nav-link-active">BBS</router-link>
-      <div class="auth-section">
-        <template v-if="!isLoggedIn">
-          <router-link to="/login" class="nav-link" active-class="nav-link-active">Log in</router-link>
-          <router-link to="/signup" class="nav-link" active-class="nav-link-active">Sign up</router-link>
-        </template>
-        <template v-else>
-          <button @click="goToUserSetting" class="nav-link">{{ username }}</button>
-          <button @click="logout" class="nav-link">Log out</button>
-        </template>
-      </div>
-    </div>
-  </nav>
   <el-progress
       v-if="this.$store.state.load > 0"
       :percentage="50"
@@ -26,7 +8,23 @@
       :color="customColors"
       :duration="2.5"
       :stroke-width="3"
+      class="progress-bar"
   />
+  <nav v-if="showNavBar">
+    <div id="nav">
+      <div v-if="errorMessage" class="error-msg">❌ {{ errorMessage }}</div>
+      <div class="auth-section">
+        <template v-if="!isLoggedIn">
+          <router-link to="/login" class="nav-link" active-class="nav-link-active">登录</router-link>
+          <router-link to="/signup" class="nav-link" active-class="nav-link-active">注册</router-link>
+        </template>
+        <template v-else>
+          <button @click="goToUserSetting" class="nav-link">{{ username }}</button>
+          <button @click="logout" class="nav-link">登出</button>
+        </template>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -48,6 +46,7 @@ export default {
       isLoggedIn: computed(() => store.state.isLoggedIn),
       username: computed(() => store.state.userInfo.username),
       customColors: customColors,
+      errorMessage: computed(() => store.state.errorMsg),
     };
   },
   created() {
@@ -69,6 +68,9 @@ export default {
     goToUserSetting() {
       this.$router.push('/usersetting');
     },
+    setError(message) {
+      this.errorMessage = message;
+    }
   }
 }
 </script>
@@ -125,5 +127,21 @@ export default {
 
 .auth-section button:hover {
   background-color: #555;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 3px;
+  padding-left: 30px;
+  padding-right: 35px;
 }
 </style>

@@ -15,13 +15,9 @@
 
 <script>
 import { fetchBbsTitles } from "@/services/infoService";
-import ErrorMsg from "@/components/ErrorMsg.vue";
 
 export default ({
   name: 'BBS',
-  components: {
-    ErrorMsg
-  },
   data() {
     return {
       list: [],
