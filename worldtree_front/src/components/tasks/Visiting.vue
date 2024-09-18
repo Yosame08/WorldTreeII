@@ -19,8 +19,8 @@
       <div v-for="(marker, index) in markers" :key="index" :style="getMarkerStyle(marker.position)" class="marker">
         <font-awesome-icon :icon="['fas', 'location-dot']" :style="{ color: getMarkerColor(index), fontSize: 32 }" @click="handleMarkerClick(index)" />
         <div v-if="clickedMarker === index" class="marker-info">
-          <p>{{ `图${index}` }}</p>
-          <p>{{ `(${marker.position[0]}, ${marker.position[1]})` }}</p>
+          <p>{{ `图${index+1}` }}</p>
+          <p>{{ `${marker.position[0].toFixed(5)}, ${marker.position[1].toFixed(5)}` }}</p>
           <p>{{ marker.indoor ? `室内${marker.floor}层` : '室外' }}</p>
           <el-button @click="startSettingPosition(index)">修改位置</el-button>
         </div>
@@ -41,11 +41,13 @@
     <!-- This is the dialog for setting the marker -->
     <div v-if="showMarkerDialog" class="marker-dialog">
       <el-form :model="markerForm">
-        <el-form-item label="是否在室内">
+        <p>{{ `图${nowSetting+1}` }}</p>
+        <p>{{ newPosition[0].toFixed(5) }}, {{ newPosition[1].toFixed(5) }}</p>
+        <el-form-item label="在建筑物内">
           <el-switch v-model="markerForm.indoor"></el-switch>
         </el-form-item>
         <el-form-item v-if="markerForm.indoor" label="楼层">
-          <el-input-number v-model="markerForm.floor" :min="1" :max="10"></el-input-number>
+          <el-input-number v-model="markerForm.floor" :min="1" :max="30" :style="{width:'100px'}" ></el-input-number>
         </el-form-item>
         <el-button @click="cancelMarker">复原</el-button>
         <el-button @click="confirmMarker">确定</el-button>
@@ -75,7 +77,8 @@ const selectedImage = ref(null);
 const nowSetting = ref(null);
 const showMarkerDialog = ref(false);
 const markerForm = ref({ indoor: false, floor: 1 });
-const oldPosition = ref([0, 0])
+const oldPosition = ref([0, 0]);
+const newPosition = ref([0, 0]);
 const markers = ref([]);
 
 const showImage = (index) => {
@@ -128,13 +131,14 @@ const handleMapClick = (event) => {
 const handleMarkerSet = (position) => {
   if (nowSetting.value) {
     markers.value[nowSetting.value].position = position;
+    newPosition.value = position;
     showMarkerDialog.value = true;
   }
 };
 
 const cancelMarker = () => {
   if (nowSetting.value) {
-    markers.value[nowSetting].position = oldPosition.value;
+    markers.value[nowSetting.value].position = oldPosition.value;
     showMarkerDialog.value = false;
     nowSetting.value = null;
   }
@@ -142,28 +146,28 @@ const cancelMarker = () => {
 
 const confirmMarker = () => {
   if (nowSetting.value) {
-    markers.value[nowSetting].indoor = markerForm.value.indoor;
-    markers.value[nowSetting].floor = markerForm.value.floor;
+    markers.value[nowSetting.value].indoor = markerForm.value.indoor;
+    markers.value[nowSetting.value].floor = markerForm.value.floor;
     showMarkerDialog.value = false;
     nowSetting.value = null;
   }
 };
 
+// 四个角的经纬度
+const topLeft = [121.498840, 31.309501];
+const topRight = [121.519321, 31.309501];
+const bottomLeft = [121.498840, 31.294785];
+const bottomRight = [121.519321, 31.294785];
+
 const calculateLatLng = (x, y) => {
-  const lng = 121.498872 + (121.519254 - 121.498872) * x;
-  const lat = 31.309607 - (31.309607 - 31.294943) * y;
+  const lng = topLeft[0] + (topRight[0] - topLeft[0]) * x;
+  const lat = topRight[1] - (topRight[1] - bottomRight[1]) * y;
   return [ lng, lat ];
 };
 
 const getMarkerStyle = (position) => {
   const [ lng, lat ] = position;
   const rect = mapImage.value.getBoundingClientRect();
-
-  // 四个角的经纬度
-  const topLeft = [121.498872, 31.309607];
-  const topRight = [121.519254, 31.309607];
-  const bottomLeft = [121.498872, 31.294943];
-  const bottomRight = [121.519254, 31.294943];
 
   const height_ratio = (lat - bottomLeft[1]) / (topLeft[1] - bottomLeft[1]);
   const lng_interval = [
@@ -197,10 +201,10 @@ const updateAnswers = async () => {
       floor: markers.value.map(marker => marker.indoor ? marker.floor : 0),
     }),
   });
-  const result = response.data.data;
+  const result = response.data;
   if (result.code === 0) {
     alert('操作成功');
-    await fetchCurrentAnswers();
+    window.location.reload();
   } else {
     alert('操作失败');
   }
@@ -210,6 +214,7 @@ const fetchCurrentAnswers = async () => {
   let result = await universalGet('/api/subtask/visiting/get_info');
   result = result.data;
   if (result.code === 0) {
+    console.log(result.data);
     markers.value = result.data.position.map((pos, index) => ({
       position: pos,
       indoor: result.data.indoor[index],
@@ -247,6 +252,16 @@ const zoom = (delta, event) => {
   translateY.value = (translateY.value - zoomCenter.y) * (newScale / scale.value) + zoomCenter.y;
   scale.value = newScale;
   checkBounds();
+  setTimeout(() => {
+    updateMarkerPositions();
+  }, 10); // 50 毫秒的延迟
+};
+
+const updateMarkerPositions = () => {
+  markers.value = markers.value.map(marker => ({
+    ...marker,
+    style: getMarkerStyle(marker.position)
+  }));
 };
 
 const zoomIn = (event) => {
@@ -284,7 +299,7 @@ const onWheel = (event) => {
 };
 
 const startDrag = (event) => {
-  if (dragging.value || nowSetting.value !== -1) return;
+  if (dragging.value || nowSetting.value) return;
   event.preventDefault();
   const rect = mapImage.value.getBoundingClientRect();
   if (
@@ -300,7 +315,7 @@ const startDrag = (event) => {
 };
 
 const onDrag = (event) => {
-  if (nowSetting.value !== -1) return;
+  if (nowSetting.value) return;
   if (dragging.value) {
     translateX.value = event.clientX - startX.value;
     translateY.value = event.clientY - startY.value;
@@ -415,7 +430,8 @@ const checkBounds = () => {
 .marker-dialog {
   position: fixed;
   top: 50%;
-  transform: translate(20%, -120%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
   z-index: 1000;
@@ -474,12 +490,12 @@ const checkBounds = () => {
 
 .marker-info {
   position: absolute;
-  transform: translate(20%, -120%);
+  transform: translate(15%, -115%);
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 3px;
   white-space: nowrap;
-  font-size: 0.8em;
+  font-size: 1em;
   z-index: 1200;
 }
 
