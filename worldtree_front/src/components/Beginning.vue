@@ -1,7 +1,7 @@
 <!-- src/components/Beginning.vue -->
 <template>
   <div class="not-logged-in">
-    <h1>Welcome to Our Site</h1>
+    <Typewriter text="Welcome to Our Site" :speed="100" />
     <div class="buttons">
       <button @click="goToLogin">Log In</button>
       <button @click="goToSignUp">Sign Up</button>
@@ -11,8 +11,12 @@
 
 <script>
 import store from "@/services/storeService";
+import Typewriter from "@/components/effects/Typewriter.vue";
 
 export default {
+  components: {
+    Typewriter
+  },
   mounted() {
     if (store.state.isLoggedIn) {
       this.$router.push('/');
