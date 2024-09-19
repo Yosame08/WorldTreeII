@@ -28,12 +28,12 @@ const props = defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  //margin: 10px 0;
 }
 
 .hexagon {
-  width: 125px;
-  height: 125px;
+  width: 118px;
+  height: 132px;
   background-image: url('@/assets/hex.png');
   background-size: cover;
   position: relative;
