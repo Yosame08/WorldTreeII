@@ -40,9 +40,7 @@ const store = createStore({
     actions: {
         async fetchUserInfo({ commit }) {
             try {
-                console.log("Try to fetch")
                 const response = await get_info();
-                console.log("Fetched: " + response)
                 commit('setUserInfo', response.data.data);
             } catch (error) {
                 console.error('Failed to fetch user info', error);

@@ -72,47 +72,35 @@ Mock.mock('/api/user/get_id', 'post', {
     data: 2,
 });
 
-Mock.mock('/api/rank', 'get', () => {
+Mock.mock('/api/func/rank', 'get', () => {
     return {
-        code: 3050,
-        tableData: [
+        code: 0,
+        message: "",
+        data: [
             {
                 "rank": 1,
-                "name": "Tom",
-                "point": 100,
+                "user_id": 3,
+                "username": "Tom",
+                "point": 100
             },
             {
                 "rank": 2,
-                "name": "Alice",
-                "point": 90,
+                "user_id": 4,
+                "username": "Alice",
+                "point": 90
             },
             {
-                "rank": 3,
-                "name": "Bob",
-                "point": 80,
+                "rank": 2,
+                "user_id": 5,
+                "username": "Bob",
+                "point": 90
             },
             {
-                "rank": 3,
-                "name": "Emily",
-                "point": 80,
-            },
-        ],
-        trendData: [
-            {
-                "name": "Tom",
-                "data": [
-                    ["2024-08-18 10:00:00", 0],
-                    ["2024-08-18 14:23:02", 50],
-                    ["2024-08-18 15:33:36", 100],
-                ],
-            },
-            {
-                "name": "Alice",
-                "data": [
-                    ["2024-08-18 10:00:00", 0],
-                    ["2024-08-18 16:00:05", 90],
-                ],
-            },
+                "rank": 4,
+                "user_id": 6,
+                "username": "Emily",
+                "point": 80
+            }
         ],
         timeNow: "2024-08-19 01:01:02",
     };
@@ -120,7 +108,7 @@ Mock.mock('/api/rank', 'get', () => {
 
 Mock.mock('/api/bbs', 'get', () => {
     return {
-        code: 3050,
+        code: 0,
         list: [
             {
                 "id": 2,

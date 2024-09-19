@@ -122,7 +122,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: calc(100vh - 39px);
+  height: calc(100vh - 43px);
 }
 
 .skittles-container {

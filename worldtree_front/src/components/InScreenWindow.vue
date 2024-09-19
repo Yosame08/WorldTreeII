@@ -1,97 +1,99 @@
 <template>
-  <div class="window" :style="style" @mousedown="startDrag">
-    <div class="window-header">
-      <span>Window Title</span>
-      <button @click="$emit('close')">X</button>
+  <div class="window" :style="style" @mousedown="onMouseDown">
+    <div class="header" @mousedown.stop="initDrag">
+      <button @click="$emit('close')">Close</button>
     </div>
-    <div class="window-content">
-      <!-- Content from backend will be displayed here -->
-      <p>{{ content }}</p>
+    <div class="content">
+      <slot></slot>
     </div>
+    <div class="resizer" @mousedown="initResize"></div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'InScreenWindow',
   data() {
     return {
-      isDragging: false,
-      offsetX: 0,
-      offsetY: 0,
       style: {
-        top: `calc(50vh - 200px)`, // Assuming the window height is 400px
-        left: `calc(50vw - 200px)`, // Assuming the window width is 400px
+        width: '400px',
+        height: '300px',
+        top: '100px',
+        left: '100px',
       },
-      content: 'This is the content from the backend.',
+      isDragging: false,
+      isResizing: false,
+      dragStartX: 0,
+      dragStartY: 0,
     };
   },
   methods: {
-    startDrag(event) {
-      this.isDragging = true;
-      this.offsetX = event.clientX - this.$el.offsetLeft;
-      this.offsetY = event.clientY - this.$el.offsetTop;
-      document.addEventListener('mousemove', this.onDrag);
-      document.addEventListener('mouseup', this.stopDrag);
+    resetPosition() {
+      this.style.top = '100px';
+      this.style.left = '100px';
     },
-    onDrag(event) {
+    initDrag(event) {
+      this.isDragging = true;
+      this.dragStartX = event.clientX - this.$el.getBoundingClientRect().left;
+      this.dragStartY = event.clientY - this.$el.getBoundingClientRect().top;
+      window.addEventListener('mousemove', this.drag);
+      window.addEventListener('mouseup', this.stopDrag);
+    },
+    drag(event) {
       if (this.isDragging) {
-        const newTop = event.clientY - this.offsetY;
-        const newLeft = event.clientX - this.offsetX;
-        const containerRect = this.$el.parentElement.getBoundingClientRect();
-        const windowRect = this.$el.getBoundingClientRect();
-
-        // Ensure the window does not go beyond the top of the container
-        if (newTop < 0) {
-          this.style.top = '0px';
-        } else if (newTop + windowRect.height > containerRect.height) {
-          // Ensure the window does not go beyond the bottom of the container
-          this.style.top = `${containerRect.height - windowRect.height}px`;
-        } else {
-          this.style.top = `${newTop}px`;
-        }
-
-        // Ensure the window does not go beyond the left of the container
-        if (newLeft < 0) {
-          this.style.left = '0px';
-        } else if (newLeft + windowRect.width > containerRect.width) {
-          // Ensure the window does not go beyond the right of the container
-          this.style.left = `${containerRect.width - windowRect.width}px`;
-        } else {
-          this.style.left = `${newLeft}px`;
-        }
+        this.style.left = `${event.clientX - this.dragStartX}px`;
+        this.style.top = `${event.clientY - this.dragStartY}px`;
       }
     },
     stopDrag() {
       this.isDragging = false;
-      document.removeEventListener('mousemove', this.onDrag);
-      document.removeEventListener('mouseup', this.stopDrag);
+      window.removeEventListener('mousemove', this.drag);
+      window.removeEventListener('mouseup', this.stopDrag);
     },
-    resetPosition() {
-      this.style.top = `calc(50vh - ${this.$el.offsetHeight / 2}px)`;
-      this.style.left = `calc(50vw - ${this.$el.offsetWidth / 2}px)`;
+    initResize(event) {
+      this.isResizing = true;
+      window.addEventListener('mousemove', this.resize);
+      window.addEventListener('mouseup', this.stopResize);
+    },
+    resize(event) {
+      if (this.isResizing) {
+        this.style.width = `${event.clientX - this.$el.getBoundingClientRect().left}px`;
+        this.style.height = `${event.clientY - this.$el.getBoundingClientRect().top}px`;
+      }
+    },
+    stopResize() {
+      this.isResizing = false;
+      window.removeEventListener('mousemove', this.resize);
+      window.removeEventListener('mouseup', this.stopResize);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .window {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background-color: white;
   border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  z-index: 1000;
+  resize: both;
+  overflow: auto;
 }
-.window-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f1f1f1;
-  padding: 5px;
+.header {
+  background: #f1f1f1;
+  padding: 10px;
   cursor: move;
 }
-.window-content {
+.content {
   padding: 10px;
+}
+.resizer {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
 }
 </style>

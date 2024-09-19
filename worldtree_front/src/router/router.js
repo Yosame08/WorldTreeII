@@ -20,13 +20,9 @@ import store from '@/services/storeService';
 
 const routes = [
     { path: '/', component: Index },
-    { path: '/map', component: Map },
-    { path: '/rank', component: Rank },
-    { path: '/bbs', component: BBS },
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/usersetting', component: UserSetting },
-    { path: '/nim_game', component: Nim},
     { path: '/beginning', component: Beginning },
 
     { path: '/tasks/nim', component: Nim },

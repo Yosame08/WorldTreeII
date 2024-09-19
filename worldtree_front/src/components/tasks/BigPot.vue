@@ -138,7 +138,7 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: calc(100vh - 39px);
+  height: calc(100vh - 43px);
 }
 
 .number-container {
