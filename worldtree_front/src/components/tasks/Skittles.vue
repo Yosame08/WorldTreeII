@@ -20,6 +20,8 @@
 import {onMounted, onUnmounted, ref} from 'vue';
 import SevenSegmentDisplay from '@/components/effects/SevenSegmentDisplay.vue';
 import axios from 'axios';
+import {universalPost} from "@/services/universalService";
+import store from "@/services/storeService";
 
 const timerValue = ref(0);
 const isPlaying = ref(false);
@@ -94,11 +96,10 @@ const handleButtonClick = async (num) => {
       button.classList.add('pressed');
     }
 
-    const response = await axios.post('/api/subtask/skittles/init', { start: num });
+    const response = await universalPost('/api/subtask/skittles/init', { start: num });
     if (response.data.code === 0) {
+      store.commit('clearErrorMsg');
       playSequence(response.data.data.sequence);
-    } else {
-      console.error(response.data.message);
     }
   } catch (error) {
     console.error(error);

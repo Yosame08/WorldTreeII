@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import {universalPost} from "@/services/universalService";
+import store from "@/services/storeService";
 
 const answer = ref('');
 const gridStatus = ref(Array(9).fill(false));
@@ -24,14 +26,13 @@ const submitAnswer = async () => {
   lastRequestTime = currentTime;
 
   try {
-    const response = await axios.post('/api/cake/submit', { answer: answer.value });
+    const response = await universalPost('/api/cake/submit', { answer: answer.value });
     if (response.data.code === 0 && lastRequestTime === currentTime) {
+      store.commit("clearErrorMsg");
       gridStatus.value = response.data.data.split('').map(char => char === '1');
       if (gridStatus.value.every(status => status)) {
         isModalVisible.value = true;
       }
-    } else {
-      console.error(response.data.message);
     }
   } catch (error) {
     console.error(error);
