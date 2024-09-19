@@ -5,6 +5,7 @@ import com.transAI.pojo.Pos;
 import com.transAI.pojo.Result;
 import com.transAI.service.OrientationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class OrientationController {
     @Autowired
     private OrientationService orientationService;
 
-    @RequestMapping("/check")
+    @PostMapping("/check")
     public Result<Orientation> checkOrientation(@RequestBody Pos pos) {
         return Result.success(orientationService.checkOrientation(pos));
     }
