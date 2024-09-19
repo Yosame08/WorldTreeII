@@ -16,8 +16,8 @@ export default {
   data() {
     return {
       style: {
-        width: '400px',
-        height: '300px',
+        width: '500px',
+        height: '700px',
         top: '100px',
         left: '100px',
       },

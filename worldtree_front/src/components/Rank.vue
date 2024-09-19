@@ -1,5 +1,5 @@
 <template>
-  <h1>This is Rank.</h1>
+  <h1>积分排行榜</h1>
   <v-chart :option="chartOptions" autoresize style="height: 300px;"></v-chart>
   <el-table
       :data="tableData"
@@ -7,7 +7,7 @@
       :row-class-name="tableRowClassName"
   >
     <el-table-column prop="rank" label="排名" width="100" />
-    <el-table-column prop="name" label="用户" width="180" />
+    <el-table-column prop="username" label="用户" width="180" />
     <el-table-column prop="point" label="积分" width="100"/>
     <el-table-column prop="point" label="个性签名"/>
   </el-table>
@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { universalGet } from "@/services/universalService";
+import { universalGet, universalPost } from "@/services/universalService";
 import store from "@/services/storeService";
 
 const tableData = ref([]);
@@ -25,19 +25,41 @@ const chartOptions = ref(undefined);
 
 const loadRankData = async () => {
   try {
-    const response = await universalGet('/api/rank');
+    const response = await universalGet('/api/func/rank');
     console.log(response);
     if (response.data.code === 0) {
       store.commit("clearErrorMsg");
-      tableData.value = response.data.tableData;
-      trendData.value = response.data.trendData;
-      timeNow.value = response.data.timeNow;
+      tableData.value = response.data.data;
+      await loadTrendData();
       await initEcharts();
     }
-  } catch (error) {}
+  } catch (error) {
+  }
 };
 
-const tableRowClassName = ({ row }) => {
+const loadTrendData = async () => {
+  try {
+    const topFiveUsers = tableData.value.slice(0, 5);
+    const trendPromises = topFiveUsers.map(user =>
+        universalPost('/api/func/get_user_trend', {user_id: user.user_id})
+    );
+    const trendResponses = await Promise.all(trendPromises);
+    trendData.value = trendResponses.map((response, index) => {
+      if (response.data.code === 0) {
+        return {
+          name: tableData.value[index].username,
+          type: "line",
+          step: "end",
+          data: response.data.data.map(item => [item.time, item.point])
+        };
+      }
+      return null;
+    }).filter(item => item !== null);
+  } catch (error) {
+  }
+};
+
+const tableRowClassName = ({row}) => {
   if (row.rank === 1) {
     return 'golden-row';
   } else if (row.rank === 2) {
@@ -60,19 +82,9 @@ const getDateFromString = (str) => {
 
 const initEcharts = async () => {
   console.log(trendData.value);
-  trendData.value = trendData.value.map(item => {
-    const lastPoint = item.data[item.data.length - 1];
-    const newPoint = [ timeNow.value, lastPoint[1] ];
-    return {
-      ...item,
-      type: "line",
-      step: "end",
-      data: [...item.data, newPoint]
-    };
-  });
-
   let startTime = getDateFromString("2024-08-18 10:00:00");
-  let nowTime = getDateFromString(timeNow.value);
+  let nowTime = new Date();
+
   chartOptions.value = {
     title: {
       text: "Rank Trend",
@@ -125,9 +137,11 @@ onMounted(() => {
 .el-table .golden-row {
   --el-table-tr-bg-color: #ffd700;
 }
+
 .el-table .silver-row {
   --el-table-tr-bg-color: #d8d8d8;
 }
+
 .el-table .bronze-row {
   --el-table-tr-bg-color: #cd7f32;
 }

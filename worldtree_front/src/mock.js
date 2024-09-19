@@ -102,32 +102,54 @@ Mock.mock('/api/func/rank', 'get', () => {
                 "point": 80
             }
         ],
-        timeNow: "2024-08-19 01:01:02",
     };
 });
 
-Mock.mock('/api/bbs', 'get', () => {
-    return {
-        code: 0,
-        list: [
+Mock.mock('/api/func/get_user_trend', 'post', (options) => {
+    let data = JSON.parse(options.body).user_id;
+    if (data === 0) return {
+        "code": 0,
+        "message": "操作成功",
+        "data": [
             {
-                "id": 2,
-                "user": "Admin",
-                "title": "New message",
+                "userId": 0,
                 "point": 0,
-                "special": 1,
+                "time": "2024-09-12T21:38:27"
             },
             {
-                "id": 1,
-                "user": "Alice",
-                "title": "Ask for help",
-                "point": 50,
-                "special": 0,
+                "userId": 0,
+                "point": 1,
+                "time": "2024-09-12T22:38:38"
             },
-        ],
-    };
+            {
+                "userId": 0,
+                "point": 5,
+                "time": "2024-09-12T23:38:54"
+            }
+        ]
+    }
+    else return {
+        "code": 0,
+        "message": "操作成功",
+        "data": [
+            {
+                "userId": data,
+                "point": 0,
+                "time": "2024-09-12T22:30:27"
+            },
+            {
+                "userId": data,
+                "point": 3,
+                "time": "2024-09-12T22:44:30"
+            },
+            {
+                "userId": data,
+                "point": 10,
+                "time": "2024-09-12T22:59:59"
+            }
+        ]
+    }
 });
-
 
 Mock.mock('/api/nim/init', 'get', () => {
     return {
