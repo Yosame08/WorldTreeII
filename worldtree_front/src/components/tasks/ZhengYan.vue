@@ -27,6 +27,7 @@
 <script>
 import { ref } from 'vue';
 import axios from 'axios';
+import {universalPost} from "@/services/universalService";
 
 export default {
   setup() {
@@ -76,7 +77,7 @@ export default {
           "丨八": 8,
         };
         const answer = grid.value.map(icon => map[icon]);
-        const response = await axios.post('/api/subtask/zhengyan/validate', JSON.stringify({
+        const response = await universalPost('/api/subtask/zhengyan/validate', JSON.stringify({
             "answer": answer,
         }));
         const result = await response.json();

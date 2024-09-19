@@ -72,74 +72,84 @@ Mock.mock('/api/user/get_id', 'post', {
     data: 2,
 });
 
-Mock.mock('/api/rank', 'get', () => {
+Mock.mock('/api/func/rank', 'get', () => {
     return {
-        code: 3050,
-        tableData: [
+        code: 0,
+        message: "",
+        data: [
             {
                 "rank": 1,
-                "name": "Tom",
-                "point": 100,
+                "user_id": 3,
+                "username": "Tom",
+                "point": 100
             },
             {
                 "rank": 2,
-                "name": "Alice",
-                "point": 90,
+                "user_id": 4,
+                "username": "Alice",
+                "point": 90
             },
             {
-                "rank": 3,
-                "name": "Bob",
-                "point": 80,
+                "rank": 2,
+                "user_id": 5,
+                "username": "Bob",
+                "point": 90
             },
             {
-                "rank": 3,
-                "name": "Emily",
-                "point": 80,
-            },
+                "rank": 4,
+                "user_id": 6,
+                "username": "Emily",
+                "point": 80
+            }
         ],
-        trendData: [
-            {
-                "name": "Tom",
-                "data": [
-                    ["2024-08-18 10:00:00", 0],
-                    ["2024-08-18 14:23:02", 50],
-                    ["2024-08-18 15:33:36", 100],
-                ],
-            },
-            {
-                "name": "Alice",
-                "data": [
-                    ["2024-08-18 10:00:00", 0],
-                    ["2024-08-18 16:00:05", 90],
-                ],
-            },
-        ],
-        timeNow: "2024-08-19 01:01:02",
     };
 });
 
-Mock.mock('/api/bbs', 'get', () => {
-    return {
-        code: 3050,
-        list: [
+Mock.mock('/api/func/get_user_trend', 'post', (options) => {
+    let data = JSON.parse(options.body).user_id;
+    if (data === 0) return {
+        "code": 0,
+        "message": "操作成功",
+        "data": [
             {
-                "id": 2,
-                "user": "Admin",
-                "title": "New message",
+                "userId": 0,
                 "point": 0,
-                "special": 1,
+                "time": "2024-09-12T21:38:27"
             },
             {
-                "id": 1,
-                "user": "Alice",
-                "title": "Ask for help",
-                "point": 50,
-                "special": 0,
+                "userId": 0,
+                "point": 1,
+                "time": "2024-09-12T22:38:38"
             },
-        ],
-    };
+            {
+                "userId": 0,
+                "point": 5,
+                "time": "2024-09-12T23:38:54"
+            }
+        ]
+    }
+    else return {
+        "code": 0,
+        "message": "操作成功",
+        "data": [
+            {
+                "userId": data,
+                "point": 0,
+                "time": "2024-09-12T22:30:27"
+            },
+            {
+                "userId": data,
+                "point": 3,
+                "time": "2024-09-12T22:44:30"
+            },
+            {
+                "userId": data,
+                "point": 10,
+                "time": "2024-09-12T22:59:59"
+            }
+        ]
+    }
 });
-
 
 Mock.mock('/api/nim/init', 'get', () => {
     return {

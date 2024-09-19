@@ -202,7 +202,7 @@ const filteredTasks = computed(() => {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - 39px);
+  height: calc(100vh - 43px);
 }
 
 .zoom-controls {
@@ -224,10 +224,10 @@ const filteredTasks = computed(() => {
 
 .task-sidebar {
   position: fixed;
-  top: 39px; /* Start 39px from the top */
+  top: 43px; /* Start 43px from the top */
   right: 0;
   width: 300px;
-  height: calc(100% - 39px); /* Adjust height to take into account the offset */
+  height: calc(100% - 43px); /* Adjust height to take into account the offset */
   background-color: #fff;
   border-left: 1px solid #ccc;
   padding: 20px;

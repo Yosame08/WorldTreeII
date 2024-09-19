@@ -16,40 +16,21 @@
         <font-awesome-icon :icon="isSidebarHidden ? 'arrow-right' : 'arrow-left'" />
       </button>
     </div>
-    <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" />
-    <button v-if="isLoggedIn" @click="showWindowAndReset" class="floating-button">
-      <font-awesome-icon :icon="['far', 'calendar-check']" />
-    </button>
   </div>
 </template>
 
 <script>
 import { computed, onMounted, ref, nextTick } from 'vue';
 import { useStore } from 'vuex';
-import InScreenWindow from './InScreenWindow.vue';
 import moment from "moment";
 
 export default {
-  components: {
-    InScreenWindow,
-  },
   setup() {
     const store = useStore();
     const userInfo = computed(() => store.state.userInfo);
     const isLoggedIn = computed(() => store.state.isLoggedIn);
-    const showWindow = ref(false);
     const isSidebarHidden = ref(false);
-    const windowRef = ref(null);
     let timerId = null;
-
-    const showWindowAndReset = () => {
-      showWindow.value = true;
-      nextTick(() => {
-        if (windowRef.value) {
-          windowRef.value.resetPosition();
-        }
-      });
-    };
 
     const toggleSidebar = () => {
       isSidebarHidden.value = !isSidebarHidden.value;
@@ -69,12 +50,9 @@ export default {
     return {
       userInfo,
       isLoggedIn,
-      showWindow,
       isSidebarHidden,
-      showWindowAndReset,
       toggleSidebar,
       moment,
-      windowRef
     };
   }
 };
@@ -86,7 +64,7 @@ export default {
   background-image: url('@/assets/background.png'); /* Ensure the image is placed in the src/assets directory */
   background-size: cover;
   width: 100%;
-  height: calc(100vh - 39px); /* Adjust 39px to the actual height of your NavBar */
+  height: calc(100vh - 43px); /* Adjust 43px to the actual height of your NavBar */
   position: relative;
   overflow: hidden; /* Hide any overflow content */
   user-select: none; /* 禁止用户选择文本 */
@@ -113,7 +91,7 @@ export default {
 
 .toggle-button {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 240px; /* Adjust this value to control the button's position */
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
@@ -122,20 +100,4 @@ export default {
   padding: 5px;
 }
 
-.floating-button {
-  position: absolute;
-  right: 20%;
-  top: 20%;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: white;
-  width: 20px;
-  height: 20px;
-}
-
-.floating-button:hover {
-  color: #f40;
-}
 </style>

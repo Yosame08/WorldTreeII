@@ -37,7 +37,7 @@
 
 <script>
 import axios from 'axios';
-import {universalGet} from "@/services/universalService";
+import {universalGet, universalPost} from "@/services/universalService";
 
 export default {
   data() {
@@ -94,7 +94,7 @@ export default {
     },
     async cook() {
       try {
-        const response = await axios.post('/api/subtask/bigpot/cook', {
+        const response = await universalPost('/api/subtask/bigpot/cook', {
           game_token: this.gameToken,
           num: this.pot,
           operator: this.operator,
@@ -138,7 +138,7 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: calc(100vh - 39px);
+  height: calc(100vh - 43px);
 }
 
 .number-container {

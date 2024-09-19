@@ -181,7 +181,7 @@ const getMarkerStyle = (position) => {
   return {
     position: 'absolute',
     left: `${x}px`,
-    top: `${y - 39}px`,
+    top: `${y - 43}px`,
     transform: 'translate(-50%, -100%)', // Align bottom of the icon with the position
   };
 };
@@ -459,7 +459,7 @@ const checkBounds = () => {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - 39px);
+  height: calc(100vh - 43px);
   /* Adjust this value based on your NavBar height */
 }
 

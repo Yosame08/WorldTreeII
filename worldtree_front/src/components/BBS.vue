@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { fetchBbsTitles } from "@/services/infoService";
+import {universalGet} from "@/services/universalService";
 
 export default ({
   name: 'BBS',
@@ -30,7 +30,7 @@ export default ({
   methods: {
     async loadBbsData() {
       try {
-        const response = await fetchBbsTitles();
+        const response = await universalGet('/api/bbs');
         if (response.data.code === 3050) {
           this.list = response.data.list;
         } else {

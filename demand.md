@@ -385,50 +385,6 @@ $prefix = /api/func
 }
 ```
 
-## 3. 讨论版首页：$preifx/bbs
-
-get 请求
-
-### 接口备注
-
-获取所有帖子，按最后一次回复排序，按序返回{帖子 ID,发帖人 id，发帖人，标题，所用积分,特殊帖}，最后一个作为保留值，后续开发可能用到。
-
-### 参数
-
-无
-
-### 返回值
-
-```json
-{
-  "code": 0,
-  "data": [
-    {
-      "post_id": 1,
-      "user_id": 1,
-      "user": "Alice",
-      "title": "Ask for help",
-      "point": 50,
-      "special": 0
-    }
-  ]
-}
-```
-
-## 4. 查看某个帖子: $prefix/bbs_get_post
-
-### 请求类型：post 请求
-
-### 接口备注
-
-发送帖子的 id，请求帖子的内容
-
-```json
-{
-  "post_id": 1
-}
-```
-
 ### 返回值
 
 按照回帖时间列出所有该帖子的回复 message
@@ -457,7 +413,7 @@ get 请求
 }
 ```
 
-## 5. 通用任务答案提交：$prefix/task/submit
+## 3. 通用任务答案提交：$prefix/task/submit
 
 ### 请求类型：post 请求
 
@@ -479,7 +435,77 @@ get 请求
 ```json
 {
   "code": 0,
+  "message": "",
   "data": 1
+}
+```
+
+## 4. 首页贴纸获取：$prefix/get_stickers
+
+### 请求类型：get 请求
+
+### 接口备注
+
+返回用户拥有的stickers，是否摆放出来，摆放的位置（百分比）
+
+### 参数
+
+无
+
+### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "",
+  "data": [
+    {
+      "stk_id": 1,
+      "show": true,
+      "x": 0.566,
+      "y": 0.788,
+    },
+    {
+      "stk_id": 4,
+      "show": true,
+      "x": 0.6,
+      "y": 0.1,
+    },
+    {
+      "stk_id": 8,
+      "show": false,
+      "x": 0.6,
+      "y": 0.1,
+    },
+  ]
+}
+```
+
+## 5. 首页贴纸状态更改：$prefix/modify_stickers
+
+### 请求类型：get 请求
+
+### 接口备注
+
+修改一个sticker是否摆放出来，摆放的位置（百分比）
+
+### 参数
+
+```json
+{
+  "stk_id": 2,
+  "show": true,
+  "x": 0.1,
+  "y": 0.233,
+}
+```
+
+### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "",
 }
 ```
 

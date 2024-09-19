@@ -11,3 +11,14 @@ export const universalGet = async (url) => {
         store.commit('finish');
     }
 }
+
+export const universalPost = async (url, data) => {
+    store.commit('load');
+    try {
+        return await axios.post(url, data);
+    } catch (error) {
+        throw error;
+    } finally {
+        store.commit('finish');
+    }
+}
