@@ -129,14 +129,15 @@ export default {
 
 .cell {
   font-family: 'AncientCube', sans-serif;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border: 3px solid #ccc;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 65px;
   cursor: pointer;
+  padding: 3px;
 }
 
 .icons {
