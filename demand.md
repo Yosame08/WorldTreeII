@@ -966,8 +966,6 @@ $prefix=/api/subtask
 
 每道题都要保存进度，防止意外关闭网页，感觉得开个新表
 
-## 校园定向
-
 ## 马尔科夫链
 
 ### 1.后端随机生成序列：$prefix/skittles/init
