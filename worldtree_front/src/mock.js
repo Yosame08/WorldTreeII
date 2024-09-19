@@ -79,7 +79,7 @@ Mock.mock('/api/func/rank', 'get', () => {
         data: [
             {
                 "rank": 1,
-                "user_id": 3,
+                "user_id": 1,
                 "username": "Tom",
                 "point": 100
             },
@@ -107,24 +107,25 @@ Mock.mock('/api/func/rank', 'get', () => {
 
 Mock.mock('/api/func/get_user_trend', 'post', (options) => {
     let data = JSON.parse(options.body).user_id;
-    if (data === 0) return {
+    console.log(data);
+    if (data === 1) return {
         "code": 0,
         "message": "操作成功",
         "data": [
             {
                 "userId": 0,
                 "point": 0,
-                "time": "2024-09-12T21:38:27"
+                "time": "2024-09-20T00:00:00"
             },
             {
                 "userId": 0,
                 "point": 1,
-                "time": "2024-09-12T22:38:38"
+                "time": "2024-09-20T00:38:38"
             },
             {
                 "userId": 0,
                 "point": 5,
-                "time": "2024-09-12T23:38:54"
+                "time": "2024-09-20T00:40:54"
             }
         ]
     }
@@ -135,19 +136,60 @@ Mock.mock('/api/func/get_user_trend', 'post', (options) => {
             {
                 "userId": data,
                 "point": 0,
-                "time": "2024-09-12T22:30:27"
+                "time": "2024-09-20T00:00:00"
             },
             {
                 "userId": data,
                 "point": 3,
-                "time": "2024-09-12T22:44:30"
+                "time": "2024-09-20T00:44:30"
             },
             {
                 "userId": data,
                 "point": 10,
-                "time": "2024-09-12T22:59:59"
+                "time": "2024-09-20T01:19:59"
             }
         ]
+    }
+});
+
+Mock.mock('/api/task/get_task_list', 'get', () => {
+    return {
+        "code": 0,
+        "data": [
+            {
+                "task_id": 1,
+                "task_title": "haunted three building",
+                "task_status": 0,
+                "task_pos": [0.3, 0.4]
+            },
+            {
+                "task_id": 2,
+                "task_title": "haunted five building",
+                "task_status": 1,
+                "task_pos": [0.6, 0.7]
+            }
+        ]
+    }
+});
+
+Mock.mock('/api/task/get_task_info', 'post', (options) => {
+    return {
+        "code": 0,
+        "message": "操作成功",
+        "data": {
+            "taskId": 1,
+            "taskTitle": "true music",
+            "taskPosX": 1,
+            "taskPosY": 1,
+            "taskDescription": "[Yosame]这题我不会`但其实他还不知道，这题他会`[RPU]这题显然是个音乐题，易得1=C",
+            "uri": "http://localhost:8080/tasks/bigpot",
+            "submission": true,
+            "taskPoint": 50,
+            "getPoint": 30,
+            "taskCoin": 100,
+            "hintPrice": 100,
+            "taskStatus": 1
+        }
     }
 });
 
@@ -186,7 +228,7 @@ Mock.mock('/api/subtask/skittles/init', 'post', (options) => {
         "code": 0,
         "data": {
             "sequence": [
-                1, 2, 0, 0, 6, 8, 5, 3, 1, 4,
+                JSON.parse(options.body).start, 2, 0, 0, 6, 8, 5, 3, 1, 4,
                 1, 2, 0, 0, 6, 8, 5, 3, 1, 4,
                 1, 2, 0, 0, 6, 8, 5, 3, 1, 4,
                 1, 2, 0, 0, 6, 8, 5, 3, 1, 4,

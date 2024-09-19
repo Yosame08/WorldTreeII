@@ -253,7 +253,7 @@ $prefix = /api/task
 }
 ```
 
-## 2. 查询任务信息
+## 2. 查询任务信息： $prefix/get_task_info
 
 ### 请求类型：post 请求
 
@@ -275,21 +275,20 @@ $prefix = /api/task
 {
     "code": 0,
     "message": "操作成功",
-    "data": [
-        {
-            "taskId": 1,
-            "taskTitle": "true music",
-            "taskPosX": 1,
-            "taskPosY": 1,
-            "taskDescription": "this is true music",
-            "uri": "true music uri",
-            "taskPoint": 50,
-            "getPoint": 30,
-            "taskCoin": 100,
-            "hintPrice": 100,
-            "taskStatus": 1
-        }
-    ]
+    "data": {
+        "taskId": 1,
+        "taskTitle": "true music",
+        "taskPosX": 1,
+        "taskPosY": 1,
+        "taskDescription": "this is true music",
+        "uri": "true music uri",
+        "submission": true, // 代表本题是提交flag题
+        "taskPoint": 50,
+        "getPoint": 30,
+        "taskCoin": 100,
+        "hintPrice": 100,
+        "taskStatus": 1
+    }
 }
 ```
 

@@ -46,11 +46,15 @@ const loadTrendData = async () => {
     const trendResponses = await Promise.all(trendPromises);
     trendData.value = trendResponses.map((response, index) => {
       if (response.data.code === 0) {
+        const userTrendData = response.data.data.map(item => [item.time, item.point]);
+        const latestPoint = userTrendData[userTrendData.length - 1];
+        const currentTime = new Date().toISOString();
+        userTrendData.push([currentTime, latestPoint[1]]);
         return {
           name: tableData.value[index].username,
           type: "line",
           step: "end",
-          data: response.data.data.map(item => [item.time, item.point])
+          data: userTrendData
         };
       }
       return null;
@@ -81,8 +85,7 @@ const getDateFromString = (str) => {
 };
 
 const initEcharts = async () => {
-  console.log(trendData.value);
-  let startTime = getDateFromString("2024-08-18 10:00:00");
+  let startTime = getDateFromString("2024-09-20 00:00:00");
   let nowTime = new Date();
 
   chartOptions.value = {
@@ -111,7 +114,13 @@ const initEcharts = async () => {
         axisLabel: {
           show: true,
           showMinLabel: true,
-          showMaxLabel: true
+          showMaxLabel: true,
+          formatter: function (value) {
+            const date = new Date(value);
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+          }
         },
       },
     ],

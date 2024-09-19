@@ -1,6 +1,6 @@
 <template>
   <div class="map-container" @mousedown="startDrag" @mousemove="onDrag" @mouseup="endDrag" @mouseleave="endDrag"
-    @wheel="onWheel" @touchstart="startTouch" @touchmove="onTouchMove" @touchend="endTouch">
+       @wheel="onWheel" @touchstart="startTouch" @touchmove="onTouchMove" @touchend="endTouch">
     <img :src="require('@/assets/fudan_map.png')" :style="mapStyle" ref="mapImage" />
 
     <!-- Filter slider -->
@@ -15,17 +15,28 @@
     </div>
 
     <!-- Task bubbles -->
-    <div v-for="task in filteredTasks" :key="task.id" class="task-bubble" :style="bubbleStyle(task)"
-      @click="selectTask(task)">
-      {{ task.title }}
+    <img v-for="task in filteredTasks" :key="task.task_id" :src="require('@/assets/task_icon.png')" class="task-icon" :style="bubbleStyle(task)"
+         @click="selectTask(task)" @mouseover="(event) => showTooltip(task, event)" @mouseleave="hideTooltip" />
+
+    <!-- Tooltip -->
+    <div v-if="tooltip.visible" :style="tooltipStyle" class="tooltip">
+      <p>{{ tooltip.task.task_title }}</p>
+      <p>{{ taskStatusText(tooltip.task.task_status) }}</p>
     </div>
 
     <!-- Task description sidebar with transition -->
     <transition name="slide">
-      <div class="task-sidebar" v-if="selectedTask">
-        <task-info :id="selectedTask.id" />
-        <div style="margin-top: 10px;"></div>
-        <el-button @click="closeSidebar">Close</el-button>
+      <div class="task-sidebar" v-if="taskDetail">
+        <div class="task-sidebar-content">
+          <task-info :discussions="discussions" />
+        </div>
+        <div class="task-sidebar-footer">
+          <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
+          <el-button v-if="taskDetail.url" type="primary" @click="openUrlInNew(taskDetail.url)">打开链接</el-button>
+          <el-input v-if="taskDetail.submission" v-model="taskAnswer" placeholder="输入答案"></el-input>
+          <el-button @click="getHint">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+        </div>
+        <el-button class="close-button" @click="closeSidebar">×</el-button>
       </div>
     </transition>
   </div>
@@ -33,27 +44,28 @@
 
 <script setup>
 import TaskInfo from './TaskInfo.vue';
-import { ref, computed } from 'vue';
-import { ElSwitch, ElButton, ElMessage } from 'element-plus';
+import {computed, onMounted, ref} from 'vue';
+import {ElButton, ElInput, ElMessage, ElSwitch} from 'element-plus';
+import {universalGet} from "@/services/universalService";
+import {getTaskInfo, requestHint} from "@/services/taskService";
 
-const tasks = [
-  { id: 1, title: 'Task 1', x: 100, y: 200, description: 'Description for Task 1\n\nThank you for you participation.', points: 10, reward: 5, requiresInput: true },
-  { id: 2, title: 'Task 2', x: 300, y: 400, description: 'Description for Task 2', points: 20, reward: 10, requiresInput: false },
-  // More tasks
-];
-
-
+const tasks = ref([]);
 const scale = ref(1);
 const minScale = 1;
-const maxScale = 5;
+const maxScale = 3;
 const startX = ref(0);
 const startY = ref(0);
 const translateX = ref(0);
 const translateY = ref(0);
 const dragging = ref(false);
 const touchStartDistance = ref(0);
-const selectedTask = ref(null);
+
+const taskDetail = ref(null);
+const discussions = ref([]);
+
 const showUncompletedOnly = ref(false);
+const tooltip = ref({visible: false, task: null, x: 0, y: 0});
+const taskAnswer = ref('');
 
 const mapImage = ref(null);
 
@@ -65,11 +77,69 @@ const mapStyle = computed(() => ({
   userSelect: 'none',
 }));
 
-const bubbleStyle = (task) => ({
-  left: `${task.x * scale.value + translateX.value * scale.value}px`,
-  top: `${task.y * scale.value + translateY.value * scale.value}px`,
-  transform: `translate(-50%, -100%)`,
-});
+const openUrlInNew = (url) => {
+  window.open(url, '_blank');
+};
+
+const parseTaskDescription = (description) => {
+  discussions.value = description.split('`').map((item) => {
+    const match = item.match(/^\[(.*?)\](.*)$/);
+    if (match) {
+      return {user: match[1], content: match[2]};
+    } else {
+      return {user: null, content: item};
+    }
+  });
+};
+
+const selectTask = async (task) => {
+  let tmp = await getTaskInfo(task.task_id);
+  let detail = tmp.data.data;
+  parseTaskDescription(detail.taskDescription);
+  console.log(discussions.value[0]);
+  taskDetail.value = detail;
+};
+
+const closeSidebar = () => {
+  taskDetail.value = null;
+};
+
+const getHint = async () => {
+  try {
+    const msg = await requestHint(taskDetail.value.taskId);
+    ElMessage.info(msg);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const bubbleStyle = (task) => {
+  const mapWidth = mapImage.value?.width || 0;
+  const mapHeight = mapImage.value?.height || 0;
+  const scaledWidth = mapWidth * scale.value;
+  const scaledHeight = mapHeight * scale.value;
+  const offsetX = translateX.value * scale.value;
+  const offsetY = translateY.value * scale.value;
+  const picX = task.task_pos[0] * scaledWidth + offsetX;
+  const picY = task.task_pos[1] * scaledHeight + offsetY;
+
+  return {
+    left: `${picX}px`,
+    top: `${picY+43}px`,
+    transform: `translate(-50%, -100%) scale(40%)`,
+    position: 'absolute',
+  };
+};
+
+const tooltipStyle = computed(() => ({
+  left: `${tooltip.value.x}px`,
+  top: `${tooltip.value.y}px`,
+  position: 'absolute',
+  backgroundColor: 'white',
+  border: '1px solid black',
+  padding: '5px',
+  zIndex: 1000,
+}));
 
 const zoom = (delta, event) => {
   const newScale = Math.min(Math.max(scale.value + delta, minScale), maxScale);
@@ -102,7 +172,7 @@ const getZoomCenter = (event) => {
       y: container.clientHeight / 2,
     };
   }
-  return { x: 0, y: 0 };
+  return {x: 0, y: 0};
 };
 
 const onWheel = (event) => {
@@ -119,10 +189,10 @@ const startDrag = (event) => {
   event.preventDefault();
   const rect = mapImage.value.getBoundingClientRect();
   if (
-    event.clientX >= rect.left &&
-    event.clientX <= rect.right &&
-    event.clientY >= rect.top &&
-    event.clientY <= rect.bottom
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
   ) {
     dragging.value = true;
     startX.value = event.clientX - translateX.value;
@@ -167,8 +237,8 @@ const endTouch = () => {
 const getTouchDistance = (touches) => {
   const [touch1, touch2] = touches;
   return Math.sqrt(
-    Math.pow(touch2.clientX - touch1.clientX, 2) +
-    Math.pow(touch2.clientY - touch1.clientY, 2)
+      Math.pow(touch2.clientX - touch1.clientX, 2) +
+      Math.pow(touch2.clientY - touch1.clientY, 2)
   );
 };
 
@@ -182,18 +252,40 @@ const checkBounds = () => {
   translateY.value = Math.min(Math.max(translateY.value, minTranslateY), 0);
 };
 
-const selectTask = (task) => {
-  selectedTask.value = task;
-};
-
-const closeSidebar = () => {
-  selectedTask.value = null;
-};
-
 const filteredTasks = computed(() => {
   return showUncompletedOnly.value
-    ? tasks.filter(task => !task.completed)
-    : tasks;
+      ? tasks.value.filter(task => task.task_status === 0)
+      : tasks.value;
+});
+
+const showTooltip = (task, event) => {
+  tooltip.value = {
+    visible: true,
+    task,
+    x: event.clientX,
+    y: event.clientY - 20,
+  };
+};
+
+const hideTooltip = () => {
+  tooltip.value.visible = false;
+};
+
+const taskStatusText = (status) => {
+  return status === 0 ? '未完成' : '已完成';
+};
+
+onMounted(async () => {
+  try {
+    const response = await universalGet('/api/task/get_task_list');
+    if (response.data.code === 0) {
+      tasks.value = response.data.data;
+    } else {
+      ElMessage.error('Failed to fetch tasks');
+    }
+  } catch (error) {
+    ElMessage.error('Error fetching tasks');
+  }
 });
 </script>
 
@@ -232,6 +324,30 @@ const filteredTasks = computed(() => {
   border-left: 1px solid #ccc;
   padding: 20px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.task-sidebar-footer {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ccc;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .filter-slider {
@@ -243,6 +359,14 @@ const filteredTasks = computed(() => {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+  z-index: 1000;
 }
 
 /* Enter and leave transitions for the sidebar */

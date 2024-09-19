@@ -8,7 +8,7 @@ import Rank from "@/components/Rank.vue";
 import 'element-plus/dist/index.css';
 
 const icon = ref(['fas', 'map-location-dot']);
-const description = ref('主页');
+const description = ref('地图');
 
 const toggleView = () => {
   icon.value = icon.value[1] === 'house-chimney-user' ? ['fas', 'map-location-dot'] : ['fas', 'house-chimney-user'];
@@ -47,7 +47,7 @@ const pushToRank = () => {
     </div>
   </div>
   <div style="display: flex;">
-    <div v-if="description === '主页'" style="display: flex; flex: 1;">
+    <div v-if="description !== '主页'" style="display: flex; flex: 1;">
       <Home style="flex: 1;" />
     </div>
     <div v-else style="flex: 1;">
@@ -62,8 +62,8 @@ const pushToRank = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 0;
-  right: 0;
+  height: 4%;
+  right: 1%;
   z-index: 1000;
 }
 
@@ -79,12 +79,12 @@ const pushToRank = () => {
 
 .mail {
   position: absolute;
-  transform: translateY(130%);
+  transform: translateY(160%);
 }
 
 .ranking {
   position: absolute;
-  transform: translate(40%, 65%);
+  transform: translate(55%, 80%);
 }
 
 .at-top {

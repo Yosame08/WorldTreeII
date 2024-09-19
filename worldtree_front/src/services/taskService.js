@@ -1,9 +1,11 @@
 import axios from "axios";
 import store from "@/services/storeService";
-import {universalGet} from "@/services/universalService";
+import {universalGet, universalPost} from "@/services/universalService";
 
-export const getTask = async (taskID) => {
-    return await universalGet(`/api/task/${taskID}`);
+export const getTaskInfo = async (taskID) => {
+    return await universalPost(`/api/task/get_task_info`, {
+        task_id: taskID
+    });
 };
 
 export const requestHint = async (taskID) => {
