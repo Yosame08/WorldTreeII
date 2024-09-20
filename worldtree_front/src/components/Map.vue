@@ -28,7 +28,7 @@
     <transition name="slide">
       <div class="task-sidebar" v-if="taskDetail">
         <div class="task-sidebar-content">
-          <task-info :discussions="discussions" />
+          <task-info v-if="discussions.length" :discussions="discussions" />
         </div>
         <div class="task-sidebar-footer">
           <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
@@ -93,11 +93,16 @@ const parseTaskDescription = (description) => {
 };
 
 const selectTask = async (task) => {
-  let tmp = await getTaskInfo(task.task_id);
-  let detail = tmp.data.data;
-  parseTaskDescription(detail.taskDescription);
-  console.log(discussions.value[0]);
-  taskDetail.value = detail;
+  try {
+    let tmp = await getTaskInfo(task.task_id);
+    let detail = tmp.data.data;
+    parseTaskDescription(detail.taskDescription);
+    taskDetail.value = detail;
+  } catch (error) {
+    console.error('Error selecting task:', error);
+    taskDetail.value = null;
+    discussions.value = [];
+  }
 };
 
 const closeSidebar = () => {

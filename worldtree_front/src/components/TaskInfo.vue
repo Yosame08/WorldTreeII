@@ -13,20 +13,22 @@ const props = defineProps({
 onMounted(() => {
   console.log(props.discussions);
 });
-
 </script>
 
 <template>
   <div class="task-info discussions-style">
-    <el-card v-for="discussion in discussions" :key="discussion.content" class="discussion-card" v-if="discussion.user">
-      <template #header>
-        <div>{{ discussion.user }}</div>
-      </template>
-      <div>{{ discussion.content }}</div>
-    </el-card>
-    <div v-for="discussion in discussions" :key="discussion.content" v-else>
-      {{ discussion.content }}
+    <div v-for="discussion in props.discussions">
+      <el-card :key="discussion.content" class="discussion-card" v-if="discussion.user">
+        <template #header>
+          <div>{{ discussion.user }}</div>
+        </template>
+        <div>{{ discussion.content }}</div>
+      </el-card>
+      <div :key="discussion.content" v-else>
+        {{ discussion.content }}
+      </div>
     </div>
+
   </div>
 </template>
 
