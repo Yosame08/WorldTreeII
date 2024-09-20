@@ -1,7 +1,7 @@
 <template>
   <div class="map-container" @mousedown="startDrag" @mousemove="onDrag" @mouseup="endDrag" @mouseleave="endDrag"
        @wheel="onWheel" @touchstart="startTouch" @touchmove="onTouchMove" @touchend="endTouch">
-    <img :src="require('@/assets/fudan_map.png')" :style="mapStyle" ref="mapImage" />
+    <img :src="require('@/assets/abstract_map.png')" :style="mapStyle" ref="mapImage" />
 
     <!-- Filter slider -->
     <div class="filter-slider">
@@ -33,8 +33,14 @@
         <div class="task-sidebar-footer">
           <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
           <el-button v-if="taskDetail.url" type="primary" @click="openUrlInNew(taskDetail.url)">打开链接</el-button>
-          <el-input v-if="taskDetail.submission" v-model="taskAnswer" placeholder="输入答案"></el-input>
-          <el-button @click="getHint">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
+            您已经完全解决了该事件！
+          </div>
+          <div v-else-if="taskDetail.submission" class="submission-container">
+            <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
+            <el-button @click="submitAnswer">提交答案</el-button>
+          </div>
+          <el-button @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
         </div>
         <el-button class="close-button" @click="closeSidebar">×</el-button>
       </div>
@@ -52,7 +58,7 @@ import {getTaskInfo, requestHint} from "@/services/taskService";
 const tasks = ref([]);
 const scale = ref(1);
 const minScale = 1;
-const maxScale = 3;
+const maxScale = 2;
 const startX = ref(0);
 const startY = ref(0);
 const translateX = ref(0);
@@ -310,15 +316,6 @@ onMounted(async () => {
   flex-direction: column;
 }
 
-.task-bubble {
-  position: absolute;
-  background-color: #ffeb3b;
-  border: 1px solid #f0c02b;
-  border-radius: 50%;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
 .task-sidebar {
   position: fixed;
   top: 43px; /* Start 43px from the top */
@@ -375,6 +372,16 @@ onMounted(async () => {
   z-index: 1000;
 }
 
+.submission-container {
+  display: flex;
+  align-items: center;
+}
+
+.submission-container .el-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
 /* Enter and leave transitions for the sidebar */
 .slide-enter-active, .slide-leave-active {
   transition: transform 0.3s ease;
@@ -386,5 +393,10 @@ onMounted(async () => {
 
 .slide-enter-to, .slide-leave-from {
   transform: translateX(0);
+}
+
+.hint-button{
+  margin-top: 10px;
+  width: 100%;
 }
 </style>
