@@ -324,7 +324,7 @@ onMounted(async () => {
   top: 43px; /* Start 43px from the top */
   right: 0;
   width: 300px;
-  height: calc(100% - 43px); /* Adjust height to take into account the offset */
+  height: calc(100% - 83px); /* 43 + 20 * 2 (padding) */
   background-color: #fff;
   border-left: 1px solid #ccc;
   padding: 20px;
@@ -348,8 +348,8 @@ onMounted(async () => {
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   font-size: 20px;
   background: none;
   border: none;
