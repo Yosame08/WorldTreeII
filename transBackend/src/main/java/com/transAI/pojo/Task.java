@@ -12,7 +12,9 @@ public class Task {
     private Integer taskPosX;
     private Integer taskPosY;
     private String taskDescription;
+    private String taskDescriptionFull;
     private String uri;
+    private boolean submission;
     private Integer taskPoint;
     private Integer getPoint;
     private Integer taskCoin;

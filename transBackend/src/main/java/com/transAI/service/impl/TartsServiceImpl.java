@@ -45,4 +45,23 @@ public class TartsServiceImpl implements TartsService {
             userTotalPointMapper.addPoint(id,pre_point + score);
         }
     }
+
+
+    public void passTask(int taskId) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int id = (int) map.get("id");
+
+        TaskUser taskUser = taskUserMapper.getTaskUser(id, taskId);
+        if(taskUser != null) {
+            return ;
+        }
+        int score = 100;
+        taskUser = new TaskUser();
+        taskUser.setUserId(id);
+        taskUser.setTaskId(taskId);
+        taskUser.setStatus(1);
+        taskUser.setPoint(score);
+        taskUser.setTime(LocalDateTime.now());
+        taskUserMapper.insert(taskUser);
+    }
 }
