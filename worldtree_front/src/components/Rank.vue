@@ -1,5 +1,4 @@
 <template>
-  <h1>积分排行榜</h1>
   <v-chart :option="chartOptions" autoresize style="height: 300px;"></v-chart>
   <el-table
       :data="tableData"
@@ -20,7 +19,6 @@ import store from "@/services/storeService";
 
 const tableData = ref([]);
 const trendData = ref([]);
-const timeNow = ref("");
 const chartOptions = ref(undefined);
 
 const loadRankData = async () => {
@@ -90,8 +88,7 @@ const initEcharts = async () => {
 
   chartOptions.value = {
     title: {
-      text: "Rank Trend",
-      subtext: "subtitle",
+      subtext: "积分变化趋势",
     },
     tooltip: {
       trigger: "axis",

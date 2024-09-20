@@ -1,27 +1,25 @@
 <template>
   <ErrorMsg :message="errorMessage" />
-  <h1>This is BBS.</h1>
   <el-table
       :data="list"
       style="width: 100%"
       :row-class-name="tableRowClassName"
       @row-click="goToDetail"
   >
-    <el-table-column prop="user" label="用户名" width="180" />
-    <el-table-column prop="title" label="标题" width="180" />
-    <el-table-column prop="point" label="悬赏积分" />
+    <el-table-column prop="user" label="发件人" width="180" />
+    <el-table-column prop="title" label="邮件标题" />
   </el-table>
 </template>
 
 <script>
 import {universalGet} from "@/services/universalService";
+import store from "@/services/storeService";
 
 export default ({
-  name: 'BBS',
+  name: 'Mail',
   data() {
     return {
       list: [],
-      errorMessage: ''
     };
   },
   created() {
@@ -30,15 +28,13 @@ export default ({
   methods: {
     async loadBbsData() {
       try {
-        const response = await universalGet('/api/bbs');
-        if (response.data.code === 3050) {
+        const response = await universalGet('/api/mail');
+        if (response.data.code === 0) {
+          store.commit("clearErrorMsg");
           this.list = response.data.list;
-        } else {
-          this.errorMessage = response.data.message;
         }
       } catch (error) {
         console.error('Failed to fetch BBS data', error);
-        this.errorMessage = 'Failed to fetch BBS data';
       }
     },
     tableRowClassName({row}) {
