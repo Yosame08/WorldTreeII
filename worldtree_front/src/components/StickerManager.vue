@@ -1,13 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { universalGet, universalPost } from "@/services/universalService";
+import {
+  Check,
+  Close
+} from '@element-plus/icons-vue'
 
 const stickers = ref([{
-  "stk_id": 1,
-  "show": true,
-  "x": 0.566,
-  "y": 0.788,
-},
+    "stk_id": 1,
+    "show": true,
+    "x": 0.566,
+    "y": 0.788,
+  },
   {
     "stk_id": 4,
     "show": true,
@@ -172,13 +176,14 @@ const exitShovelMode = () => {
   <!-- Backpack drawer -->
   <div v-if="showBag" class="backpack-drawer">
     <div class="header-container">
-      <h3>未显示的贴纸</h3>
-      <button class="close-btn" @click="showBag = false">关闭</button>
+      <h2>贴纸背包</h2>
+      <el-button type="danger" @click="showBag = false" :icon="Close" circle />
+<!--      <button class="close-btn" >关闭</button>-->
     </div>
     <div v-for="sticker in stickers" :key="sticker.stk_id">
       <div v-if="!sticker.show" class="sticker-in-bag">
         <img :src="require('@/assets/hex.png')" class="sticker-small" />
-        <button @click="showStickerFromBag(sticker)">显示</button>
+        <el-button type="success" :icon="Check" @click="showStickerFromBag(sticker)" circle />
       </div>
     </div>
   </div>
@@ -268,12 +273,11 @@ const exitShovelMode = () => {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 300px;
+  width: 250px;
   height: 50%;
   background-color: #fff;
   box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.3);
   z-index: 201;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -296,6 +300,11 @@ const exitShovelMode = () => {
   display: flex;
   align-items: center;
   /* 垂直居中对齐 */
+}
+
+.header-container h2{
+  margin-right: 25px;
+  flex: 1;
 }
 
 .close-btn {

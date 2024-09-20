@@ -37,7 +37,7 @@ const showWindowAndReset = (component, title) => {
 </script>
 
 <template>
-  <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" class="at-top">
+  <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" :title="windowTitle" class="at-top">
     <component :is="windowContent" />
   </InScreenWindow>
   <div class='button-container'>
@@ -68,7 +68,7 @@ const showWindowAndReset = (component, title) => {
   align-items: center;
   height: 4%;
   right: 1%;
-  z-index: 1002;
+  z-index: 1001;
 }
 
 .hexagon-container {
