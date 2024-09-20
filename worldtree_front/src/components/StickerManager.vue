@@ -42,10 +42,11 @@ onMounted(() => {
 
 // Handle dragging a sticker
 const dragSticker = (sticker, event) => {
-  if (isShovelMode.value) return; // Prevent dragging in shovel mode
-
+  if (isShovelMode.value) {
+    removeSticker(sticker);
+    return; // Prevent dragging in shovel mode
+  }
   event.preventDefault(); // 防止选中图片
-  console.log("Dragging sticker:", sticker.stk_id); // Add this line for debugging
 
   const startX = event.clientX;
   const startY = event.clientY;
@@ -58,8 +59,16 @@ const dragSticker = (sticker, event) => {
     const deltaY = e.clientY - startY;
 
     // Calculate new position in percentages
-    const newX = (initialX + deltaX) / window.innerWidth;
-    const newY = (initialY + deltaY) / window.innerHeight;
+    let newX = (initialX + deltaX) / window.innerWidth;
+    let newY = (initialY + deltaY) / window.innerHeight;
+
+    // Ensure the sticker's top is not above 43px
+    const stickerHeight = 50; // Assuming the sticker height is 50px
+    const minY = 43 / window.innerHeight;
+    const maxY = (window.innerHeight - stickerHeight) / window.innerHeight;
+
+    if (newY < minY) newY = minY;
+    if (newY > maxY) newY = maxY;
 
     sticker.x = newX;
     sticker.y = newY;
@@ -80,7 +89,7 @@ const dragSticker = (sticker, event) => {
       console.error('Failed to update sticker position:', error);
     }
 
-    console.log('Sticker position updated:', { id: sticker.stk_id, x: sticker.x, y: sticker.y });
+    console.log('Sticker position updated:', {id: sticker.stk_id, x: sticker.x, y: sticker.y});
   };
 
   document.addEventListener('mousemove', onMouseMove);
@@ -117,18 +126,7 @@ const updateShovelPosition = (event) => {
 };
 
 const handleShovelClick = (event) => {
-  const stickerElement = event.target.closest('.sticker');
-  if (stickerElement) {
-    console.log(stickerElement.dataset);
-    const stickerId = parseInt(stickerElement.dataset.stickerId, 10);
-    console.log(stickerId);
-    const sticker = stickers.value.find(s => s.stk_id === stickerId);
-    if (sticker) {
-      removeSticker(sticker);
-    }
-  }
-  else console.log("shovel not on a sticker");
-  exitShovelMode();
+  if (!event.target.closest('.sticker')) exitShovelMode();
 };
 
 // Remove a sticker
@@ -156,13 +154,11 @@ const exitShovelMode = () => {
 
 <template>
   <!-- Render stickers and buttons -->
-  <div class="sticker-container">
-    <div v-for="sticker in stickers" :key="sticker.stk_id" v-show="sticker.show"
-         @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stk_id">
+  <div v-for="sticker in stickers" :key="sticker.stk_id" v-show="sticker.show"
+       @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stk_id">
 
-      <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
-           class="sticker" />
-    </div>
+    <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
+         class="sticker" />
   </div>
 
   <!-- Shovel icon above backpack button -->
@@ -211,6 +207,7 @@ const exitShovelMode = () => {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  user-select: none; /* 禁止用户选择图片 */
 }
 
 .backpack-btn {

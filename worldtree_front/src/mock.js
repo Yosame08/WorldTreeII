@@ -353,6 +353,7 @@ Mock.mock('/api/func/get_stickers', 'get', () => {
 });
 
 Mock.mock('/api/func/modify_stickers', 'post', (options) => {
+    console.log("Modify received: " + JSON.parse(options.body));
     return {
         "code": 0,
         "message": "",

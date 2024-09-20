@@ -37,9 +37,6 @@ const showWindowAndReset = (component, title) => {
 </script>
 
 <template>
-  <div class="sticker-manager-container">
-    <StickerManager />
-  </div>
   <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" class="at-top">
     <component :is="windowContent" />
   </InScreenWindow>
@@ -63,15 +60,6 @@ const showWindowAndReset = (component, title) => {
 </template>
 
 <style scoped>
-.sticker-manager-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2000;
-  /* 确保 StickerManager 在最上层 */
-}
 
 .button-container {
   position: absolute;
@@ -80,7 +68,7 @@ const showWindowAndReset = (component, title) => {
   align-items: center;
   height: 4%;
   right: 1%;
-  z-index: 1000;
+  z-index: 1002;
 }
 
 .hexagon-container {
@@ -109,6 +97,6 @@ const showWindowAndReset = (component, title) => {
 }
 
 .at-top {
-  z-index: 1000;
+  z-index: 1003;
 }
 </style>

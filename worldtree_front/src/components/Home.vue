@@ -17,14 +17,17 @@
       </button>
     </div>
   </div>
+  <StickerManager />
 </template>
 
 <script>
 import { computed, onMounted, ref, nextTick } from 'vue';
 import { useStore } from 'vuex';
 import moment from "moment";
+import StickerManager from "@/components/StickerManager.vue";
 
 export default {
+  components: {StickerManager},
   setup() {
     const store = useStore();
     const userInfo = computed(() => store.state.userInfo);
@@ -98,6 +101,7 @@ export default {
   cursor: pointer;
   color: white;
   padding: 5px;
+  z-index: 1001;
 }
 
 </style>
