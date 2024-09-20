@@ -5,12 +5,10 @@ import com.transAI.pojo.Task;
 import com.transAI.service.TaskService;
 import com.transAI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/task")
@@ -23,5 +21,12 @@ public class TaskController {
     @GetMapping("/get_task_list")
     public Result<List<Task>> getTaskList() {
         return Result.success(taskService.getTaskList());
+    }
+
+    @PostMapping("/submit")
+    public Result<Boolean> submitTask(@RequestBody Map<String, Object> map) {
+        int taskId = (int) map.get("taskId");
+        String flag = (String) map.get("flag");
+        return Result.success(taskService.submitTask(taskId, flag));
     }
 }

@@ -21,6 +21,9 @@ public class TaskServeiceImpl implements TaskService {
     @Autowired
     TaskUserMapper taskUserMapper;
 
+    @Autowired
+    TartsServiceImpl tartsServiceImpl;
+
     @Override
     public List<Task> getTaskList() {
         Map<String, Object> map = ThreadLocalUtil.get();
@@ -46,5 +49,19 @@ public class TaskServeiceImpl implements TaskService {
         }
 
         return taskList;
+    }
+
+    @Override
+    public boolean submitTask(int taskId, String flag) {
+        if(!taskPass(taskId, flag)) {
+            return false;
+        }
+        tartsServiceImpl.passTask(taskId);
+
+        return true;
+    }
+
+    private boolean taskPass(int taskId, String flag) {
+        return true;
     }
 }
