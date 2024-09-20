@@ -27,7 +27,7 @@ public class BigpotController {
     public Result<BigpotResult> cook(@RequestBody Map<String, Object> params) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int id = (int) map.get("id");
-        String game_token = (String) params.get("game_token");
+        String game_token = (String) params.get("gameToken");
         int x = (int) params.get("x");
         int y = (int) params.get("y");
         int operator = (int) params.get("operator");

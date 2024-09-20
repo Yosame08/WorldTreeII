@@ -28,18 +28,20 @@ public class BigpotServiceImpl implements BigpotService {
     private Bigpot getBigpot(int level) {
         Bigpot bigpot = null;
         String randomToken = UUID.randomUUID().toString();
+
+//        String randomToken = "a";
         switch(level) {
             case 1:
-                bigpot = new Bigpot(1, randomToken, 4, 1, 2, 3, 4);
+                bigpot = new Bigpot(randomToken, 1, 4, 1, 4, 9, 16);
                 break;
             case 2:
-                bigpot = new Bigpot(1, randomToken, 4, 2, 3, 4, 5);
+                bigpot = new Bigpot(randomToken,1,  4, 3, 7, 15, 31);
                 break;
             case 3:
-                bigpot = new Bigpot(1, randomToken, 4, 3, 4, 5, 6);
+                bigpot = new Bigpot(randomToken,1,  4, 7, 25, 27, 29);
                 break;
             case 4:
-                bigpot =new  Bigpot(1, randomToken, 4, 4, 5, 6, 7);
+                bigpot =new  Bigpot(randomToken,1,  4, 40, 48, 56, 64);
                 break;
             default:
                 return null; // 或者你可以抛出异常
@@ -50,7 +52,10 @@ public class BigpotServiceImpl implements BigpotService {
 
     @Override
     public BigpotResult cook(int id, String gameToken, int x, int y, int operator) {
+        System.out.println("gameToken:" + gameToken);
         Bigpot bigpot = bigpotMapper.getBigpot(id, gameToken);
+        System.out.println("gameToken:" + gameToken);
+        System.out.println("bigpot:" + bigpot);
         if(bigpot == null) {
             return null;
         }
@@ -86,6 +91,7 @@ public class BigpotServiceImpl implements BigpotService {
                 continue;
             }
         }
+        System.out.println("flagx:" + flagx + ", flagy:" + flagy);
         if(!flagx || !flagy) {
             return null;
         }
@@ -93,13 +99,13 @@ public class BigpotServiceImpl implements BigpotService {
 
         int result = 0;
         switch (operator) {
-            case 1:
+            case 0:
                 result = arr[indexx] & arr[indexy];
                 break;
-            case 2:
+            case 1:
                 result = arr[indexx] | arr[indexy];
                 break;
-            case 3:
+            case 2:
                 result = arr[indexx] ^ arr[indexy];
                 break;
             default:
@@ -123,6 +129,7 @@ public class BigpotServiceImpl implements BigpotService {
             bigpotResult.setPass(0);
         }
         bigpotResult.setResult(result);
+        System.out.println("bigpotResult:" + bigpotResult);
         return bigpotResult;
     }
 }

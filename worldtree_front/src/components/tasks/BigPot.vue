@@ -54,9 +54,10 @@ export default {
       try {
         const response = await universalGet('/api/subtask/bigpot/init');
         if (response && response.data && response.data.code === 0) {
-          this.numbers = response.data.data.array;
-          this.gameToken = response.data.data.game_token;
-          this.level = response.data.data.level; // 获取并存储关卡 level
+          let data = response.data.data;
+          this.numbers = [data.x, data.y, data.z, data.w];
+          this.gameToken = data.gameToken;
+          this.level = data.level; // 获取并存储关卡 level
         } else {
           console.error(response?.data?.message || 'Unexpected error');
         }
@@ -95,11 +96,13 @@ export default {
     async cook() {
       try {
         const response = await universalPost('/api/subtask/bigpot/cook', {
-          game_token: this.gameToken,
-          num: this.pot,
+          gameToken: this.gameToken,
+          x: this.pot[0],
+          y: this.pot[1],
           operator: this.operator,
         });
         if (response.data.code === 0) {
+          console.log(response.data.data);
           if (response.data.data.pass === 1) {
             this.pass = true;
             this.passMessage = this.level === 4 ? '煮完4锅大锅饭，终于可以下班了！' : '大锅饭一端上来，同学们都馋哭了！';

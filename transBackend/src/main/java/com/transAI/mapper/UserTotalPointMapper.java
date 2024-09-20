@@ -14,7 +14,7 @@ public interface UserTotalPointMapper {
     List<UserTotalPoint> getUserTrend(int userId);
 
 
-    @Select("select * from user_total_point where user_id=#{userId} ORDER BY point DESC limit 1")
+    @Select("select point from user_total_point where user_id=#{userId} ORDER BY point DESC limit 1")
     int getMaxPoint(int userId);
 
     @Insert("insert into user_total_point(user_id, point, time) values(#{userId}, #{point}, now())")

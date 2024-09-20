@@ -79,25 +79,25 @@ Mock.mock('/api/func/rank', 'get', () => {
         data: [
             {
                 "rank": 1,
-                "user_id": 1,
+                "userId": 1,
                 "username": "Tom",
                 "point": 100
             },
             {
                 "rank": 2,
-                "user_id": 4,
+                "userId": 4,
                 "username": "Alice",
                 "point": 90
             },
             {
                 "rank": 2,
-                "user_id": 5,
+                "userId": 5,
                 "username": "Bob",
                 "point": 90
             },
             {
                 "rank": 4,
-                "user_id": 6,
+                "userId": 6,
                 "username": "Emily",
                 "point": 80
             }
@@ -106,7 +106,7 @@ Mock.mock('/api/func/rank', 'get', () => {
 });
 
 Mock.mock('/api/func/get_user_trend', 'post', (options) => {
-    let data = JSON.parse(options.body).user_id;
+    let data = JSON.parse(options.body).userId;
     console.log(data);
     if (data === 1) return {
         "code": 0,
@@ -197,7 +197,7 @@ Mock.mock('/api/subtask/nim/init', 'get', () => {
     return {
         code: 0,
         data: {
-            "game_token": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
+            "gameToken": "A_RANDOM_TOKEN", // 唯一识别这一局游戏的 token
             "array": [1, 1, 4, 5, 1, 4] // 初始的石子个数序列
         }
     }
@@ -245,7 +245,7 @@ Mock.mock('/api/subtask/bigpot/init', 'get', () => {
         message: "",
         data: {
             level: 1,
-            game_token: "A_RANDOM_TOKEN",
+            gameToken: "A_RANDOM_TOKEN",
             array: [1, 1, 8, 16],
         }
     }

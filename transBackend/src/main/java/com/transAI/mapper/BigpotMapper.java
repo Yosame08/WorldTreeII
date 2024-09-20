@@ -15,7 +15,7 @@ public interface BigpotMapper {
     @Insert("insert into bigpottask(level, game_token, len, x, y, z, w) values(#{level}, #{gameToken}, #{len}, #{x}, #{y}, #{z}, #{w})")
     void insert(Bigpot bigpot);
 
-    @Select("select * from bigpottask where id = #{id} and game_token = #{gameToken}")
+    @Select("select * from bigpottask where game_token = #{gameToken}")
     Bigpot getBigpot(int id, String gameToken);
 
     @Update("update bigpottask set len = #{len}, x = #{x}, y = #{y}, z = #{z}, w = #{w} where game_token = #{gameToken}")
