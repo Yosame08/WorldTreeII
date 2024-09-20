@@ -324,3 +324,37 @@ Mock.mock('/api/subtask/visiting/update', 'post', (options) => {
         "message": "操作成功",
     }
 });
+
+Mock.mock('/api/func/get_stickers', 'get', () => {
+    return {
+        "code": 0,
+        "message": "",
+        "data": [
+            {
+                "stk_id": 1,
+                "show": true,
+                "x": 0.566,
+                "y": 0.788,
+            },
+            {
+                "stk_id": 4,
+                "show": true,
+                "x": 0.6,
+                "y": 0.1,
+            },
+            {
+                "stk_id": 8,
+                "show": false,
+                "x": 0.6,
+                "y": 0.1,
+            },
+        ]
+    }
+});
+
+Mock.mock('/api/func/modify_stickers', 'post', (options) => {
+    return {
+        "code": 0,
+        "message": "",
+    }
+});
