@@ -312,33 +312,34 @@ $prefix = /api/func
 
 ```json
 {
-  "code": 0,
-  "data": [
-    {
-      "rank": 1,
-      "user_id": 3,
-      "username": "Tom",
-      "point": 100
-    },
-    {
-      "rank": 2,
-      "user_id": 4,
-      "username": "Alice",
-      "point": 90
-    },
-    {
-      "rank": 2,
-      "user_id": 5,
-      "username": "Bob",
-      "point": 90
-    },
-    {
-      "rank": 4,
-      "user_id": 6,
-      "username": "Emily",
-      "point": 80
-    }
-  ]
+    "code": 0,
+    "message": "操作成功",
+    "data": [
+        {
+            "rank": 1,
+            "userId": 4,
+            "username": "Sameyo",
+            "point": 912
+        },
+        {
+            "rank": 1,
+            "userId": 5,
+            "username": "Yosame",
+            "point": 912
+        },
+        {
+            "rank": 3,
+            "userId": 1,
+            "username": "wange",
+            "point": 5
+        },
+        {
+            "rank": 4,
+            "userId": 2,
+            "username": "testt",
+            "point": 4
+        }
+    ]
 }
 ```
 
@@ -456,26 +457,32 @@ $prefix = /api/func
 ```json
 {
   "code": 0,
-  "message": "",
+  "message": "操作成功",
   "data": [
     {
-      "stk_id": 1,
+      "stkId": 0,
       "show": true,
-      "x": 0.566,
-      "y": 0.788,
+      "x": 5.1,
+      "y": 5.233
     },
     {
-      "stk_id": 4,
-      "show": true,
-      "x": 0.6,
-      "y": 0.1,
-    },
-    {
-      "stk_id": 8,
+      "stkId": 1,
       "show": false,
-      "x": 0.6,
-      "y": 0.1,
+      "x": 2.0,
+      "y": 3.0
     },
+    {
+      "stkId": 2,
+      "show": true,
+      "x": 0.0,
+      "y": 0.0
+    },
+    {
+      "stkId": 3,
+      "show": true,
+      "x": 5.1,
+      "y": 5.233
+    }
   ]
 }
 ```
@@ -492,7 +499,7 @@ $prefix = /api/func
 
 ```json
 {
-  "stk_id": 2,
+  "stkId": 2,
   "show": true,
   "x": 0.1,
   "y": 0.233,
