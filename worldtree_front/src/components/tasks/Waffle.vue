@@ -22,6 +22,11 @@
         </button>
       </div>
     </div>
+
+    <div id='download-button'>
+      <a href="../js/app.js" download>Download</a>
+    </div>
+
   </div>
 </template>
 
