@@ -25,6 +25,7 @@
     </div>
     <div class="button-container">
       <button @click="cook" :disabled="pot.length < 2 || operator === null">开煮！</button>
+      <button @click="resetGame">重置</button>
     </div>
     <div v-if="pass" class="modal">
       <div class="modal-content">
@@ -123,6 +124,13 @@ export default {
       document.querySelectorAll('.operator').forEach(button => button.classList.remove('selected'));
       await this.initGame();
     },
+    async resetGame() {
+      // 重置游戏状态并重新初始化游戏
+      this.pot = [];
+      this.operator = null;
+      document.querySelectorAll('.operator').forEach(button => button.classList.remove('selected'));
+      await this.initGame();
+    }
   },
   mounted() {
     this.initGame();
@@ -258,6 +266,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-left: 10px;
 }
 
 button:disabled {
