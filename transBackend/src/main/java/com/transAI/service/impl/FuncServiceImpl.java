@@ -1,16 +1,20 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.UserMapper;
+import com.transAI.mapper.UserStickerMapper;
 import com.transAI.mapper.UserTotalPointMapper;
+import com.transAI.pojo.Sticker;
 import com.transAI.pojo.User;
 import com.transAI.pojo.UserPoint;
 import com.transAI.pojo.UserTotalPoint;
 import com.transAI.service.FuncService;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FuncServiceImpl implements FuncService {
@@ -20,6 +24,9 @@ public class FuncServiceImpl implements FuncService {
 
     @Autowired
     private UserTotalPointMapper userTotalPointMapper;
+
+    @Autowired
+    private UserStickerMapper userStickerMapper;
 
     @Override
     public List<UserPoint> getRank() {
@@ -61,5 +68,29 @@ public class FuncServiceImpl implements FuncService {
     @Override
     public List<UserTotalPoint> getUserTrend(int userId) {
         return userTotalPointMapper.getUserTrend(userId);
+    }
+
+
+    @Override
+    public List<Sticker> getStickers() {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int userId = (int) map.get("id");
+        return userStickerMapper.getStickers(userId);
+    }
+
+    @Override
+    public void modifyStickers(Sticker sticker) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int userId = (int) map.get("id");
+        System.out.println(sticker.getStkId());
+        Sticker tmp = userStickerMapper.findSticker(userId, sticker.getStkId());
+        if(tmp == null) {
+            System.out.println("sticker not found");
+            userStickerMapper.addSticker(userId, sticker);
+        }
+        else {
+            System.out.println("sticker found");
+            userStickerMapper.modifyStickers(userId, sticker);
+        }
     }
 }
