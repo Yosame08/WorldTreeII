@@ -1,6 +1,7 @@
 <template>
   <div class="window" :style="style" @mousedown="onMouseDown">
     <div class="header" @mousedown.stop="initDrag">
+      <h4>{{ title }}</h4>
       <button @click="$emit('close')">Close</button>
     </div>
     <div class="content">
@@ -12,7 +13,12 @@
 
 <script>
 export default {
-  name: 'InScreenWindow',
+  props: {
+    title: {
+      type: String,
+      default: 'Window Title'
+    }
+  },
   data() {
     return {
       style: {
@@ -81,8 +87,13 @@ export default {
 }
 .header {
   background: #f1f1f1;
-  padding: 10px;
   cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0;
 }
 .content {
   padding: 10px;
@@ -95,5 +106,9 @@ export default {
   right: 0;
   bottom: 0;
   cursor: se-resize;
+}
+.header h4 {
+  margin-top: 10px; /* 调整这个值来控制上边距 */
+  margin-bottom: 10px; /* 调整这个值来控制下边距 */
 }
 </style>

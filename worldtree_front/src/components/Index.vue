@@ -7,6 +7,7 @@ import Navigation from "@/components/effects/Navigation.vue";
 import InScreenWindow from "@/components/InScreenWindow.vue";
 import Rank from "@/components/Rank.vue";
 import 'element-plus/dist/index.css';
+import Mail from "@/components/Mail.vue";
 
 const icon = ref(['fas', 'map-location-dot']);
 const description = ref('地图');
@@ -19,8 +20,10 @@ const toggleView = () => {
 const showWindow = ref(false);
 const windowRef = ref(null);
 const windowContent = ref(null);
+const windowTitle = ref('');
 
-const showWindowAndReset = (component) => {
+const showWindowAndReset = (component, title) => {
+  windowTitle.value = title;
   windowContent.value = component;
   showWindow.value = true;
   nextTick(() => {
@@ -30,9 +33,6 @@ const showWindowAndReset = (component) => {
   });
 };
 
-const pushToRank = () => {
-  showWindowAndReset(markRaw(Rank));
-};
 
 </script>
 
@@ -46,8 +46,10 @@ const pushToRank = () => {
   <div class='button-container'>
     <div class="hexagon-container">
       <Navigation :icon="icon" :description="description" @click="toggleView" class="map" />
-      <Navigation :icon="['fas', 'envelopes-bulk']" description="邮件" @click="showWindowAndReset" class="mail" />
-      <Navigation :icon="['fas', 'ranking-star']" description="排名" @click="pushToRank" class="ranking" />
+      <Navigation :icon="['fas', 'envelopes-bulk']" description="邮件"
+                  @click="showWindowAndReset(markRaw(Mail), '邮件')" class="mail" />
+      <Navigation :icon="['fas', 'ranking-star']" description="排名"
+                  @click="showWindowAndReset(markRaw(Rank), '排行榜')" class="ranking" />
     </div>
   </div>
   <div style="display: flex;">
@@ -83,9 +85,13 @@ const pushToRank = () => {
 
 .hexagon-container {
   position: relative;
-  width: 200px;
-  /* Adjust the width as needed */
+  width: 200px; /* Adjust the width as needed */
   top: 0;
+  height: 340px;
+  transform: translateY(50%);
+  background-color: rgba(5, 49, 66, 0.28);
+  border-radius: 20px;
+  padding: 20px 0 20px 20px;
 }
 
 .map {
