@@ -15,13 +15,13 @@
     </div>
 
     <!-- Task bubbles -->
-    <img v-for="task in filteredTasks" :key="task.task_id" :src="require('@/assets/task_icon.png')" class="task-icon" :style="bubbleStyle(task)"
+    <img v-for="task in filteredTasks" :key="task.taskId" :src="require('@/assets/task_icon.png')" class="task-icon" :style="bubbleStyle(task)"
          @click="selectTask(task)" @mouseover="(event) => showTooltip(task, event)" @mouseleave="hideTooltip" />
 
     <!-- Tooltip -->
     <div v-if="tooltip.visible" :style="tooltipStyle" class="tooltip">
-      <p>{{ tooltip.task.task_title }}</p>
-      <p>{{ taskStatusText(tooltip.task.task_status) }}</p>
+      <p>{{ tooltip.task.taskTitle }}</p>
+      <p>{{ taskStatusText(tooltip.task.taskStatus) }}</p>
     </div>
 
     <!-- Task description sidebar with transition -->
@@ -86,7 +86,7 @@ const mapStyle = computed(() => ({
 
 const submitAnswer = async () => {
   try {
-    const response = await universalPost('/api/task/submit_answer', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
+    const response = await universalPost('/api/task/submit', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
     if (response.data.code === 0) {
       let pass = response.data.data;
       if (pass) {
@@ -120,7 +120,7 @@ const parseTaskDescription = (description) => {
 const selectTask = async (task) => {
   try {
     // let tmp = await getTaskInfo(task.task_id);
-    let detail = tasks.value[task.task_id];
+    let detail = task;
     parseTaskDescription(detail.taskStatus ? detail.taskDescriptionFull : detail.taskDescription);
     taskDetail.value = detail;
   } catch (error) {
@@ -151,8 +151,9 @@ const bubbleStyle = (task) => {
   const scaledHeight = mapHeight * scale.value;
   const offsetX = translateX.value * scale.value;
   const offsetY = translateY.value * scale.value;
-  const picX = task.task_pos[0] * scaledWidth + offsetX;
-  const picY = task.task_pos[1] * scaledHeight + offsetY;
+  const picX = task.taskPosX * scaledWidth + offsetX;
+  const picY = task.taskPosY * scaledHeight + offsetY;
+  console.log(task.taskPosX, scaledWidth, offsetX, picX);
 
   return {
     left: `${picX}px`,
@@ -285,7 +286,7 @@ const checkBounds = () => {
 
 const filteredTasks = computed(() => {
   return showUncompletedOnly.value
-      ? tasks.value.filter(task => task.task_status === 0)
+      ? tasks.value.filter(task => task.taskStatus === 0)
       : tasks.value;
 });
 

@@ -251,7 +251,8 @@ $prefix = /api/task
             "getPoint": 30,
             "taskCoin": 100,
             "hintPrice": 100,
-            "taskStatus": 1
+            "taskStatus": 1,
+            "hintStatus": 0, // 没有获取过
         },
         {
             "taskId": 2,
@@ -266,9 +267,32 @@ $prefix = /api/task
             "getPoint": 20,
             "taskCoin": 60,
             "hintPrice": 60,
-            "taskStatus": 1
+            "taskStatus": 1,
+            "hintStatus": 1, // 获取过
         }
     ]
+}
+```
+
+## 2. 请求提示：给任务ID，获取提示 $prefix/hint
+
+### 请求类型： post类型
+
+### 参数
+
+```json
+{
+  "taskId": 1,
+}
+```
+
+### 返回值
+
+```json
+{
+  "code": 0,
+  "message": "操作成功",
+  "data": "(base64)",
 }
 ```
 

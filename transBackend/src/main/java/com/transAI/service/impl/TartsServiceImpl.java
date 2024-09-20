@@ -2,6 +2,7 @@ package com.transAI.service.impl;
 
 import com.transAI.mapper.TaskMapper;
 import com.transAI.mapper.TaskUserMapper;
+import com.transAI.mapper.UserMapper;
 import com.transAI.mapper.UserTotalPointMapper;
 import com.transAI.pojo.TaskUser;
 import com.transAI.pojo.UserTotalPoint;
@@ -22,6 +23,10 @@ public class TartsServiceImpl implements TartsService {
 
     @Autowired
     private UserTotalPointMapper userTotalPointMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public void add() {
         Map<String, Object> map = ThreadLocalUtil.get();
@@ -63,5 +68,12 @@ public class TartsServiceImpl implements TartsService {
         taskUser.setPoint(score);
         taskUser.setTime(LocalDateTime.now());
         taskUserMapper.insert(taskUser);
+
+        int pre_point = userTotalPointMapper.getMaxPoint(id);
+        // 输出pre_point
+
+        userTotalPointMapper.addPoint(id,pre_point + score);
+
+        userMapper.updatePoint(id, pre_point + score);
     }
 }

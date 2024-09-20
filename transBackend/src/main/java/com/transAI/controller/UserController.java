@@ -35,6 +35,9 @@ public class UserController {
     @PostMapping("/signup")
     public Result register(@RequestBody Map<String, String> params) {
         String username = params.get("username");
+        if(username.length() < 5) {
+            return Result.error("用户名长度不能小于5");
+        }
         String password = params.get("password");
         User u = userService.findByUserName(username);
         logger.info("This is an info message in UserController");

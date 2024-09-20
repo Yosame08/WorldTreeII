@@ -9,8 +9,8 @@ public class Task {
     @NotNull
     private Integer taskId;
     private String taskTitle;
-    private Integer taskPosX;
-    private Integer taskPosY;
+    private double taskPosX;
+    private double taskPosY;
     private String taskDescription;
     private String taskDescriptionFull;
     private String uri;

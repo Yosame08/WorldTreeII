@@ -48,7 +48,7 @@ export default {
     };
   },
   created() {
-    this.loadCaptcha();
+    // this.loadCaptcha();
   },
   methods: {
     async loadCaptcha() {

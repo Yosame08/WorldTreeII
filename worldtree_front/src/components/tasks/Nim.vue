@@ -35,7 +35,7 @@ onMounted(() => {
         piles.value = resp.data.data.array.map(remaining => ({ remaining }));
         originalPiles.value = JSON.parse(JSON.stringify(piles.value)); // Make deep copy
         activePiles.value = piles.value.map(() => true);
-        token = resp.data.data.game_token;
+        token = resp.data.data.gameToken;
     }).catch((error) => {
         alert(error);
     });
@@ -43,7 +43,7 @@ onMounted(() => {
 
 function submit() {
     axios.post("/api/subtask/nim/step", {
-        game_token: token,
+        gameToken: token,
         array: piles.value
     }).then((resp) => {
         if (resp.data.data.status === "NOT_FINISHED") {

@@ -7,19 +7,19 @@ import {
 } from '@element-plus/icons-vue'
 
 const stickers = ref([{
-    "stk_id": 1,
+    "stkId": 1,
     "show": true,
     "x": 0.566,
     "y": 0.788,
   },
   {
-    "stk_id": 4,
+    "stkId": 4,
     "show": true,
     "x": 0.6,
     "y": 0.1,
   },
   {
-    "stk_id": 8,
+    "stkId": 8,
     "show": false,
     "x": 0.6,
     "y": 0.1,
@@ -34,6 +34,7 @@ const fetchStickers = async () => {
     const response = await universalGet('/api/func/get_stickers');
     if (response.data.code === 0) {
       stickers.value = response.data.data;
+      console.log(stickers.value);
     }
   } catch (error) {
     console.error('Failed to fetch stickers:', error);
@@ -83,8 +84,9 @@ const dragSticker = (sticker, event) => {
     document.removeEventListener('mouseup', onMouseUp);
 
     try {
+      console.log(sticker.stkId);
       await universalPost('/api/func/modify_stickers', {
-        stk_id: sticker.stk_id,
+        stkId: sticker.stkId,
         show: true,
         x: sticker.x,
         y: sticker.y,
@@ -93,7 +95,7 @@ const dragSticker = (sticker, event) => {
       console.error('Failed to update sticker position:', error);
     }
 
-    console.log('Sticker position updated:', {id: sticker.stk_id, x: sticker.x, y: sticker.y});
+    console.log('Sticker position updated:', {id: sticker.stkId, x: sticker.x, y: sticker.y});
   };
 
   document.addEventListener('mousemove', onMouseMove);
@@ -108,7 +110,7 @@ const showStickerFromBag = async (sticker) => {
   sticker.x = sticker.y = 0.5;
   try {
     await universalPost('/api/func/modify_stickers', {
-      stk_id: sticker.stk_id,
+      stkId: sticker.stkId,
       show: true,
       x: 0.5,
       y: 0.5,
@@ -138,7 +140,7 @@ const removeSticker = async (sticker) => {
   sticker.show = false; // Locally update the state
   try {
     await universalPost('/api/func/modify_stickers', {
-      stk_id: sticker.stk_id,
+      stkId: sticker.stkId,
       show: false,
       x: 0.5,
       y: 0.5,
@@ -158,8 +160,8 @@ const exitShovelMode = () => {
 
 <template>
   <!-- Render stickers and buttons -->
-  <div v-for="sticker in stickers" :key="sticker.stk_id" v-show="sticker.show"
-       @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stk_id">
+  <div v-for="sticker in stickers" :key="sticker.stkId" v-show="sticker.show"
+       @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stkId">
 
     <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
          class="sticker" />
@@ -180,7 +182,7 @@ const exitShovelMode = () => {
       <el-button type="danger" @click="showBag = false" :icon="Close" circle />
 <!--      <button class="close-btn" >关闭</button>-->
     </div>
-    <div v-for="sticker in stickers" :key="sticker.stk_id">
+    <div v-for="sticker in stickers" :key="sticker.stkId">
       <div v-if="!sticker.show" class="sticker-in-bag">
         <img :src="require('@/assets/hex.png')" class="sticker-small" />
         <el-button type="success" :icon="Check" @click="showStickerFromBag(sticker)" circle />

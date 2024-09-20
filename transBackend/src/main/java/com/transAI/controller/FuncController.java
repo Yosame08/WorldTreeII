@@ -26,7 +26,7 @@ public class FuncController {
 
     @PostMapping("get_user_trend")
     public Result <List<UserTotalPoint>> getUserTrend(@RequestBody Map<String, String> params) {
-        int userId = Integer.parseInt(params.get("user_id"));
+        int userId = Integer.parseInt(params.get("userId"));
         return Result.success(funcService.getUserTrend(userId));
     }
 
