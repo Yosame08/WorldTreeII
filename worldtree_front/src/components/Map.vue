@@ -343,6 +343,7 @@ onMounted(async () => {
   padding: 10px;
   background-color: #f9f9f9;
   border-top: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
 .close-button {

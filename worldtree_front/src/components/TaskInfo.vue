@@ -17,18 +17,17 @@ onMounted(() => {
 
 <template>
   <div class="task-info discussions-style">
-    <div v-for="discussion in props.discussions">
-      <el-card :key="discussion.content" class="discussion-card" v-if="discussion.user">
+    <div v-for="discussion in props.discussions" :key="discussion.content">
+      <el-card class="discussion-card" v-if="discussion.user">
         <template #header>
           <div>{{ discussion.user }}</div>
         </template>
         <div>{{ discussion.content }}</div>
       </el-card>
-      <div :key="discussion.content" v-else>
+      <div class="discussion-card" v-else>
         {{ discussion.content }}
       </div>
     </div>
-
   </div>
 </template>
 
@@ -49,9 +48,13 @@ onMounted(() => {
 }
 
 .discussion-card {
-  width: calc(100% + 20px);
-  margin-left: -10px;
-  margin-right: -10px;
-  margin-bottom: 5px;
+  width: calc(100% - 20px);
+  margin: 0 10px 5px 10px;
+  padding: 10px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; 
 }
 </style>
