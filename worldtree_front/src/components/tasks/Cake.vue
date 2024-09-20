@@ -10,15 +10,15 @@ const isModalVisible = ref(false);
 let lastRequestTime = 0;
 
 const conditions = [
-  '带有数字2',
-  '长度不超过11',
-  '以大写字母开头',
-  '没有键盘上第三排字母(zxcvbnm)',
-  '相同的字符必须相邻',
-  '至多2种元音字母(aeiou)',
-  'ascii码值之和在区间[1090,1100]之中',
-  '相邻字符ascii码值作差出现±17(其中之一)',
-  '带有字母y'
+  '',//'2', // '带有数字2',
+  '',//'<= 11', // '长度不超过11',
+  '',//'Abc', //以大写字母开头',
+  '',//'- zxcvbnm', //没有键盘上第三排字母(zxcvbnm)',
+  '',//'aabbcc', //相同的字符必须相邻',
+  '',//'<= 2 * [aeiou]', //至多2种元音字母(aeiou)',
+  '',//'ASCII [1000,1100]', //ascii码值之和在区间[1000,1100]之中',
+  '',//'ar, bs, ct', //相邻字符ascii码值作差出现±17(其中之一)',
+  '',//'Yy', //带有字母y'
 ];
 
 const submitAnswer = async () => {
@@ -95,6 +95,12 @@ button {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
+  background-color: #eee;
+  background-image: url('@/assets/cake_top.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .grid-item {
@@ -107,7 +113,7 @@ button {
   border: 1px solid #ccc;
   font-size: 1em;
   text-align: center;
-  padding: 10px;
+  padding: 10px;  
 }
 
 .grid-item.lit {
