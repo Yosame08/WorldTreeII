@@ -51,9 +51,10 @@
 <script setup>
 import TaskInfo from './TaskInfo.vue';
 import {computed, onMounted, ref} from 'vue';
-import {ElButton, ElInput, ElMessage, ElSwitch} from 'element-plus';
-import {universalGet} from "@/services/universalService";
+import {ElButton, ElInput, ElSwitch} from 'element-plus';
+import {universalGet, universalPost} from "@/services/universalService";
 import {getTaskInfo, requestHint} from "@/services/taskService";
+import store from "@/services/storeService";
 
 const tasks = ref([]);
 const scale = ref(1);
@@ -83,6 +84,24 @@ const mapStyle = computed(() => ({
   userSelect: 'none',
 }));
 
+const submitAnswer = async () => {
+  try {
+    const response = await universalPost('/api/task/submit_answer', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
+    if (response.data.code === 0) {
+      let pass = response.data.data;
+      if (pass) {
+        await getAllTasks();
+        taskDetail.value = tasks[taskDetail.value.taskId];
+        store.commit("setSuccessMsg", "答案正确");
+      } else {
+        store.commit("setErrorMsg", "答案错误");
+      }
+    }
+  } catch (error) {
+    console.error('Error submitting answer:', error);
+  }
+};
+
 const openUrlInNew = (url) => {
   window.open(url, '_blank');
 };
@@ -100,12 +119,12 @@ const parseTaskDescription = (description) => {
 
 const selectTask = async (task) => {
   try {
-    let tmp = await getTaskInfo(task.task_id);
-    let detail = tmp.data.data;
-    parseTaskDescription(detail.taskDescription);
+    // let tmp = await getTaskInfo(task.task_id);
+    let detail = tasks.value[task.task_id];
+    parseTaskDescription(detail.taskStatus ? detail.taskDescriptionFull : detail.taskDescription);
     taskDetail.value = detail;
   } catch (error) {
-    console.error('Error selecting task:', error);
+    alert('Error selecting task:' + error);
     taskDetail.value = null;
     discussions.value = [];
   }
@@ -113,6 +132,7 @@ const selectTask = async (task) => {
 
 const closeSidebar = () => {
   taskDetail.value = null;
+  store.commit("clearErrorMsg");
 };
 
 const getHint = async () => {
@@ -286,18 +306,18 @@ const taskStatusText = (status) => {
   return status === 0 ? '未完成' : '已完成';
 };
 
-onMounted(async () => {
+const getAllTasks = async () => {
   try {
     const response = await universalGet('/api/task/get_task_list');
     if (response.data.code === 0) {
       tasks.value = response.data.data;
-    } else {
-      ElMessage.error('Failed to fetch tasks');
     }
   } catch (error) {
     ElMessage.error('Error fetching tasks');
   }
-});
+};
+
+onMounted(getAllTasks);
 </script>
 
 <style>
@@ -326,7 +346,7 @@ onMounted(async () => {
   border-left: 1px solid #ccc;
   padding: 20px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
+  z-index: 1002;
   display: flex;
   flex-direction: column;
 }

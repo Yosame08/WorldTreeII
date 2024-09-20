@@ -7,7 +7,7 @@
       :show-text="false"
       :color="customColors"
       :duration="2.5"
-      :stroke-width="3"
+      :stroke-width="4"
       class="progress-bar"
   />
   <nav v-if="showNavBar">
@@ -46,7 +46,7 @@ export default {
       isLoggedIn: computed(() => store.state.isLoggedIn),
       username: computed(() => store.state.userInfo.username),
       customColors: customColors,
-      errorMessage: computed(() => store.state.errorMsg),
+      errorMessage: computed(() => store.state.showMsg),
     };
   },
   created() {
@@ -129,11 +129,18 @@ export default {
   background-color: #555;
 }
 
+.progress-container {
+  position: relative;
+}
+
 .progress-bar {
   position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 0;
 }
-
 .error-msg {
   display: flex;
   align-items: center;

@@ -9,7 +9,8 @@ const store = createStore({
             isLoggedIn: !!sessionStorage.getItem('token'),
             showNavBar: true,
             userInfo: {},
-            errorMsg: '',
+            showMsg: '',
+            isError: true,
         }
     },
     mutations: {
@@ -31,10 +32,15 @@ const store = createStore({
             state.isLoggedIn = value;
         },
         setErrorMsg(state, value) {
-            state.errorMsg = value;
+            state.showMsg = value;
+            state.isError = true;
+        },
+        setSuccessMsg(state, value) {
+            state.showMsg = value;
+            state.isError = false;
         },
         clearErrorMsg(state) {
-            state.errorMsg = '';
+            state.showMsg = '';
         },
     },
     actions: {

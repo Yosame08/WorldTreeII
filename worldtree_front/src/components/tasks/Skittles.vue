@@ -19,7 +19,6 @@
 <script setup>
 import {onMounted, onUnmounted, ref} from 'vue';
 import SevenSegmentDisplay from '@/components/effects/SevenSegmentDisplay.vue';
-import axios from 'axios';
 import {universalPost} from "@/services/universalService";
 import store from "@/services/storeService";
 
@@ -28,7 +27,7 @@ const isPlaying = ref(false);
 let timerInterval = null;
 let audioTimeouts = [];
 const audioFiles = {};
-let playInterval = 500;
+let playInterval = 400;
 
 const preloadAudio = () => {
   const audioNumbers = [0, 1, 2, 3, 5, 6, 7, 8];

@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
 
 Mock.setup({
-    timeout: '200-1500'
+    timeout: '900-1500'
 })
 
 Mock.mock('/api/user/captcha', 'get', () => {
@@ -193,7 +193,7 @@ Mock.mock('/api/task/get_task_info', 'post', (options) => {
     }
 });
 
-Mock.mock('/api/nim/init', 'get', () => {
+Mock.mock('/api/subtask/nim/init', 'get', () => {
     return {
         code: 0,
         data: {
@@ -203,7 +203,7 @@ Mock.mock('/api/nim/init', 'get', () => {
     }
 });
 
-Mock.mock('/api/nim/step', 'get', () => {
+Mock.mock('/api/subtask/nim/step', 'post', () => {
     return {
         code: 0,
         data: {
@@ -353,6 +353,7 @@ Mock.mock('/api/func/get_stickers', 'get', () => {
 });
 
 Mock.mock('/api/func/modify_stickers', 'post', (options) => {
+    console.log("Modify received: " + JSON.parse(options.body));
     return {
         "code": 0,
         "message": "",

@@ -1,13 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { universalGet, universalPost } from "@/services/universalService";
+import {
+  Check,
+  Close
+} from '@element-plus/icons-vue'
 
 const stickers = ref([{
-  "stk_id": 1,
-  "show": true,
-  "x": 0.566,
-  "y": 0.788,
-},
+    "stk_id": 1,
+    "show": true,
+    "x": 0.566,
+    "y": 0.788,
+  },
   {
     "stk_id": 4,
     "show": true,
@@ -42,10 +46,11 @@ onMounted(() => {
 
 // Handle dragging a sticker
 const dragSticker = (sticker, event) => {
-  if (isShovelMode.value) return; // Prevent dragging in shovel mode
-
+  if (isShovelMode.value) {
+    removeSticker(sticker);
+    return; // Prevent dragging in shovel mode
+  }
   event.preventDefault(); // 防止选中图片
-  console.log("Dragging sticker:", sticker.stk_id); // Add this line for debugging
 
   const startX = event.clientX;
   const startY = event.clientY;
@@ -58,8 +63,16 @@ const dragSticker = (sticker, event) => {
     const deltaY = e.clientY - startY;
 
     // Calculate new position in percentages
-    const newX = (initialX + deltaX) / window.innerWidth;
-    const newY = (initialY + deltaY) / window.innerHeight;
+    let newX = (initialX + deltaX) / window.innerWidth;
+    let newY = (initialY + deltaY) / window.innerHeight;
+
+    // Ensure the sticker's top is not above 43px
+    const stickerHeight = 50; // Assuming the sticker height is 50px
+    const minY = 43 / window.innerHeight;
+    const maxY = (window.innerHeight - stickerHeight) / window.innerHeight;
+
+    if (newY < minY) newY = minY;
+    if (newY > maxY) newY = maxY;
 
     sticker.x = newX;
     sticker.y = newY;
@@ -80,7 +93,7 @@ const dragSticker = (sticker, event) => {
       console.error('Failed to update sticker position:', error);
     }
 
-    console.log('Sticker position updated:', { id: sticker.stk_id, x: sticker.x, y: sticker.y });
+    console.log('Sticker position updated:', {id: sticker.stk_id, x: sticker.x, y: sticker.y});
   };
 
   document.addEventListener('mousemove', onMouseMove);
@@ -117,18 +130,7 @@ const updateShovelPosition = (event) => {
 };
 
 const handleShovelClick = (event) => {
-  const stickerElement = event.target.closest('.sticker');
-  if (stickerElement) {
-    console.log(stickerElement.dataset);
-    const stickerId = parseInt(stickerElement.dataset.stickerId, 10);
-    console.log(stickerId);
-    const sticker = stickers.value.find(s => s.stk_id === stickerId);
-    if (sticker) {
-      removeSticker(sticker);
-    }
-  }
-  else console.log("shovel not on a sticker");
-  exitShovelMode();
+  if (!event.target.closest('.sticker')) exitShovelMode();
 };
 
 // Remove a sticker
@@ -156,13 +158,11 @@ const exitShovelMode = () => {
 
 <template>
   <!-- Render stickers and buttons -->
-  <div class="sticker-container">
-    <div v-for="sticker in stickers" :key="sticker.stk_id" v-show="sticker.show"
-         @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stk_id">
+  <div v-for="sticker in stickers" :key="sticker.stk_id" v-show="sticker.show"
+       @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stk_id">
 
-      <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
-           class="sticker" />
-    </div>
+    <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
+         class="sticker" />
   </div>
 
   <!-- Shovel icon above backpack button -->
@@ -176,13 +176,14 @@ const exitShovelMode = () => {
   <!-- Backpack drawer -->
   <div v-if="showBag" class="backpack-drawer">
     <div class="header-container">
-      <h3>未显示的贴纸</h3>
-      <button class="close-btn" @click="showBag = false">关闭</button>
+      <h2>贴纸背包</h2>
+      <el-button type="danger" @click="showBag = false" :icon="Close" circle />
+<!--      <button class="close-btn" >关闭</button>-->
     </div>
     <div v-for="sticker in stickers" :key="sticker.stk_id">
       <div v-if="!sticker.show" class="sticker-in-bag">
         <img :src="require('@/assets/hex.png')" class="sticker-small" />
-        <button @click="showStickerFromBag(sticker)">显示</button>
+        <el-button type="success" :icon="Check" @click="showStickerFromBag(sticker)" circle />
       </div>
     </div>
   </div>
@@ -211,6 +212,7 @@ const exitShovelMode = () => {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  user-select: none; /* 禁止用户选择图片 */
 }
 
 .backpack-btn {
@@ -271,12 +273,11 @@ const exitShovelMode = () => {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 300px;
+  width: 250px;
   height: 50%;
   background-color: #fff;
   box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.3);
   z-index: 201;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -299,6 +300,11 @@ const exitShovelMode = () => {
   display: flex;
   align-items: center;
   /* 垂直居中对齐 */
+}
+
+.header-container h2{
+  margin-right: 25px;
+  flex: 1;
 }
 
 .close-btn {
