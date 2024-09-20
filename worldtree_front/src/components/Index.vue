@@ -1,5 +1,6 @@
 <script setup>
-import {markRaw, nextTick, ref} from 'vue';
+import StickerManager from './StickerManager.vue';
+import { markRaw, nextTick, ref } from 'vue';
 import Home from './Home.vue';
 import MapComponent from './Map.vue';
 import Navigation from "@/components/effects/Navigation.vue";
@@ -36,6 +37,9 @@ const pushToRank = () => {
 </script>
 
 <template>
+  <div class="sticker-manager-container">
+    <StickerManager />
+  </div>
   <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" class="at-top">
     <component :is="windowContent" />
   </InScreenWindow>
@@ -57,6 +61,16 @@ const pushToRank = () => {
 </template>
 
 <style scoped>
+.sticker-manager-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  /* 确保 StickerManager 在最上层 */
+}
+
 .button-container {
   position: absolute;
   display: flex;
@@ -69,7 +83,8 @@ const pushToRank = () => {
 
 .hexagon-container {
   position: relative;
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
+  /* Adjust the width as needed */
   top: 0;
 }
 
