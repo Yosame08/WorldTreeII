@@ -1,6 +1,6 @@
 package com.transAI.service.impl;
 
-import com.transAI.mapper.UserMapper;
+import com.transAI.mapper.*;
 import com.transAI.pojo.User;
 import com.transAI.service.UserService;
 import com.transAI.utils.Md5Util;
@@ -16,17 +16,38 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private BigpotMapper bigpotMapper;
+
+    @Autowired
+    private BinsearchMapper binsearchMapper;
+
+    @Autowired
+    private UserTotalPointMapper userTotalPointMapper;
+
+    @Autowired
+    private VisitingMapper visitingMapper;
+
     @Override
     public User findByUserName(String username) {
         User u = userMapper.findByUserName(username);
         return u;
     }
 
+    void initUserInfo(int id) {
+        bigpotMapper.initUserInfo(id);
+        binsearchMapper.initUserInfo(id);
+        userTotalPointMapper.initUserInfo(id);
+        visitingMapper.initUserInfo(id);
+    }
+
     @Override
     public void register(String username, String password) {
         String md5String = Md5Util.getMD5String(password);
         userMapper.add(username, md5String);
-
+        int id = userMapper.findByUserName(username).getId();
+        initUserInfo(id);
     }
 
     @Override

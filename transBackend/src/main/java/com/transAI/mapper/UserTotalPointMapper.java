@@ -19,4 +19,7 @@ public interface UserTotalPointMapper {
 
     @Insert("insert into user_total_point(user_id, point, time) values(#{userId}, #{point}, now())")
     void addPoint(int userId, int point);
+
+    @Insert("insert into user_total_point(user_id, point, time) values(#{userId}, 0, now())")
+    void initUserInfo(int id);
 }

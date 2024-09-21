@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/worldtree
+    url: jdbc:mysql://localhost:3306/transai
     username: root
-    password: Hatsune Miku
+    password: turing
   data:
     redis:
       host: localhost
