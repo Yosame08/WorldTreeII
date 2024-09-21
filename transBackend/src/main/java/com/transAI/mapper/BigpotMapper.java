@@ -9,6 +9,9 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface BigpotMapper {
 
+    @Insert("insert into bigpot(id, level) values(#{id}, 1)")
+    void initUserInfo(int id);
+
     @Select("select level from bigpot where id = #{id}")
     int getLevel(int id);
 
