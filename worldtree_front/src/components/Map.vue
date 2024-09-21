@@ -37,10 +37,14 @@
           <!-- 2. 展示提交答案方式 -->
           <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
+            <el-button @click="getClue" class="hint-button">查看线索</el-button>
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
             <el-button v-if="taskDetail.taskStatus !== 1" @click="submitId1" style="width: 100%;">启动中继器</el-button>
-            <p v-else style="width: 100%;">您已经完全解决了该事件！</p>
+            <div v-else style="width: 100%;">
+              您已经完全解决了该事件！
+              <el-button @click="getClue" class="hint-button">查看线索</el-button>
+            </div>
           </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
@@ -168,6 +172,22 @@ const closeSidebar = () => {
 const getHint = async () => {
   try {
     const msg = await universalPost('/api/task/hint', {
+      taskId: taskDetail.value.taskId,
+    });
+    if (msg.data.code === 0) {
+      imageBase64.value = msg.data.data;
+      isHintVisible.value = true;
+    } else {
+      store.commit("setErrorMsg", msg.data.message);
+    }
+  } catch (err) {
+    store.commit("setErrorMsg", err);
+  }
+};
+
+const getClue = async () => {
+  try {
+    const msg = await universalPost('/api/task/clue', {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {

@@ -63,6 +63,9 @@ public class TaskServeiceImpl implements TaskService {
                     break;
                 }
             }
+            if(!hintFlag) {
+                task.setHintStatus(0);
+            }
         }
 
         return taskList;
