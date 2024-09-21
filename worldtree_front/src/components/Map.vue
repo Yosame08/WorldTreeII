@@ -36,17 +36,13 @@
             <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
           </p>
           <!-- 2. 展示提交答案方式 -->
-          <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
+          <div v-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
-            <el-button @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
+            <el-button v-if="taskDetail.taskId !== 2" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
-            <el-button v-if="task1OK && taskDetail.taskStatus !== 1" @click="submitId1" style="width: 100%;" type="primary">启动中继器({{task1Times}}/2)</el-button>
-            <el-button v-else-if="(!task1OK) && taskDetail.taskStatus !== 1" style="width: 100%;" type="info">当前无法启动中继器({{task1Times}}/2)</el-button>
-            <div v-else style="width: 100%;">
-              您已经完全解决了该事件！
-              <el-button @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
-            </div>
+            <el-button v-if="task1OK" @click="submitId1" style="width: 100%;" type="primary">启动中继器({{task1Times}}/2)</el-button>
+            <el-button v-else style="width: 100%;" type="info">当前无法启动中继器({{task1Times}}/2)</el-button>
           </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
@@ -103,6 +99,21 @@ const mapStyle = computed(() => ({
   cursor: dragging.value ? 'grabbing' : 'grab',
   userSelect: 'none',
 }));
+
+const getAllTasks = async () => {
+  try {
+    const response = await universalGet('/api/task/get_task_list');
+    if (response.data.code === 0) {
+      tasks.value = response.data.data;
+      console.log(tasks.value);
+    }
+    else {
+      store.commit("setErrorMsg", response.data.message);
+    }
+  } catch (error) {
+    store.commit("setErrorMsg", error);
+  }
+};
 
 const refreshTask1 = async () => {
   let result = await universalGet('/api/subtask/binsearch/check');
@@ -371,20 +382,6 @@ const hideTooltip = () => {
 
 const taskStatusText = (status) => {
   return status === 0 ? '未完成' : '已完成';
-};
-
-const getAllTasks = async () => {
-  try {
-    const response = await universalGet('/api/task/get_task_list');
-    if (response.data.code === 0) {
-      tasks.value = response.data.data;
-    }
-    else {
-      store.commit("setErrorMsg", response.data.message);
-    }
-  } catch (error) {
-    store.commit("setErrorMsg", error);
-  }
 };
 
 onMounted(getAllTasks);
