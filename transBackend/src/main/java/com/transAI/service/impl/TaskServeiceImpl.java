@@ -138,4 +138,18 @@ public class TaskServeiceImpl implements TaskService {
         String hint = hintmapper.getHint(taskId);
         return hint;
     }
+
+    @Override
+    public String clue(int taskId) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        Integer id = (Integer) map.get("id");
+        int flag = taskUserMapper.find(id, taskId);
+
+        if(flag == 0) {
+            return "未完成任务";
+        }
+        String clue = taskMapper.getClue(taskId);
+
+        return clue;
+    }
 }

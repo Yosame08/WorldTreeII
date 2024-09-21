@@ -22,4 +22,7 @@ public interface TaskUserMapper {
 
     @Select("select count(*) from task_user where task_id = #{id}")
     int getTaskUserNum(int id);
+
+    @Select("select count(*) from task_user where task_id = #{taskId} and status = 1 and user_id = #{id}")
+    int find(Integer id, int taskId);
 }

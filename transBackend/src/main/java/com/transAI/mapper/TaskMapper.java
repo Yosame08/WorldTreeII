@@ -17,4 +17,7 @@ public interface TaskMapper {
 
     @Select("select * from task where task_id = #{taskId}")
     Task getTask(int taskId);
+
+    @Select("select clue from task where task_id = #{taskId}")
+    String getClue(int taskId);
 }
