@@ -26,7 +26,7 @@ const submitAnswer = async () => {
   lastRequestTime = currentTime;
 
   try {
-    const response = await universalPost('/api/cake/submit', { answer: answer.value });
+    const response = await universalPost('/api/subtask/cake/submit', { answer: answer.value });
     if (response.data.code === 0 && lastRequestTime === currentTime) {
       store.commit("clearErrorMsg");
       gridStatus.value = response.data.data.split('').map(char => char === '1');

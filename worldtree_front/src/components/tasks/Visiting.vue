@@ -1,7 +1,7 @@
 <template>
   <div class="visiting-container">
     <!-- 提示窗口 -->
-    <div v-if="nowSetting" class="position-hint">
+    <div v-if="nowSetting !== null" class="position-hint">
       点击选择图片的位置
     </div>
     <!-- This is the Map -->
@@ -15,7 +15,7 @@
         <button @click="zoomOut">-</button>
       </div>
 
-      <!-- Markers -->
+      <!-- markers.value -->
       <div v-for="(marker, index) in markers" :key="index" :style="getMarkerStyle(marker.position)" class="marker">
         <font-awesome-icon :icon="['fas', 'location-dot']" :style="{ color: getMarkerColor(index), fontSize: 32 }" @click="handleMarkerClick(index)" />
         <div v-if="clickedMarker === index" class="marker-info">
@@ -61,8 +61,8 @@
 import { ref, onMounted, computed } from 'vue';
 import { ElForm, ElFormItem, ElSwitch, ElInputNumber, ElButton } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import {universalGet} from "@/services/universalService";
-import {updateVisiting} from "@/services/taskService";
+import {universalGet, universalPost} from "@/services/universalService";
+import store from "@/services/storeService";
 
 const images = ref([
   { src: require('@/assets/visiting/level1.jpg') },
@@ -82,7 +82,7 @@ const newPosition = ref([0, 0]);
 const markers = ref([]);
 
 const showImage = (index) => {
-  if (nowSetting.value) return;
+  if (nowSetting.value !== null) return;
   selectedImage.value = index;
   clickedMarker.value = null;
 };
@@ -110,12 +110,12 @@ const startSettingPosition = (index) => {
 };
 
 const handleMarkerClick = (index) => {
-  if (selectedImage.value || nowSetting.value) return;
+  if (selectedImage.value || nowSetting.value !== null) return;
   clickedMarker.value = index;
 };
 
 const handleMapClick = (event) => {
-  if (nowSetting.value) {
+  if (nowSetting.value !== null) {
     // 检查点击的目标是否是加减按钮
     if (event.target.closest('.zoom-controls')) {
       return;
@@ -129,7 +129,7 @@ const handleMapClick = (event) => {
 };
 
 const handleMarkerSet = (position) => {
-  if (nowSetting.value) {
+  if (nowSetting.value !== null) {
     markers.value[nowSetting.value].position = position;
     newPosition.value = position;
     showMarkerDialog.value = true;
@@ -137,7 +137,7 @@ const handleMarkerSet = (position) => {
 };
 
 const cancelMarker = () => {
-  if (nowSetting.value) {
+  if (nowSetting.value !== null) {
     markers.value[nowSetting.value].position = oldPosition.value;
     showMarkerDialog.value = false;
     nowSetting.value = null;
@@ -145,7 +145,7 @@ const cancelMarker = () => {
 };
 
 const confirmMarker = () => {
-  if (nowSetting.value) {
+  if (nowSetting.value !== null) {
     markers.value[nowSetting.value].indoor = markerForm.value.indoor;
     markers.value[nowSetting.value].floor = markerForm.value.floor;
     showMarkerDialog.value = false;
@@ -192,21 +192,29 @@ const getMarkerColor = (index) => {
 };
 
 const updateAnswers = async () => {
-  const response = await updateVisiting({
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      position: markers.value.map(marker => marker.position),
-      indoor: markers.value.map(marker => marker.indoor),
-      floor: markers.value.map(marker => marker.indoor ? marker.floor : 0),
-    }),
-  });
-  const result = response.data;
-  if (result.code === 0) {
-    alert('操作成功');
-    window.location.reload();
-  } else {
-    alert('操作失败');
+  if (nowSetting.value !== null) return;
+  try{
+    console.log(markers);
+    console.log({
+      position: [markers.value[0].position, markers.value[1].position, markers.value[2].position, markers.value[3].position, markers.value[4].position],
+      indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor, markers.value[3].indoor, markers.value[4].indoor],
+      floor: [markers.value[0].floor, markers.value[1].floor, markers.value[2].floor, markers.value[3].floor, markers.value[4].floor],
+    });
+    const response = await universalPost(`/api/subtask/visiting/update`, {
+      position: [markers.value[0].position, markers.value[1].position, markers.value[2].position, markers.value[3].position, markers.value[4].position],
+      indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor, markers.value[3].indoor, markers.value[4].indoor],
+      floor: [markers.value[0].floor, markers.value[1].floor, markers.value[2].floor, markers.value[3].floor, markers.value[4].floor],
+    });
+    const result = response.data;
+    if (result.code === 0) {
+      alert('操作成功');
+      window.location.reload();
+    } else {
+      alert('操作失败');
+    }
+  }
+  catch (e) {
+    store.commit('setErrorMsg', e);
   }
 };
 
@@ -214,7 +222,6 @@ const fetchCurrentAnswers = async () => {
   let result = await universalGet('/api/subtask/visiting/get_info');
   result = result.data;
   if (result.code === 0) {
-    console.log(result.data);
     markers.value = result.data.position.map((pos, index) => ({
       position: pos,
       indoor: result.data.indoor[index],
@@ -299,7 +306,7 @@ const onWheel = (event) => {
 };
 
 const startDrag = (event) => {
-  if (dragging.value || nowSetting.value) return;
+  if (dragging.value || nowSetting.value !== null) return;
   event.preventDefault();
   const rect = mapImage.value.getBoundingClientRect();
   if (
@@ -315,7 +322,7 @@ const startDrag = (event) => {
 };
 
 const onDrag = (event) => {
-  if (nowSetting.value) return;
+  if (nowSetting.value !== null) return;
   if (dragging.value) {
     translateX.value = event.clientX - startX.value;
     translateY.value = event.clientY - startY.value;

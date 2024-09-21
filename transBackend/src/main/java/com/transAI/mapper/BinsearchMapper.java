@@ -21,7 +21,7 @@ public interface BinsearchMapper {
     @Update("update user_binary_search set time = #{now} where user_id = #{id}")
     public void updateDateTime(Integer id, LocalDateTime now);
 
-    @Insert("insert into user_binary_search (user_id, time) values (#{id}, #{2020-01-01 00:00:00})")
+    @Insert("insert into user_binary_search (user_id, time) values (#{id}, '2020-01-01 00:00:00')")
     void initUserInfo(int id);
 }
 

@@ -15,6 +15,9 @@ public interface BigpotMapper {
     @Select("select level from bigpot where id = #{id}")
     int getLevel(int id);
 
+    @Update("update bigpot set level = #{level} where id = #{id}")
+    void updateLevel(int id, int level);
+
     @Insert("insert into bigpottask(level, game_token, len, x, y, z, w) values(#{level}, #{gameToken}, #{len}, #{x}, #{y}, #{z}, #{w})")
     void insert(Bigpot bigpot);
 

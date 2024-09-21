@@ -17,4 +17,5 @@ public interface VisitingMapper {
 
     @Insert("INSERT INTO user_visiting (user_id, visiting_id, x, y, indoor, floor) VALUES (#{userId}, #{visitingId}, #{x}, #{y}, #{indoor}, #{floor})")
     void insertVisiting(VisitingUnit visitingUnit);
+
 }

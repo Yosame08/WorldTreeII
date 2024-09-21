@@ -15,6 +15,7 @@ public class VisitingController {
 
     @PostMapping("/update")
     public Result update(@RequestBody Visiting visiting) {
+        System.out.println("visiting:" + visiting);
         visitingService.update(visiting);
         return Result.success();
     }

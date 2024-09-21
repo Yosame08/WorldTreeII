@@ -36,6 +36,9 @@
           <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
           </div>
+          <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
+            <el-button @click="submitId1">启动中继器</el-button>
+          </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
             <el-button @click="submitAnswer">提交答案</el-button>
@@ -83,6 +86,24 @@ const mapStyle = computed(() => ({
   cursor: dragging.value ? 'grabbing' : 'grab',
   userSelect: 'none',
 }));
+
+const submitId1 = async () => {
+  try {
+    const response = await universalPost('/api/task/submit', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
+    if (response.data.code === 0) {
+      let pass = response.data.data;
+      if (pass === 0) {
+        await getAllTasks();
+        taskDetail.value = tasks[taskDetail.value.taskId];
+        store.commit("setSuccessMsg", "已成功建立连接");
+      } else {
+        store.commit("setErrorMsg", pass === 1 ? "中继器启动过早！" : "中继器启动过晚！");
+      }
+    }
+  } catch (error) {
+    console.error('Error submitting answer:', error);
+  }
+};
 
 const submitAnswer = async () => {
   try {

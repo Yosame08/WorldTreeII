@@ -15,12 +15,11 @@ import moment from "moment";
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
     // 判断是否存在token,如果存在将每个页面header添加token
     if (sessionStorage.getItem("token")) {
         config.headers.Authorization = sessionStorage.getItem("token");
-        // config.headers.common['Authorization'] = sessionStorage.getItem("token");
     }
+    console.log(config.data)
     return config
 }, function (error) {
     router.push('/login')
@@ -34,6 +33,7 @@ axios.interceptors.response.use(
             return Promise.reject(response.data.message);
         }
         else store.commit("clearErrorMsg");
+        // console.log(response);
         return response;
     },
     error => {
@@ -45,7 +45,7 @@ axios.interceptors.response.use(
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
-// axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://localhost:8080'
 
 moment.locale("zh-CN");
 app.use(moment).use(quillEditor).use(router).use(ElementPlus).use(store).mount('#app')
