@@ -2,6 +2,7 @@
 import { ElCard } from 'element-plus';
 import 'element-plus/dist/index.css';
 import { defineProps, computed } from "vue";
+import store from "@/services/storeService";
 
 const props = defineProps({
   discussions: {
@@ -43,7 +44,7 @@ const cardLayers = computed(() => {
             <div class="username-wrapper">
               <span class="username-line" :style="{ backgroundColor: stringToColor(discussion.user) }"></span>
               <div :style="{ color: stringToColor(discussion.user) }" class="username">
-                {{ discussion.user }}
+                {{ discussion.user === "我" ? store.state.userInfo.username : discussion.user }}
               </div>
             </div>
             <div class="card-footer">

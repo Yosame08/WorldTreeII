@@ -15,7 +15,7 @@ public class BinsearchController {
     private BinsearchService binsearchService;
 
     @GetMapping("/check")
-    public Result<Boolean> check() {
+    public Result<Integer> check() {
         return Result.success(binsearchService.check());
     }
 

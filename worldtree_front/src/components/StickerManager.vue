@@ -164,7 +164,7 @@ const exitShovelMode = () => {
 
   <!-- Backpack icon in bottom-right corner -->
   <button class="backpack-btn" @click="showBag = true">
-    <font-awesome-icon :icon="['fas', 'suitcase']" />
+    <font-awesome-icon :icon="['fas', 'suitcase']" :style="{ fontSize: '2em', color: '#1e3050' }" />
   </button>
 
   <!-- Backpack drawer -->
@@ -211,7 +211,7 @@ const exitShovelMode = () => {
 
 .backpack-btn {
   position: fixed;
-  bottom: 20px;
+  top: 50px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -227,7 +227,7 @@ const exitShovelMode = () => {
 
 .shovel-btn {
   position: fixed;
-  bottom: 90px;
+  top: 120px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -265,8 +265,8 @@ const exitShovelMode = () => {
 
 .backpack-drawer {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  top: 43px;
+  right: 100px;
   width: 250px;
   height: 50%;
   background-color: #fff;
