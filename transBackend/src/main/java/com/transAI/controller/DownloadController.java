@@ -17,12 +17,14 @@ public class DownloadController {
 
     @GetMapping("/hidden_relic")
     public ResponseEntity<Resource> downloadFile() {
+
+        System.out.println("DownloadController.downloadFile");
         // 替换为你的文件路径
         File file = new File("~/Desktop/HL.zip.2b");
         if (!file.exists()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-
+        System.out.println(file.getName());
         Resource resource = new FileSystemResource(file);
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());

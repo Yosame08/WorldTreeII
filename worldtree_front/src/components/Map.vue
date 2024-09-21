@@ -175,7 +175,9 @@ const getHint = async () => {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {
-      imageBase64.value = msg.data.data;
+      let temp = "data:image/png;base64," + msg.data.data;
+      console.log(temp);
+      imageBase64.value = temp;
       isHintVisible.value = true;
     } else {
       store.commit("setErrorMsg", msg.data.message);
