@@ -19,7 +19,6 @@ axios.interceptors.request.use(function (config) {
     if (sessionStorage.getItem("token")) {
         config.headers.Authorization = sessionStorage.getItem("token");
     }
-    console.log(config.data)
     return config
 }, function (error) {
     router.push('/login')
@@ -45,7 +44,7 @@ axios.interceptors.response.use(
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
-axios.defaults.baseURL = 'http://localhost:8080'
+// axios.defaults.baseURL = 'http://localhost:8080'
 
 moment.locale("zh-CN");
 app.use(moment).use(quillEditor).use(router).use(ElementPlus).use(store).mount('#app')

@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
 
 Mock.setup({
-    timeout: '900-1500'
+    timeout: '0'
 })
 
 Mock.mock('/api/user/captcha', 'get', () => {
@@ -107,7 +107,6 @@ Mock.mock('/api/func/rank', 'get', () => {
 
 Mock.mock('/api/func/get_user_trend', 'post', (options) => {
     let data = JSON.parse(options.body).userId;
-    console.log(data);
     if (data === 1) return {
         "code": 0,
         "message": "操作成功",
@@ -159,9 +158,10 @@ Mock.mock('/api/task/get_task_list', 'get', () => {
             {
                 "taskId": 1,
                 "taskTitle": "true music",
-                "taskPosX": 0.2,
-                "taskPosY": 0.4,
+                "taskPosX": 0.74,
+                "taskPosY": 0.38,
                 "taskDescription": "[Yosame]这题我不会`但其实他还不知道，这题他会`[RPU]这题显然是个音乐题，易得1=C",
+                "taskDescriptionFull": "[Yosame]这题我不会`但其实他还不知道，这题他会`[RPU]这题显然是个音乐题，易得1=C`[YY]你真能做完啊",
                 "uri": "http://localhost:8080/tasks/bigpot",
                 "submission": true,
                 "taskPoint": 50,
@@ -356,9 +356,16 @@ Mock.mock('/api/func/get_stickers', 'get', () => {
 });
 
 Mock.mock('/api/func/modify_stickers', 'post', (options) => {
-    console.log("Modify received: " + JSON.parse(options.body));
     return {
         "code": 0,
         "message": "",
+    }
+});
+
+Mock.mock('/api/task/hint', 'post', (options) => {
+    return {
+        "code": 0,
+        "message": "操作成功",
+        "data": "data:image/png;base64,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"
     }
 });

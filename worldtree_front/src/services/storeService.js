@@ -16,11 +16,9 @@ const store = createStore({
     mutations: {
         load (state) {
             state.load++;
-            // console.log('load', state.load);
         },
         finish (state) {
             if (state.load) state.load--;
-            // console.log('finish', state.load);
         },
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;

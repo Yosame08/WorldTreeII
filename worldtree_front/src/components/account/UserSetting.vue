@@ -112,10 +112,8 @@ const saveSettings = async () => {
 
 // Fetch the QR code string and generate the QR code image
 const fetchQRCode = () => {
-  console.log("Fetching QR Code......")
   axios.get('/api/user/qrcode', { token: sessionStorage.getItem("token") }).then(
     (data) => {
-      console.log(data);
       generateQRCode(data.data.data.qrCodeString);
     }
   )
