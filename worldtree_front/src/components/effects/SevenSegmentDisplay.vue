@@ -76,7 +76,7 @@ watch(() => props.timerValue, (newValue) => {
 
 .segment {
   position: absolute;
-  background-color: #555; /* 调整颜色 */
+  background-color: #1c1c18; /* 调整颜色 */
   transition: background-color 0.1s;
 }
 

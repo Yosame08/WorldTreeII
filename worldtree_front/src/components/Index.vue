@@ -1,5 +1,5 @@
 <script setup>
-import { markRaw, nextTick, ref } from 'vue';
+import {markRaw, nextTick, onMounted, ref} from 'vue';
 import Home from './Home.vue';
 import MapComponent from './Map.vue';
 import Navigation from "@/components/effects/Navigation.vue";
@@ -32,11 +32,14 @@ const showWindowAndReset = (component, title) => {
   });
 };
 
+onMounted(() => {
+  showWindowAndReset(markRaw(Mail), '茶楼');
+});
 
 </script>
 
 <template>
-  <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" :title="windowTitle" class="at-top">
+  <InScreenWindow ref="window" v-if="showWindow" @close="showWindow = false" :title="windowTitle" class="at-top" >
     <component :is="windowContent" />
   </InScreenWindow>
   <div class='button-container'>
@@ -80,6 +83,8 @@ const showWindowAndReset = (component, title) => {
   background-color: rgba(5, 49, 66, 0.28);
   border-radius: 20px;
   padding: 20px 0 20px 20px;
+  user-select: none; /* 禁止用户选择图片 */
+  -webkit-user-drag: none; /* 禁用图片拖动 */
 }
 
 .map {

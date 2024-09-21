@@ -37,7 +37,7 @@ public class CakeServiceImpl implements CakeService {
                 if (answer.length() <= 11) return '1';
                 return '0';
             case 2: // 如果字符串以大写字母开头，返回 '1'
-                if (Character.isUpperCase(answer.charAt(0))) return '1';
+                if (!answer.isEmpty() && Character.isUpperCase(answer.charAt(0))) return '1';
                 return '0';
             case 3: // 如果字符串不包含 'z', 'x', 'c', 'v', 'b', 'n', 'm'，返回 '1'
                 if (!answer.matches(".*[zxcvbnm].*")) return '1';

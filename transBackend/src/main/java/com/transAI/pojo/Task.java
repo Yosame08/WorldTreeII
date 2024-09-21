@@ -21,4 +21,5 @@ public class Task {
     private Integer hintPrice;
     private Integer taskStatus;
     private Integer hintStatus;
+    private String remark;
 }

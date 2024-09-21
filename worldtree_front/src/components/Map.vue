@@ -5,7 +5,12 @@
 
     <!-- Filter slider -->
     <div class="filter-slider">
-      <el-switch v-model="showUncompletedOnly" active-text="只显示未完成"></el-switch>
+      <div>
+        <el-button type="primary" @click="refreshTasks" style="width: 100%; margin-bottom: 5px;">刷新任务情况</el-button>
+      </div>
+      <div>
+        <el-switch v-model="showUncompletedOnly" active-text="只显示未完成"></el-switch>
+      </div>
     </div>
 
     <!-- Zoom controls -->
@@ -31,6 +36,8 @@
           <task-info v-if="discussions.length" :discussions="discussions" />
         </div>
         <div class="task-sidebar-footer">
+          <!-- 0. 如果有remark，展示remark -->
+          <p v-if="taskDetail.remark">{{ taskDetail.remark }}</p>
           <!-- 1. 展示积分和奖励 -->
           <p class="inline-elements">积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }}pts 奖励: {{ taskDetail.taskCoin }}货币
             <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
@@ -49,7 +56,8 @@
             <el-button @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
           <!-- 3. 展示提示按钮 -->
-          <el-button v-if="taskDetail.hintStatus === 0" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-else-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus === 1" @click="getHint" class="hint-button">已解决该事件，可免费获取提示</el-button>
           <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
         </div>
         <el-button class="close-button" @click="closeSidebar">×</el-button>
@@ -112,6 +120,15 @@ const getAllTasks = async () => {
     }
   } catch (error) {
     store.commit("setErrorMsg", error);
+  }
+};
+
+const refreshTasks = async () => {
+  await getAllTasks();
+  if (taskDetail.value != null) {
+    console.log(taskDetail.value.taskId)
+    await selectTask(taskDetail.value);
+    closeSidebar();
   }
 };
 
@@ -196,8 +213,10 @@ const getHint = async () => {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {
+      closeSidebar();
       imageBase64.value = "data:image/png;base64," + msg.data.data;
       isHintVisible.value = true;
+      await getAllTasks();
     } else {
       store.commit("setErrorMsg", msg.data.message);
     }

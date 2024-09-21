@@ -109,14 +109,13 @@ export default {
           operator: this.operator,
         });
         if (response.data.code === 0) {
+          this.numbers.push(response.data.data.result);
+          this.pot = [];
+          this.operator = null;
+          document.querySelectorAll('.operator').forEach(button => button.classList.remove('selected'));
           if (response.data.data.pass === 1) {
             this.passMessage = this.level === 4 ? '煮完4锅大锅饭，终于可以下班了！' : '大锅饭一端上来，同学们都馋哭了！';
             this.pass = true;
-          } else {
-            this.numbers.push(response.data.data.result);
-            this.pot = [];
-            this.operator = null;
-            document.querySelectorAll('.operator').forEach(button => button.classList.remove('selected'));
           }
         } else {
           console.error(response.data.message);
@@ -127,10 +126,7 @@ export default {
     },
     async nextLevel() {
       this.pass = false;
-      this.pot = [];
-      this.operator = null;
-      document.querySelectorAll('.operator').forEach(button => button.classList.remove('selected'));
-      await this.initGame();
+      await this.resetGame();
     },
     async resetGame() {
       // 重置游戏状态并重新初始化游戏
@@ -264,6 +260,8 @@ export default {
   width: 50px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   scale: 100%;
+  user-select: none; /* 禁用文本选择 */
+  -webkit-user-drag: none; /* 禁用图片拖动 */
 }
 
 button {
