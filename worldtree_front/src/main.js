@@ -31,8 +31,6 @@ axios.interceptors.response.use(
             store.commit("setErrorMsg", response.data.message);
             return Promise.reject(response.data.message);
         }
-        else store.commit("clearErrorMsg");
-        // console.log(response);
         return response;
     },
     error => {

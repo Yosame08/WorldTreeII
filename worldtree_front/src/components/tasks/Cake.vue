@@ -28,7 +28,6 @@ const submitAnswer = async () => {
   try {
     const response = await universalPost('/api/subtask/cake/submit', { answer: answer.value });
     if (response.data.code === 0 && lastRequestTime === currentTime) {
-      store.commit("clearErrorMsg");
       gridStatus.value = response.data.data.split('').map(char => char === '1');
       if (gridStatus.value.every(status => status)) {
         isModalVisible.value = true;

@@ -1,5 +1,6 @@
 package com.transAI.controller;
 
+import com.transAI.pojo.BinsearchStatus;
 import com.transAI.pojo.Result;
 import com.transAI.service.BinsearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class BinsearchController {
     private BinsearchService binsearchService;
 
     @GetMapping("/check")
-    public Result<Integer> check() {
+    public Result<BinsearchStatus> check() {
         return Result.success(binsearchService.check());
     }
 

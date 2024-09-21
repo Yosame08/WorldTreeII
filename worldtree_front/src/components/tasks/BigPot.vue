@@ -31,7 +31,7 @@
     <div v-if="pass" class="modal">
       <div class="modal-content">
         <h2>{{ passMessage }}</h2>
-        <p>{{ level !== 4 ? "继续努力，完成第" + (level+1) + "锅！" : "获得新线索和贴纸，请及时查看" }}</p>
+        <p>{{ level !== 4 ? "继续努力，完成第" + (level+1) + "锅！" : "获得笔记残页和贴纸，请及时查看" }}</p>
         <button @click="nextLevel">下一锅</button>
       </div>
     </div>

@@ -1,6 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.BinsearchMapper;
+import com.transAI.pojo.BinsearchStatus;
 import com.transAI.service.BinsearchService;
 import com.transAI.utils.ThreadLocalUtil;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
@@ -22,7 +23,7 @@ public class BinsearchServiceImpl implements BinsearchService {
 
 
     @Override
-    public int check() {
+    public BinsearchStatus check() {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
         var dateTime = binsearchMapper.getDateTime(id);
@@ -33,7 +34,7 @@ public class BinsearchServiceImpl implements BinsearchService {
                 size++;
             }
         }
-        return size;
+        return new BinsearchStatus(now.getHour()>=0 && now.getHour() < 21 && size < 2, size);
     }
 
     @Override
@@ -60,8 +61,7 @@ public class BinsearchServiceImpl implements BinsearchService {
         }
         // 如果有存储且日期相同，返回true
         System.out.println("my:now: " + now);
-//        Integer hashed = ((id + 5) * (id + 2) - 2) * (id + 1) % 160 + 30;
-        Integer hashed = 65;
+        int hashed = (((id + 5) * (id + 2) - 2) * (id + 1)) % 160 + 15;
         LocalDateTime answer = LocalDateTime.of(2021, 8, 1, 18+hashed/60, hashed%60, 0);
         // 如果小时和分钟相同，返回0
         if (now.getHour() == answer.getHour() && now.getMinute() == answer.getMinute()) {

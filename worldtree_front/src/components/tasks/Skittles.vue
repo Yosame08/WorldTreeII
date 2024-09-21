@@ -111,7 +111,6 @@ const handleButtonClick = async (num) => {
 
     const response = await universalPost('/api/subtask/skittles/init', { start: num });
     if (response.data.code === 0) {
-      store.commit('clearErrorMsg');
       playSequence(response.data.data);
     }
     else {

@@ -73,7 +73,6 @@ export default {
           verify: this.form.captcha
         });
         if (response.data.code === 0) {
-          store.commit("clearErrorMsg");
           this.$router.push('/login'); // Navigate to login page
         }
       }
