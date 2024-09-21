@@ -9,12 +9,6 @@ spring:
       host: localhost
       port: 6379
 
-# application.yml
-server:
-  port: 8080
-  address: 0.0.0.0
-
-
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
