@@ -11,4 +11,6 @@ public interface TaskService {
     boolean submitTask(int taskId, String flag);
 
     String hint(int taskId);
+
+    String clue(int taskId);
 }

@@ -35,4 +35,10 @@ public class TaskController {
         int taskId = (int) map.get("taskId");
         return Result.success(taskService.hint(taskId));
     }
+
+    @PostMapping("clue")
+    public Result<String> clue(@RequestBody Map<String, Object> map) {
+        int taskId = (int) map.get("taskId");
+        return Result.success(taskService.clue(taskId));
+    }
 }
