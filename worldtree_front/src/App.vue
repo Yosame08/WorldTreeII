@@ -10,7 +10,7 @@ import store from "@/services/storeService";
 import {onMounted} from "vue";
 
 onMounted(() => {
-  if (JSON.stringify(store.state.userInfo) === '{}') {
+  if (store.state.isLoggedIn && JSON.stringify(store.state.userInfo) === '{}') {
     store.dispatch('fetchUserInfo');
   }
 });
