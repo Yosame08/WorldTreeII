@@ -1,5 +1,16 @@
 <template>
   <div class="page-background">
+    <div class="display-header">
+      <div class="fractions">
+        <span class="red">1</span>
+        <span class="green">1/2</span>
+        <span class="blue">1/4</span>
+      </div>
+      <div class="squares">
+        <div class="red-square"></div>
+        <div class="green-square"></div>
+      </div>
+    </div>
     <div class="skittles-container">
       <div class="display">
         <SevenSegmentDisplay :timerValue="timerValue" />
@@ -123,6 +134,7 @@ onUnmounted(() => {
   justify-content: center;
   position: relative;
   height: calc(100vh - 43px);
+  flex-direction: column; /* 添加这一行 */
 }
 
 .skittles-container {
@@ -134,6 +146,48 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   position: relative;
+}
+
+.display-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.fractions {
+  display: flex;
+  gap: 10px;
+}
+
+.fractions .red {
+  color: red;
+}
+
+.fractions .green {
+  color: green;
+}
+
+.fractions .blue {
+  color: blue;
+}
+
+.squares {
+  display: flex; /* 修改这一行 */
+  gap: 5px;
+  margin-left: 20px;
+}
+
+.red-square, .green-square {
+  width: 20px;
+  height: 20px;
+}
+
+.red-square {
+  background-color: red;
+}
+
+.green-square {
+  background-color: green;
 }
 
 .display {

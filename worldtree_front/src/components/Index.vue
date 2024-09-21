@@ -1,5 +1,4 @@
 <script setup>
-import StickerManager from './StickerManager.vue';
 import { markRaw, nextTick, ref } from 'vue';
 import Home from './Home.vue';
 import MapComponent from './Map.vue';

@@ -158,7 +158,7 @@ const bubbleStyle = (task) => {
   return {
     left: `${picX}px`,
     top: `${picY+43}px`,
-    transform: `translate(-50%, -100%) scale(40%)`,
+    transform: `translate(-50%, calc(-100% - 10px)) scale(33.33%)`,
     position: 'absolute',
   };
 };

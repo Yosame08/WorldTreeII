@@ -6,24 +6,14 @@ import {
   Close
 } from '@element-plus/icons-vue'
 
-const stickers = ref([{
-    "stkId": 1,
-    "show": true,
-    "x": 0.566,
-    "y": 0.788,
-  },
-  {
-    "stkId": 4,
-    "show": true,
-    "x": 0.6,
-    "y": 0.1,
-  },
+const stickers = ref([
   {
     "stkId": 8,
     "show": false,
     "x": 0.6,
     "y": 0.1,
-  },]);
+  },
+]);
 
 const isShovelMode = ref(false);
 const shovelPosition = ref([0, 0]);
@@ -163,7 +153,7 @@ const exitShovelMode = () => {
   <div v-for="sticker in stickers" :key="sticker.stkId" v-show="sticker.show"
        @mousedown="dragSticker(sticker, $event)" :data-sticker-id="sticker.stkId">
 
-    <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require('@/assets/hex.png')"
+    <img :style="{ left: `${sticker.x * 100}%`, top: `${sticker.y * 100}%` }" :src="require(`@/assets/stickers/${sticker.stkId}.png`)"
          class="sticker" />
   </div>
 
@@ -173,7 +163,9 @@ const exitShovelMode = () => {
   </button>
 
   <!-- Backpack icon in bottom-right corner -->
-  <button class="backpack-btn" @click="showBag = true">背包</button>
+  <button class="backpack-btn" @click="showBag = true">
+    <font-awesome-icon :icon="['fas', 'suitcase']" />
+  </button>
 
   <!-- Backpack drawer -->
   <div v-if="showBag" class="backpack-drawer">
@@ -184,7 +176,7 @@ const exitShovelMode = () => {
     </div>
     <div v-for="sticker in stickers" :key="sticker.stkId">
       <div v-if="!sticker.show" class="sticker-in-bag">
-        <img :src="require('@/assets/hex.png')" class="sticker-small" />
+        <img :src="require(`@/assets/stickers/${sticker.stkId}.png`)" class="sticker-small" />
         <el-button type="success" :icon="Check" @click="showStickerFromBag(sticker)" circle />
       </div>
     </div>
@@ -192,7 +184,7 @@ const exitShovelMode = () => {
 
   <!-- Shovel icon following the mouse -->
   <div v-if="isShovelMode" class="shovel-follow" :style="{ left: `${shovelPosition[0]}px`, top: `${shovelPosition[1]}px` }">
-    <img :src="require('@/assets/shovel.png')" alt="Shovel" style="width: 40px; transform: translate(-50%, -50%)"/>
+    <img :src="require('@/assets/shovel.png')" alt="Shovel" style="width: 40px; transform: translate(-50%, -50%);"/>
   </div>
 
   <!-- Tooltip for shovel mode -->
@@ -211,7 +203,7 @@ const exitShovelMode = () => {
 
 .sticker {
   position: absolute;
-  width: 50px;
+  width: 70px;
   height: 50px;
   cursor: pointer;
   user-select: none; /* 禁止用户选择图片 */

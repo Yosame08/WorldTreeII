@@ -44,14 +44,13 @@ const cardLayers = computed(() => {
             <div :style="{ color: stringToColor(discussion.user) }" class="username">
               {{ discussion.user }}
             </div>
+            <div class="card-footer">
+              {{ cardLayers[index] }}F
+            </div>
           </div>
+
         </template>
         <div>{{ discussion.content }}</div>
-        <template #footer>
-          <div class="card-footer">
-            {{ cardLayers[index] }}F
-          </div>
-        </template>
       </el-card>
       <div class="no-card" v-else>
         {{ discussion.content }}
@@ -116,8 +115,8 @@ const cardLayers = computed(() => {
 }
 
 .card-footer {
-  text-align: left;
-  margin-left: 5px;
+  text-align: right;
+  margin-left: 180px;
   font-size: 0.9em;
   color: #888;
 }
