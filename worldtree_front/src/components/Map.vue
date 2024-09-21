@@ -32,8 +32,9 @@
         </div>
         <div class="task-sidebar-footer">
           <!-- 1. 展示积分和奖励 -->
-          <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
-          <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
+          <p class="inline-elements">积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}
+            <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
+          </p>
           <!-- 2. 展示提交答案方式 -->
           <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
@@ -126,7 +127,7 @@ const submitAnswer = async () => {
       if (pass) {
         await getAllTasks();
         taskDetail.value = tasks[taskDetail.value.taskId];
-        store.commit("setSuccessMsg", "答案正确");
+        store.commit("setSuccessMsg", "答案正确，获得新线索和贴纸，请及时查看");
       } else {
         store.commit("setErrorMsg", "答案错误");
       }
@@ -175,9 +176,8 @@ const getHint = async () => {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {
-      let temp = "data:image/png;base64," + msg.data.data;
-      console.log(temp);
-      imageBase64.value = temp;
+      imageBase64.value = "" + msg.data.data;
+      console.log(imageBase64.value);
       isHintVisible.value = true;
     } else {
       store.commit("setErrorMsg", msg.data.message);
@@ -193,7 +193,8 @@ const getClue = async () => {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {
-      imageBase64.value = msg.data.data;
+      imageBase64.value = "data:image/jpg;base64," + msg.data.data;
+      console.log(imageBase64.value);
       isHintVisible.value = true;
     } else {
       store.commit("setErrorMsg", msg.data.message);
@@ -216,7 +217,7 @@ const bubbleStyle = (task) => {
   return {
     left: `${picX}px`,
     top: `${picY+43}px`,
-    transform: `translate(-50%, calc(-100% - 10px)) scale(33.33%)`,
+    transform: `translate(-50%, calc(-100% + 30px)) scale(25%)`,
     position: 'absolute',
   };
 };
@@ -484,6 +485,13 @@ onMounted(getAllTasks);
 .hint-button{
   margin-top: 10px;
   width: 100%;
+}
+
+.inline-elements {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 居中对齐 */
+  gap: 10px; /* 设置间隔距离，可以根据需要调整 */
 }
 
 </style>

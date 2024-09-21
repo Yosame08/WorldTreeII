@@ -61,6 +61,8 @@ const stopTimer = () => {
   }
 };
 
+let stopTimeout;
+
 const playSequence = (sequence) => {
   stopTimer();
   isPlaying.value = true;
@@ -78,7 +80,7 @@ const playSequence = (sequence) => {
     audioTimeouts.push(timeout);
   });
 
-  setTimeout(() => {
+  stopTimeout = setTimeout(() => {
     stopPlayback();
   }, sequence.length * playInterval);
 };
@@ -88,6 +90,7 @@ const stopPlayback = () => {
   stopTimer();
   audioTimeouts.forEach(clearTimeout);
   audioTimeouts = [];
+  clearTimeout(stopTimeout);
   // 移除 pressed 类
   document.querySelectorAll('.key').forEach(button => button.classList.remove('pressed'));
 };

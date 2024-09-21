@@ -26,14 +26,18 @@ public class TaskController {
     @PostMapping("/submit")
     public Result<Boolean> submitTask(@RequestBody Map<String, Object> map) {
         int taskId = (int) map.get("taskId");
-        String flag = (String) map.get("flag");
+        String flag = (String) map.get("answer");
         return Result.success(taskService.submitTask(taskId, flag));
     }
 
     @PostMapping("hint")
     public Result<String> hint(@RequestBody Map<String, Object> map) {
         int taskId = (int) map.get("taskId");
-        return Result.success(taskService.hint(taskId));
+        String tmp = taskService.hint(taskId);
+        if(tmp.equals("金币不足")) {
+            return Result.error(tmp);
+        }
+        return Result.success(tmp);
     }
 
     @PostMapping("clue")

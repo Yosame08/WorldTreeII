@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       isLoggedIn: computed(() => store.state.isLoggedIn),
-      username: computed(() => store.state.userInfo.username),
+      username: computed(() => store.state.userInfo?.username),
       customColors: customColors,
       errorMessage: computed(() => store.state.showMsg),
       isError: computed(() => store.state.isError),

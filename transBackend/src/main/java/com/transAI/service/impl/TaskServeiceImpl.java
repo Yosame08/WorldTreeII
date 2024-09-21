@@ -30,7 +30,7 @@ public class TaskServeiceImpl implements TaskService {
     UserHintMapper userHintMapper;
 
     @Autowired
-    HintMapper hintmapper;
+    HintClueMapper hintClueMapper;
 
     @Override
     public List<Task> getTaskList() {
@@ -135,7 +135,7 @@ public class TaskServeiceImpl implements TaskService {
         if(flag == 0) {
             userHintMapper.insertUserHint(id, taskId);
         }
-        String hint = hintmapper.getHint(taskId);
+        String hint = hintClueMapper.getHint(taskId);
         return hint;
     }
 
@@ -148,7 +148,7 @@ public class TaskServeiceImpl implements TaskService {
         if(flag == 0) {
             return "未完成任务";
         }
-        String clue = taskMapper.getClue(taskId);
+        String clue = hintClueMapper.getClue(taskId);
 
         return clue;
     }

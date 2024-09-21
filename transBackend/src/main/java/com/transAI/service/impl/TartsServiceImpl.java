@@ -1,10 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.*;
-import com.transAI.pojo.Task;
-import com.transAI.pojo.TaskUser;
-import com.transAI.pojo.User;
-import com.transAI.pojo.UserTotalPoint;
+import com.transAI.pojo.*;
 import com.transAI.service.TartsService;
 import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +33,9 @@ public class TartsServiceImpl implements TartsService {
 
     @Autowired
     private UserHintMapper userHintMapper;
+
+    @Autowired
+    private UserStickerMapper userStickerMapper;
 
     @Override
     public void add() {
@@ -84,6 +84,15 @@ public class TartsServiceImpl implements TartsService {
         userTotalPointMapper.addPoint(id,pre_point + task.getTaskPoint());
 
         userMapper.updatePoint(id, pre_point + task.getTaskPoint());
+
+
+        Sticker sticker = new Sticker();
+        sticker.setStkId(taskId);
+        sticker.setShow(false);
+        sticker.setX(0.5);
+        sticker.setY(0.5);
+        // userStickerMapper.modifyStickers(id, sticker);
+        userStickerMapper.addSticker(id, sticker);
 
         int flag = userHintMapper.find(id, taskId);
 
