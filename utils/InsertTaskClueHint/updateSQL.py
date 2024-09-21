@@ -63,14 +63,14 @@ def update_task(data, cursor, task_table):
         UPDATE {task_table}
         SET task_title = %s, task_pos_x = %s, task_pos_y = %s, uri = %s, task_point = %s, task_coin = %s, hint_price = %s, submission = %s, task_description = %s, task_description_full = %s
         WHERE task_id = %s
-    """, data[1:] + (data[0],))
+    """, data[1:] + [data[0]])
 
 def update_hint_clue(data, cursor, hint_clue_table):
     cursor.execute(f"""
         UPDATE {hint_clue_table}
         SET hint = %s, clue = %s
         WHERE task_id = %s
-    """, data[1:] + (data[0],))
+    """, data[1:] + [data[0]])
 
 def main():
     host = 'localhost'
@@ -102,8 +102,8 @@ def main():
             hint = read_file(os.path.join(base_dir, 'Hint', filename))
             clue = read_file(os.path.join(base_dir, 'Clue', filename))
 
-            task_data = (task_id, task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, task_description, task_description_full)
-            hint_clue_data = (task_id, hint, clue)
+            task_data = [int(task_id), task_title, float(task_pos_x), float(task_pos_y), uri, int(task_point), int(task_coin), int(hint_price), submission, task_description, task_description_full]
+            hint_clue_data = (int(task_id), hint, clue)
 
             existing_task = get_task_data(task_id, cursor, task_table)
             if existing_task:
@@ -128,6 +128,7 @@ def main():
                 print(f"Inserted new hint/clue for task {task_id}")
 
     conn.commit()
+    print("Committed changes above (can be no changes)")
     cursor.close()
     conn.close()
 
