@@ -57,7 +57,8 @@ const closeModal = () => {
     <div v-if="isModalVisible" class="modal">
       <div class="modal-content">
         <span class="close" @click="closeModal">&times;</span>
-        <p>恭喜点亮所有蜡烛！</p>
+        <h2>恭喜点亮所有蜡烛！</h2>
+        <p>获得笔记残页和贴纸，请及时查看</p>
       </div>
     </div>
   </div>
