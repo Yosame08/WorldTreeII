@@ -11,4 +11,10 @@ public interface TaskMapper {
 
     @Select("select * from task")
     List<Task> getTaskList();
+
+    @Select("select hint_price from task where task_id = #{taskId}")
+    int getHintPrice(int taskId);
+
+    @Select("select * from task where task_id = #{taskId}")
+    Task getTask(int taskId);
 }

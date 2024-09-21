@@ -1,16 +1,29 @@
 package com.transAI.service.impl;
 
 import com.transAI.service.CakeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CakeServiceImpl implements CakeService {
 
+
+    @Autowired
+    private TartsServiceImpl tartsServiceImpl;
+
     @Override
     public String submit(String answer) {
         StringBuilder result = new StringBuilder("000000000");
+        boolean pass = true;
         for (int i = 0; i < 9; i++) {
-            result.setCharAt(i, check(i, answer));
+            char c = check(i, answer);
+            result.setCharAt(i, c);
+            if (c == '0') {
+                pass = false;
+            }
+        }
+        if(pass) {
+            tartsServiceImpl.passTask(5);
         }
         return result.toString();
     }
