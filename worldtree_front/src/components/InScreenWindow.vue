@@ -23,9 +23,9 @@ export default {
     return {
       style: {
         width: '500px',
-        height: '700px',
+        height: '500px',
         top: '100px',
-        left: '100px',
+        left: '300px',
       },
       isDragging: false,
       isResizing: false,

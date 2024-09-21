@@ -1,8 +1,10 @@
 package com.transAI.service;
 
+import com.transAI.pojo.BinsearchStatus;
+
 public interface BinsearchService {
 
-    public int check();
+    public BinsearchStatus check();
 
     Integer query();
 }

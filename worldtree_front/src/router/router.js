@@ -18,19 +18,19 @@ import store from '@/services/storeService';
 import Hidden_relic from "@/components/tasks/hidden_relic.vue";
 
 const routes = [
-    { path: '/', component: Index },
-    { path: '/login', component: Login },
-    { path: '/signup', component: Signup },
+    { path: '/', component: Index, meta: { title: "反转！蒸旦宇宙" } },
+    { path: '/beginning', component: Beginning, meta: { title: "反转！蒸旦宇宙" } },
+    { path: '/login', component: Login, meta: { title: "登录 - 反转！蒸旦宇宙" } },
+    { path: '/signup', component: Signup, meta: { title: "注册 - 反转！蒸旦宇宙" } },
     // { path: '/usersetting', component: UserSetting },
-    { path: '/beginning', component: Beginning },
 
-    { path: '/tasks/bigpot', component: BigPot },
-    { path: '/tasks/visiting', component: Visiting },
-    { path: '/tasks/cake', component: Cake },
-    { path: '/tasks/skittles', component: Skittles },
-    { path: '/tasks/waffle', component: Waffle },
+    { path: '/tasks/bigpot', component: BigPot, meta: { title: "大锅饭 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/visiting', component: Visiting, meta: { title: "探店 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/cake', component: Cake, meta: { title: "生日蛋糕 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/skittles', component: Skittles, meta: { title: "掰与狼与孤独摇滚 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/waffle', component: Waffle, meta: { title: "华夫饼 - 反转！蒸旦宇宙" } },
 
-    { path: '/hidden_relic/000', component: Hidden_relic }
+    { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
 ]
 
 const router = createRouter({
@@ -39,6 +39,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    if (to.meta.title){
+        document.title = to.meta.title;
+    }
     if (to.path === '/' && !store.state.isLoggedIn) {
         next('/beginning');
     }

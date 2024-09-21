@@ -34,7 +34,7 @@ public class TaskController {
     public Result<String> hint(@RequestBody Map<String, Object> map) {
         int taskId = (int) map.get("taskId");
         String tmp = taskService.hint(taskId);
-        if(tmp.equals("金币不足")) {
+        if(tmp.equals("货币不足")) {
             return Result.error(tmp);
         }
         return Result.success(tmp);

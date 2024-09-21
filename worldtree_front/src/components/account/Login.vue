@@ -65,7 +65,6 @@ export default {
         });
         const code = response.data.code;
         if (code === 0) {
-          store.commit("clearErrorMsg");
           sessionStorage.setItem('token', response.data.data); // Store the token
           store.commit('setLoggedIn', true);
           this.$router.push('/'); // Navigate to home page

@@ -5,7 +5,12 @@
 
     <!-- Filter slider -->
     <div class="filter-slider">
-      <el-switch v-model="showUncompletedOnly" active-text="只显示未完成的题目"></el-switch>
+      <div>
+        <el-button type="primary" @click="refreshTasks" style="width: 100%; margin-bottom: 5px;">刷新任务情况</el-button>
+      </div>
+      <div>
+        <el-switch v-model="showUncompletedOnly" active-text="只显示未完成"></el-switch>
+      </div>
     </div>
 
     <!-- Zoom controls -->
@@ -31,28 +36,28 @@
           <task-info v-if="discussions.length" :discussions="discussions" />
         </div>
         <div class="task-sidebar-footer">
+          <!-- 0. 如果有remark，展示remark -->
+          <p v-if="taskDetail.remark">{{ taskDetail.remark }}</p>
           <!-- 1. 展示积分和奖励 -->
-          <p class="inline-elements">积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}
+          <p class="inline-elements">积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }}pts 奖励: {{ taskDetail.taskCoin }}货币
             <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
           </p>
           <!-- 2. 展示提交答案方式 -->
-          <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
+          <div v-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
-            <el-button @click="getClue" class="hint-button">查看线索</el-button>
+            <el-button v-if="taskDetail.taskId !== 2" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
-            <el-button v-if="taskDetail.taskStatus !== 1" @click="submitId1" style="width: 100%;">启动中继器</el-button>
-            <div v-else style="width: 100%;">
-              您已经完全解决了该事件！
-              <el-button @click="getClue" class="hint-button">查看线索</el-button>
-            </div>
+            <el-button v-if="task1OK" @click="submitId1" style="width: 100%;" type="primary">启动中继器({{task1Times}}/2)</el-button>
+            <el-button v-else style="width: 100%;" type="info">当前无法启动中继器({{task1Times}}/2)</el-button>
           </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
-            <el-button @click="submitAnswer">提交答案</el-button>
+            <el-button @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
           <!-- 3. 展示提示按钮 -->
-          <el-button v-if="taskDetail.hintStatus === 0" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-else-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus === 1" @click="getHint" class="hint-button">已解决该事件，可免费获取提示</el-button>
           <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
         </div>
         <el-button class="close-button" @click="closeSidebar">×</el-button>
@@ -71,7 +76,7 @@ import {ElButton, ElInput, ElSwitch} from 'element-plus';
 import {universalGet, universalPost} from "@/services/universalService";
 import store from "@/services/storeService";
 
-const tasks = ref([]);
+// map variables
 const scale = ref(1);
 const minScale = 1;
 const maxScale = 2;
@@ -81,14 +86,16 @@ const translateX = ref(0);
 const translateY = ref(0);
 const dragging = ref(false);
 const touchStartDistance = ref(0);
-
+const showUncompletedOnly = ref(false);
+// task variables
+const tasks = ref([]);
 const taskDetail = ref(null);
 const discussions = ref([]);
-
-const showUncompletedOnly = ref(false);
 const tooltip = ref({visible: false, task: null, x: 0, y: 0});
 const taskAnswer = ref('');
-
+const task1OK = ref(false);
+const task1Times = ref(0);
+// hint and clue
 const mapImage = ref(null);
 const isHintVisible = ref(false);
 const imageBase64 = ref('');
@@ -100,6 +107,36 @@ const mapStyle = computed(() => ({
   cursor: dragging.value ? 'grabbing' : 'grab',
   userSelect: 'none',
 }));
+
+const getAllTasks = async () => {
+  try {
+    const response = await universalGet('/api/task/get_task_list');
+    if (response.data.code === 0) {
+      tasks.value = response.data.data;
+      console.log(tasks.value);
+    }
+    else {
+      store.commit("setErrorMsg", response.data.message);
+    }
+  } catch (error) {
+    store.commit("setErrorMsg", error);
+  }
+};
+
+const refreshTasks = async () => {
+  await getAllTasks();
+  if (taskDetail.value != null) {
+    console.log(taskDetail.value.taskId)
+    await selectTask(taskDetail.value);
+    closeSidebar();
+  }
+};
+
+const refreshTask1 = async () => {
+  let result = await universalGet('/api/subtask/binsearch/check');
+  task1OK.value = result.data.data.canSubmit;
+  task1Times.value = result.data.data.chance;
+};
 
 const submitId1 = async () => {
   try {
@@ -113,6 +150,7 @@ const submitId1 = async () => {
       } else {
         store.commit("setErrorMsg", pass === 1 ? "中继器启动过早！" : (pass === 2 ? "中继器启动过晚！" : "能量已不足再次启动中继器！"));
       }
+      await refreshTask1();
     }
   } catch (error) {
     console.error('Error submitting answer:', error);
@@ -127,7 +165,7 @@ const submitAnswer = async () => {
       if (pass) {
         await getAllTasks();
         taskDetail.value = tasks[taskDetail.value.taskId];
-        store.commit("setSuccessMsg", "答案正确，获得新线索和贴纸，请及时查看");
+        store.commit("setSuccessMsg", "答案正确，获得笔记残页和贴纸，请及时查看");
       } else {
         store.commit("setErrorMsg", "答案错误");
       }
@@ -154,7 +192,7 @@ const parseTaskDescription = (description) => {
 
 const selectTask = async (task) => {
   try {
-    // let tmp = await getTaskInfo(task.task_id);
+    if (task.taskId === 1) await refreshTask1();
     let detail = task;
     parseTaskDescription(detail.taskStatus === 1 ? detail.taskDescriptionFull : detail.taskDescription);
     taskDetail.value = detail;
@@ -167,7 +205,6 @@ const selectTask = async (task) => {
 
 const closeSidebar = () => {
   taskDetail.value = null;
-  store.commit("clearErrorMsg");
 };
 
 const getHint = async () => {
@@ -176,9 +213,10 @@ const getHint = async () => {
       taskId: taskDetail.value.taskId,
     });
     if (msg.data.code === 0) {
-      imageBase64.value = "" + msg.data.data;
-      console.log(imageBase64.value);
+      closeSidebar();
+      imageBase64.value = "data:image/png;base64," + msg.data.data;
       isHintVisible.value = true;
+      await getAllTasks();
     } else {
       store.commit("setErrorMsg", msg.data.message);
     }
@@ -194,7 +232,6 @@ const getClue = async () => {
     });
     if (msg.data.code === 0) {
       imageBase64.value = "data:image/jpg;base64," + msg.data.data;
-      console.log(imageBase64.value);
       isHintVisible.value = true;
     } else {
       store.commit("setErrorMsg", msg.data.message);
@@ -364,21 +401,6 @@ const hideTooltip = () => {
 
 const taskStatusText = (status) => {
   return status === 0 ? '未完成' : '已完成';
-};
-
-const getAllTasks = async () => {
-  try {
-    const response = await universalGet('/api/task/get_task_list');
-    if (response.data.code === 0) {
-      tasks.value = response.data.data;
-      console.log(tasks);
-    }
-    else {
-      store.commit("setErrorMsg", response.data.message);
-    }
-  } catch (error) {
-    store.commit("setErrorMsg", error);
-  }
 };
 
 onMounted(getAllTasks);

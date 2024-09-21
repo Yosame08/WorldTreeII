@@ -25,7 +25,6 @@ const loadRankData = async () => {
   try {
     const response = await universalGet('/api/func/rank');
     if (response.data.code === 0) {
-      store.commit("clearErrorMsg");
       tableData.value = response.data.data;
       await loadTrendData();
       await initEcharts();

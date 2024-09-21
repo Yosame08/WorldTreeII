@@ -14,6 +14,7 @@
     <div id="nav">
       <div v-if="errorMessage" :class="{'error-msg': isError, 'success-msg': !isError}">
         {{ isError ? '❌' : '✔'}} {{ errorMessage }}
+        <el-button :icon="Delete" @click="clearMessage" style="scale: 90%; margin-left: 10px" circle />
       </div>
       <div class="auth-section">
         <template v-if="!isLoggedIn">
@@ -33,6 +34,7 @@
 <script>
 import { computed } from 'vue';
 import store from "@/services/storeService";
+import {Delete} from "@element-plus/icons-vue";
 
 const customColors = [
   { color: '#f40'},
@@ -40,6 +42,11 @@ const customColors = [
 
 export default {
   name: 'NavBar',
+  computed: {
+    Delete() {
+      return Delete
+    }
+  },
   setup() {
     const showNavBar = computed(() => store.state.showNavBar);
     return { showNavBar };
@@ -72,8 +79,8 @@ export default {
     goToUserSetting() {
       this.$router.push('/usersetting');
     },
-    setError(message) {
-      this.errorMessage = message;
+    clearMessage() {
+      store.commit('clearErrorMsg');
     }
   }
 }
@@ -153,8 +160,8 @@ export default {
   color: #721c24;
   border: 1px solid #f5c6cb;
   border-radius: 3px;
-  padding-left: 30px;
-  padding-right: 35px;
+  padding-left: 50px;
+  padding-right: 45px;
 }
 
 .success-msg {
@@ -164,7 +171,7 @@ export default {
   color: #155724;
   border: 1px solid #c3e6cb;
   border-radius: 3px;
-  padding-left: 30px;
-  padding-right: 35px;
+  padding-left: 50px;
+  padding-right: 45px;
 }
 </style>

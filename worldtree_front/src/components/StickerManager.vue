@@ -207,6 +207,7 @@ const exitShovelMode = () => {
   height: 135px;
   cursor: pointer;
   user-select: none; /* 禁止用户选择图片 */
+  -webkit-user-drag: none; /* 禁用图片拖动 */
 }
 
 .backpack-btn {

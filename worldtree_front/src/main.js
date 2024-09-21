@@ -19,7 +19,6 @@ axios.interceptors.request.use(function (config) {
     if (sessionStorage.getItem("token")) {
         config.headers.Authorization = sessionStorage.getItem("token");
     }
-    console.log(config);
     return config
 }, function (error) {
     router.push('/login')
@@ -32,8 +31,6 @@ axios.interceptors.response.use(
             store.commit("setErrorMsg", response.data.message);
             return Promise.reject(response.data.message);
         }
-        else store.commit("clearErrorMsg");
-        // console.log(response);
         return response;
     },
     error => {

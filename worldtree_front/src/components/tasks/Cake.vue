@@ -10,15 +10,15 @@ const isModalVisible = ref(false);
 let lastRequestTime = 0;
 
 const conditions = [
-  '',//'2', // '带有数字2',
-  '',//'<= 11', // '长度不超过11',
-  '',//'Abc', //以大写字母开头',
-  '',//'- zxcvbnm', //没有键盘上第三排字母(zxcvbnm)',
-  '',//'aabbcc', //相同的字符必须相邻',
-  '',//'<= 2 * [aeiou]', //至多2种元音字母(aeiou)',
-  '',//'ASCII [1000,1100]', //ascii码值之和在区间[1000,1100]之中',
-  '',//'ar, bs, ct', //相邻字符ascii码值作差出现±17(其中之一)',
-  '',//'Yy', //带有字母y'
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
 ];
 
 const submitAnswer = async () => {
@@ -28,7 +28,6 @@ const submitAnswer = async () => {
   try {
     const response = await universalPost('/api/subtask/cake/submit', { answer: answer.value });
     if (response.data.code === 0 && lastRequestTime === currentTime) {
-      store.commit("clearErrorMsg");
       gridStatus.value = response.data.data.split('').map(char => char === '1');
       if (gridStatus.value.every(status => status)) {
         isModalVisible.value = true;
@@ -58,7 +57,8 @@ const closeModal = () => {
     <div v-if="isModalVisible" class="modal">
       <div class="modal-content">
         <span class="close" @click="closeModal">&times;</span>
-        <p>恭喜点亮所有蜡烛！</p>
+        <h2>恭喜点亮所有蜡烛！</h2>
+        <p>获得笔记残页和贴纸，请及时查看</p>
       </div>
     </div>
   </div>
