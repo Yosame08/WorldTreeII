@@ -19,6 +19,7 @@ axios.interceptors.request.use(function (config) {
     if (sessionStorage.getItem("token")) {
         config.headers.Authorization = sessionStorage.getItem("token");
     }
+    console.log(config);
     return config
 }, function (error) {
     router.push('/login')
