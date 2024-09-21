@@ -157,17 +157,20 @@ Mock.mock('/api/task/get_task_list', 'get', () => {
         "code": 0,
         "data": [
             {
-                "task_id": 1,
-                "task_title": "haunted three building",
-                "task_status": 0,
-                "task_pos": [0.3, 0.4]
+                "taskId": 1,
+                "taskTitle": "true music",
+                "taskPosX": 0.2,
+                "taskPosY": 0.4,
+                "taskDescription": "[Yosame]这题我不会`但其实他还不知道，这题他会`[RPU]这题显然是个音乐题，易得1=C",
+                "uri": "http://localhost:8080/tasks/bigpot",
+                "submission": true,
+                "taskPoint": 50,
+                "getPoint": 30,
+                "taskCoin": 100,
+                "hintPrice": 100,
+                "taskStatus": 1,
+                "hintStatus": 0,
             },
-            {
-                "task_id": 2,
-                "task_title": "haunted five building",
-                "task_status": 1,
-                "task_pos": [0.6, 0.7]
-            }
         ]
     }
 });

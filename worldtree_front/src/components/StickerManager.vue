@@ -6,24 +6,14 @@ import {
   Close
 } from '@element-plus/icons-vue'
 
-const stickers = ref([{
-    "stkId": 1,
-    "show": true,
-    "x": 0.566,
-    "y": 0.788,
-  },
-  {
-    "stkId": 4,
-    "show": true,
-    "x": 0.6,
-    "y": 0.1,
-  },
+const stickers = ref([
   {
     "stkId": 8,
     "show": false,
     "x": 0.6,
     "y": 0.1,
-  },]);
+  },
+]);
 
 const isShovelMode = ref(false);
 const shovelPosition = ref([0, 0]);
@@ -173,7 +163,9 @@ const exitShovelMode = () => {
   </button>
 
   <!-- Backpack icon in bottom-right corner -->
-  <button class="backpack-btn" @click="showBag = true">背包</button>
+  <button class="backpack-btn" @click="showBag = true">
+    <font-awesome-icon :icon="['fas', 'suitcase']" />
+  </button>
 
   <!-- Backpack drawer -->
   <div v-if="showBag" class="backpack-drawer">
