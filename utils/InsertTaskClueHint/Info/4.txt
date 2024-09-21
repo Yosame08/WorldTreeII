@@ -1,0 +1,8 @@
+探店
+0.72
+0.9
+/tasks/visiting
+100
+200
+0
+false

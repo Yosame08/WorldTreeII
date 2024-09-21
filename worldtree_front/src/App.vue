@@ -4,15 +4,17 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script setup>
 import NavBar from './components/NavBar.vue';
+import store from "@/services/storeService";
+import {onMounted} from "vue";
 
-export default {
-  name: 'App',
-  components: {
-    NavBar
+onMounted(() => {
+  if (!store.state.userInfo) {
+    console.log('fetching user info');
+    store.dispatch('fetchUserInfo');
   }
-}
+});
 </script>
 
 <style>

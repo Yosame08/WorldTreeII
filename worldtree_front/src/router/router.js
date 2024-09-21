@@ -15,6 +15,7 @@ import Cake from "@/components/tasks/Cake.vue";
 import Visiting from "@/components/tasks/Visiting.vue";
 
 import store from '@/services/storeService';
+import Hidden_relic from "@/components/tasks/hidden_relic.vue";
 
 const routes = [
     { path: '/', component: Index },
@@ -22,7 +23,6 @@ const routes = [
     { path: '/signup', component: Signup },
     // { path: '/usersetting', component: UserSetting },
     { path: '/beginning', component: Beginning },
-    { path: '/stickermanager', component: () => import('@/components/StickerManager.vue') },
 
     { path: '/tasks/bigpot', component: BigPot },
     { path: '/tasks/visiting', component: Visiting },
@@ -30,7 +30,7 @@ const routes = [
     { path: '/tasks/skittles', component: Skittles },
     { path: '/tasks/waffle', component: Waffle },
 
-    { path: '/hidden_relic/000', beforeEnter() { window.location.href = 'api/download/hidden_relic'; }  }
+    { path: '/hidden_relic/000', component: Hidden_relic }
 ]
 
 const router = createRouter({

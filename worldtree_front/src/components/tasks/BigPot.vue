@@ -1,5 +1,6 @@
 <template>
   <div class="page-background">
+    <p class="level-dest"> 请用4个数字烹饪出24点 </p>
     <div class="number-container">
       <div v-for="(num, index) in numbers" :key="index" class="number" @click="addToPot(num)">
         {{ num }}
@@ -30,6 +31,7 @@
     <div v-if="pass" class="modal">
       <div class="modal-content">
         <h2>{{ passMessage }}</h2>
+        <p>{{ level !== 4 ? "继续努力，完成第" + (level+1) + "锅！" : "获得新线索和贴纸，请及时查看" }}</p>
         <button @click="nextLevel">下一锅</button>
       </div>
     </div>
@@ -39,10 +41,12 @@
 <script>
 import axios from 'axios';
 import {universalGet, universalPost} from "@/services/universalService";
+import store from "@/services/storeService";
 
 export default {
   data() {
     return {
+      level: null,
       numbers: [],
       pot: [],
       operator: null,
@@ -97,6 +101,7 @@ export default {
     },
     async cook() {
       try {
+        console.log(store.state.userInfo);
         const response = await universalPost('/api/subtask/bigpot/cook', {
           gameToken: this.gameToken,
           x: this.pot[0],
@@ -329,5 +334,10 @@ button:hover:not(:disabled) {
 
 .modal-content button:hover {
   background-color: #ffaf6d;
+}
+
+.level-dest{
+  position: absolute;
+  top: 20%;
 }
 </style>
