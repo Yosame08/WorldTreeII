@@ -16,6 +16,9 @@ public class BinsearchServiceImpl implements BinsearchService {
     @Autowired
     private BinsearchMapper binsearchMapper;
 
+    @Autowired
+    private TartsServiceImpl tartsServiceImpl;
+
     @Override
     public boolean check() {
         Map<String, Object> map = ThreadLocalUtil.get();
@@ -24,6 +27,7 @@ public class BinsearchServiceImpl implements BinsearchService {
         LocalDateTime now = LocalDateTime.now();
         // 如果有存储且日期相同，返回true
         if (dateTime != null && dateTime.toLocalDate().isEqual(now.toLocalDate())) {
+            tartsServiceImpl.passTask(1);
             return true;
         }
         return false;

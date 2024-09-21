@@ -19,4 +19,7 @@ public interface TaskUserMapper {
 
     @Insert("insert into task_user(user_id, task_id, status, point, time) values(#{userId}, #{taskId}, #{status}, #{point}, #{time})")
     void insert(TaskUser taskUser);
+
+    @Select("select count(*) from task_user where task_id = #{id}")
+    int getTaskUserNum(int id);
 }

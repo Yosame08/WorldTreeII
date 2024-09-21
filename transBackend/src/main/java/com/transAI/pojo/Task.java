@@ -20,4 +20,5 @@ public class Task {
     private Integer taskCoin;
     private Integer hintPrice;
     private Integer taskStatus;
+    private Integer hintStatus;
 }

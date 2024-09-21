@@ -29,4 +29,10 @@ public class TaskController {
         String flag = (String) map.get("flag");
         return Result.success(taskService.submitTask(taskId, flag));
     }
+
+    @PostMapping("hint")
+    public Result<String> hint(@RequestBody Map<String, Object> map) {
+        int taskId = (int) map.get("taskId");
+        return Result.success(taskService.hint(taskId));
+    }
 }

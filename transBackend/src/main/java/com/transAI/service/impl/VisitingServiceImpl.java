@@ -20,7 +20,7 @@ public class VisitingServiceImpl implements VisitingService {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
         System.out.println("visiting:" + visiting);
-        for(int i = 0;i < 5;i++){
+        for(int i = 0;i < 3;i++){
             VisitingUnit visitingUnit = new VisitingUnit();
             visitingUnit.setUserId(userId);
             visitingUnit.setVisitingId(i);

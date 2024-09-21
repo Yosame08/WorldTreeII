@@ -15,6 +15,10 @@ public class BigpotServiceImpl implements BigpotService {
 
     @Autowired
     private BigpotMapper bigpotMapper;
+
+
+    @Autowired
+    private TartsServiceImpl tartsServiceImpl;
     @Override
     public Bigpot init(int id) {
         int level = bigpotMapper.getLevel(id);
@@ -125,6 +129,7 @@ public class BigpotServiceImpl implements BigpotService {
 
         if(len == 2 && result == 24) {
             bigpotResult.setPass(1);
+            tartsServiceImpl.passTask(3);
             int level = bigpotMapper.getLevel(id);
             if (level != 4) {
                 bigpotMapper.updateLevel(id, level + 1);

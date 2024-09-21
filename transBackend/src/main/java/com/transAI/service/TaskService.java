@@ -9,4 +9,6 @@ public interface TaskService {
     List<Task> getTaskList();
 
     boolean submitTask(int taskId, String flag);
+
+    String hint(int taskId);
 }

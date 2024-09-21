@@ -49,4 +49,13 @@ public interface UserMapper {
 
     @Update("update user set point=#{point} where id = #{id}")
     void updatePoint(Integer id, Integer point);
+
+    @Select("select coin from user where id=#{id}")
+    int getUserCoins(int id);
+
+    @Update("update user set coin=#{coin} where id = #{id}")
+    void updateUserCoins(Integer id, int coin);
+
+    @Select("select * from user where id=#{id}")
+    User getUser(int id);
 }
