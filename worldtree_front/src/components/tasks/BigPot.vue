@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="button-container">
+      <button @click="resetGame">重来！</button>
       <button @click="cook" :disabled="pot.length < 2 || operator === null">开煮！</button>
-      <button @click="resetGame">重置</button>
     </div>
     <div v-if="pass" class="modal">
       <div class="modal-content">
@@ -48,6 +48,7 @@ export default {
       operator: null,
       pass: false,
       gameToken: '',
+      passMessage: '',
     };
   },
   methods: {
@@ -104,9 +105,12 @@ export default {
         });
         if (response.data.code === 0) {
           console.log(response.data.data);
+          console.log(response.data.data.pass);
           if (response.data.data.pass === 1) {
-            this.pass = true;
+            console.log(this.level);
             this.passMessage = this.level === 4 ? '煮完4锅大锅饭，终于可以下班了！' : '大锅饭一端上来，同学们都馋哭了！';
+            console.log(this.passMessage);
+            this.pass = true;
           } else {
             this.numbers.push(response.data.data.result);
             this.pot = [];

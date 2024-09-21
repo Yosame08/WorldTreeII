@@ -24,13 +24,11 @@ const routes = [
     { path: '/beginning', component: Beginning },
     { path: '/stickermanager', component: () => import('@/components/StickerManager.vue') },
 
-    { path: '/tasks/nim', component: Nim },
-    { path: '/tasks/skittles', component: Skittles },
     { path: '/tasks/bigpot', component: BigPot },
-    { path: '/tasks/zhengyan', component: ZhengYan },
-    { path: '/tasks/waffle', component: Waffle },
-    { path: '/tasks/cake', component: Cake },
     { path: '/tasks/visiting', component: Visiting },
+    { path: '/tasks/cake', component: Cake },
+    { path: '/tasks/skittles', component: Skittles },
+    { path: '/tasks/waffle', component: Waffle },
 ]
 
 const router = createRouter({

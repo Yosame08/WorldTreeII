@@ -36,7 +36,7 @@ public class CakeServiceImpl implements CakeService {
                 if (countDistinctVowels(answer) <= 2) return '1';
                 return '0';
             case 6: // 如果字符串的 ASCII 码和在 1090 到 1100 之间，返回 '1'
-                if (isAsciiSumInRange(answer, 1090, 1100)) return '1';
+                if (isAsciiSumInRange(answer, 1000, 1100)) return '1';
                 return '0';
             case 7: // 如果相邻字符的 ASCII 码差值为 ±17，返回 '1'
                 if (hasAdjacentAsciiDifference(answer, 17)) return '1';

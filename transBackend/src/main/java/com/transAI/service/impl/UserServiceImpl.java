@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         bigpotMapper.initUserInfo(id);
         binsearchMapper.initUserInfo(id);
         userTotalPointMapper.initUserInfo(id);
-        visitingMapper.initUserInfo(id);
+//        visitingMapper.initUserInfo(id);
     }
 
     @Override

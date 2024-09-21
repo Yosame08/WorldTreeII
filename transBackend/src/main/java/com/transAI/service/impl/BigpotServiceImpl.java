@@ -32,16 +32,16 @@ public class BigpotServiceImpl implements BigpotService {
 //        String randomToken = "a";
         switch(level) {
             case 1:
-                bigpot = new Bigpot(randomToken, 1, 4, 1, 4, 9, 16);
+                bigpot = new Bigpot(randomToken, 1, 4, 2, 3, 9, 16);
                 break;
             case 2:
-                bigpot = new Bigpot(randomToken,1,  4, 3, 7, 15, 31);
+                bigpot = new Bigpot(randomToken,2,  4, 3, 7, 15, 31);
                 break;
             case 3:
-                bigpot = new Bigpot(randomToken,1,  4, 7, 25, 27, 29);
+                bigpot = new Bigpot(randomToken,3,  4, 7, 25, 27, 29);
                 break;
             case 4:
-                bigpot =new  Bigpot(randomToken,1,  4, 40, 48, 56, 64);
+                bigpot =new  Bigpot(randomToken,4,  4, 23,43,54,109);
                 break;
             default:
                 return null; // 或者你可以抛出异常
@@ -125,6 +125,10 @@ public class BigpotServiceImpl implements BigpotService {
 
         if(len == 2 && result == 24) {
             bigpotResult.setPass(1);
+            int level = bigpotMapper.getLevel(id);
+            if (level != 4) {
+                bigpotMapper.updateLevel(id, level + 1);
+            }
         } else {
             bigpotResult.setPass(0);
         }
