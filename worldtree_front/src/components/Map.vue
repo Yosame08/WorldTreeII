@@ -33,13 +33,14 @@
         <div class="task-sidebar-footer">
           <!-- 1. 展示积分和奖励 -->
           <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
-          <el-button v-if="taskDetail.url" type="primary" @click="openUrlInNew(taskDetail.url)">打开链接</el-button>
+          <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
           <!-- 2. 展示提交答案方式 -->
           <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
-            <el-button @click="submitId1" style="width: 100%;">启动中继器</el-button>
+            <el-button v-if="taskDetail.taskStatus !== 1" @click="submitId1" style="width: 100%;">启动中继器</el-button>
+            <p v-else style="width: 100%;">您已经完全解决了该事件！</p>
           </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
@@ -97,7 +98,7 @@ const mapStyle = computed(() => ({
 
 const submitId1 = async () => {
   try {
-    const response = await universalPost('/api/task/submit', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
+    const response = await universalGet('/api/subtask/binsearch/query');
     if (response.data.code === 0) {
       let pass = response.data.data;
       if (pass === 0) {
@@ -105,7 +106,7 @@ const submitId1 = async () => {
         taskDetail.value = tasks[taskDetail.value.taskId];
         store.commit("setSuccessMsg", "已成功建立连接");
       } else {
-        store.commit("setErrorMsg", pass === 1 ? "中继器启动过早！" : "中继器启动过晚！");
+        store.commit("setErrorMsg", pass === 1 ? "中继器启动过早！" : (pass === 2 ? "中继器启动过晚！" : "能量已不足再次启动中继器！"));
       }
     }
   } catch (error) {
@@ -131,8 +132,8 @@ const submitAnswer = async () => {
   }
 };
 
-const openUrlInNew = (url) => {
-  window.open(url, '_blank');
+const openUriInNew = (uri) => {
+  window.open(uri, '_blank');
 };
 
 const parseTaskDescription = (description) => {
@@ -347,9 +348,13 @@ const getAllTasks = async () => {
     const response = await universalGet('/api/task/get_task_list');
     if (response.data.code === 0) {
       tasks.value = response.data.data;
+      console.log(tasks);
+    }
+    else {
+      store.commit("setErrorMsg", response.data.message);
     }
   } catch (error) {
-    ElMessage.error('Error fetching tasks');
+    store.commit("setErrorMsg", error);
   }
 };
 
@@ -379,7 +384,7 @@ onMounted(getAllTasks);
   position: fixed;
   top: 43px; /* Start 43px from the top */
   right: 0;
-  width: 300px;
+  width: 25%;
   height: calc(100% - 83px); /* 43 + 20 * 2 (padding) */
   background-color: #fff;
   border-left: 1px solid #ccc;

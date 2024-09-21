@@ -12,16 +12,16 @@
       <el-form-item label="确认密码">
         <el-input type="password" v-model="form.confirmPassword" />
       </el-form-item>
-      <el-form-item label="验证码">
-        <el-row :gutter="20">
-          <el-col :span="12">
-            <el-input v-model="form.captcha" placeholder="输入验证码" />
-          </el-col>
-          <el-col :span="12">
-            <img :src="captchaImage" alt="Captcha" @click="loadCaptcha" />
-          </el-col>
-        </el-row>
-      </el-form-item>
+<!--      <el-form-item label="验证码">-->
+<!--        <el-row :gutter="20">-->
+<!--          <el-col :span="12">-->
+<!--            <el-input v-model="form.captcha" placeholder="输入验证码" />-->
+<!--          </el-col>-->
+<!--          <el-col :span="12">-->
+<!--            <img :src="captchaImage" alt="Captcha" @click="loadCaptcha" />-->
+<!--          </el-col>-->
+<!--        </el-row>-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" @click="signup">加入！</el-button>
       </el-form-item>

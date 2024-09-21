@@ -7,12 +7,13 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Mapper
 public interface BinsearchMapper {
 
-    @Select("select time from user_binary_search where user_id = #{id}")
-    public LocalDateTime getDateTime(Integer id);
+    @Select("select time from user_binary_search where user_id = #{id} order by time DESC LIMIT 2")
+    public List<LocalDateTime> getDateTime(Integer id);
 
 
     @Insert("insert into user_binary_search (user_id, time) values (#{id}, #{now})")

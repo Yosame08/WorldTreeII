@@ -7,8 +7,8 @@
   >
     <el-table-column prop="rank" label="排名" width="100" />
     <el-table-column prop="username" label="用户" width="180" />
-    <el-table-column prop="point" label="积分" width="100"/>
-    <el-table-column prop="point" label="个性签名"/>
+    <el-table-column prop="point" label="积分"/>
+<!--    <el-table-column prop="point" label="个性签名"/>-->
   </el-table>
 </template>
 

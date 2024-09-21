@@ -19,18 +19,21 @@ public class BinsearchServiceImpl implements BinsearchService {
     @Autowired
     private TartsServiceImpl tartsServiceImpl;
 
+
+
     @Override
-    public boolean check() {
+    public int check() {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
-        LocalDateTime dateTime = binsearchMapper.getDateTime(id);
+        var dateTime = binsearchMapper.getDateTime(id);
         LocalDateTime now = LocalDateTime.now();
-        // 如果有存储且日期相同，返回true
-        if (dateTime != null && dateTime.toLocalDate().isEqual(now.toLocalDate())) {
-            tartsServiceImpl.passTask(1);
-            return true;
+        int size = 0 ;
+        for(LocalDateTime dt : dateTime) {
+            if(dt.toLocalDate().isEqual(now.toLocalDate())) {
+                size++;
+            }
         }
-        return false;
+        return size;
     }
 
     @Override
@@ -38,22 +41,31 @@ public class BinsearchServiceImpl implements BinsearchService {
         LocalDateTime now = LocalDateTime.now();
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
+        System.out.println("now: " + now);
 
-        var dateTime = binsearchMapper.getDateTime(id);
-        if(dateTime == null) {
+        var dateTimeList = binsearchMapper.getDateTime(id);
+        if(dateTimeList == null) {
             binsearchMapper.submitDateTime(id, now);
         }
         else {
-            // 如果有存储且日期相同，直接返回
-            if(dateTime.toLocalDate().isEqual(now.toLocalDate())) {
+            // 如果有两个且两个日期都与now相同，返回-1
+//            if(dateTime.toLocalDate().isEqual(now.toLocalDate())) {
+//                return -1;
+//            }
+            if(dateTimeList.size() == 2 && dateTimeList.get(0).toLocalDate().isEqual(now.toLocalDate()) && dateTimeList.get(1).toLocalDate().isEqual(now.toLocalDate())) {
                 return -1;
             }
-            binsearchMapper.updateDateTime(id, now);
+//            binsearchMapper.updateDateTime(id, now);
+            binsearchMapper.submitDateTime(id, now);
         }
         // 如果有存储且日期相同，返回true
-        LocalDateTime answer = LocalDateTime.of(2021, 8, 1, 14, 24, 0);
+        System.out.println("my:now: " + now);
+//        Integer hashed = ((id + 5) * (id + 2) - 2) * (id + 1) % 160 + 30;
+        Integer hashed = 65;
+        LocalDateTime answer = LocalDateTime.of(2021, 8, 1, 18+hashed/60, hashed%60, 0);
         // 如果小时和分钟相同，返回0
         if (now.getHour() == answer.getHour() && now.getMinute() == answer.getMinute()) {
+            tartsServiceImpl.passTask(1);
             return 0;
         }
         // 如果now的小时和分钟早了（不算秒），返回1

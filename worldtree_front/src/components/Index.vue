@@ -65,7 +65,8 @@ const showWindowAndReset = (component, title) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4%;
+  bottom: 1%;
+  transform: translateY(-50%);
   right: 1%;
   z-index: 1001;
 }
