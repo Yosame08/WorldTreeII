@@ -44,10 +44,10 @@ public class VisitingServiceImpl implements VisitingService {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
         Visiting visiting = new Visiting();
-        visiting.setPosition(new double[5][2]);
-        visiting.setIndoor(new boolean[5]);
-        visiting.setFloor(new int[5]);
-        for(int i = 0;i < 5;i++){
+        visiting.setPosition(new double[3][2]);
+        visiting.setIndoor(new boolean[3]);
+        visiting.setFloor(new int[3]);
+        for(int i = 0;i < 3;i++){
             var tmp = visitingMapper.getVisiting(userId, i);
             if(tmp != null){
                 visiting.getPosition()[i][0] = tmp.getX();

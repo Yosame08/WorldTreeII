@@ -68,8 +68,6 @@ const images = ref([
   { src: require('@/assets/visiting/level1.jpg') },
   { src: require('@/assets/visiting/level2.jpg') },
   { src: require('@/assets/visiting/level3.jpg') },
-  { src: require('@/assets/visiting/level3.jpg') },
-  { src: require('@/assets/visiting/level3.jpg') },
 ]);
 
 const clickedMarker = ref(null);
@@ -195,9 +193,9 @@ const updateAnswers = async () => {
   if (nowSetting.value !== null) return;
   try{
     const response = await universalPost(`/api/subtask/visiting/update`, {
-      position: [markers.value[0].position, markers.value[1].position, markers.value[2].position, markers.value[3].position, markers.value[4].position],
-      indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor, markers.value[3].indoor, markers.value[4].indoor],
-      floor: [markers.value[0].floor, markers.value[1].floor, markers.value[2].floor, markers.value[3].floor, markers.value[4].floor],
+      position: [markers.value[0].position, markers.value[1].position, markers.value[2].position],
+      indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor],
+      floor: [markers.value[0].floor, markers.value[1].floor, markers.value[2].floor]
     });
     const result = response.data;
     if (result.code === 0) {
@@ -215,6 +213,7 @@ const updateAnswers = async () => {
 const fetchCurrentAnswers = async () => {
   let result = await universalGet('/api/subtask/visiting/get_info');
   result = result.data;
+  console.log(result);
   if (result.code === 0) {
     markers.value = result.data.position.map((pos, index) => ({
       position: pos,
