@@ -34,7 +34,7 @@ public class BinsearchServiceImpl implements BinsearchService {
                 size++;
             }
         }
-        return new BinsearchStatus(now.getHour()>=0 && now.getHour() < 21 && size < 2, size);
+        return new BinsearchStatus(now.getHour() >= 18 && now.getHour() < 21 && size < 2, size);
     }
 
     @Override

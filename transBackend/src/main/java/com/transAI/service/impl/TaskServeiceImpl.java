@@ -126,16 +126,23 @@ public class TaskServeiceImpl implements TaskService {
         int price = taskMapper.getHintPrice(taskId);
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
-        int userCoint = userMapper.getUserCoins(id);
-        if(userCoint < price) {
-            return "金币不足";
-        }
-        userMapper.updateUserCoins(id, userCoint - price);
-        int flag = userHintMapper.find(id, taskId);
-        if(flag == 0) {
-            userHintMapper.insertUserHint(id, taskId);
-        }
         String hint = hintClueMapper.getHint(taskId);
+
+        int hasHint = userHintMapper.find(id, taskId);
+        if(hasHint == 1) {
+            return hint;
+        }
+        int passedTask = taskUserMapper.find(id, taskId);
+        if(passedTask == 1) {
+            userHintMapper.insertUserHint(id, taskId);
+            return hint;
+        }
+        int userCoin = userMapper.getUserCoins(id);
+        if(userCoin < price) {
+            return "货币不足";
+        }
+        userMapper.updateUserCoins(id, userCoin - price);
+        userHintMapper.insertUserHint(id, taskId);
         return hint;
     }
 

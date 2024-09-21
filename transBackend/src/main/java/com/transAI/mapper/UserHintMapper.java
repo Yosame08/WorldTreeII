@@ -17,4 +17,5 @@ public interface UserHintMapper {
 
     @Select("select task_id from user_hint where user_id = #{id}")
     List<Integer> getHintList(Integer id);
+
 }
