@@ -334,19 +334,19 @@ Mock.mock('/api/func/get_stickers', 'get', () => {
         "message": "",
         "data": [
             {
-                "stk_id": 1,
+                "stkId": 1,
                 "show": true,
                 "x": 0.566,
                 "y": 0.788,
             },
             {
-                "stk_id": 4,
+                "stkId": 4,
                 "show": true,
                 "x": 0.6,
                 "y": 0.1,
             },
             {
-                "stk_id": 8,
+                "stkId": 8,
                 "show": false,
                 "x": 0.6,
                 "y": 0.1,
