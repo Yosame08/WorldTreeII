@@ -29,6 +29,8 @@ const routes = [
     { path: '/tasks/cake', component: Cake },
     { path: '/tasks/skittles', component: Skittles },
     { path: '/tasks/waffle', component: Waffle },
+
+    { path: '/hidden_relic/000', beforeEnter() { window.location.href = 'api/download/hidden_relic'; }  }
 ]
 
 const router = createRouter({
