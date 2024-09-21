@@ -1,7 +1,7 @@
 <!-- src/components/Beginning.vue -->
 <template>
   <div class="not-logged-in">
-    <Typewriter text="Welcome to Our Site" :speed="100" />
+    <Typewriter text="超空间通讯已建立" :speed="100" />
     <div class="buttons">
       <button @click="goToLogin">登录</button>
       <button @click="goToSignUp">注册</button>
