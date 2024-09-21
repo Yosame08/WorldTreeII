@@ -42,8 +42,8 @@ const showWindowAndReset = (component, title) => {
   <div class='button-container'>
     <div class="hexagon-container">
       <Navigation :icon="icon" :description="description" @click="toggleView" class="map" />
-      <Navigation :icon="['fas', 'envelopes-bulk']" description="邮件"
-                  @click="showWindowAndReset(markRaw(Mail), '邮件')" class="mail" />
+      <Navigation :icon="['fas', 'mug-saucer']" description="茶楼"
+                  @click="showWindowAndReset(markRaw(Mail), '茶楼')" class="mail" />
       <Navigation :icon="['fas', 'ranking-star']" description="排名"
                   @click="showWindowAndReset(markRaw(Rank), '排行榜')" class="ranking" />
     </div>

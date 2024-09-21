@@ -1,54 +1,52 @@
-<template>
-  <ErrorMsg :message="errorMessage" />
-  <el-table
-      :data="list"
-      style="width: 100%"
-      :row-class-name="tableRowClassName"
-      @row-click="goToDetail"
-  >
-    <el-table-column prop="user" label="发件人" width="180" />
-    <el-table-column prop="title" label="邮件标题" />
-  </el-table>
-</template>
+<script setup>
+import {onMounted, ref} from "vue";
+import TaskInfo from "@/components/TaskInfo.vue";
 
-<script>
-import {universalGet} from "@/services/universalService";
-import store from "@/services/storeService";
+const called = ref(false);
 
-export default ({
-  name: 'Mail',
-  data() {
-    return {
-      list: [],
-    };
-  },
-  created() {
-    this.loadBbsData();
-  },
-  methods: {
-    async loadBbsData() {
-      try {
-        const response = await universalGet('/api/mail');
-        if (response.data.code === 0) {
-          store.commit("clearErrorMsg");
-          this.list = response.data.list;
-        }
-      } catch (error) {
-        console.error('Failed to fetch BBS data', error);
-      }
-    },
-    tableRowClassName({row}) {
-      if (row.special !== 0) {
-        return 'special-row';
-      }
-      return '';
-    },
-    goToDetail(row) {
-      this.$router.push(`/bbs/${row.id}`);
-    },
-  }
+const text = ref("暑假时光转瞬即逝，你又回到了这个熟悉而又有些陌生的复旦校园。像往常一样，你在睡前打开了复旦校园论坛，随便浏览一些有趣的帖子。`" +
+          "最近，许多帖子都提到校园里出现了怪事，但你向来不相信这种耸人听闻的谣言。还没有往下翻几条，你的目光便被一个看起来很奇怪的帖子吸引住了：`" +
+    "`[???]我们的世界遇到了巨大危机，急需帮助！" +
+    "`[???]同学们好，我是来自蒸旦大学（在你们这边的名字似乎叫复旦大学？）的一名学生。最近不知道是因为什么原因，蒸旦大学的学生们突然变卷了！不仅各种水课的教室挤满了旁听的学生，各种课程pre更是堪比联合国大会。本来我和我的好朋友经常联机玩游戏，但这学期他再也没打开过电脑里的蒸菜游戏平台，还以我不认真准备一个月后的小组pre为由将我踢出了小组！这简直太奇怪了，我的印象中去年的蒸旦大学不是这样，大学生也不应该是这样的！" +
+    "`[???]我正想打开蒸旦大学的“蛋挞”论坛寻找和我一样发现异样的同学，却没想到有这么多同学不在卷而在论坛中愉快聊天。我仔细看了一会之后才发现，你们并不是蒸旦大学的学生，而是来自一个非常相似的“复旦大学”。复旦大学有个很高的双子楼“光华楼”，我们蒸旦大学也有一个几乎一样的“滑蛋”双子楼，简直太巧了，可我一查全世界都没有“复旦”这个名字的学校！我大胆的猜测，复旦大学和蒸旦大学可能是平行宇宙的一体两面，某种神秘超自然力量让我联系到了复旦宇宙的“蛋挞”论坛，也导致了蒸旦宇宙的内卷异变。最近你们这边是不是也出现了许多怪事？希望同学们能提供一些自己遇到的怪事，其中或许就包含着解决危机的关键线索！" +
+    "`[路人A]什么玩意他这是？科幻小说看多了？" +
+    "`[路人B]听起来有点扯，但是我感觉最近真挺奇怪的，论坛里各种各样的怪事分享比以前多多了。`" +
+          "......`" +
+          "`" +
+          "你看着看着，顿时觉得身体有点难受，可能入秋感冒了？你关上手机，倒头就沉入了梦乡。`" +
+          "`" +
+          "“喂喂，听得见吗？”早上，你被一个熟悉的声音叫醒。`" +
+          "“等等，我不是在寝室里吗？室友今天都有早八，是谁在叫我？”你猛地从床上坐起来，寝室里空空如也，只有你一个人。`" +
+          "“终于联系上了！你昨天已经看过我写的帖子了对吧？就是那个蒸旦宇宙内卷危机的帖子。”熟悉的声音继续响起。你再度环顾四周，发现这个声音竟然是从你脑海里凭空响起的！`" +
+          "“你是谁？你的意思是那个蒸旦宇宙的帖子是真的？你是蒸旦宇宙的人？”你试探性地说。`" +
+          "“我就是你自己，平行宇宙中对应的你本人，你可以称呼我为‘破界者’。蒸旦宇宙的危机已经影响到了时空的稳定性，所以我可以在蒸旦宇宙中进入复旦的论坛，也能同位连接到你的意识。现在我们非常需要你的帮助！”`" +
+          "你仔细一听，这个凭空响起的声音确实和你自己的声音完全相同，让你不由得相信了他的话。“那我该怎么帮你呢？”`" +
+          "“我和许多志同道合的同伴已经对蒸旦宇宙的危机有了初步的研究，复旦大学中每个真实发生的校园怪谈应该都是被我们宇宙影响的结果。如果能够找到每个怪谈发生的背后原因，或许就能找到解决危机的线索！”");
+const discussions = ref([]);
+
+const parseTaskDescription = () => {
+  discussions.value = text.value.split('`').map((item) => {
+    const match = item.match(/^\[(.*?)\](.*)$/);
+    if (match) {
+      return {user: match[1], content: match[2]};
+    } else {
+      return {user: null, content: item};
+    }
+  });
+  console.log(discussions);
+};
+
+onMounted(() => {
+  parseTaskDescription();
 });
+
 </script>
+
+<template>
+  <div>
+    <task-info :v-if="called" :discussions="discussions" />
+  </div>
+</template>
 
 <style>
 .el-table .special-row {

@@ -24,11 +24,9 @@ const chartOptions = ref(undefined);
 const loadRankData = async () => {
   try {
     const response = await universalGet('/api/func/rank');
-    console.log(response);
     if (response.data.code === 0) {
       store.commit("clearErrorMsg");
       tableData.value = response.data.data;
-      console.log(tableData.value);
       await loadTrendData();
       await initEcharts();
     }
@@ -39,7 +37,6 @@ const loadRankData = async () => {
 const loadTrendData = async () => {
   try {
     const topFiveUsers = tableData.value.slice(0, 5);
-    console.log(topFiveUsers);
     const trendPromises = topFiveUsers.map(user =>
         universalPost('/api/func/get_user_trend', {userId: user.userId})
     );
@@ -85,7 +82,7 @@ const getDateFromString = (str) => {
 };
 
 const initEcharts = async () => {
-  let startTime = getDateFromString("2024-09-21 02:22:00");
+  let startTime = getDateFromString("2024-09-21 18:00:00");
   let nowTime = new Date();
 
   chartOptions.value = {

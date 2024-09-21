@@ -31,32 +31,38 @@
           <task-info v-if="discussions.length" :discussions="discussions" />
         </div>
         <div class="task-sidebar-footer">
+          <!-- 1. 展示积分和奖励 -->
           <p>积分: {{ taskDetail.getPoint }}/{{ taskDetail.taskPoint }} 奖励: {{ taskDetail.taskCoin }}</p>
           <el-button v-if="taskDetail.url" type="primary" @click="openUrlInNew(taskDetail.url)">打开链接</el-button>
+          <!-- 2. 展示提交答案方式 -->
           <div v-if="taskDetail.submission && taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
-            <el-button @click="submitId1">启动中继器</el-button>
+            <el-button @click="submitId1" style="width: 100%;">启动中继器</el-button>
           </div>
           <div v-else-if="taskDetail.submission" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
             <el-button @click="submitAnswer">提交答案</el-button>
           </div>
-          <el-button @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <!-- 3. 展示提示按钮 -->
+          <el-button v-if="taskDetail.hintStatus === 0" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
         </div>
         <el-button class="close-button" @click="closeSidebar">×</el-button>
       </div>
     </transition>
+
+    <HintOverlay :imageBase64="imageBase64" :visible="isHintVisible" @close="isHintVisible = false" />
   </div>
 </template>
 
 <script setup>
 import TaskInfo from './TaskInfo.vue';
+import HintOverlay from "@/components/HintOverlay.vue";
 import {computed, onMounted, ref} from 'vue';
 import {ElButton, ElInput, ElSwitch} from 'element-plus';
 import {universalGet, universalPost} from "@/services/universalService";
-import {getTaskInfo, requestHint} from "@/services/taskService";
 import store from "@/services/storeService";
 
 const tasks = ref([]);
@@ -78,6 +84,8 @@ const tooltip = ref({visible: false, task: null, x: 0, y: 0});
 const taskAnswer = ref('');
 
 const mapImage = ref(null);
+const isHintVisible = ref(false);
+const imageBase64 = ref('');
 
 const mapStyle = computed(() => ({
   transform: `scale(${scale.value}) translate(${translateX.value}px, ${translateY.value}px)`,
@@ -142,7 +150,7 @@ const selectTask = async (task) => {
   try {
     // let tmp = await getTaskInfo(task.task_id);
     let detail = task;
-    parseTaskDescription(detail.taskStatus ? detail.taskDescriptionFull : detail.taskDescription);
+    parseTaskDescription(detail.taskStatus === 1 ? detail.taskDescriptionFull : detail.taskDescription);
     taskDetail.value = detail;
   } catch (error) {
     alert('Error selecting task:' + error);
@@ -158,10 +166,17 @@ const closeSidebar = () => {
 
 const getHint = async () => {
   try {
-    const msg = await requestHint(taskDetail.value.taskId);
-    ElMessage.info(msg);
+    const msg = await universalPost('/api/task/hint', {
+      taskId: taskDetail.value.taskId,
+    });
+    if (msg.data.code === 0) {
+      imageBase64.value = msg.data.data;
+      isHintVisible.value = true;
+    } else {
+      store.commit("setErrorMsg", msg.data.message);
+    }
   } catch (err) {
-    console.error(err);
+    store.commit("setErrorMsg", err);
   }
 };
 
@@ -174,7 +189,6 @@ const bubbleStyle = (task) => {
   const offsetY = translateY.value * scale.value;
   const picX = task.taskPosX * scaledWidth + offsetX;
   const picY = task.taskPosY * scaledHeight + offsetY;
-  console.log(task.taskPosX, scaledWidth, offsetX, picX);
 
   return {
     left: `${picX}px`,
@@ -348,6 +362,9 @@ onMounted(getAllTasks);
   overflow: hidden;
   width: 100%;
   height: calc(100vh - 43px);
+  background-image: url('@/assets/map_back.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .zoom-controls {
@@ -441,4 +458,5 @@ onMounted(getAllTasks);
   margin-top: 10px;
   width: 100%;
 }
+
 </style>

@@ -104,12 +104,8 @@ export default {
           operator: this.operator,
         });
         if (response.data.code === 0) {
-          console.log(response.data.data);
-          console.log(response.data.data.pass);
           if (response.data.data.pass === 1) {
-            console.log(this.level);
             this.passMessage = this.level === 4 ? '煮完4锅大锅饭，终于可以下班了！' : '大锅饭一端上来，同学们都馋哭了！';
-            console.log(this.passMessage);
             this.pass = true;
           } else {
             this.numbers.push(response.data.data.result);

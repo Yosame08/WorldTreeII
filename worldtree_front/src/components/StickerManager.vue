@@ -5,6 +5,7 @@ import {
   Check,
   Close
 } from '@element-plus/icons-vue'
+import store from "@/services/storeService";
 
 const stickers = ref([
   {
@@ -24,10 +25,12 @@ const fetchStickers = async () => {
     const response = await universalGet('/api/func/get_stickers');
     if (response.data.code === 0) {
       stickers.value = response.data.data;
-      console.log(stickers.value);
+    }
+    else {
+      store.commit("setErrorMsg", response.data.message);
     }
   } catch (error) {
-    console.error('Failed to fetch stickers:', error);
+    store.commit("setErrorMsg", error);
   }
 };
 
@@ -74,7 +77,6 @@ const dragSticker = (sticker, event) => {
     document.removeEventListener('mouseup', onMouseUp);
 
     try {
-      console.log(sticker.stkId);
       await universalPost('/api/func/modify_stickers', {
         stkId: sticker.stkId,
         show: true,
@@ -84,8 +86,6 @@ const dragSticker = (sticker, event) => {
     } catch (error) {
       console.error('Failed to update sticker position:', error);
     }
-
-    console.log('Sticker position updated:', {id: sticker.stkId, x: sticker.x, y: sticker.y});
   };
 
   document.addEventListener('mousemove', onMouseMove);
@@ -203,8 +203,8 @@ const exitShovelMode = () => {
 
 .sticker {
   position: absolute;
-  width: 70px;
-  height: 50px;
+  width: 135px;
+  height: 135px;
   cursor: pointer;
   user-select: none; /* 禁止用户选择图片 */
 }

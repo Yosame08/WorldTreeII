@@ -194,12 +194,6 @@ const getMarkerColor = (index) => {
 const updateAnswers = async () => {
   if (nowSetting.value !== null) return;
   try{
-    console.log(markers);
-    console.log({
-      position: [markers.value[0].position, markers.value[1].position, markers.value[2].position, markers.value[3].position, markers.value[4].position],
-      indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor, markers.value[3].indoor, markers.value[4].indoor],
-      floor: [markers.value[0].floor, markers.value[1].floor, markers.value[2].floor, markers.value[3].floor, markers.value[4].floor],
-    });
     const response = await universalPost(`/api/subtask/visiting/update`, {
       position: [markers.value[0].position, markers.value[1].position, markers.value[2].position, markers.value[3].position, markers.value[4].position],
       indoor: [markers.value[0].indoor, markers.value[1].indoor, markers.value[2].indoor, markers.value[3].indoor, markers.value[4].indoor],

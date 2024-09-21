@@ -21,7 +21,8 @@
           <router-link to="/signup" class="nav-link" active-class="nav-link-active">注册</router-link>
         </template>
         <template v-else>
-          <button @click="goToUserSetting" class="nav-link">用户：{{ username }}</button>
+<!--          <button @click="goToUserSetting" class="nav-link">用户：{{ username }}</button>-->
+          <button class="nav-link">用户：{{ username }}</button>
           <button @click="logout" class="nav-link">登出</button>
         </template>
       </div>

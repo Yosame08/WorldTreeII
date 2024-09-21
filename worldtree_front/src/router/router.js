@@ -20,7 +20,7 @@ const routes = [
     { path: '/', component: Index },
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
-    { path: '/usersetting', component: UserSetting },
+    // { path: '/usersetting', component: UserSetting },
     { path: '/beginning', component: Beginning },
     { path: '/stickermanager', component: () => import('@/components/StickerManager.vue') },
 

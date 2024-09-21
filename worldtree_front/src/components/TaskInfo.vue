@@ -40,9 +40,11 @@ const cardLayers = computed(() => {
       <el-card class="discussion-card" v-if="discussion.user">
         <template #header>
           <div class="username-container">
-            <span class="username-line" :style="{ backgroundColor: stringToColor(discussion.user) }" ></span>
-            <div :style="{ color: stringToColor(discussion.user) }" class="username">
-              {{ discussion.user }}
+            <div class="username-wrapper">
+              <span class="username-line" :style="{ backgroundColor: stringToColor(discussion.user) }"></span>
+              <div :style="{ color: stringToColor(discussion.user) }" class="username">
+                {{ discussion.user }}
+              </div>
             </div>
             <div class="card-footer">
               {{ cardLayers[index] }}F
@@ -50,7 +52,7 @@ const cardLayers = computed(() => {
           </div>
 
         </template>
-        <div>{{ discussion.content }}</div>
+        <div class="discussion-content">{{ discussion.content }}</div>
       </el-card>
       <div class="no-card" v-else>
         {{ discussion.content }}
@@ -79,6 +81,12 @@ const cardLayers = computed(() => {
 }
 
 .username-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Add this line to space out username and floor number */
+}
+
+.username-wrapper {
   display: flex;
   align-items: center;
 }
@@ -111,13 +119,18 @@ const cardLayers = computed(() => {
 }
 
 .no-card{
-  margin: 10px 0;
+  margin: 10px;
+  text-align: left;
 }
 
 .card-footer {
   text-align: right;
-  margin-left: 180px;
   font-size: 0.9em;
   color: #888;
+  margin-right: 5px;
+}
+
+.discussion-content {
+  text-align: left; /* Add this line to left-align the content */
 }
 </style>
