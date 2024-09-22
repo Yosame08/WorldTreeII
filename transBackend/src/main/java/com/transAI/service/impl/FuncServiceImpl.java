@@ -89,7 +89,7 @@ public class FuncServiceImpl implements FuncService {
 //            userStickerMapper.addSticker(userId, sticker);
         }
         else {
-            System.out.println("sticker found");
+            System.out.println("~/sticker User " + userId + " (" + userMapper.getUser(userId).getUsername() + ") modified sticker " + sticker.getStkId());
             userStickerMapper.modifyStickers(userId, sticker);
         }
     }

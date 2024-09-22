@@ -42,7 +42,6 @@ public class BinsearchServiceImpl implements BinsearchService {
         LocalDateTime now = LocalDateTime.now();
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
-        System.out.println("now: " + now);
 
         var dateTimeList = binsearchMapper.getDateTime(id);
         if(dateTimeList == null) {
@@ -50,19 +49,15 @@ public class BinsearchServiceImpl implements BinsearchService {
         }
         else {
             // 如果有两个且两个日期都与now相同，返回-1
-//            if(dateTime.toLocalDate().isEqual(now.toLocalDate())) {
-//                return -1;
-//            }
             if(dateTimeList.size() == 2 && dateTimeList.get(0).toLocalDate().isEqual(now.toLocalDate()) && dateTimeList.get(1).toLocalDate().isEqual(now.toLocalDate())) {
                 return -1;
             }
-//            binsearchMapper.updateDateTime(id, now);
             binsearchMapper.submitDateTime(id, now);
         }
         // 如果有存储且日期相同，返回true
-        System.out.println("my:now: " + now);
         int hashed = (((id + 5) * (id + 2) - 2) * (id + 1)) % 160 + 15;
         LocalDateTime answer = LocalDateTime.of(2021, 8, 1, 18+hashed/60, hashed%60, 0);
+        System.out.println("[Bin Search] User " + id + ": query at " + now.getHour() + ":" + now.getMinute() + " with answer " + answer.getHour() + ":" + answer.getMinute());
         // 如果小时和分钟相同，返回0
         if (now.getHour() == answer.getHour() && now.getMinute() == answer.getMinute()) {
             tartsServiceImpl.passTask(1);

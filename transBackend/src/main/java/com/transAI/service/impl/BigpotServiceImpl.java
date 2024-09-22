@@ -1,6 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.BigpotMapper;
+import com.transAI.mapper.UserMapper;
 import com.transAI.pojo.Bigpot;
 import com.transAI.pojo.BigpotResult;
 import com.transAI.service.BigpotService;
@@ -19,6 +20,8 @@ public class BigpotServiceImpl implements BigpotService {
 
     @Autowired
     private TartsServiceImpl tartsServiceImpl;
+    private UserMapper userMapper;
+
     @Override
     public Bigpot init(int id) {
         int level = bigpotMapper.getLevel(id);
@@ -51,15 +54,13 @@ public class BigpotServiceImpl implements BigpotService {
                 return null; // 或者你可以抛出异常
         }
         bigpotMapper.insert(bigpot);
+        System.out.println("[Big Pot] Start a new level " + level + " game: init with token " + randomToken);
         return bigpot;
     }
 
     @Override
     public BigpotResult cook(int id, String gameToken, int x, int y, int operator) {
-        System.out.println("gameToken:" + gameToken);
         Bigpot bigpot = bigpotMapper.getBigpot(id, gameToken);
-        System.out.println("gameToken:" + gameToken);
-        System.out.println("bigpot:" + bigpot);
         if(bigpot == null) {
             return null;
         }
@@ -95,7 +96,6 @@ public class BigpotServiceImpl implements BigpotService {
                 continue;
             }
         }
-        System.out.println("flagx:" + flagx + ", flagy:" + flagy);
         if(!flagx || !flagy) {
             return null;
         }
@@ -139,7 +139,7 @@ public class BigpotServiceImpl implements BigpotService {
             bigpotResult.setPass(0);
         }
         bigpotResult.setResult(result);
-        System.out.println("bigpotResult:" + bigpotResult);
+        System.out.println("[Big Pot] User " + id + " (" + userMapper.getUser(id).getUsername() + "): cook " + x + (operator==0?"AND":(operator==1?"OR":"XOR")) + y + ", status: " + bigpot);
         return bigpotResult;
     }
 }

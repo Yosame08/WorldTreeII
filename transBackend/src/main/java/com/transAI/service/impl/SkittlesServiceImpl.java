@@ -30,6 +30,7 @@ public class SkittlesServiceImpl implements SkittlesService {
             list.add(start);
             start = getNext(start);
         }
+        System.out.println("[Bai, Lang and Bocchi the Rock] Generated list: " + list);
         return list;
     }
 

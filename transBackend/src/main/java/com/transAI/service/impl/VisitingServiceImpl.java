@@ -1,6 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.VisitingMapper;
+import com.transAI.pojo.DistCalculator;
 import com.transAI.pojo.Visiting;
 import com.transAI.pojo.VisitingUnit;
 import com.transAI.service.VisitingService;
@@ -15,11 +16,16 @@ public class VisitingServiceImpl implements VisitingService {
 
     @Autowired
     private VisitingMapper visitingMapper;
+    private final Visiting visitingAnswer = new Visiting();
+    {
+        visitingAnswer.setPosition(new double[][]{{121.50209, 31.30552}, {121.50777,31.303138}, {121.50831, 31.30479}});
+        visitingAnswer.setIndoor(new boolean[]{false, false, true});
+        visitingAnswer.setFloor(new int[]{0, 0, 1});
+    }
     @Override
     public void update(Visiting visiting) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
-        System.out.println("visiting:" + visiting);
         for(int i = 0;i < 3;i++){
             VisitingUnit visitingUnit = new VisitingUnit();
             visitingUnit.setUserId(userId);
@@ -37,6 +43,14 @@ public class VisitingServiceImpl implements VisitingService {
                 visitingMapper.updateVisiting(visitingUnit);
             }
         }
+        StringBuilder info = new StringBuilder("[Visiting] User " + userId + " updated: ");
+        for (int i = 0; i < 3; i++) {
+            info.append("[").append(i).append("] ");
+            info.append("Dist: ").append(DistCalculator.haversine(visiting.getPosition()[i][0], visiting.getPosition()[i][1], visitingAnswer.getPosition()[i][0], visitingAnswer.getPosition()[i][1])).append(" ");
+            info.append("Indoor: ").append(visiting.getIndoor()[i]).append(" ");
+            info.append("Floor: ").append(visiting.getFloor()[i]).append(" ");
+        }
+        System.out.println(info);
     }
 
     @Override

@@ -25,6 +25,7 @@ public class CakeServiceImpl implements CakeService {
         if(pass) {
             tartsServiceImpl.passTask(5);
         }
+        System.out.println("[Cake] Got submission: " + answer + " with result " + result);
         return result.toString();
     }
 

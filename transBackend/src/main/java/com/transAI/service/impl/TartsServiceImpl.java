@@ -77,6 +77,7 @@ public class TartsServiceImpl implements TartsService {
                 e.printStackTrace();
             }
         }
+        System.out.println("[Answer submission] User " + id + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ").");
 
         int pre_point = userTotalPointMapper.getMaxPoint(id);
         // 输出pre_point
