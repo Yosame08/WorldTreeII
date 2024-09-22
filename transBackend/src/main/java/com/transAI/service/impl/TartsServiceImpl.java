@@ -66,7 +66,7 @@ public class TartsServiceImpl implements TartsService {
         taskUserMapper.insert(taskUser);
 
         // 播报任务完成
-        int num = taskUserMapper.getTaskUserNum(id);
+        int num = taskUserMapper.getTaskUserNum(taskId);
         User user = userMapper.getUser(id);
 
         if(num <= 3) {
@@ -103,8 +103,19 @@ public class TartsServiceImpl implements TartsService {
 
 
     public void broadcastTask(String taskTitle, String username, int rank) throws IOException {
+        System.out.println("rank=" + rank);
         String groupId = "148357672";
-        String message = taskTitle + " - 由 " + username + " 第" + rank + "个提交通过";
+        // 1st【昵称】成为解决危机【题目名】的第一名外勤员，异常部特此为其颁发精金奖章。
+        String message = "";
+        if(rank == 1) {
+            message = rank + "st【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发精金奖章。";
+        } else if(rank == 2) {
+            message = rank + "ed【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发秘银奖章。";
+        } else if(rank == 3) {
+            message = rank + "rd【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发山铜奖章。";
+        }
+        System.out.println(message);
+
 
         // 对整个消息进行URL编码
         String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8.toString());
