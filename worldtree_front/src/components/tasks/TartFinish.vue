@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div class="centered-content" v-if="connected">
     <h1>恭喜完成任务【蛋挞】</h1>
-    <p>获得笔记残页和贴纸，请及时查看</p>
+    <p>获得贴纸，请及时查看</p>
   </div>
 </template>
 
