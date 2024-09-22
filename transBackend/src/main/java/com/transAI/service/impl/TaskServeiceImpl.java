@@ -4,6 +4,7 @@ import com.transAI.mapper.*;
 import com.transAI.pojo.Task;
 import com.transAI.pojo.TaskUser;
 import com.transAI.service.TaskService;
+import com.transAI.utils.DateLogger;
 import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,6 +74,7 @@ public class TaskServeiceImpl implements TaskService {
 
     @Override
     public boolean submitTask(int taskId, String flag) {
+        System.out.println("[" + DateLogger.getTime() + " Task submit] User submitted task " + taskId + "(" + taskMapper.getTask(taskId).getTaskTitle() + ") with flag " + flag);
         if(!taskPass(taskId, flag)) {
             return false;
         }
@@ -143,6 +145,7 @@ public class TaskServeiceImpl implements TaskService {
         }
         userMapper.updateUserCoins(id, userCoin - price);
         userHintMapper.insertUserHint(id, taskId);
+        System.out.println("[" + DateLogger.getTime() + " Hint purchase] User " + id + " purchased hint for task " + taskId + " (" + taskMapper.getTask(taskId).getTaskTitle() + ")");
         return hint;
     }
 

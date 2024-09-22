@@ -1,13 +1,14 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.BigpotMapper;
+import com.transAI.mapper.UserMapper;
 import com.transAI.pojo.Bigpot;
 import com.transAI.pojo.BigpotResult;
+import com.transAI.utils.DateLogger;
 import com.transAI.service.BigpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,6 +20,7 @@ public class BigpotServiceImpl implements BigpotService {
 
     @Autowired
     private TartsServiceImpl tartsServiceImpl;
+
     @Override
     public Bigpot init(int id) {
         int level = bigpotMapper.getLevel(id);
@@ -51,15 +53,13 @@ public class BigpotServiceImpl implements BigpotService {
                 return null; // 或者你可以抛出异常
         }
         bigpotMapper.insert(bigpot);
+        System.out.println("[" + DateLogger.getTime() + " Big Pot] Start a new level " + level + " game with token " + randomToken);
         return bigpot;
     }
 
     @Override
     public BigpotResult cook(int id, String gameToken, int x, int y, int operator) {
-        System.out.println("gameToken:" + gameToken);
         Bigpot bigpot = bigpotMapper.getBigpot(id, gameToken);
-        System.out.println("gameToken:" + gameToken);
-        System.out.println("bigpot:" + bigpot);
         if(bigpot == null) {
             return null;
         }
@@ -95,7 +95,6 @@ public class BigpotServiceImpl implements BigpotService {
                 continue;
             }
         }
-        System.out.println("flagx:" + flagx + ", flagy:" + flagy);
         if(!flagx || !flagy) {
             return null;
         }
@@ -139,7 +138,7 @@ public class BigpotServiceImpl implements BigpotService {
             bigpotResult.setPass(0);
         }
         bigpotResult.setResult(result);
-        System.out.println("bigpotResult:" + bigpotResult);
+        System.out.println("[" + DateLogger.getTime() + " Big Pot] User " + id + ": cook " + x + (operator==0?" AND ":(operator==1?" OR ":" XOR ")) + y + ", status: " + bigpot);
         return bigpotResult;
     }
 }

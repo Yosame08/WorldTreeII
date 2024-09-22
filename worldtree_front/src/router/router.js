@@ -16,6 +16,7 @@ import Visiting from "@/components/tasks/Visiting.vue";
 
 import store from '@/services/storeService';
 import Hidden_relic from "@/components/tasks/hidden_relic.vue";
+import TartFinish from "@/components/tasks/TartFinish.vue";
 
 const routes = [
     { path: '/', component: Index, meta: { title: "反转！蒸旦宇宙" } },
@@ -29,6 +30,7 @@ const routes = [
     { path: '/tasks/cake', component: Cake, meta: { title: "生日蛋糕 - 反转！蒸旦宇宙" } },
     { path: '/tasks/skittles', component: Skittles, meta: { title: "掰与狼与孤独摇滚 - 反转！蒸旦宇宙" } },
     { path: '/tasks/waffle', component: Waffle, meta: { title: "华夫饼 - 反转！蒸旦宇宙" } },
+    { path: '/inter-universe/paky-and-tarts', component: TartFinish, meta: {title: "蛋挞 - 反转！蒸旦宇宙" } },
 
     { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
 ]

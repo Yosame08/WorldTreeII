@@ -3,10 +3,10 @@ package com.transAI.controller;
 import com.transAI.pojo.Result;
 import com.transAI.pojo.User;
 import com.transAI.service.UserService;
+import com.transAI.utils.DateLogger;
 import com.transAI.utils.JwtUtil;
 import com.transAI.utils.Md5Util;
 import com.transAI.utils.ThreadLocalUtil;
-import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,11 +39,15 @@ public class UserController {
             return Result.error("用户名长度不能小于5");
         }
         String password = params.get("password");
+        if(password.length() < 4) {
+            return Result.error("密码长度不能小于4");
+        }
         User u = userService.findByUserName(username);
         logger.info("This is an info message in UserController");
         logger.warn("This is an info message in UserController");
         if(u==null) {
             userService.register(username, password);
+            System.out.println("[" + DateLogger.getTime() + " Register] User " + username + " registered");
             return Result.success();
         }
         else {
@@ -65,6 +69,7 @@ public class UserController {
             String token =  JwtUtil.genToken(claims);
             ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
             operations.set(token, token, 24, TimeUnit.HOURS);
+            System.out.println("[" + DateLogger.getTime() + " Login] User " + username + " logged in");
             return Result.success(token);
         }
         return Result.error("密码错误");

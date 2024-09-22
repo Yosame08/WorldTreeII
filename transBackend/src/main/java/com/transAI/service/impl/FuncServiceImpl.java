@@ -8,6 +8,7 @@ import com.transAI.pojo.User;
 import com.transAI.pojo.UserPoint;
 import com.transAI.pojo.UserTotalPoint;
 import com.transAI.service.FuncService;
+import com.transAI.utils.DateLogger;
 import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,11 +86,10 @@ public class FuncServiceImpl implements FuncService {
         System.out.println(sticker.getStkId());
         Sticker tmp = userStickerMapper.findSticker(userId, sticker.getStkId());
         if(tmp == null) {
-//            System.out.println("sticker not found");
-//            userStickerMapper.addSticker(userId, sticker);
+            System.out.println("[!] User " + userId + " sticker not found " + sticker.getStkId());
         }
         else {
-            System.out.println("sticker found");
+            System.out.println(DateLogger.getTime() + " ~/sticker User " + userId + " (" + userMapper.getUser(userId).getUsername() + ") modified sticker " + sticker.getStkId());
             userStickerMapper.modifyStickers(userId, sticker);
         }
     }

@@ -56,7 +56,7 @@
             <el-button @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
           <!-- 3. 展示提示按钮 -->
-          <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示</el-button>
+          <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示（通过后不再获得货币）</el-button>
           <el-button v-else-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus === 1" @click="getHint" class="hint-button">已解决该事件，可免费获取提示</el-button>
           <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
         </div>
@@ -429,7 +429,7 @@ onMounted(getAllTasks);
   position: fixed;
   top: 43px; /* Start 43px from the top */
   right: 0;
-  width: 25%;
+  width: 30%;
   height: calc(100% - 83px); /* 43 + 20 * 2 (padding) */
   background-color: #fff;
   border-left: 1px solid #ccc;
@@ -438,6 +438,18 @@ onMounted(getAllTasks);
   z-index: 1002;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .task-sidebar {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    border-left: none;
+    box-shadow: none;
+  }
 }
 
 .task-sidebar-content {
@@ -455,8 +467,8 @@ onMounted(getAllTasks);
 .close-button {
   position: absolute;
   top: 5px;
-  right: 5px;
-  font-size: 20px;
+  right: 15px;
+  font-size: 30px;
   background: none;
   border: none;
   cursor: pointer;
