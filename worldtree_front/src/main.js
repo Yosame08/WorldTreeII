@@ -33,7 +33,15 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
-        store.commit("setErrorMsg", error.message);
+        if (error.response && error.response.status === 401) {
+            // 清除本地token
+            sessionStorage.removeItem("token");
+            store.commit("setIsLoggedIn", false);
+            store.commit("setErrorMsg", "Token已过期，请重新登录");
+            router.push('/login');
+        } else {
+            store.commit("setErrorMsg", error.message);
+        }
         return Promise.reject(error);
     }
 );
