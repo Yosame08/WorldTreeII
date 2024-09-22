@@ -8,7 +8,6 @@ import 'element-plus/dist/index.css'
 import ECharts from 'vue-echarts'
 import * as echarts from 'echarts'
 
-import './mock.js'
 import store from './services/storeService'
 import { quillEditor } from "vue3-quill";
 import moment from "moment";
