@@ -129,10 +129,11 @@ public class BigpotServiceImpl implements BigpotService {
 
         if(len == 2 && result == 24) {
             bigpotResult.setPass(1);
-            tartsServiceImpl.passTask(3);
             int level = bigpotMapper.getLevel(id);
             if (level != 4) {
                 bigpotMapper.updateLevel(id, level + 1);
+            } else {
+                tartsServiceImpl.passTask(3);
             }
         } else {
             bigpotResult.setPass(0);

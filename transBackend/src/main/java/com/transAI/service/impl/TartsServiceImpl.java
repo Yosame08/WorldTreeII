@@ -110,9 +110,9 @@ public class TartsServiceImpl implements TartsService {
         if(rank == 1) {
             message = rank + "st【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发精金奖章。";
         } else if(rank == 2) {
-            message = rank + "ed【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发秘银奖章。";
+            message = rank + "nd【" + username + "】成为解决危机【" + taskTitle + "】的第二名外勤员，异常部特此为其颁发秘银奖章。";
         } else if(rank == 3) {
-            message = rank + "rd【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发山铜奖章。";
+            message = rank + "rd【" + username + "】成为解决危机【" + taskTitle + "】的第三名外勤员，异常部特此为其颁发山铜奖章。";
         }
         System.out.println(message);
 
