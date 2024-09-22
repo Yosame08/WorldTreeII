@@ -3,6 +3,7 @@ package com.transAI.service.impl;
 import com.transAI.mapper.*;
 import com.transAI.pojo.*;
 import com.transAI.service.TartsService;
+import com.transAI.utils.DateLogger;
 import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,7 +78,7 @@ public class TartsServiceImpl implements TartsService {
                 e.printStackTrace();
             }
         }
-        System.out.println("[Answer submission] User " + id + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ").");
+        System.out.println("[" + DateLogger.getTime() + " Answer submission] User " + id + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ")");
 
         int pre_point = userTotalPointMapper.getMaxPoint(id);
         // 输出pre_point
@@ -104,7 +105,6 @@ public class TartsServiceImpl implements TartsService {
 
 
     public void broadcastTask(String taskTitle, String username, int rank) throws IOException {
-        System.out.println("rank=" + rank);
         String groupId = "148357672";
         // 1st【昵称】成为解决危机【题目名】的第一名外勤员，异常部特此为其颁发精金奖章。
         String message = "";
@@ -115,7 +115,7 @@ public class TartsServiceImpl implements TartsService {
         } else if(rank == 3) {
             message = rank + "rd【" + username + "】成为解决危机【" + taskTitle + "】的第三名外勤员，异常部特此为其颁发山铜奖章。";
         }
-        System.out.println(message);
+        System.out.println(DateLogger.getTime() + ' ' + message);
 
 
         // 对整个消息进行URL编码

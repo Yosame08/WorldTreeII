@@ -1,6 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.service.SkittlesService;
+import com.transAI.utils.DateLogger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class SkittlesServiceImpl implements SkittlesService {
             list.add(start);
             start = getNext(start);
         }
-        System.out.println("[Bai, Lang and Bocchi the Rock] Generated list: " + list);
+        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] Generated list: " + list);
         return list;
     }
 

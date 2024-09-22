@@ -2,9 +2,9 @@ package com.transAI.service.impl;
 
 import com.transAI.mapper.BinsearchMapper;
 import com.transAI.pojo.BinsearchStatus;
+import com.transAI.utils.DateLogger;
 import com.transAI.service.BinsearchService;
 import com.transAI.utils.ThreadLocalUtil;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +57,7 @@ public class BinsearchServiceImpl implements BinsearchService {
         // 如果有存储且日期相同，返回true
         int hashed = (((id + 5) * (id + 2) - 2) * (id + 1)) % 160 + 15;
         LocalDateTime answer = LocalDateTime.of(2021, 8, 1, 18+hashed/60, hashed%60, 0);
-        System.out.println("[Bin Search] User " + id + ": query at " + now.getHour() + ":" + now.getMinute() + " with answer " + answer.getHour() + ":" + answer.getMinute());
+        System.out.println("[" + DateLogger.getTime() + " Bin Search] User " + id + ": query at " + now.getHour() + ":" + now.getMinute() + " with answer " + answer.getHour() + ":" + answer.getMinute());
         // 如果小时和分钟相同，返回0
         if (now.getHour() == answer.getHour() && now.getMinute() == answer.getMinute()) {
             tartsServiceImpl.passTask(1);

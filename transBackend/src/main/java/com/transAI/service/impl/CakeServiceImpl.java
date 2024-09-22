@@ -1,6 +1,7 @@
 package com.transAI.service.impl;
 
 import com.transAI.service.CakeService;
+import com.transAI.utils.DateLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class CakeServiceImpl implements CakeService {
         if(pass) {
             tartsServiceImpl.passTask(5);
         }
-        System.out.println("[Cake] Got submission: " + answer + " with result " + result);
+        System.out.println("[" + DateLogger.getTime() + " Cake] Got submission: " + answer + " with result " + result);
         return result.toString();
     }
 

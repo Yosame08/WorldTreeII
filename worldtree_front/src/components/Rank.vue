@@ -81,7 +81,7 @@ const getDateFromString = (str) => {
 };
 
 const initEcharts = async () => {
-  let startTime = getDateFromString("2024-09-21 18:00:00");
+  let startTime = getDateFromString("2024-09-22 12:00:00");
   let nowTime = new Date();
 
   chartOptions.value = {

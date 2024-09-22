@@ -1,4 +1,4 @@
-package com.transAI.pojo;
+package com.transAI.utils;
 
 public class DistCalculator {
 
@@ -12,14 +12,5 @@ public class DistCalculator {
                         Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return EARTH_RADIUS * c;
-    }
-
-    public static void main(String[] args) {
-        double lon1 = 121.50209;
-        double lat1 = 31.30552;
-        double lon2 = 121.50777;
-        double lat2 = 31.303138;
-        double distance = haversine(lon1, lat1, lon2, lat2);
-        System.out.println("Distance: " + distance + " meters");
     }
 }
