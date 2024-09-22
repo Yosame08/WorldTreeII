@@ -49,7 +49,7 @@ def get_hint_clue_data(task_id, cursor, hint_clue_table):
 def insert_task(data, cursor, task_table):
     cursor.execute(f"""
         INSERT INTO {task_table} (task_id, task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, remark, task_description, task_description_full)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, data)
 
 def insert_hint_clue(data, cursor, hint_clue_table):
