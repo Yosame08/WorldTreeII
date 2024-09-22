@@ -8,7 +8,6 @@ import 'element-plus/dist/index.css'
 import ECharts from 'vue-echarts'
 import * as echarts from 'echarts'
 
-import './mock.js'
 import store from './services/storeService'
 import { quillEditor } from "vue3-quill";
 import moment from "moment";
@@ -42,7 +41,7 @@ axios.interceptors.response.use(
 const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
-axios.defaults.baseURL = 'http://localhost:8080/'
+axios.defaults.baseURL = 'http://10.20.26.32:8080/'
 
 moment.locale("zh-CN");
 app.use(moment).use(quillEditor).use(router).use(ElementPlus).use(store).mount('#app')

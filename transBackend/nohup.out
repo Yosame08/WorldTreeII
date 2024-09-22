@@ -1,0 +1,2962 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.itheima:big-event:jar:1.0-SNAPSHOT
+[[1;33mWARNING[m] 'dependencies.dependency.version' for org.jetbrains:annotations:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 74, column 16
+[[1;33mWARNING[m] 'dependencies.dependency.version' for org.testng:testng:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 107, column 16
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------------< [0;36mcom.itheima:big-event[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding big-event 1.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.2.3:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mbig-event[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mbig-event[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36mbig-event[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mbig-event[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/sixstars/WorldTreeII/transBackend/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mbig-event[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.2.3:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mbig-event[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.2.3:run[m [1m(default-cli)[m @ [36mbig-event[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2024-09-22T18:18:56.442+08:00  INFO 19124 --- [           main] com.transAI.transAIApplication           : Starting transAIApplication using Java 17.0.12 with PID 19124 (/home/sixstars/WorldTreeII/transBackend/target/classes started by sixstars in /home/sixstars/WorldTreeII/transBackend)
+2024-09-22T18:18:56.445+08:00  INFO 19124 --- [           main] com.transAI.transAIApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-09-22T18:18:57.254+08:00  INFO 19124 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-22T18:18:57.258+08:00  INFO 19124 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-22T18:18:57.290+08:00  INFO 19124 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2024-09-22T18:18:58.012+08:00  INFO 19124 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-22T18:18:58.028+08:00  INFO 19124 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-22T18:18:58.029+08:00  INFO 19124 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-09-22T18:18:58.098+08:00  INFO 19124 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-22T18:18:58.100+08:00  INFO 19124 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1602 ms
+2024-09-22T18:18:59.282+08:00  INFO 19124 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-09-22T18:18:59.295+08:00  INFO 19124 --- [           main] com.transAI.transAIApplication           : Started transAIApplication in 3.274 seconds (process running for 3.623)
+2024-09-22T18:19:04.243+08:00  INFO 19124 --- [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-22T18:19:04.243+08:00  INFO 19124 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-22T18:19:04.245+08:00  INFO 19124 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+OPTIONS request
+2024-09-22T18:19:04.765+08:00  INFO 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-22T18:19:05.095+08:00  INFO 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3dcefe7a
+2024-09-22T18:19:05.097+08:00  INFO 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+OPTIONS request
+3
+sticker found
+3
+sticker found
+3
+sticker found
+3
+sticker found
+OPTIONS request
+OPTIONS request
+3
+sticker found
+3
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+3
+sticker found
+3
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T18:20:11.152971658
+my:now: 2024-09-22T18:20:11.152971658
+OPTIONS request
+3
+sticker found
+3
+sticker found
+OPTIONS request
+OPTIONS request
+2024-09-22T18:21:40.433+08:00  INFO 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T18:21:40.434+08:00  WARN 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+2024-09-22T18:24:09.031+08:00  INFO 19124 --- [nio-8080-exec-9] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T18:24:09.031+08:00  WARN 19124 --- [nio-8080-exec-9] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T18:28:26.367779787
+my:now: 2024-09-22T18:28:26.367779787
+OPTIONS request
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+OPTIONS request
+now: 2024-09-22T18:28:59.500293726
+my:now: 2024-09-22T18:28:59.500293726
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=3, x=2, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+gameToken:343e2c9c-46de-4285-8165-7b15b750d9d2
+bigpot:Bigpot(gameToken=343e2c9c-46de-4285-8165-7b15b750d9d2, level=1, len=2, x=0, y=-1, z=16, w=0)
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+bigpot:Bigpot(gameToken=ccd35736-2dd0-4dfa-852f-fb23be17f956, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+bigpot:Bigpot(gameToken=ccd35736-2dd0-4dfa-852f-fb23be17f956, level=1, len=3, x=3, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+OPTIONS request
+OPTIONS request
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+gameToken:ccd35736-2dd0-4dfa-852f-fb23be17f956
+bigpot:Bigpot(gameToken=ccd35736-2dd0-4dfa-852f-fb23be17f956, level=1, len=2, x=-1, y=11, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:c1f169a6-798b-45e5-af45-dacb20d0018b
+gameToken:c1f169a6-798b-45e5-af45-dacb20d0018b
+bigpot:Bigpot(gameToken=c1f169a6-798b-45e5-af45-dacb20d0018b, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:c1f169a6-798b-45e5-af45-dacb20d0018b
+gameToken:c1f169a6-798b-45e5-af45-dacb20d0018b
+bigpot:Bigpot(gameToken=c1f169a6-798b-45e5-af45-dacb20d0018b, level=1, len=3, x=3, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+bigpot:Bigpot(gameToken=7d9b6cb9-4f41-40cd-8d56-c3086e481868, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+bigpot:Bigpot(gameToken=7d9b6cb9-4f41-40cd-8d56-c3086e481868, level=1, len=3, x=-1, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+gameToken:7d9b6cb9-4f41-40cd-8d56-c3086e481868
+bigpot:Bigpot(gameToken=7d9b6cb9-4f41-40cd-8d56-c3086e481868, level=1, len=2, x=-1, y=11, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+bigpot:Bigpot(gameToken=cfb01607-780d-408c-9bd3-588d23499a5b, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+bigpot:Bigpot(gameToken=cfb01607-780d-408c-9bd3-588d23499a5b, level=1, len=3, x=11, y=3, z=-1, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+gameToken:cfb01607-780d-408c-9bd3-588d23499a5b
+bigpot:Bigpot(gameToken=cfb01607-780d-408c-9bd3-588d23499a5b, level=1, len=2, x=-1, y=11, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+bigpot:Bigpot(gameToken=79d3e1ed-76c9-44a3-b440-e517f5f223dc, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+bigpot:Bigpot(gameToken=79d3e1ed-76c9-44a3-b440-e517f5f223dc, level=1, len=3, x=18, y=3, z=9, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+gameToken:79d3e1ed-76c9-44a3-b440-e517f5f223dc
+bigpot:Bigpot(gameToken=79d3e1ed-76c9-44a3-b440-e517f5f223dc, level=1, len=2, x=-1, y=19, z=9, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+OPTIONS request
+OPTIONS request
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+bigpot:Bigpot(gameToken=4285bd49-3c25-41f1-b7bf-4d10b1cff537, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+bigpot:Bigpot(gameToken=4285bd49-3c25-41f1-b7bf-4d10b1cff537, level=1, len=3, x=18, y=3, z=9, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+gameToken:4285bd49-3c25-41f1-b7bf-4d10b1cff537
+bigpot:Bigpot(gameToken=4285bd49-3c25-41f1-b7bf-4d10b1cff537, level=1, len=2, x=-1, y=3, z=27, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+OPTIONS request
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+bigpot:Bigpot(gameToken=25f37459-e08b-465c-87ef-a70bb41a49cc, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+2024-09-22T18:44:40.547+08:00  INFO 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T18:44:40.547+08:00  WARN 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+bigpot:Bigpot(gameToken=25f37459-e08b-465c-87ef-a70bb41a49cc, level=1, len=3, x=1, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=8)
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+gameToken:25f37459-e08b-465c-87ef-a70bb41a49cc
+bigpot:Bigpot(gameToken=25f37459-e08b-465c-87ef-a70bb41a49cc, level=1, len=2, x=8, y=-1, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+bigpot:Bigpot(gameToken=d9556150-65b7-4695-86ac-699ccce4f7b1, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+bigpot:Bigpot(gameToken=d9556150-65b7-4695-86ac-699ccce4f7b1, level=2, len=3, x=3, y=7, z=16, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+gameToken:d9556150-65b7-4695-86ac-699ccce4f7b1
+bigpot:Bigpot(gameToken=d9556150-65b7-4695-86ac-699ccce4f7b1, level=2, len=2, x=19, y=7, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+bigpot:Bigpot(gameToken=e0935214-e6a8-4156-a559-4bf80bf8f33d, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+bigpot:Bigpot(gameToken=e0935214-e6a8-4156-a559-4bf80bf8f33d, level=2, len=3, x=3, y=-1, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+gameToken:e0935214-e6a8-4156-a559-4bf80bf8f33d
+bigpot:Bigpot(gameToken=e0935214-e6a8-4156-a559-4bf80bf8f33d, level=2, len=2, x=3, y=-1, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+bigpot:Bigpot(gameToken=e6f42485-e394-4a75-a771-0f905e663c5d, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+Token failed:{
+null
+}non null key required
+
+Token failed:{
+null
+}non null key required
+
+Token failed:{
+null
+}non null key required
+
+Token failed:{
+null
+}non null key required
+
+OPTIONS request
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+bigpot:Bigpot(gameToken=e6f42485-e394-4a75-a771-0f905e663c5d, level=2, len=3, x=3, y=15, z=-1, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+gameToken:e6f42485-e394-4a75-a771-0f905e663c5d
+bigpot:Bigpot(gameToken=e6f42485-e394-4a75-a771-0f905e663c5d, level=2, len=2, x=31, y=15, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+bigpot:Bigpot(gameToken=00ea3d59-8db2-46a2-a4a2-023d137fc230, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+bigpot:Bigpot(gameToken=00ea3d59-8db2-46a2-a4a2-023d137fc230, level=2, len=3, x=3, y=-1, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=12)
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T18:49:40.683084531
+my:now: 2024-09-22T18:49:40.683084531
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+gameToken:00ea3d59-8db2-46a2-a4a2-023d137fc230
+bigpot:Bigpot(gameToken=00ea3d59-8db2-46a2-a4a2-023d137fc230, level=2, len=2, x=-1, y=12, z=31, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+now: 2024-09-22T18:49:57.059855539
+my:now: 2024-09-22T18:49:57.059855539
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+8
+sticker found
+8
+sticker found
+8
+sticker found
+3
+sticker found
+8
+sticker found
+OPTIONS request
+OPTIONS request
+gameToken:c545ceaf-a445-4f41-ba8b-8681b96f8b21
+gameToken:c545ceaf-a445-4f41-ba8b-8681b96f8b21
+bigpot:Bigpot(gameToken=c545ceaf-a445-4f41-ba8b-8681b96f8b21, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=4)
+OPTIONS request
+gameToken:c545ceaf-a445-4f41-ba8b-8681b96f8b21
+gameToken:c545ceaf-a445-4f41-ba8b-8681b96f8b21
+bigpot:Bigpot(gameToken=c545ceaf-a445-4f41-ba8b-8681b96f8b21, level=2, len=3, x=4, y=-1, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:99e4e6af-c3fd-4d9d-a673-76a11fd6dddd
+gameToken:99e4e6af-c3fd-4d9d-a673-76a11fd6dddd
+bigpot:Bigpot(gameToken=99e4e6af-c3fd-4d9d-a673-76a11fd6dddd, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:68be1dca-d32e-4e71-b5b7-9bd43b2d8985
+gameToken:68be1dca-d32e-4e71-b5b7-9bd43b2d8985
+bigpot:Bigpot(gameToken=68be1dca-d32e-4e71-b5b7-9bd43b2d8985, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:0978869a-1c53-471c-a0be-cc1b38cd85c6
+gameToken:0978869a-1c53-471c-a0be-cc1b38cd85c6
+bigpot:Bigpot(gameToken=0978869a-1c53-471c-a0be-cc1b38cd85c6, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T18:55:55.532281911
+my:now: 2024-09-22T18:55:55.532281911
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:6863e89a-977d-4e8a-8544-b026a087c801
+gameToken:6863e89a-977d-4e8a-8544-b026a087c801
+bigpot:Bigpot(gameToken=6863e89a-977d-4e8a-8544-b026a087c801, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+bigpot:Bigpot(gameToken=834aa226-5c07-4f91-917f-b8fd794dfb0b, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+bigpot:Bigpot(gameToken=834aa226-5c07-4f91-917f-b8fd794dfb0b, level=2, len=3, x=15, y=7, z=-1, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+gameToken:834aa226-5c07-4f91-917f-b8fd794dfb0b
+bigpot:Bigpot(gameToken=834aa226-5c07-4f91-917f-b8fd794dfb0b, level=2, len=2, x=-1, y=7, z=31, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T19:00:02.828428153
+my:now: 2024-09-22T19:00:02.828428153
+OPTIONS request
+OPTIONS request
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+bigpot:Bigpot(gameToken=cdad1552-a710-49c3-ac24-1f797f0f98fe, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=30)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+bigpot:Bigpot(gameToken=cdad1552-a710-49c3-ac24-1f797f0f98fe, level=3, len=3, x=30, y=-1, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+OPTIONS request
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+gameToken:cdad1552-a710-49c3-ac24-1f797f0f98fe
+bigpot:Bigpot(gameToken=cdad1552-a710-49c3-ac24-1f797f0f98fe, level=3, len=2, x=30, y=25, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T19:03:06.258253293
+my:now: 2024-09-22T19:03:06.258253293
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T19:05:36.867991465
+my:now: 2024-09-22T19:05:36.867991465
+OPTIONS request
+OPTIONS request
+2024-09-22T19:07:23.264+08:00  INFO 19124 --- [nio-8080-exec-4] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T19:07:23.264+08:00  WARN 19124 --- [nio-8080-exec-4] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+visiting:Visiting(position=[[121.50205554153796, 31.3055302387048], [121.50945613524745, 31.302350714810505], [121.50827314124417, 31.30485408045382]], indoor=[false, false, true], floor=[1, 7, 7])
+visiting:Visiting(position=[[121.50205554153796, 31.3055302387048], [121.50945613524745, 31.302350714810505], [121.50827314124417, 31.30485408045382]], indoor=[false, false, true], floor=[1, 7, 7])
+visiting:Visiting(position=[[121.50205554153796, 31.3055302387048], [121.50945613524745, 31.302350714810505], [121.50827314124417, 31.30485408045382]], indoor=[false, false, true], floor=[1, 7, 7])
+visiting:Visiting(position=[[121.50205554153796, 31.3055302387048], [121.50945613524745, 31.302350714810505], [121.50827314124417, 31.30485408045382]], indoor=[false, false, true], floor=[1, 7, 7])
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:67748568-e491-43bb-a4ec-0cfc60e06c83
+gameToken:67748568-e491-43bb-a4ec-0cfc60e06c83
+bigpot:Bigpot(gameToken=67748568-e491-43bb-a4ec-0cfc60e06c83, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:19176f14-73a7-4948-9cd5-c52ad4850fa8
+gameToken:19176f14-73a7-4948-9cd5-c52ad4850fa8
+bigpot:Bigpot(gameToken=19176f14-73a7-4948-9cd5-c52ad4850fa8, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:19176f14-73a7-4948-9cd5-c52ad4850fa8
+gameToken:19176f14-73a7-4948-9cd5-c52ad4850fa8
+bigpot:Bigpot(gameToken=19176f14-73a7-4948-9cd5-c52ad4850fa8, level=1, len=3, x=-1, y=3, z=9, w=18)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:462a72c4-d5c6-41d2-8bb8-40fc2d3f5d62
+gameToken:462a72c4-d5c6-41d2-8bb8-40fc2d3f5d62
+bigpot:Bigpot(gameToken=462a72c4-d5c6-41d2-8bb8-40fc2d3f5d62, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=10)
+gameToken:3d9657a7-8113-4626-8c71-6a6e7ad58459
+gameToken:3d9657a7-8113-4626-8c71-6a6e7ad58459
+bigpot:Bigpot(gameToken=3d9657a7-8113-4626-8c71-6a6e7ad58459, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:07b3959b-bddc-4654-a8c3-7d208778d9aa
+gameToken:07b3959b-bddc-4654-a8c3-7d208778d9aa
+bigpot:Bigpot(gameToken=07b3959b-bddc-4654-a8c3-7d208778d9aa, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:a8084ce6-2ffd-4dcc-a2f4-7208b0e56796
+gameToken:a8084ce6-2ffd-4dcc-a2f4-7208b0e56796
+bigpot:Bigpot(gameToken=a8084ce6-2ffd-4dcc-a2f4-7208b0e56796, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:4dce0126-90af-4e4e-9a1f-84c8164c5ae9
+gameToken:4dce0126-90af-4e4e-9a1f-84c8164c5ae9
+bigpot:Bigpot(gameToken=4dce0126-90af-4e4e-9a1f-84c8164c5ae9, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+bigpot:Bigpot(gameToken=bd7045dc-c7ec-4f20-8763-97d9e1830369, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+bigpot:Bigpot(gameToken=bd7045dc-c7ec-4f20-8763-97d9e1830369, level=1, len=3, x=-1, y=3, z=9, w=18)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+gameToken:bd7045dc-c7ec-4f20-8763-97d9e1830369
+bigpot:Bigpot(gameToken=bd7045dc-c7ec-4f20-8763-97d9e1830369, level=1, len=2, x=-1, y=9, z=19, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:ab6cb741-bc81-4d11-a5ef-f953b3b5db8e
+gameToken:ab6cb741-bc81-4d11-a5ef-f953b3b5db8e
+bigpot:Bigpot(gameToken=ab6cb741-bc81-4d11-a5ef-f953b3b5db8e, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:76841854-db6b-4995-afb0-0c715f06b6d2
+gameToken:76841854-db6b-4995-afb0-0c715f06b6d2
+bigpot:Bigpot(gameToken=76841854-db6b-4995-afb0-0c715f06b6d2, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:3696f126-7385-4405-9265-9a8915ca94e2
+gameToken:3696f126-7385-4405-9265-9a8915ca94e2
+bigpot:Bigpot(gameToken=3696f126-7385-4405-9265-9a8915ca94e2, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+bigpot:Bigpot(gameToken=b15ee427-3543-44ca-bb1f-b8c2145324d6, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=10)
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+bigpot:Bigpot(gameToken=b15ee427-3543-44ca-bb1f-b8c2145324d6, level=1, len=3, x=2, y=-1, z=10, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=26)
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+gameToken:b15ee427-3543-44ca-bb1f-b8c2145324d6
+bigpot:Bigpot(gameToken=b15ee427-3543-44ca-bb1f-b8c2145324d6, level=1, len=2, x=2, y=-1, z=26, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+bigpot:Bigpot(gameToken=368aad58-b0c9-46a4-bfb5-d3cab4895575, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+bigpot:Bigpot(gameToken=368aad58-b0c9-46a4-bfb5-d3cab4895575, level=2, len=3, x=3, y=7, z=16, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=23)
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+gameToken:368aad58-b0c9-46a4-bfb5-d3cab4895575
+bigpot:Bigpot(gameToken=368aad58-b0c9-46a4-bfb5-d3cab4895575, level=2, len=2, x=3, y=-1, z=23, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+bigpot:Bigpot(gameToken=70c9ae75-0324-4d01-a47f-7302fb706bbd, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=4)
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+bigpot:Bigpot(gameToken=70c9ae75-0324-4d01-a47f-7302fb706bbd, level=2, len=3, x=-1, y=4, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+gameToken:70c9ae75-0324-4d01-a47f-7302fb706bbd
+bigpot:Bigpot(gameToken=70c9ae75-0324-4d01-a47f-7302fb706bbd, level=2, len=2, x=4, y=-1, z=16, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+bigpot:Bigpot(gameToken=10c7f5aa-9691-4315-8816-5cceaf5a1387, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+bigpot:Bigpot(gameToken=10c7f5aa-9691-4315-8816-5cceaf5a1387, level=2, len=3, x=3, y=15, z=-1, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+gameToken:10c7f5aa-9691-4315-8816-5cceaf5a1387
+bigpot:Bigpot(gameToken=10c7f5aa-9691-4315-8816-5cceaf5a1387, level=2, len=2, x=3, y=-1, z=15, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=12)
+gameToken:63ac63ab-9cd7-4fbd-a918-fc558a8e200b
+gameToken:63ac63ab-9cd7-4fbd-a918-fc558a8e200b
+bigpot:Bigpot(gameToken=63ac63ab-9cd7-4fbd-a918-fc558a8e200b, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:8ba74799-b8d3-4892-8eed-51731b574246
+gameToken:8ba74799-b8d3-4892-8eed-51731b574246
+bigpot:Bigpot(gameToken=8ba74799-b8d3-4892-8eed-51731b574246, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:c403178e-1bea-4b0f-8f63-a23560d5d941
+gameToken:c403178e-1bea-4b0f-8f63-a23560d5d941
+bigpot:Bigpot(gameToken=c403178e-1bea-4b0f-8f63-a23560d5d941, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=8)
+gameToken:c403178e-1bea-4b0f-8f63-a23560d5d941
+gameToken:c403178e-1bea-4b0f-8f63-a23560d5d941
+bigpot:Bigpot(gameToken=c403178e-1bea-4b0f-8f63-a23560d5d941, level=2, len=3, x=3, y=-1, z=8, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:60039123-0d97-4c7b-81bf-2cacc06fb024
+gameToken:60039123-0d97-4c7b-81bf-2cacc06fb024
+bigpot:Bigpot(gameToken=60039123-0d97-4c7b-81bf-2cacc06fb024, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+2024-09-22T19:20:11.497+08:00  INFO 19124 --- [nio-8080-exec-7] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T19:20:11.498+08:00  WARN 19124 --- [nio-8080-exec-7] com.transAI.controller.UserController    : This is an info message in UserController
+gameToken:a47dd683-2383-49c9-91db-ab94036ca263
+gameToken:a47dd683-2383-49c9-91db-ab94036ca263
+bigpot:Bigpot(gameToken=a47dd683-2383-49c9-91db-ab94036ca263, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:a47dd683-2383-49c9-91db-ab94036ca263
+gameToken:a47dd683-2383-49c9-91db-ab94036ca263
+bigpot:Bigpot(gameToken=a47dd683-2383-49c9-91db-ab94036ca263, level=2, len=3, x=3, y=7, z=-1, w=15)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:18c82bb6-67f4-4715-845e-0d2702da049f
+gameToken:18c82bb6-67f4-4715-845e-0d2702da049f
+bigpot:Bigpot(gameToken=18c82bb6-67f4-4715-845e-0d2702da049f, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+gameToken:2499dcdd-f6f5-4bc2-9e8e-980441972f8c
+gameToken:2499dcdd-f6f5-4bc2-9e8e-980441972f8c
+bigpot:Bigpot(gameToken=2499dcdd-f6f5-4bc2-9e8e-980441972f8c, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=8)
+OPTIONS request
+gameToken:82175e61-3af3-4028-ae80-cd5a82d5f823
+gameToken:82175e61-3af3-4028-ae80-cd5a82d5f823
+bigpot:Bigpot(gameToken=82175e61-3af3-4028-ae80-cd5a82d5f823, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+bigpot:Bigpot(gameToken=951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+bigpot:Bigpot(gameToken=951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3, level=2, len=3, x=3, y=-1, z=15, w=24)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+gameToken:951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3
+bigpot:Bigpot(gameToken=951e9ba8-1b0c-4b3f-bef9-ba72a7feaec3, level=2, len=2, x=-1, y=3, z=24, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:9c69e888-c17c-4c55-8821-1eac5d4db289
+gameToken:9c69e888-c17c-4c55-8821-1eac5d4db289
+bigpot:Bigpot(gameToken=9c69e888-c17c-4c55-8821-1eac5d4db289, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:9c69e888-c17c-4c55-8821-1eac5d4db289
+gameToken:9c69e888-c17c-4c55-8821-1eac5d4db289
+bigpot:Bigpot(gameToken=9c69e888-c17c-4c55-8821-1eac5d4db289, level=2, len=3, x=3, y=-1, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:cd873822-e907-445c-8424-7757c7431ae5
+gameToken:cd873822-e907-445c-8424-7757c7431ae5
+bigpot:Bigpot(gameToken=cd873822-e907-445c-8424-7757c7431ae5, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:9928acc8-efd3-4b94-b0fa-f3d8bd52af4a
+gameToken:9928acc8-efd3-4b94-b0fa-f3d8bd52af4a
+bigpot:Bigpot(gameToken=9928acc8-efd3-4b94-b0fa-f3d8bd52af4a, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=8)
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+bigpot:Bigpot(gameToken=421ac2b8-1e6e-48d9-954b-8497229a6781, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+bigpot:Bigpot(gameToken=421ac2b8-1e6e-48d9-954b-8497229a6781, level=2, len=3, x=3, y=-1, z=7, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+gameToken:421ac2b8-1e6e-48d9-954b-8497229a6781
+bigpot:Bigpot(gameToken=421ac2b8-1e6e-48d9-954b-8497229a6781, level=2, len=2, x=-1, y=7, z=31, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+gameToken:9242384e-163e-4c23-9936-8964d0dc9501
+gameToken:9242384e-163e-4c23-9936-8964d0dc9501
+bigpot:Bigpot(gameToken=9242384e-163e-4c23-9936-8964d0dc9501, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+bigpot:Bigpot(gameToken=3ce250df-7df7-498e-815a-1b24fd13be94, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+bigpot:Bigpot(gameToken=3ce250df-7df7-498e-815a-1b24fd13be94, level=3, len=3, x=7, y=25, z=-1, w=6)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+gameToken:3ce250df-7df7-498e-815a-1b24fd13be94
+bigpot:Bigpot(gameToken=3ce250df-7df7-498e-815a-1b24fd13be94, level=3, len=2, x=-1, y=25, z=7, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:0f72bb87-25e5-4160-81ba-46363533d2c4
+gameToken:0f72bb87-25e5-4160-81ba-46363533d2c4
+bigpot:Bigpot(gameToken=0f72bb87-25e5-4160-81ba-46363533d2c4, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:0e8e758c-2dfb-4c80-9a6a-17ae0d5e2bc9
+gameToken:0e8e758c-2dfb-4c80-9a6a-17ae0d5e2bc9
+bigpot:Bigpot(gameToken=0e8e758c-2dfb-4c80-9a6a-17ae0d5e2bc9, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+bigpot:Bigpot(gameToken=32f2fe93-c215-4d19-8c7d-51603a8bc376, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+bigpot:Bigpot(gameToken=32f2fe93-c215-4d19-8c7d-51603a8bc376, level=3, len=3, x=7, y=-1, z=27, w=25)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+gameToken:32f2fe93-c215-4d19-8c7d-51603a8bc376
+bigpot:Bigpot(gameToken=32f2fe93-c215-4d19-8c7d-51603a8bc376, level=3, len=2, x=-1, y=31, z=25, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+bigpot:Bigpot(gameToken=203d9717-a350-45bb-9379-48eaf5d1e88f, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=26)
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+bigpot:Bigpot(gameToken=203d9717-a350-45bb-9379-48eaf5d1e88f, level=3, len=3, x=-1, y=25, z=27, w=26)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+gameToken:203d9717-a350-45bb-9379-48eaf5d1e88f
+bigpot:Bigpot(gameToken=203d9717-a350-45bb-9379-48eaf5d1e88f, level=3, len=2, x=25, y=-1, z=27, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+bigpot:Bigpot(gameToken=4d099922-76dd-4ba3-aeac-7d7c31c26abc, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+OPTIONS request
+OPTIONS request
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+bigpot:Bigpot(gameToken=4d099922-76dd-4ba3-aeac-7d7c31c26abc, level=3, len=3, x=7, y=-1, z=27, w=25)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+gameToken:4d099922-76dd-4ba3-aeac-7d7c31c26abc
+bigpot:Bigpot(gameToken=4d099922-76dd-4ba3-aeac-7d7c31c26abc, level=3, len=2, x=7, y=-1, z=27, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=28)
+gameToken:761ab7af-66d6-4784-b48e-635a17b59d84
+gameToken:761ab7af-66d6-4784-b48e-635a17b59d84
+bigpot:Bigpot(gameToken=761ab7af-66d6-4784-b48e-635a17b59d84, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:761ab7af-66d6-4784-b48e-635a17b59d84
+gameToken:761ab7af-66d6-4784-b48e-635a17b59d84
+bigpot:Bigpot(gameToken=761ab7af-66d6-4784-b48e-635a17b59d84, level=3, len=3, x=-1, y=25, z=3, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+bigpot:Bigpot(gameToken=9fbf5169-0203-42b6-aa8e-354ee187b85e, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+bigpot:Bigpot(gameToken=9fbf5169-0203-42b6-aa8e-354ee187b85e, level=3, len=3, x=-1, y=25, z=3, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+gameToken:9fbf5169-0203-42b6-aa8e-354ee187b85e
+bigpot:Bigpot(gameToken=9fbf5169-0203-42b6-aa8e-354ee187b85e, level=3, len=2, x=-1, y=27, z=29, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+bigpot:Bigpot(gameToken=b49bf5f9-0ed1-49bc-ae51-f1ff75b62053, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+bigpot:Bigpot(gameToken=b49bf5f9-0ed1-49bc-ae51-f1ff75b62053, level=3, len=3, x=-1, y=25, z=3, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=30)
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+gameToken:b49bf5f9-0ed1-49bc-ae51-f1ff75b62053
+bigpot:Bigpot(gameToken=b49bf5f9-0ed1-49bc-ae51-f1ff75b62053, level=3, len=2, x=25, y=-1, z=30, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+bigpot:Bigpot(gameToken=52cd121b-923c-493d-9a25-74c16021533d, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+bigpot:Bigpot(gameToken=52cd121b-923c-493d-9a25-74c16021533d, level=4, len=3, x=23, y=43, z=-1, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=84)
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+gameToken:52cd121b-923c-493d-9a25-74c16021533d
+bigpot:Bigpot(gameToken=52cd121b-923c-493d-9a25-74c16021533d, level=4, len=2, x=23, y=-1, z=84, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+bigpot:Bigpot(gameToken=160d0407-039b-4ac5-b33b-1eb9116c25fb, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+bigpot:Bigpot(gameToken=160d0407-039b-4ac5-b33b-1eb9116c25fb, level=4, len=3, x=-1, y=43, z=54, w=5)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+gameToken:160d0407-039b-4ac5-b33b-1eb9116c25fb
+bigpot:Bigpot(gameToken=160d0407-039b-4ac5-b33b-1eb9116c25fb, level=4, len=2, x=-1, y=63, z=5, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+bigpot:Bigpot(gameToken=574954c1-b4bf-49a1-8eb6-2468d508aead, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=70)
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+bigpot:Bigpot(gameToken=574954c1-b4bf-49a1-8eb6-2468d508aead, level=4, len=3, x=23, y=-1, z=54, w=70)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=87)
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+gameToken:574954c1-b4bf-49a1-8eb6-2468d508aead
+bigpot:Bigpot(gameToken=574954c1-b4bf-49a1-8eb6-2468d508aead, level=4, len=2, x=-1, y=54, z=87, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=97)
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+bigpot:Bigpot(gameToken=db2cb84c-0d35-42bd-a787-956e5b8091f5, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+bigpot:Bigpot(gameToken=db2cb84c-0d35-42bd-a787-956e5b8091f5, level=4, len=3, x=23, y=-1, z=34, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=111)
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+gameToken:db2cb84c-0d35-42bd-a787-956e5b8091f5
+bigpot:Bigpot(gameToken=db2cb84c-0d35-42bd-a787-956e5b8091f5, level=4, len=2, x=23, y=-1, z=111, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=120)
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+bigpot:Bigpot(gameToken=b7ce6fad-b00c-4d79-809a-7986c932c583, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+bigpot:Bigpot(gameToken=b7ce6fad-b00c-4d79-809a-7986c932c583, level=4, len=3, x=23, y=43, z=-1, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=84)
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+gameToken:b7ce6fad-b00c-4d79-809a-7986c932c583
+bigpot:Bigpot(gameToken=b7ce6fad-b00c-4d79-809a-7986c932c583, level=4, len=2, x=23, y=-1, z=84, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:391c37cb-0187-4a95-bdfb-153727f2d754
+gameToken:391c37cb-0187-4a95-bdfb-153727f2d754
+bigpot:Bigpot(gameToken=391c37cb-0187-4a95-bdfb-153727f2d754, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:391c37cb-0187-4a95-bdfb-153727f2d754
+gameToken:391c37cb-0187-4a95-bdfb-153727f2d754
+bigpot:Bigpot(gameToken=391c37cb-0187-4a95-bdfb-153727f2d754, level=4, len=3, x=23, y=-1, z=34, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=53)
+OPTIONS request
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+bigpot:Bigpot(gameToken=8188ec29-eeb2-4693-a9c3-2b4faa7e063f, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=111)
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+bigpot:Bigpot(gameToken=8188ec29-eeb2-4693-a9c3-2b4faa7e063f, level=4, len=3, x=23, y=-1, z=54, w=111)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=120)
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+gameToken:8188ec29-eeb2-4693-a9c3-2b4faa7e063f
+bigpot:Bigpot(gameToken=8188ec29-eeb2-4693-a9c3-2b4faa7e063f, level=4, len=2, x=-1, y=54, z=120, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=48)
+OPTIONS request
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+bigpot:Bigpot(gameToken=15f19fab-f7a7-4cbb-aebe-6f09571c1a32, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+OPTIONS request
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+bigpot:Bigpot(gameToken=15f19fab-f7a7-4cbb-aebe-6f09571c1a32, level=4, len=3, x=23, y=43, z=36, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=51)
+OPTIONS request
+OPTIONS request
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+gameToken:15f19fab-f7a7-4cbb-aebe-6f09571c1a32
+bigpot:Bigpot(gameToken=15f19fab-f7a7-4cbb-aebe-6f09571c1a32, level=4, len=2, x=-1, y=43, z=51, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+bigpot:Bigpot(gameToken=1d406bfe-3923-426e-bb1c-cf15616cb999, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T19:25:51.994527805
+my:now: 2024-09-22T19:25:51.994527805
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+bigpot:Bigpot(gameToken=1d406bfe-3923-426e-bb1c-cf15616cb999, level=4, len=3, x=23, y=43, z=-1, w=91)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=95)
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+gameToken:1d406bfe-3923-426e-bb1c-cf15616cb999
+bigpot:Bigpot(gameToken=1d406bfe-3923-426e-bb1c-cf15616cb999, level=4, len=2, x=-1, y=43, z=95, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+OPTIONS request
+OPTIONS request
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+bigpot:Bigpot(gameToken=ccd0f205-0fcc-4625-8d83-c41c6b2ddd31, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=29)
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+bigpot:Bigpot(gameToken=ccd0f205-0fcc-4625-8d83-c41c6b2ddd31, level=4, len=3, x=23, y=-1, z=29, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=125)
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+gameToken:ccd0f205-0fcc-4625-8d83-c41c6b2ddd31
+bigpot:Bigpot(gameToken=ccd0f205-0fcc-4625-8d83-c41c6b2ddd31, level=4, len=2, x=23, y=125, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=21)
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+bigpot:Bigpot(gameToken=b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+bigpot:Bigpot(gameToken=b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5, level=4, len=3, x=23, y=43, z=-1, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=84)
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+gameToken:b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5
+bigpot:Bigpot(gameToken=b5450b53-dd0c-4fa5-a5cd-5d4302fe9be5, level=4, len=2, x=23, y=-1, z=84, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=20)
+gameToken:8be50544-65d2-4400-96bd-87813a467d45
+gameToken:8be50544-65d2-4400-96bd-87813a467d45
+bigpot:Bigpot(gameToken=8be50544-65d2-4400-96bd-87813a467d45, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:abf68506-b672-42d0-bc3c-d2f8edaac256
+gameToken:abf68506-b672-42d0-bc3c-d2f8edaac256
+bigpot:Bigpot(gameToken=abf68506-b672-42d0-bc3c-d2f8edaac256, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+bigpot:Bigpot(gameToken=0acecfb8-e456-4921-9d35-1d742dbf7725, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=29)
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+bigpot:Bigpot(gameToken=0acecfb8-e456-4921-9d35-1d742dbf7725, level=4, len=3, x=23, y=-1, z=29, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+gameToken:0acecfb8-e456-4921-9d35-1d742dbf7725
+bigpot:Bigpot(gameToken=0acecfb8-e456-4921-9d35-1d742dbf7725, level=4, len=2, x=-1, y=31, z=109, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=13)
+gameToken:8cc18f37-039a-4fea-bb29-9bb32555408b
+gameToken:8cc18f37-039a-4fea-bb29-9bb32555408b
+bigpot:Bigpot(gameToken=8cc18f37-039a-4fea-bb29-9bb32555408b, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+bigpot:Bigpot(gameToken=6a8cb42a-1812-4833-9acf-f9a69d2f0ae3, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+bigpot:Bigpot(gameToken=6a8cb42a-1812-4833-9acf-f9a69d2f0ae3, level=4, len=3, x=-1, y=3, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=110)
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+gameToken:6a8cb42a-1812-4833-9acf-f9a69d2f0ae3
+bigpot:Bigpot(gameToken=6a8cb42a-1812-4833-9acf-f9a69d2f0ae3, level=4, len=2, x=-1, y=54, z=110, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=38)
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+bigpot:Bigpot(gameToken=527133a8-cb9d-4ba1-bde2-67d4dc934c59, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=111)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+bigpot:Bigpot(gameToken=527133a8-cb9d-4ba1-bde2-67d4dc934c59, level=4, len=3, x=23, y=111, z=54, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=120)
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+gameToken:527133a8-cb9d-4ba1-bde2-67d4dc934c59
+bigpot:Bigpot(gameToken=527133a8-cb9d-4ba1-bde2-67d4dc934c59, level=4, len=2, x=-1, y=120, z=54, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=126)
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+bigpot:Bigpot(gameToken=6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+bigpot:Bigpot(gameToken=6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e, level=4, len=3, x=23, y=43, z=-1, w=91)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=112)
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+gameToken:6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e
+bigpot:Bigpot(gameToken=6ab79b9d-edf4-45d6-8f1c-f26ac7dc1d7e, level=4, len=2, x=23, y=-1, z=112, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=103)
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+bigpot:Bigpot(gameToken=fb51ef4d-324f-40f0-a3fd-9809a118d187, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+bigpot:Bigpot(gameToken=fb51ef4d-324f-40f0-a3fd-9809a118d187, level=4, len=3, x=23, y=-1, z=63, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=45)
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+gameToken:fb51ef4d-324f-40f0-a3fd-9809a118d187
+bigpot:Bigpot(gameToken=fb51ef4d-324f-40f0-a3fd-9809a118d187, level=4, len=2, x=23, y=-1, z=45, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+OPTIONS request
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+bigpot:Bigpot(gameToken=2d82e9b2-efb4-4e99-adb1-f98399e0feca, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=70)
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+bigpot:Bigpot(gameToken=2d82e9b2-efb4-4e99-adb1-f98399e0feca, level=4, len=3, x=23, y=-1, z=54, w=70)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+gameToken:2d82e9b2-efb4-4e99-adb1-f98399e0feca
+bigpot:Bigpot(gameToken=2d82e9b2-efb4-4e99-adb1-f98399e0feca, level=4, len=2, x=-1, y=54, z=6, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=54)
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+bigpot:Bigpot(gameToken=2bbf7c6c-65f1-47bf-85c0-f97999a84d65, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=70)
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+bigpot:Bigpot(gameToken=2bbf7c6c-65f1-47bf-85c0-f97999a84d65, level=4, len=3, x=23, y=-1, z=54, w=70)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=81)
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+gameToken:2bbf7c6c-65f1-47bf-85c0-f97999a84d65
+bigpot:Bigpot(gameToken=2bbf7c6c-65f1-47bf-85c0-f97999a84d65, level=4, len=2, x=-1, y=54, z=81, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=103)
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+bigpot:Bigpot(gameToken=72a18cc7-e51a-40de-b3de-68b7e0aaf281, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+bigpot:Bigpot(gameToken=72a18cc7-e51a-40de-b3de-68b7e0aaf281, level=4, len=3, x=23, y=43, z=-1, w=91)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=112)
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+gameToken:72a18cc7-e51a-40de-b3de-68b7e0aaf281
+bigpot:Bigpot(gameToken=72a18cc7-e51a-40de-b3de-68b7e0aaf281, level=4, len=2, x=23, y=-1, z=112, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=103)
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+bigpot:Bigpot(gameToken=762a4d8d-fd11-4bff-bf78-aadd4631a1c3, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+bigpot:Bigpot(gameToken=762a4d8d-fd11-4bff-bf78-aadd4631a1c3, level=4, len=3, x=23, y=-1, z=63, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+gameToken:762a4d8d-fd11-4bff-bf78-aadd4631a1c3
+bigpot:Bigpot(gameToken=762a4d8d-fd11-4bff-bf78-aadd4631a1c3, level=4, len=2, x=23, y=-1, z=127, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+bigpot:Bigpot(gameToken=60796206-7fd0-469b-8b4c-5c357beeb2c1, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+2024-09-22T19:33:13.484+08:00  INFO 19124 --- [nio-8080-exec-9] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T19:33:13.484+08:00  WARN 19124 --- [nio-8080-exec-9] com.transAI.controller.UserController    : This is an info message in UserController
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+bigpot:Bigpot(gameToken=60796206-7fd0-469b-8b4c-5c357beeb2c1, level=4, len=3, x=-1, y=43, z=54, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+gameToken:60796206-7fd0-469b-8b4c-5c357beeb2c1
+bigpot:Bigpot(gameToken=60796206-7fd0-469b-8b4c-5c357beeb2c1, level=4, len=2, x=43, y=127, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:905865a8-7b1c-4804-a7bb-f35c8484e491
+gameToken:905865a8-7b1c-4804-a7bb-f35c8484e491
+bigpot:Bigpot(gameToken=905865a8-7b1c-4804-a7bb-f35c8484e491, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T19:33:21.652473582
+my:now: 2024-09-22T19:33:21.652473582
+gameToken:905865a8-7b1c-4804-a7bb-f35c8484e491
+gameToken:905865a8-7b1c-4804-a7bb-f35c8484e491
+bigpot:Bigpot(gameToken=905865a8-7b1c-4804-a7bb-f35c8484e491, level=4, len=3, x=-1, y=43, z=54, w=5)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=47)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:1eec7dea-f5b0-4148-ac9e-ebf54032f633
+gameToken:1eec7dea-f5b0-4148-ac9e-ebf54032f633
+bigpot:Bigpot(gameToken=1eec7dea-f5b0-4148-ac9e-ebf54032f633, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+gameToken:eb25e011-5063-4ea2-bb13-67a0cc4affb3
+gameToken:eb25e011-5063-4ea2-bb13-67a0cc4affb3
+bigpot:Bigpot(gameToken=eb25e011-5063-4ea2-bb13-67a0cc4affb3, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=41)
+gameToken:c4351eea-d5e6-48f4-9c60-3849309e2e79
+gameToken:c4351eea-d5e6-48f4-9c60-3849309e2e79
+bigpot:Bigpot(gameToken=c4351eea-d5e6-48f4-9c60-3849309e2e79, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=41)
+gameToken:b2634de8-a7f3-4333-bb4d-4b5001ec7f68
+gameToken:b2634de8-a7f3-4333-bb4d-4b5001ec7f68
+bigpot:Bigpot(gameToken=b2634de8-a7f3-4333-bb4d-4b5001ec7f68, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:085d6b55-9b28-4101-b48f-97b8e1a7f737
+gameToken:085d6b55-9b28-4101-b48f-97b8e1a7f737
+bigpot:Bigpot(gameToken=085d6b55-9b28-4101-b48f-97b8e1a7f737, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:085d6b55-9b28-4101-b48f-97b8e1a7f737
+gameToken:085d6b55-9b28-4101-b48f-97b8e1a7f737
+bigpot:Bigpot(gameToken=085d6b55-9b28-4101-b48f-97b8e1a7f737, level=4, len=3, x=-1, y=3, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+bigpot:Bigpot(gameToken=282f06ba-b117-466a-bacc-43592a9de953, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=70)
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+bigpot:Bigpot(gameToken=282f06ba-b117-466a-bacc-43592a9de953, level=4, len=3, x=23, y=-1, z=54, w=70)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=6)
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+gameToken:282f06ba-b117-466a-bacc-43592a9de953
+bigpot:Bigpot(gameToken=282f06ba-b117-466a-bacc-43592a9de953, level=4, len=2, x=-1, y=54, z=6, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=54)
+OPTIONS request
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+bigpot:Bigpot(gameToken=0009492e-def8-4105-9721-7a1f4d13257b, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+bigpot:Bigpot(gameToken=0009492e-def8-4105-9721-7a1f4d13257b, level=4, len=3, x=-1, y=60, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=44)
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+gameToken:0009492e-def8-4105-9721-7a1f4d13257b
+bigpot:Bigpot(gameToken=0009492e-def8-4105-9721-7a1f4d13257b, level=4, len=2, x=-1, y=54, z=44, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=26)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+bigpot:Bigpot(gameToken=16dc6b5b-b266-4d5e-a9e4-043176b400c7, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=41)
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+bigpot:Bigpot(gameToken=16dc6b5b-b266-4d5e-a9e4-043176b400c7, level=4, len=3, x=23, y=-1, z=54, w=41)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+gameToken:16dc6b5b-b266-4d5e-a9e4-043176b400c7
+bigpot:Bigpot(gameToken=16dc6b5b-b266-4d5e-a9e4-043176b400c7, level=4, len=2, x=23, y=-1, z=63, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=40)
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+bigpot:Bigpot(gameToken=038cb5fc-cad8-40c1-a824-6791fd85951a, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+bigpot:Bigpot(gameToken=038cb5fc-cad8-40c1-a824-6791fd85951a, level=4, len=3, x=23, y=43, z=91, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+gameToken:038cb5fc-cad8-40c1-a824-6791fd85951a
+bigpot:Bigpot(gameToken=038cb5fc-cad8-40c1-a824-6791fd85951a, level=4, len=2, x=-1, y=63, z=91, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=100)
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+bigpot:Bigpot(gameToken=bac3ad8f-5561-4c32-a312-c06d50e251e0, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+OPTIONS request
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+bigpot:Bigpot(gameToken=bac3ad8f-5561-4c32-a312-c06d50e251e0, level=4, len=3, x=23, y=43, z=-1, w=91)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=112)
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+gameToken:bac3ad8f-5561-4c32-a312-c06d50e251e0
+bigpot:Bigpot(gameToken=bac3ad8f-5561-4c32-a312-c06d50e251e0, level=4, len=2, x=23, y=-1, z=112, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+bigpot:Bigpot(gameToken=0c372990-7a4b-42dd-adbe-1dc141474e0b, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=41)
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+bigpot:Bigpot(gameToken=0c372990-7a4b-42dd-adbe-1dc141474e0b, level=4, len=3, x=23, y=-1, z=54, w=41)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=32)
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+gameToken:0c372990-7a4b-42dd-adbe-1dc141474e0b
+bigpot:Bigpot(gameToken=0c372990-7a4b-42dd-adbe-1dc141474e0b, level=4, len=2, x=23, y=32, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+bigpot:Bigpot(gameToken=38a10091-fabd-4c63-aad3-fef5d7a2c04c, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+bigpot:Bigpot(gameToken=38a10091-fabd-4c63-aad3-fef5d7a2c04c, level=4, len=3, x=23, y=-1, z=34, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=122)
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+gameToken:38a10091-fabd-4c63-aad3-fef5d7a2c04c
+bigpot:Bigpot(gameToken=38a10091-fabd-4c63-aad3-fef5d7a2c04c, level=4, len=2, x=-1, y=34, z=122, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+bigpot:Bigpot(gameToken=dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=22)
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+bigpot:Bigpot(gameToken=dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f, level=4, len=3, x=-1, y=43, z=22, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=41)
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+gameToken:dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f
+bigpot:Bigpot(gameToken=dadc5dd0-f724-44c2-ae0f-4ffa9fa68b4f, level=4, len=2, x=-1, y=22, z=41, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+bigpot:Bigpot(gameToken=77ed6515-7104-4499-bad4-0bccc62ed878, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+bigpot:Bigpot(gameToken=77ed6515-7104-4499-bad4-0bccc62ed878, level=4, len=3, x=23, y=-1, z=63, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=82)
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+gameToken:77ed6515-7104-4499-bad4-0bccc62ed878
+bigpot:Bigpot(gameToken=77ed6515-7104-4499-bad4-0bccc62ed878, level=4, len=2, x=23, y=-1, z=82, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=69)
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+bigpot:Bigpot(gameToken=ed3dde5f-b6dd-4f53-a08d-9c82f07afca7, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+bigpot:Bigpot(gameToken=ed3dde5f-b6dd-4f53-a08d-9c82f07afca7, level=4, len=3, x=23, y=43, z=91, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=112)
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+gameToken:ed3dde5f-b6dd-4f53-a08d-9c82f07afca7
+bigpot:Bigpot(gameToken=ed3dde5f-b6dd-4f53-a08d-9c82f07afca7, level=4, len=2, x=23, y=112, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=103)
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+bigpot:Bigpot(gameToken=0a62c3b9-f2f7-4f51-9622-f9682754a874, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+bigpot:Bigpot(gameToken=0a62c3b9-f2f7-4f51-9622-f9682754a874, level=4, len=3, x=23, y=-1, z=63, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=45)
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+gameToken:0a62c3b9-f2f7-4f51-9622-f9682754a874
+bigpot:Bigpot(gameToken=0a62c3b9-f2f7-4f51-9622-f9682754a874, level=4, len=2, x=23, y=-1, z=45, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+bigpot:Bigpot(gameToken=f2977c97-55d2-4284-aecf-2fa21c53945c, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+bigpot:Bigpot(gameToken=f2977c97-55d2-4284-aecf-2fa21c53945c, level=4, len=3, x=23, y=43, z=-1, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=43)
+OPTIONS request
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+gameToken:f2977c97-55d2-4284-aecf-2fa21c53945c
+bigpot:Bigpot(gameToken=f2977c97-55d2-4284-aecf-2fa21c53945c, level=4, len=2, x=23, y=-1, z=43, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+OPTIONS request
+now: 2024-09-22T19:36:03.822832368
+my:now: 2024-09-22T19:36:03.822832368
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+bigpot:Bigpot(gameToken=ddf608d9-acad-4445-8684-684418422f29, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+bigpot:Bigpot(gameToken=ddf608d9-acad-4445-8684-684418422f29, level=4, len=3, x=23, y=43, z=-1, w=127)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=84)
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+gameToken:ddf608d9-acad-4445-8684-684418422f29
+bigpot:Bigpot(gameToken=ddf608d9-acad-4445-8684-684418422f29, level=4, len=2, x=23, y=-1, z=84, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=87)
+gameToken:3cfe9d94-5523-43b7-8019-e0d1fcf584d6
+gameToken:3cfe9d94-5523-43b7-8019-e0d1fcf584d6
+bigpot:Bigpot(gameToken=3cfe9d94-5523-43b7-8019-e0d1fcf584d6, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+bigpot:Bigpot(gameToken=b780a2d2-07d3-4357-b5a5-9440dd934ce7, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+bigpot:Bigpot(gameToken=b780a2d2-07d3-4357-b5a5-9440dd934ce7, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=47)
+OPTIONS request
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+gameToken:b780a2d2-07d3-4357-b5a5-9440dd934ce7
+bigpot:Bigpot(gameToken=b780a2d2-07d3-4357-b5a5-9440dd934ce7, level=4, len=2, x=23, y=-1, z=47, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:512e9c46-b9b8-4aa1-af98-757788705a16
+gameToken:512e9c46-b9b8-4aa1-af98-757788705a16
+bigpot:Bigpot(gameToken=512e9c46-b9b8-4aa1-af98-757788705a16, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+OPTIONS request
+now: 2024-09-22T19:36:29.488124947
+my:now: 2024-09-22T19:36:29.488124947
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+bigpot:Bigpot(gameToken=dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+now: 2024-09-22T19:36:31.813754378
+my:now: 2024-09-22T19:36:31.813754378
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+bigpot:Bigpot(gameToken=dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+gameToken:dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd
+bigpot:Bigpot(gameToken=dc28fcf6-b344-42b6-a5a6-2186f9f4a9dd, level=4, len=2, x=-1, y=3, z=36, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=39)
+OPTIONS request
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+bigpot:Bigpot(gameToken=e562f4f7-352a-4019-89e9-7ef501f8245a, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+bigpot:Bigpot(gameToken=e562f4f7-352a-4019-89e9-7ef501f8245a, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+gameToken:e562f4f7-352a-4019-89e9-7ef501f8245a
+bigpot:Bigpot(gameToken=e562f4f7-352a-4019-89e9-7ef501f8245a, level=4, len=2, x=-1, y=3, z=36, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:1649eefd-af64-413e-8be1-09f08df72ffd
+gameToken:1649eefd-af64-413e-8be1-09f08df72ffd
+bigpot:Bigpot(gameToken=1649eefd-af64-413e-8be1-09f08df72ffd, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:77530073-22e5-4771-88c2-cea1628ddfe2
+gameToken:77530073-22e5-4771-88c2-cea1628ddfe2
+bigpot:Bigpot(gameToken=77530073-22e5-4771-88c2-cea1628ddfe2, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:ba248576-d6ed-4180-8634-61f9943b242e
+gameToken:ba248576-d6ed-4180-8634-61f9943b242e
+bigpot:Bigpot(gameToken=ba248576-d6ed-4180-8634-61f9943b242e, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+bigpot:Bigpot(gameToken=95b73cf7-3f37-482c-8e44-9c48a37561f2, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+bigpot:Bigpot(gameToken=95b73cf7-3f37-482c-8e44-9c48a37561f2, level=4, len=3, x=23, y=34, z=-1, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+gameToken:95b73cf7-3f37-482c-8e44-9c48a37561f2
+bigpot:Bigpot(gameToken=95b73cf7-3f37-482c-8e44-9c48a37561f2, level=4, len=2, x=5, y=34, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=39)
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+bigpot:Bigpot(gameToken=77296e04-eb61-4f65-8049-89fd1791cb18, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+bigpot:Bigpot(gameToken=77296e04-eb61-4f65-8049-89fd1791cb18, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+gameToken:77296e04-eb61-4f65-8049-89fd1791cb18
+bigpot:Bigpot(gameToken=77296e04-eb61-4f65-8049-89fd1791cb18, level=4, len=2, x=-1, y=60, z=36, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+bigpot:Bigpot(gameToken=b7355551-d689-44ff-80de-4edc6669c3ba, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+bigpot:Bigpot(gameToken=b7355551-d689-44ff-80de-4edc6669c3ba, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+OPTIONS request
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+gameToken:b7355551-d689-44ff-80de-4edc6669c3ba
+bigpot:Bigpot(gameToken=b7355551-d689-44ff-80de-4edc6669c3ba, level=4, len=2, x=-1, y=60, z=36, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+OPTIONS request
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+bigpot:Bigpot(gameToken=c0c856b0-c393-4604-8d7c-330cb1ea5880, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+bigpot:Bigpot(gameToken=c0c856b0-c393-4604-8d7c-330cb1ea5880, level=4, len=3, x=23, y=43, z=-1, w=36)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=60)
+OPTIONS request
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+gameToken:c0c856b0-c393-4604-8d7c-330cb1ea5880
+bigpot:Bigpot(gameToken=c0c856b0-c393-4604-8d7c-330cb1ea5880, level=4, len=2, x=-1, y=60, z=36, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[0, 0, 0])
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:463d1257-9661-4412-9be3-2cd9ac4eff3e
+gameToken:463d1257-9661-4412-9be3-2cd9ac4eff3e
+bigpot:Bigpot(gameToken=463d1257-9661-4412-9be3-2cd9ac4eff3e, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:b49a4582-2a2f-41ff-96ce-85269e9b5940
+gameToken:b49a4582-2a2f-41ff-96ce-85269e9b5940
+bigpot:Bigpot(gameToken=b49a4582-2a2f-41ff-96ce-85269e9b5940, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:ae8024ac-f1ab-4ee4-9189-aa70f5565b14
+gameToken:ae8024ac-f1ab-4ee4-9189-aa70f5565b14
+bigpot:Bigpot(gameToken=ae8024ac-f1ab-4ee4-9189-aa70f5565b14, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:aa9c45f6-cb00-4bcf-9e53-692bb92333ac
+gameToken:aa9c45f6-cb00-4bcf-9e53-692bb92333ac
+bigpot:Bigpot(gameToken=aa9c45f6-cb00-4bcf-9e53-692bb92333ac, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:0efe10e6-338d-4454-b6d2-ec5efe103a24
+gameToken:0efe10e6-338d-4454-b6d2-ec5efe103a24
+bigpot:Bigpot(gameToken=0efe10e6-338d-4454-b6d2-ec5efe103a24, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:0a05a873-e418-40d1-a14e-d3ccbf97a41e
+gameToken:0a05a873-e418-40d1-a14e-d3ccbf97a41e
+bigpot:Bigpot(gameToken=0a05a873-e418-40d1-a14e-d3ccbf97a41e, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:0b2b7198-1923-4910-9587-c2ea9ff77de5
+gameToken:0b2b7198-1923-4910-9587-c2ea9ff77de5
+bigpot:Bigpot(gameToken=0b2b7198-1923-4910-9587-c2ea9ff77de5, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:0c494bba-ae53-407d-8015-b8278c3c5baf
+gameToken:0c494bba-ae53-407d-8015-b8278c3c5baf
+bigpot:Bigpot(gameToken=0c494bba-ae53-407d-8015-b8278c3c5baf, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:f4436e58-2ce5-4617-aabd-deef3316ebeb
+gameToken:f4436e58-2ce5-4617-aabd-deef3316ebeb
+bigpot:Bigpot(gameToken=f4436e58-2ce5-4617-aabd-deef3316ebeb, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:e3e9f10a-fb36-4060-bca3-3d26cfc6a55b
+gameToken:e3e9f10a-fb36-4060-bca3-3d26cfc6a55b
+bigpot:Bigpot(gameToken=e3e9f10a-fb36-4060-bca3-3d26cfc6a55b, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:1f124b4d-6911-46b5-85c6-576f1b6ec47f
+gameToken:1f124b4d-6911-46b5-85c6-576f1b6ec47f
+bigpot:Bigpot(gameToken=1f124b4d-6911-46b5-85c6-576f1b6ec47f, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+2024-09-22T19:55:35.756+08:00  INFO 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T19:55:35.757+08:00  WARN 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:01:36.641647362
+my:now: 2024-09-22T20:01:36.641647362
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:01:51.831622005
+my:now: 2024-09-22T20:01:51.831622005
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:04:56.602596819
+my:now: 2024-09-22T20:04:56.602596819
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+3
+sticker found
+OPTIONS request
+3
+sticker found
+OPTIONS request
+gameToken:fdd343e6-071b-4122-a463-c5a998fa6ff8
+gameToken:fdd343e6-071b-4122-a463-c5a998fa6ff8
+bigpot:Bigpot(gameToken=fdd343e6-071b-4122-a463-c5a998fa6ff8, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:9ccc6138-390b-40f6-8131-63cb4dec33fa
+gameToken:9ccc6138-390b-40f6-8131-63cb4dec33fa
+bigpot:Bigpot(gameToken=9ccc6138-390b-40f6-8131-63cb4dec33fa, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:ad2113a9-e472-4c25-bd8f-87bd8b144455
+gameToken:ad2113a9-e472-4c25-bd8f-87bd8b144455
+bigpot:Bigpot(gameToken=ad2113a9-e472-4c25-bd8f-87bd8b144455, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:88ef8e8d-c82a-45c9-ac92-e7e1c7c235c3
+gameToken:88ef8e8d-c82a-45c9-ac92-e7e1c7c235c3
+bigpot:Bigpot(gameToken=88ef8e8d-c82a-45c9-ac92-e7e1c7c235c3, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:a2278a78-23d3-4f92-a35d-67913bba701f
+gameToken:a2278a78-23d3-4f92-a35d-67913bba701f
+bigpot:Bigpot(gameToken=a2278a78-23d3-4f92-a35d-67913bba701f, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:0f947ac7-4088-404a-b418-cf581df6c7e9
+gameToken:0f947ac7-4088-404a-b418-cf581df6c7e9
+bigpot:Bigpot(gameToken=0f947ac7-4088-404a-b418-cf581df6c7e9, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=10)
+gameToken:a358758d-46f2-4433-a5af-c785580f2aa9
+gameToken:a358758d-46f2-4433-a5af-c785580f2aa9
+bigpot:Bigpot(gameToken=a358758d-46f2-4433-a5af-c785580f2aa9, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=10)
+gameToken:48bda64d-afe9-4375-a65d-90a881b47faa
+gameToken:48bda64d-afe9-4375-a65d-90a881b47faa
+bigpot:Bigpot(gameToken=48bda64d-afe9-4375-a65d-90a881b47faa, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:c2e78a77-b05d-48bd-88ab-76d05e053b23
+gameToken:c2e78a77-b05d-48bd-88ab-76d05e053b23
+bigpot:Bigpot(gameToken=c2e78a77-b05d-48bd-88ab-76d05e053b23, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:0849a477-5194-49cc-8d2e-ac5f4269a217
+gameToken:0849a477-5194-49cc-8d2e-ac5f4269a217
+bigpot:Bigpot(gameToken=0849a477-5194-49cc-8d2e-ac5f4269a217, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:297b1138-70b8-41e6-a310-f6b14963075c
+gameToken:297b1138-70b8-41e6-a310-f6b14963075c
+bigpot:Bigpot(gameToken=297b1138-70b8-41e6-a310-f6b14963075c, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:0adc99f2-319f-4cec-9a1a-1aafc2a044fa
+gameToken:0adc99f2-319f-4cec-9a1a-1aafc2a044fa
+bigpot:Bigpot(gameToken=0adc99f2-319f-4cec-9a1a-1aafc2a044fa, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:fed8b658-1dc7-4e20-ab5c-0e0df5af2463
+gameToken:fed8b658-1dc7-4e20-ab5c-0e0df5af2463
+bigpot:Bigpot(gameToken=fed8b658-1dc7-4e20-ab5c-0e0df5af2463, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:984451bc-846a-4021-9ebd-2da9f98ff610
+gameToken:984451bc-846a-4021-9ebd-2da9f98ff610
+bigpot:Bigpot(gameToken=984451bc-846a-4021-9ebd-2da9f98ff610, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+OPTIONS request
+gameToken:04d8dfe9-3ad4-4432-8acd-4443a95c589f
+gameToken:04d8dfe9-3ad4-4432-8acd-4443a95c589f
+bigpot:Bigpot(gameToken=04d8dfe9-3ad4-4432-8acd-4443a95c589f, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+now: 2024-09-22T20:20:14.330564722
+my:now: 2024-09-22T20:20:14.330564722
+gameToken:e4d8d297-c2ad-4128-8fba-abe6d1417d0c
+gameToken:e4d8d297-c2ad-4128-8fba-abe6d1417d0c
+bigpot:Bigpot(gameToken=e4d8d297-c2ad-4128-8fba-abe6d1417d0c, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+8
+sticker found
+OPTIONS request
+8
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:35:53.157638208
+my:now: 2024-09-22T20:35:53.157638208
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:36:45.430623231
+my:now: 2024-09-22T20:36:45.430623231
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+Token failed:{
+null
+}non null key required
+
+Token failed:{
+null
+}non null key required
+
+now: 2024-09-22T20:41:52.395139184
+now: 2024-09-22T20:42:00.745868343
+now: 2024-09-22T20:42:01.592565204
+now: 2024-09-22T20:42:02.292086485
+Token failed:{
+null
+}non null key required
+
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:c3413b10-97aa-4fcb-aade-9af7dcb67bca
+gameToken:c3413b10-97aa-4fcb-aade-9af7dcb67bca
+bigpot:Bigpot(gameToken=c3413b10-97aa-4fcb-aade-9af7dcb67bca, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+gameToken:c3413b10-97aa-4fcb-aade-9af7dcb67bca
+gameToken:c3413b10-97aa-4fcb-aade-9af7dcb67bca
+bigpot:Bigpot(gameToken=c3413b10-97aa-4fcb-aade-9af7dcb67bca, level=4, len=3, x=63, y=-1, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+2024-09-22T20:48:47.030+08:00  INFO 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T20:48:47.031+08:00  WARN 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+3
+sticker found
+8
+sticker found
+8
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+8
+sticker found
+3
+sticker found
+7
+sticker found
+7
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:54:40.974672836
+my:now: 2024-09-22T20:54:40.974672836
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+now: 2024-09-22T20:57:52.004103589
+my:now: 2024-09-22T20:57:52.004103589
+now: 2024-09-22T20:57:57.293896321
+my:now: 2024-09-22T20:57:57.293896321
+2024-09-22T20:58:16.349+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@ccdaec5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.350+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@667e2381 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.351+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1953fbc (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.352+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@604f12cd (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.353+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@ac0605e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.355+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1d3528ac (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.356+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@35758c69 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.357+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2d343970 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.358+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@9b482d9 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2024-09-22T20:58:16.359+08:00  WARN 19124 --- [nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5c7c526 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+2024-09-22T21:09:37.215+08:00  INFO 19124 --- [nio-8080-exec-8] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T21:09:37.215+08:00  WARN 19124 --- [nio-8080-exec-8] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:234ea16f-d2a2-465f-b562-fca22edbb327
+gameToken:234ea16f-d2a2-465f-b562-fca22edbb327
+bigpot:Bigpot(gameToken=234ea16f-d2a2-465f-b562-fca22edbb327, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:260fa676-b108-48bf-9177-117a425b2f81
+gameToken:260fa676-b108-48bf-9177-117a425b2f81
+bigpot:Bigpot(gameToken=260fa676-b108-48bf-9177-117a425b2f81, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:12736d32-c950-4037-95b8-050e4c1b246b
+gameToken:12736d32-c950-4037-95b8-050e4c1b246b
+bigpot:Bigpot(gameToken=12736d32-c950-4037-95b8-050e4c1b246b, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+OPTIONS request
+gameToken:46f28a68-e268-4710-9932-d5f9489102ff
+gameToken:46f28a68-e268-4710-9932-d5f9489102ff
+bigpot:Bigpot(gameToken=46f28a68-e268-4710-9932-d5f9489102ff, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:58a46276-d5fa-42fe-a6f3-b918940ed436
+gameToken:58a46276-d5fa-42fe-a6f3-b918940ed436
+bigpot:Bigpot(gameToken=58a46276-d5fa-42fe-a6f3-b918940ed436, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:7c271401-9db2-499e-a38a-5c30d54a36e1
+gameToken:7c271401-9db2-499e-a38a-5c30d54a36e1
+bigpot:Bigpot(gameToken=7c271401-9db2-499e-a38a-5c30d54a36e1, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:73f13be4-e382-45d2-bba0-6f8e586f4973
+gameToken:73f13be4-e382-45d2-bba0-6f8e586f4973
+bigpot:Bigpot(gameToken=73f13be4-e382-45d2-bba0-6f8e586f4973, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:c8e26d91-6eb8-4eb8-a1ed-80d9414c65c8
+gameToken:c8e26d91-6eb8-4eb8-a1ed-80d9414c65c8
+bigpot:Bigpot(gameToken=c8e26d91-6eb8-4eb8-a1ed-80d9414c65c8, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+gameToken:ce1881fd-882f-4875-a2f9-80b6428db02b
+gameToken:ce1881fd-882f-4875-a2f9-80b6428db02b
+bigpot:Bigpot(gameToken=ce1881fd-882f-4875-a2f9-80b6428db02b, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:1c5421e4-c723-4e3c-8f8e-29fa72233700
+gameToken:1c5421e4-c723-4e3c-8f8e-29fa72233700
+bigpot:Bigpot(gameToken=1c5421e4-c723-4e3c-8f8e-29fa72233700, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:f5b82bd0-6c59-46b5-9756-5165f141e649
+gameToken:f5b82bd0-6c59-46b5-9756-5165f141e649
+bigpot:Bigpot(gameToken=f5b82bd0-6c59-46b5-9756-5165f141e649, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+OPTIONS request
+OPTIONS request
+gameToken:a2d0acc7-1452-4155-aa53-19ae77af524f
+gameToken:a2d0acc7-1452-4155-aa53-19ae77af524f
+bigpot:Bigpot(gameToken=a2d0acc7-1452-4155-aa53-19ae77af524f, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:441de480-ee91-4dbf-b4ec-2a8db9be1afa
+gameToken:441de480-ee91-4dbf-b4ec-2a8db9be1afa
+bigpot:Bigpot(gameToken=441de480-ee91-4dbf-b4ec-2a8db9be1afa, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:a38d585c-28bf-4373-a276-3c6134ba69cf
+gameToken:a38d585c-28bf-4373-a276-3c6134ba69cf
+bigpot:Bigpot(gameToken=a38d585c-28bf-4373-a276-3c6134ba69cf, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:9af3f391-4c4f-460b-86df-ad35b8e51283
+gameToken:9af3f391-4c4f-460b-86df-ad35b8e51283
+bigpot:Bigpot(gameToken=9af3f391-4c4f-460b-86df-ad35b8e51283, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:936cd0d6-d463-4def-9c19-d2ab3ff86b8a
+gameToken:936cd0d6-d463-4def-9c19-d2ab3ff86b8a
+bigpot:Bigpot(gameToken=936cd0d6-d463-4def-9c19-d2ab3ff86b8a, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:a1bfe3f8-937e-4c4f-88af-2ae9f051c707
+gameToken:a1bfe3f8-937e-4c4f-88af-2ae9f051c707
+bigpot:Bigpot(gameToken=a1bfe3f8-937e-4c4f-88af-2ae9f051c707, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+OPTIONS request
+gameToken:47a606ef-fed8-4ffd-8134-6e7a7461f648
+gameToken:47a606ef-fed8-4ffd-8134-6e7a7461f648
+bigpot:Bigpot(gameToken=47a606ef-fed8-4ffd-8134-6e7a7461f648, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:fca8db23-a832-467a-ac33-bc8162a06783
+gameToken:fca8db23-a832-467a-ac33-bc8162a06783
+bigpot:Bigpot(gameToken=fca8db23-a832-467a-ac33-bc8162a06783, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:3d84e391-31c7-45c9-8c8a-b215cb61e3ab
+gameToken:3d84e391-31c7-45c9-8c8a-b215cb61e3ab
+bigpot:Bigpot(gameToken=3d84e391-31c7-45c9-8c8a-b215cb61e3ab, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+gameToken:709bc5c1-4f4a-4cba-90fa-7c7c0afec4f3
+gameToken:709bc5c1-4f4a-4cba-90fa-7c7c0afec4f3
+bigpot:Bigpot(gameToken=709bc5c1-4f4a-4cba-90fa-7c7c0afec4f3, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+OPTIONS request
+OPTIONS request
+gameToken:0fe65aed-b216-4d05-a560-34b7bacc1741
+gameToken:0fe65aed-b216-4d05-a560-34b7bacc1741
+bigpot:Bigpot(gameToken=0fe65aed-b216-4d05-a560-34b7bacc1741, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:b8cbaacf-06ea-4c8e-93be-c5ddf4ccb58c
+gameToken:b8cbaacf-06ea-4c8e-93be-c5ddf4ccb58c
+bigpot:Bigpot(gameToken=b8cbaacf-06ea-4c8e-93be-c5ddf4ccb58c, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+OPTIONS request
+gameToken:a2468254-1ad4-49c0-95b6-90774275e623
+gameToken:a2468254-1ad4-49c0-95b6-90774275e623
+bigpot:Bigpot(gameToken=a2468254-1ad4-49c0-95b6-90774275e623, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:8600c806-4317-4aea-9ece-bc37d3f069a6
+gameToken:8600c806-4317-4aea-9ece-bc37d3f069a6
+bigpot:Bigpot(gameToken=8600c806-4317-4aea-9ece-bc37d3f069a6, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:524cf70b-40a2-4bfc-be63-f801df4bf073
+gameToken:524cf70b-40a2-4bfc-be63-f801df4bf073
+bigpot:Bigpot(gameToken=524cf70b-40a2-4bfc-be63-f801df4bf073, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=11)
+OPTIONS request
+gameToken:d20ef5e9-b854-46dd-ba4d-95ab494d3c88
+gameToken:d20ef5e9-b854-46dd-ba4d-95ab494d3c88
+bigpot:Bigpot(gameToken=d20ef5e9-b854-46dd-ba4d-95ab494d3c88, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:44090f97-db30-4f39-b2fe-1342fee6a0ae
+gameToken:44090f97-db30-4f39-b2fe-1342fee6a0ae
+bigpot:Bigpot(gameToken=44090f97-db30-4f39-b2fe-1342fee6a0ae, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=10)
+OPTIONS request
+OPTIONS request
+gameToken:a0184d84-b9b7-4e1f-94b4-6c235d03ddf8
+gameToken:a0184d84-b9b7-4e1f-94b4-6c235d03ddf8
+bigpot:Bigpot(gameToken=a0184d84-b9b7-4e1f-94b4-6c235d03ddf8, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+gameToken:38a5b1c8-102a-4527-a16b-57d6e1394745
+gameToken:38a5b1c8-102a-4527-a16b-57d6e1394745
+bigpot:Bigpot(gameToken=38a5b1c8-102a-4527-a16b-57d6e1394745, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+OPTIONS request
+OPTIONS request
+gameToken:bf372546-3825-423e-b444-076717efd484
+gameToken:bf372546-3825-423e-b444-076717efd484
+bigpot:Bigpot(gameToken=bf372546-3825-423e-b444-076717efd484, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+OPTIONS request
+gameToken:bf372546-3825-423e-b444-076717efd484
+gameToken:bf372546-3825-423e-b444-076717efd484
+bigpot:Bigpot(gameToken=bf372546-3825-423e-b444-076717efd484, level=1, len=3, x=18, y=3, z=9, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=2)
+OPTIONS request
+gameToken:9ffb6bdb-2fa8-4045-9613-8313fd2ffb65
+gameToken:9ffb6bdb-2fa8-4045-9613-8313fd2ffb65
+bigpot:Bigpot(gameToken=9ffb6bdb-2fa8-4045-9613-8313fd2ffb65, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=18)
+gameToken:9ffb6bdb-2fa8-4045-9613-8313fd2ffb65
+gameToken:9ffb6bdb-2fa8-4045-9613-8313fd2ffb65
+bigpot:Bigpot(gameToken=9ffb6bdb-2fa8-4045-9613-8313fd2ffb65, level=1, len=3, x=18, y=3, z=9, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=19)
+OPTIONS request
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+bigpot:Bigpot(gameToken=082248b5-1721-4c58-a8b3-0998048edbe0, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+bigpot:Bigpot(gameToken=082248b5-1721-4c58-a8b3-0998048edbe0, level=1, len=3, x=1, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+gameToken:082248b5-1721-4c58-a8b3-0998048edbe0
+bigpot:Bigpot(gameToken=082248b5-1721-4c58-a8b3-0998048edbe0, level=1, len=2, x=1, y=25, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+bigpot:Bigpot(gameToken=0dbdb90b-6708-4c26-8dbd-d315512bed03, level=1, len=4, x=2, y=3, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=1)
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+bigpot:Bigpot(gameToken=0dbdb90b-6708-4c26-8dbd-d315512bed03, level=1, len=3, x=1, y=-1, z=9, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=25)
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+gameToken:0dbdb90b-6708-4c26-8dbd-d315512bed03
+bigpot:Bigpot(gameToken=0dbdb90b-6708-4c26-8dbd-d315512bed03, level=1, len=2, x=1, y=25, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:21715bc8-fe47-4972-9aef-a12931123160
+gameToken:21715bc8-fe47-4972-9aef-a12931123160
+bigpot:Bigpot(gameToken=21715bc8-fe47-4972-9aef-a12931123160, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+OPTIONS request
+gameToken:fb94ca1f-632b-4bf1-87b4-26253d8eaed0
+gameToken:fb94ca1f-632b-4bf1-87b4-26253d8eaed0
+bigpot:Bigpot(gameToken=fb94ca1f-632b-4bf1-87b4-26253d8eaed0, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:fb94ca1f-632b-4bf1-87b4-26253d8eaed0
+gameToken:fb94ca1f-632b-4bf1-87b4-26253d8eaed0
+bigpot:Bigpot(gameToken=fb94ca1f-632b-4bf1-87b4-26253d8eaed0, level=2, len=3, x=3, y=7, z=-1, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:c0cc4607-2bc6-4f7f-bd0e-4e06f9a526b0
+gameToken:c0cc4607-2bc6-4f7f-bd0e-4e06f9a526b0
+bigpot:Bigpot(gameToken=c0cc4607-2bc6-4f7f-bd0e-4e06f9a526b0, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=4)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+2024-09-22T21:28:10.968+08:00  INFO 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T21:28:10.969+08:00  WARN 19124 --- [io-8080-exec-10] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+visiting:Visiting(position=[[121.50710497593364, 31.296881376092877], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[1, 0, 0])
+visiting:Visiting(position=[[121.50710497593364, 31.296881376092877], [0.0, 0.0], [0.0, 0.0]], indoor=[false, false, false], floor=[1, 0, 0])
+OPTIONS request
+java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because "answer" is null
+	at com.transAI.service.impl.CakeServiceImpl.check(CakeServiceImpl.java:34)
+	at com.transAI.service.impl.CakeServiceImpl.submit(CakeServiceImpl.java:19)
+	at com.transAI.controller.CakeCtroller.submit(CakeCtroller.java:23)
+	at jdk.internal.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:259)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:192)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:920)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed
+gameToken:4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed
+bigpot:Bigpot(gameToken=4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed
+gameToken:4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed
+bigpot:Bigpot(gameToken=4c0e5728-6711-4ee5-adb4-1b6f6b1f00ed, level=2, len=3, x=3, y=7, z=-1, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:5b4b18bb-75f1-4c9d-becc-9fcd4664084f
+gameToken:5b4b18bb-75f1-4c9d-becc-9fcd4664084f
+bigpot:Bigpot(gameToken=5b4b18bb-75f1-4c9d-becc-9fcd4664084f, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:c8d75194-815f-45b0-a3c3-75a2fd9937db
+gameToken:c8d75194-815f-45b0-a3c3-75a2fd9937db
+bigpot:Bigpot(gameToken=c8d75194-815f-45b0-a3c3-75a2fd9937db, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+OPTIONS request
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+bigpot:Bigpot(gameToken=fa608d53-863c-4b0c-a54a-9e052c55c4cc, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+bigpot:Bigpot(gameToken=fa608d53-863c-4b0c-a54a-9e052c55c4cc, level=2, len=3, x=3, y=7, z=16, w=-1)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=23)
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+gameToken:fa608d53-863c-4b0c-a54a-9e052c55c4cc
+bigpot:Bigpot(gameToken=fa608d53-863c-4b0c-a54a-9e052c55c4cc, level=2, len=2, x=3, y=-1, z=23, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d
+gameToken:d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d
+bigpot:Bigpot(gameToken=d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=16)
+gameToken:d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d
+gameToken:d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d
+bigpot:Bigpot(gameToken=d8d1a157-0fc1-42ac-9b5b-230dfaa8de8d, level=2, len=3, x=3, y=7, z=-1, w=16)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:ae41b768-281d-4b7f-be50-099dc6ff5fbc
+gameToken:ae41b768-281d-4b7f-be50-099dc6ff5fbc
+bigpot:Bigpot(gameToken=ae41b768-281d-4b7f-be50-099dc6ff5fbc, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=4)
+gameToken:586eb59e-345c-48c5-b063-295d306f82b7
+gameToken:586eb59e-345c-48c5-b063-295d306f82b7
+bigpot:Bigpot(gameToken=586eb59e-345c-48c5-b063-295d306f82b7, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+OPTIONS request
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+bigpot:Bigpot(gameToken=868566ec-3821-484c-a91c-a755c2ef794a, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+OPTIONS request
+2024-09-22T22:05:08.501+08:00  INFO 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+2024-09-22T22:05:08.502+08:00  WARN 19124 --- [nio-8080-exec-5] com.transAI.controller.UserController    : This is an info message in UserController
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+bigpot:Bigpot(gameToken=868566ec-3821-484c-a91c-a755c2ef794a, level=2, len=3, x=3, y=-1, z=15, w=24)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+gameToken:868566ec-3821-484c-a91c-a755c2ef794a
+bigpot:Bigpot(gameToken=868566ec-3821-484c-a91c-a755c2ef794a, level=2, len=2, x=-1, y=3, z=24, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=0)
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+bigpot:Bigpot(gameToken=90305b6b-75c6-43b1-a887-30a6eb212744, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+bigpot:Bigpot(gameToken=90305b6b-75c6-43b1-a887-30a6eb212744, level=2, len=3, x=3, y=-1, z=15, w=24)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+gameToken:90305b6b-75c6-43b1-a887-30a6eb212744
+bigpot:Bigpot(gameToken=90305b6b-75c6-43b1-a887-30a6eb212744, level=2, len=2, x=-1, y=3, z=24, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=27)
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+bigpot:Bigpot(gameToken=b4af4c29-a152-44c2-b222-9762aaf7d46d, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=24)
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+bigpot:Bigpot(gameToken=b4af4c29-a152-44c2-b222-9762aaf7d46d, level=2, len=3, x=3, y=-1, z=15, w=24)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+gameToken:b4af4c29-a152-44c2-b222-9762aaf7d46d
+bigpot:Bigpot(gameToken=b4af4c29-a152-44c2-b222-9762aaf7d46d, level=2, len=2, x=-1, y=15, z=24, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=8)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:417ae372-0ea5-4bd3-a58c-0a8c4d01b052
+gameToken:417ae372-0ea5-4bd3-a58c-0a8c4d01b052
+bigpot:Bigpot(gameToken=417ae372-0ea5-4bd3-a58c-0a8c4d01b052, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=28)
+gameToken:417ae372-0ea5-4bd3-a58c-0a8c4d01b052
+gameToken:417ae372-0ea5-4bd3-a58c-0a8c4d01b052
+bigpot:Bigpot(gameToken=417ae372-0ea5-4bd3-a58c-0a8c4d01b052, level=2, len=3, x=-1, y=7, z=15, w=28)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:3fcfc70f-cfae-43f3-91c9-1c69e5975dc1
+gameToken:3fcfc70f-cfae-43f3-91c9-1c69e5975dc1
+bigpot:Bigpot(gameToken=3fcfc70f-cfae-43f3-91c9-1c69e5975dc1, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:615ec2bc-83ec-414e-9ebb-abc99e881a42
+gameToken:615ec2bc-83ec-414e-9ebb-abc99e881a42
+bigpot:Bigpot(gameToken=615ec2bc-83ec-414e-9ebb-abc99e881a42, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=15)
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+bigpot:Bigpot(gameToken=9482187c-9488-4a59-a48d-a7525274a25b, level=2, len=4, x=3, y=7, z=15, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+bigpot:Bigpot(gameToken=9482187c-9488-4a59-a48d-a7525274a25b, level=2, len=3, x=3, y=7, z=-1, w=31)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+gameToken:9482187c-9488-4a59-a48d-a7525274a25b
+bigpot:Bigpot(gameToken=9482187c-9488-4a59-a48d-a7525274a25b, level=2, len=2, x=-1, y=7, z=31, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+gameToken:96629442-29ae-4a8c-8acc-40aafff09aa6
+gameToken:96629442-29ae-4a8c-8acc-40aafff09aa6
+bigpot:Bigpot(gameToken=96629442-29ae-4a8c-8acc-40aafff09aa6, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=30)
+gameToken:61ef5e9b-e580-4572-9629-d13426c1b065
+gameToken:61ef5e9b-e580-4572-9629-d13426c1b065
+bigpot:Bigpot(gameToken=61ef5e9b-e580-4572-9629-d13426c1b065, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=28)
+gameToken:61ef5e9b-e580-4572-9629-d13426c1b065
+gameToken:61ef5e9b-e580-4572-9629-d13426c1b065
+bigpot:Bigpot(gameToken=61ef5e9b-e580-4572-9629-d13426c1b065, level=3, len=3, x=-1, y=25, z=28, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=28)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:8b119e27-f311-446a-92f6-3535d1a77bb0
+gameToken:8b119e27-f311-446a-92f6-3535d1a77bb0
+bigpot:Bigpot(gameToken=8b119e27-f311-446a-92f6-3535d1a77bb0, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:121b00ab-cc9d-4db8-aeea-7d44cb3808ae
+gameToken:121b00ab-cc9d-4db8-aeea-7d44cb3808ae
+bigpot:Bigpot(gameToken=121b00ab-cc9d-4db8-aeea-7d44cb3808ae, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=31)
+gameToken:bac651aa-961b-43db-90a7-8cac87ff01a3
+gameToken:bac651aa-961b-43db-90a7-8cac87ff01a3
+bigpot:Bigpot(gameToken=bac651aa-961b-43db-90a7-8cac87ff01a3, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=30)
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+bigpot:Bigpot(gameToken=30baa162-7809-48e4-80b4-9729840e85af, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=30)
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+bigpot:Bigpot(gameToken=30baa162-7809-48e4-80b4-9729840e85af, level=3, len=3, x=30, y=-1, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=26)
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+gameToken:30baa162-7809-48e4-80b4-9729840e85af
+bigpot:Bigpot(gameToken=30baa162-7809-48e4-80b4-9729840e85af, level=3, len=2, x=-1, y=26, z=29, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=7)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [121.50832264602711, 31.304858353776748]], indoor=[false, false, true], floor=[0, 0, 5])
+visiting:Visiting(position=[[0.0, 0.0], [0.0, 0.0], [121.50832264602711, 31.304858353776748]], indoor=[false, false, true], floor=[0, 0, 5])
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+visiting:Visiting(position=[[121.50204749266888, 31.30542692739773], [121.50776664385468, 31.302791300446167], [121.50832264602711, 31.304858353776748]], indoor=[false, false, true], floor=[1, 1, 5])
+visiting:Visiting(position=[[121.50204749266888, 31.30542692739773], [121.50776664385468, 31.302791300446167], [121.50832264602711, 31.304858353776748]], indoor=[false, false, true], floor=[1, 1, 5])
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+bigpot:Bigpot(gameToken=e7c6d839-7af3-4788-aec5-49666f381bcb, level=3, len=4, x=7, y=25, z=27, w=29)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=26)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+bigpot:Bigpot(gameToken=e7c6d839-7af3-4788-aec5-49666f381bcb, level=3, len=3, x=-1, y=25, z=27, w=26)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=3)
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+gameToken:e7c6d839-7af3-4788-aec5-49666f381bcb
+bigpot:Bigpot(gameToken=e7c6d839-7af3-4788-aec5-49666f381bcb, level=3, len=2, x=3, y=27, z=-1, w=0)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=1, result=24)
+OPTIONS request
+gameToken:d6cb3f41-80bb-419c-a348-3d9dadaa53d0
+gameToken:d6cb3f41-80bb-419c-a348-3d9dadaa53d0
+bigpot:Bigpot(gameToken=d6cb3f41-80bb-419c-a348-3d9dadaa53d0, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+gameToken:5639a513-d211-441c-8623-c30c975ba6b3
+gameToken:5639a513-d211-441c-8623-c30c975ba6b3
+bigpot:Bigpot(gameToken=5639a513-d211-441c-8623-c30c975ba6b3, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+gameToken:6c43f2e1-f0ec-4704-ae17-0deeedd5032a
+gameToken:6c43f2e1-f0ec-4704-ae17-0deeedd5032a
+bigpot:Bigpot(gameToken=6c43f2e1-f0ec-4704-ae17-0deeedd5032a, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+OPTIONS request
+gameToken:3f55b291-5c11-47d9-9c62-115461b149fb
+gameToken:3f55b291-5c11-47d9-9c62-115461b149fb
+bigpot:Bigpot(gameToken=3f55b291-5c11-47d9-9c62-115461b149fb, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=5)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:3f55b291-5c11-47d9-9c62-115461b149fb
+gameToken:3f55b291-5c11-47d9-9c62-115461b149fb
+bigpot:Bigpot(gameToken=3f55b291-5c11-47d9-9c62-115461b149fb, level=4, len=3, x=-1, y=43, z=54, w=5)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=51)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+8
+sticker found
+3
+sticker found
+gameToken:f2c265f2-a253-430f-a3d9-ed47fbc03bee
+gameToken:f2c265f2-a253-430f-a3d9-ed47fbc03bee
+bigpot:Bigpot(gameToken=f2c265f2-a253-430f-a3d9-ed47fbc03bee, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=63)
+OPTIONS request
+gameToken:1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1
+gameToken:1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1
+bigpot:Bigpot(gameToken=1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=34)
+OPTIONS request
+gameToken:1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1
+gameToken:1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1
+bigpot:Bigpot(gameToken=1b9e66c8-4d3c-446f-92a0-1f8e7b8909d1, level=4, len=3, x=23, y=-1, z=34, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=32)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+7
+sticker found
+7
+sticker found
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:516cfa00-4ecb-4733-a7aa-e49e2e7f2306
+gameToken:516cfa00-4ecb-4733-a7aa-e49e2e7f2306
+bigpot:Bigpot(gameToken=516cfa00-4ecb-4733-a7aa-e49e2e7f2306, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=91)
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+OPTIONS request
+gameToken:f2b531a3-3ec3-4b54-b1c6-a7dda2837117
+gameToken:f2b531a3-3ec3-4b54-b1c6-a7dda2837117
+bigpot:Bigpot(gameToken=f2b531a3-3ec3-4b54-b1c6-a7dda2837117, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=36)
+OPTIONS request
+gameToken:90497416-54a4-4487-814f-d7277f28610b
+gameToken:90497416-54a4-4487-814f-d7277f28610b
+bigpot:Bigpot(gameToken=90497416-54a4-4487-814f-d7277f28610b, level=4, len=4, x=23, y=43, z=54, w=109)
+flagx:true, flagy:true
+bigpotResult:BigpotResult(pass=0, result=127)
+OPTIONS request
+OPTIONS request
