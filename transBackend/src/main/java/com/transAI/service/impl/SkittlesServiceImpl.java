@@ -2,10 +2,12 @@ package com.transAI.service.impl;
 
 import com.transAI.service.SkittlesService;
 import com.transAI.utils.DateLogger;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -31,7 +33,8 @@ public class SkittlesServiceImpl implements SkittlesService {
             list.add(start);
             start = getNext(start);
         }
-        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] Generated: " + (list.toString().replace(" ", "")));
+        Map<String, Object> map = ThreadLocalUtil.get();
+        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] " + map.get("username") + " generated: " + (list.toString().replace(" ,", "")));
         return list;
     }
 

@@ -2,8 +2,11 @@ package com.transAI.service.impl;
 
 import com.transAI.service.CakeService;
 import com.transAI.utils.DateLogger;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class CakeServiceImpl implements CakeService {
@@ -26,7 +29,8 @@ public class CakeServiceImpl implements CakeService {
         if(pass) {
             tartsServiceImpl.passTask(5);
         }
-        System.out.println("[" + DateLogger.getTime() + " Cake] Got submission: " + answer + " with result " + result);
+        Map<String, Object> map = ThreadLocalUtil.get();
+        System.out.println("[" + DateLogger.getTime() + " Cake] " + map.get("username") + " got submission: " + answer + " with result " + result);
         return result.toString();
     }
 
