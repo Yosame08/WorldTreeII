@@ -31,7 +31,7 @@ public class SkittlesServiceImpl implements SkittlesService {
             list.add(start);
             start = getNext(start);
         }
-        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] Generated list: " + list);
+        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] Generated: " + (list.toString().replace(" ", "")));
         return list;
     }
 

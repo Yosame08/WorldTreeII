@@ -33,7 +33,7 @@
     <transition name="slide">
       <div class="task-sidebar" v-if="taskDetail">
         <div class="task-sidebar-content">
-          <task-info v-if="discussions.length" :discussions="discussions" />
+          <task-info v-if="discussions.length" :discussions="discussions" :title="taskDetail.taskTitle" />
         </div>
         <div class="task-sidebar-footer">
           <!-- 0. 如果有remark，展示remark -->
@@ -45,7 +45,7 @@
           <!-- 2. 展示提交答案方式 -->
           <div v-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
-            <el-button v-if="taskDetail.taskId !== 2" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
+            <el-button v-if="!noClue.includes(taskDetail.taskId)" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
           </div>
           <div v-else-if="taskDetail.taskId === 1" class="submission-container"> <!-- 鸳鸯锅 / 时间二分 is special -->
             <el-button v-if="task1OK" @click="submitId1" style="width: 100%;" type="primary">启动中继器({{task1Times}}/2)</el-button>
@@ -56,9 +56,11 @@
             <el-button @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
           <!-- 3. 展示提示按钮 -->
-          <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示（通过后不再获得货币）</el-button>
-          <el-button v-else-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus === 1" @click="getHint" class="hint-button">已解决该事件，可免费获取提示</el-button>
-          <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
+          <div v-if="!noHint.includes(taskDetail.taskId)">
+            <el-button v-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus !== 1" @click="getHint" class="hint-button">花费{{ taskDetail.hintPrice }}货币获取提示{{ taskDetail.hintPrice === 0 ? "" : "（通过后不再获得货币）"}}</el-button>
+            <el-button v-else-if="taskDetail.hintStatus === 0 && taskDetail.taskStatus === 1" @click="getHint" class="hint-button">已解决该事件，可免费获取提示</el-button>
+            <el-button v-else-if="taskDetail.hintStatus === 1" @click="getHint" class="hint-button">已获取提示</el-button>
+          </div>
         </div>
         <el-button class="close-button" @click="closeSidebar">×</el-button>
       </div>
@@ -95,6 +97,9 @@ const tooltip = ref({visible: false, task: null, x: 0, y: 0});
 const taskAnswer = ref('');
 const task1OK = ref(false);
 const task1Times = ref(0);
+// special tasks
+const noHint = ref([9]);
+const noClue = ref([2, 9]); // 蛋挞、问卷
 // hint and clue
 const mapImage = ref(null);
 const isHintVisible = ref(false);
@@ -113,7 +118,6 @@ const getAllTasks = async () => {
     const response = await universalGet('/api/task/get_task_list');
     if (response.data.code === 0) {
       tasks.value = response.data.data;
-      console.log(tasks.value);
     }
     else {
       store.commit("setErrorMsg", response.data.message);
@@ -126,7 +130,6 @@ const getAllTasks = async () => {
 const refreshTasks = async () => {
   await getAllTasks();
   if (taskDetail.value != null) {
-    console.log(taskDetail.value.taskId)
     await selectTask(taskDetail.value);
     closeSidebar();
   }

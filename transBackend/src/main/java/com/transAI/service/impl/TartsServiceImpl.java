@@ -98,7 +98,7 @@ public class TartsServiceImpl implements TartsService {
 
         int flag = userHintMapper.find(id, taskId);
 
-        if(flag == 0) {
+        if(flag == 0 || task.getHintPrice() == 0) {
             userMapper.updateUserCoins(id, user.getCoin() + task.getTaskCoin());
         }
     }

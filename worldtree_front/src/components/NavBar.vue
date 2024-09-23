@@ -14,8 +14,8 @@
     <div id="nav">
       <div v-if="errorMessage" :class="{'error-msg': isError, 'success-msg': !isError}">
         {{ isError ? '❌' : '✔'}} {{ errorMessage }}
-        <el-button :icon="Delete" @click="clearMessage" style="scale: 90%; margin-left: 10px" circle />
       </div>
+<!--      <el-progress :percentage="progress" v-if="showProgress" />-->
       <div class="auth-section">
         <template v-if="!isLoggedIn">
           <router-link to="/login" class="nav-link" active-class="nav-link-active">登录</router-link>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 import store from "@/services/storeService";
 import {Delete} from "@element-plus/icons-vue";
 
@@ -49,7 +49,21 @@ export default {
   },
   setup() {
     const showNavBar = computed(() => store.state.showNavBar);
-    return { showNavBar };
+    const progress = ref(0);
+    const showProgress = ref(false);
+
+    // onMounted(() => {
+    //   const interval = setInterval(() => {
+    //     if (progress.value < 100) {
+    //       progress.value += 10;
+    //     } else {
+    //       clearInterval(interval);
+    //       showProgress.value = false;
+    //     }
+    //   }, 1000);
+    // });
+
+    return { showNavBar, progress, showProgress };
   },
   data() {
     return {
@@ -79,9 +93,6 @@ export default {
     goToUserSetting() {
       this.$router.push('/usersetting');
     },
-    clearMessage() {
-      store.commit('clearErrorMsg');
-    }
   }
 }
 </script>

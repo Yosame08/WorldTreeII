@@ -11,6 +11,7 @@ const store = createStore({
             userInfo: {},
             showMsg: '',
             isError: true,
+            msgTimer: null,
         }
     },
     mutations: {
@@ -30,16 +31,30 @@ const store = createStore({
             state.isLoggedIn = value;
         },
         setErrorMsg(state, value) {
+            this.commit('clearTimer');
             state.showMsg = value;
             state.isError = true;
+            this.commit('setTimer', setTimeout(() => {
+                this.commit('clearErrorMsg');
+            }, 8000));
         },
         setSuccessMsg(state, value) {
+            this.commit('clearTimer');
             state.showMsg = value;
             state.isError = false;
+            this.commit('setTimer', setTimeout(() => {
+                this.commit('clearErrorMsg');
+            }, 8000));
         },
         clearErrorMsg(state) {
             state.showMsg = '';
         },
+        clearTimer(state) {
+            if(state.msgTimer) clearTimeout(state.msgTimer);
+        },
+        setTimer(state, timer) {
+            state.msgTimer = timer;
+        }
     },
     actions: {
         async fetchUserInfo({ commit }) {

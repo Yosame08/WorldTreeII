@@ -83,7 +83,6 @@ public class FuncServiceImpl implements FuncService {
     public void modifyStickers(Sticker sticker) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
-        System.out.println(sticker.getStkId());
         Sticker tmp = userStickerMapper.findSticker(userId, sticker.getStkId());
         if(tmp == null) {
             System.out.println("[!] User " + userId + " sticker not found " + sticker.getStkId());
