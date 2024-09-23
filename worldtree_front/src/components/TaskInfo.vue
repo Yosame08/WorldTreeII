@@ -5,6 +5,10 @@ import { defineProps, computed } from "vue";
 import store from "@/services/storeService";
 
 const props = defineProps({
+  title: {
+    type: String,
+    default: null
+  },
   discussions: {
     type: Array,
     required: true
@@ -37,6 +41,7 @@ const cardLayers = computed(() => {
 
 <template>
   <div class="task-info discussions-style">
+    <h2 v-if="props.title" style="text-align: left; margin-left: 10px;">{{ props.title }}</h2>
     <div v-for="(discussion, index) in props.discussions" :key="discussion.content" >
       <el-card class="discussion-card" v-if="discussion.user">
         <template #header>

@@ -114,8 +114,12 @@ public class TaskServeiceImpl implements TaskService {
                     tartsServiceImpl.passTask(8);
                 }
                 return pass8;
-//            case 9:
-//                return "9".equals(flag);
+            case 9:
+                boolean pass9 = "Reverse!!!Zh3n9d4n_un1v3r5e".equals(flag);
+                if(pass9){
+                    tartsServiceImpl.passTask(9);
+                }
+                return pass9;
 //            case 10:
 //                return "10".equals(flag);
             default:

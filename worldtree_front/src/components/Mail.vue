@@ -33,7 +33,6 @@ const parseTaskDescription = () => {
       return {user: null, content: item};
     }
   });
-  console.log(discussions);
 };
 
 onMounted(() => {

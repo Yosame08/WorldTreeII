@@ -213,7 +213,6 @@ const updateAnswers = async () => {
 const fetchCurrentAnswers = async () => {
   let result = await universalGet('/api/subtask/visiting/get_info');
   result = result.data;
-  console.log(result);
   if (result.code === 0) {
     markers.value = result.data.position.map((pos, index) => ({
       position: pos,

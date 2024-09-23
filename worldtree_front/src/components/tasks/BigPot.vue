@@ -101,7 +101,6 @@ export default {
     },
     async cook() {
       try {
-        console.log(store.state.userInfo);
         const response = await universalPost('/api/subtask/bigpot/cook', {
           gameToken: this.gameToken,
           x: this.pot[0],
