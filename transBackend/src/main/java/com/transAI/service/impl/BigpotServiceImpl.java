@@ -55,7 +55,8 @@ public class BigpotServiceImpl implements BigpotService {
                 return null; // 或者你可以抛出异常
         }
         bigpotMapper.insert(bigpot);
-        System.out.println("[" + DateLogger.getTime() + " Big Pot] Start a new level " + level + " game with token " + randomToken);
+        Map<String, Object> map = ThreadLocalUtil.get();
+        System.out.println("[" + DateLogger.getTime() + " Big Pot] " + map.get("username") + " start a new level " + level + " game with token " + randomToken);
         return bigpot;
     }
 
