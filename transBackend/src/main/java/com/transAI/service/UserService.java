@@ -23,4 +23,6 @@ public interface UserService {
     String getLanguage();
 
     String getStyle();
+
+    User findByRandomString(String randomString);
 }

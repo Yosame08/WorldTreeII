@@ -117,7 +117,6 @@ const handleButtonClick = async (num) => {
       store.commit('setErrorMsg', response.data.msg);
     }
   } catch (error) {
-    store.commit('setErrorMsg', error.message);
   }
 };
 

@@ -106,7 +106,6 @@ const saveSettings = async () => {
     ElMessage.success('Settings saved successfully!')
   } catch (error) {
     console.error('Error saving settings:', error)
-    ElMessage.error('Failed to save settings.')
   }
 }
 

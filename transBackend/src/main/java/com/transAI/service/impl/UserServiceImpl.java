@@ -108,4 +108,9 @@ public class UserServiceImpl implements UserService {
         String style = "style:".concat(userMapper.getStyle(id));
         return style;
     }
+
+    @Override
+    public User findByRandomString(String randomString) {
+        return userMapper.findByRandomString(randomString);
+    }
 }

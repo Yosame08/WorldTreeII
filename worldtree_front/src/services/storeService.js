@@ -62,7 +62,6 @@ const store = createStore({
                 const response = await get_info();
                 commit('setUserInfo', response.data.data);
             } catch (error) {
-                console.error('Failed to fetch user info', error);
             }
         },
     }

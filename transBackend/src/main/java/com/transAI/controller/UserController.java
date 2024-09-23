@@ -163,4 +163,11 @@ public class UserController {
         // debug
         return Result.success(userService.getStyle());
     }
+
+    @PostMapping("get_info_by_random_string")
+    public Result<User> getUserInfoByRandomString(@RequestBody Map<String, String> params) {
+        String randomString = params.get("value");
+        User user = userService.findByRandomString(randomString);
+        return Result.success(user);
+    }
 }
