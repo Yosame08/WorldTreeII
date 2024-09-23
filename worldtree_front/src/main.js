@@ -33,15 +33,20 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
-        if (error.response && error.response.status === 401) {
+        if (error.response.status === 401) {
             // 清除本地token
             sessionStorage.removeItem("token");
             store.commit("setIsLoggedIn", false);
-            store.commit("setErrorMsg", "Token已过期，请重新登录");
+            store.commit("setErrorMsg", "登录已过期，请重新登录");
             router.push('/login');
-        } else {
-            store.commit("setErrorMsg", error.message);
         }
+        else if (error.response.status === 429) {
+            sessionStorage.removeItem("token");
+            store.commit("setIsLoggedIn", false);
+            store.commit("setErrorMsg", "访问太频繁，请重新登录");
+            router.push('/login');
+        }
+        else store.commit("setErrorMsg", error.message);
         return Promise.reject(error);
     }
 );

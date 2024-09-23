@@ -123,7 +123,6 @@ const getAllTasks = async () => {
       store.commit("setErrorMsg", response.data.message);
     }
   } catch (error) {
-    store.commit("setErrorMsg", error);
   }
 };
 
