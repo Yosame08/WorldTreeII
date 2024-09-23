@@ -44,7 +44,7 @@ public class VisitingServiceImpl implements VisitingService {
                 visitingMapper.updateVisiting(visitingUnit);
             }
         }
-        StringBuilder info = new StringBuilder("[" + DateLogger.getTime() + " Visiting] User " + userId + " updated: ");
+        StringBuilder info = new StringBuilder("[" + DateLogger.getTime() + " Visiting] User " + map.get("username") + " updated: ");
         for (int i = 0; i < 3; i++) {
             info.append("[").append(i).append("] ");
             info.append("Dist: ").append(DistCalculator.haversine(visiting.getPosition()[i][0], visiting.getPosition()[i][1], visitingAnswer.getPosition()[i][0], visitingAnswer.getPosition()[i][1])).append(" ");

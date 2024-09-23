@@ -74,7 +74,9 @@ public class TaskServeiceImpl implements TaskService {
 
     @Override
     public boolean submitTask(int taskId, String flag) {
-        System.out.println("[" + DateLogger.getTime() + " Task submit] User submitted task " + taskId + "(" + taskMapper.getTask(taskId).getTaskTitle() + ") with flag " + flag);
+        Map<String, Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+        System.out.println("[" + DateLogger.getTime() + " Task submit] User " + username + " submitted task " + taskId + "(" + taskMapper.getTask(taskId).getTaskTitle() + ") with flag " + flag);
         if(!taskPass(taskId, flag)) {
             return false;
         }
@@ -149,7 +151,7 @@ public class TaskServeiceImpl implements TaskService {
         }
         userMapper.updateUserCoins(id, userCoin - price);
         userHintMapper.insertUserHint(id, taskId);
-        System.out.println("[" + DateLogger.getTime() + " Hint purchase] User " + id + " purchased hint for task " + taskId + " (" + taskMapper.getTask(taskId).getTaskTitle() + ")");
+        System.out.println("[" + DateLogger.getTime() + " Hint purchase] User " + map.get("username") + " purchased hint for task " + taskId + " (" + taskMapper.getTask(taskId).getTaskTitle() + ")");
         return hint;
     }
 

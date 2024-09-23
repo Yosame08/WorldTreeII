@@ -85,10 +85,10 @@ public class FuncServiceImpl implements FuncService {
         int userId = (int) map.get("id");
         Sticker tmp = userStickerMapper.findSticker(userId, sticker.getStkId());
         if(tmp == null) {
-            System.out.println("[!] User " + userId + " sticker not found " + sticker.getStkId());
+            System.out.println("[!] User " + map.get("username") + " sticker not found " + sticker.getStkId());
         }
         else {
-            System.out.println(DateLogger.getTime() + " ~/sticker User " + userId + " (" + userMapper.getUser(userId).getUsername() + ") modified sticker " + sticker.getStkId());
+            System.out.println(DateLogger.getTime() + " ~/sticker User " + map.get("username") + " (" + userMapper.getUser(userId).getUsername() + ") modified sticker " + sticker.getStkId());
             userStickerMapper.modifyStickers(userId, sticker);
         }
     }

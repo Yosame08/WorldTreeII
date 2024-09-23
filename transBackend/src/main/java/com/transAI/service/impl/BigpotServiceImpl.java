@@ -6,9 +6,11 @@ import com.transAI.pojo.Bigpot;
 import com.transAI.pojo.BigpotResult;
 import com.transAI.utils.DateLogger;
 import com.transAI.service.BigpotService;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -138,7 +140,8 @@ public class BigpotServiceImpl implements BigpotService {
             bigpotResult.setPass(0);
         }
         bigpotResult.setResult(result);
-        System.out.println("[" + DateLogger.getTime() + " Big Pot] User " + id + ": cook " + x + (operator==0?" AND ":(operator==1?" OR ":" XOR ")) + y + ", status: " + bigpot);
+        Map<String, Object> map = ThreadLocalUtil.get();
+        System.out.println("[" + DateLogger.getTime() + " Big Pot] User " + map.get("username") + ": cook " + x + (operator==0?" AND ":(operator==1?" OR ":" XOR ")) + y + ", status: " + bigpot);
         return bigpotResult;
     }
 }
