@@ -19,6 +19,7 @@ import Hidden_relic from "@/components/tasks/hidden_relic.vue";
 import TartFinish from "@/components/tasks/TartFinish.vue";
 import Telegram from "@/components/tasks/Telegram.vue";
 import TelegramRank from "@/components/tasks/TelegramRank.vue";
+import OpenBox from "@/components/tasks/OpenBox.vue";
 
 const routes = [
     { path: '/', component: Index, meta: { title: "反转！蒸旦宇宙" } },
@@ -35,6 +36,8 @@ const routes = [
     { path: '/tasks/skittles', component: Skittles, meta: { title: "掰与狼与孤独摇滚 - 反转！蒸旦宇宙" } },
     { path: '/tasks/waffle', component: Waffle, meta: { title: "华夫饼 - 反转！蒸旦宇宙" } },
     { path: '/inter-universe/paky-and-tarts', component: TartFinish, meta: {title: "蛋挞 - 反转！蒸旦宇宙" } },
+
+    { path: '/tasks/openbox', component: OpenBox, meta: { title: "开盒 - 反转！蒸旦宇宙" } },
 
     { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
 ]
