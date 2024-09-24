@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     redirectToFile() {
-      window.location.href = '/static/HL.z01.f7';
+      window.location.href = '/static/HL.z02.a9';
     }
   }
 };
