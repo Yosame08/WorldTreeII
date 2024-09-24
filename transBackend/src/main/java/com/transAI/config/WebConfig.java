@@ -14,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
     private LoginInterceptor loginInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).excludePathPatterns("/api/user/signup","/api/user/login");
+        registry.addInterceptor(loginInterceptor).excludePathPatterns("/api/user/signup",
+                "/api/user/login", "/api/user/get_info_by_random_string", "/api/subtask/telegram/get_played", "/api/subtask/telegram/submit");
     }
 }

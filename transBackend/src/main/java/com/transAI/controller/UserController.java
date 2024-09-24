@@ -164,7 +164,13 @@ public class UserController {
         return Result.success(userService.getStyle());
     }
 
-    @PostMapping("get_info_by_random_string")
+    @GetMapping("/qrcode")
+    public Result getCode() {
+        // debug
+        return Result.success(userService.getCode());
+    }
+
+    @PostMapping("/get_info_by_random_string")
     public Result<User> getUserInfoByRandomString(@RequestBody Map<String, String> params) {
         String randomString = params.get("value");
         User user = userService.findByRandomString(randomString);

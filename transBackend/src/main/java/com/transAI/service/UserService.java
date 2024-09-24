@@ -24,5 +24,7 @@ public interface UserService {
 
     String getStyle();
 
+    String getCode();
+
     User findByRandomString(String randomString);
 }

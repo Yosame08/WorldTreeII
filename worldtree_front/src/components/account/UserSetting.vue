@@ -1,42 +1,42 @@
 <template>
   <div>
     <!-- User Settings Card -->
-    <el-card class="user-settings">
-      <h2>User Settings</h2>
+<!--    <el-card class="user-settings">-->
+<!--      <h2>User Settings</h2>-->
 
       <!-- Avatar Upload -->
-      <div class="avatar-section">
-        <el-upload class="avatar-uploader" action="" :show-file-list="false" :before-upload="beforeAvatarUpload"
-          :on-change="handleAvatarChange">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-          <el-icon v-else class="avatar-uploader-icon">
-            <Plus />
-          </el-icon>
-        </el-upload>
-        <el-button @click="clearAvatar" type="danger">Clear Avatar</el-button>
-      </div>
+<!--      <div class="avatar-section">-->
+<!--        <el-upload class="avatar-uploader" action="" :show-file-list="false" :before-upload="beforeAvatarUpload"-->
+<!--          :on-change="handleAvatarChange">-->
+<!--          <img v-if="imageUrl" :src="imageUrl" class="avatar" />-->
+<!--          <el-icon v-else class="avatar-uploader-icon">-->
+<!--            <Plus />-->
+<!--          </el-icon>-->
+<!--        </el-upload>-->
+<!--        <el-button @click="clearAvatar" type="danger">Clear Avatar</el-button>-->
+<!--      </div>-->
 
       <!-- Signature Editor -->
-      <div class="signature-editor">
-        <h3>User Signature</h3>
-        <quill-editor v-model="signature" ref="quillEditor" :options="editorOptions"></quill-editor>
-      </div>
+<!--      <div class="signature-editor">-->
+<!--        <h3>User Signature</h3>-->
+<!--        <quill-editor v-model="signature" ref="quillEditor" :options="editorOptions"></quill-editor>-->
+<!--      </div>-->
 
       <!-- Save Button -->
-      <div class="action-buttons">
-        <el-button type="primary" @click="saveSettings">Save Settings</el-button>
-      </div>
-    </el-card>
+<!--      <div class="action-buttons">-->
+<!--        <el-button type="primary" @click="saveSettings">Save Settings</el-button>-->
+<!--      </div>-->
+<!--    </el-card>-->
 
     <!-- QR Code Card -->
     <el-card class="qr-code-card">
       <h2>User QR Code</h2>
-      <div v-if="qrCodeImage">
+      <div v-if="qrCodeImage" class="qr-div">
         <img :src="qrCodeImage" alt="User QR Code" />
       </div>
-      <div v-else>
-        <el-button @click="fetchQRCode">Get your identity code</el-button>
-      </div>
+    </el-card>
+    <el-card class="qr-code-card">
+      <el-button type="primary" @click="router.push('/telegram')" >前往电报员编码生成界面</el-button>
     </el-card>
   </div>
 </template>
@@ -45,14 +45,15 @@
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
-import axios from 'axios'
 import QRCode from 'qrcode'
 import {set_info} from "@/services/userService";
+import { universalGet } from "@/services/universalService";
+import router from "@/router/router";
 
 const imageUrl = ref('') // For image preview
 const avatarBase64 = ref('') // Base64-encoded avatar
 const signature = ref('') // Signature HTML content
-const qrCodeImage = ref('') // QR Code image URL
+const qrCodeImage = ref(null) // QR Code image URL
 
 const editorOptions = {
   theme: 'snow',
@@ -109,18 +110,9 @@ const saveSettings = async () => {
   }
 }
 
-// Fetch the QR code string and generate the QR code image
-const fetchQRCode = () => {
-  axios.get('/api/user/qrcode', { token: sessionStorage.getItem("token") }).then(
-    (data) => {
-      generateQRCode(data.data.data.qrCodeString);
-    }
-  )
-}
-
 // Generate QR code using the fetched string
 const generateQRCode = (qrString) => {
-  QRCode.toDataURL(qrString)
+  QRCode.toDataURL("[WorldTreeII]token=" + qrString, { width: 500 })
     .then((url) => {
       qrCodeImage.value = url // Set the QR code image source
     })
@@ -129,14 +121,18 @@ const generateQRCode = (qrString) => {
     })
 }
 
-fetchQRCode();
+onMounted(async () => {
+  let response = await universalGet('/api/user/qrcode');
+  console.log(response);
+  generateQRCode(response.data.data);
+});
 </script>
 
 <style scoped>
 .user-settings {
   margin-top: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .avatar-section {
@@ -165,9 +161,14 @@ fetchQRCode();
 }
 
 .qr-code-card {
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
   text-align: center;
 }
+
+.qr-div img {
+  width: 100%;
+}
+
 </style>

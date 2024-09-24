@@ -2,6 +2,8 @@ package com.transAI.controller;
 
 import com.transAI.pojo.Result;
 import com.transAI.pojo.TelegramRecord;
+import com.transAI.pojo.User;
+import com.transAI.pojo.UserPair;
 import com.transAI.service.TelegramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +22,15 @@ public class TelegramController {
         return Result.success(telegramService.getTelegramRecordList());
     }
 
-    @GetMapping("/get_played")
-    public Result<List<Integer>> getPlayed() {
-        return Result.success(telegramService.getPlayed());
+    @PostMapping("/get_played")
+    public Result<Integer> getPlayed(@RequestBody UserPair userPair) {
+        System.out.println(userPair);
+        return Result.success(telegramService.getPlayed(userPair));
     }
 
     @PostMapping("/submit")
     public Result submit(@RequestBody TelegramRecord telegramRecord) {
+        if (telegramRecord.getRank() != 998244000) return Result.error("auth error"); // 约定的特殊值
         return telegramService.submit(telegramRecord);
     }
 }

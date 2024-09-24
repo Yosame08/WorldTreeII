@@ -98,8 +98,8 @@ const taskAnswer = ref('');
 const task1OK = ref(false);
 const task1Times = ref(0);
 // special tasks
-const noHint = ref([9]);
-const noClue = ref([2, 9]); // 蛋挞、问卷
+const noHint = ref([9, 10, 11, 12]);
+const noClue = ref([2, 9, 10, 11, 12]); // 蛋挞、问卷
 // hint and clue
 const mapImage = ref(null);
 const isHintVisible = ref(false);
@@ -444,7 +444,7 @@ onMounted(getAllTasks);
 
 @media (max-width: 768px) {
   .task-sidebar {
-    width: 100%;
+    width: 60%;
     height: 100%;
     top: 0;
     right: 0;
