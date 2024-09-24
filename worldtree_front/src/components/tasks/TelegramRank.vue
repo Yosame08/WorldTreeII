@@ -3,12 +3,12 @@
     <el-card class="rank-card">
       <h2>魔塔电报员排行榜</h2>
       <el-table :data="rankData" style="width: 100%">
-        <el-table-column prop="rank" label="排行" width="80"></el-table-column>
-        <el-table-column prop="usernameA" label="观察者" width="200"></el-table-column>
-        <el-table-column prop="usernameB" label="操作者" width="200"></el-table-column>
-        <el-table-column prop="mapName" label="地图" width="80"></el-table-column>
-        <el-table-column prop="score" label="得分" width="80"></el-table-column>
-        <el-table-column prop="time" label="用时" width="150"></el-table-column>
+        <el-table-column prop="rank" label="排行" width="80" align="left"></el-table-column>
+        <el-table-column prop="usernameA" label="观察者" width="200" align="center"></el-table-column>
+        <el-table-column prop="usernameB" label="操作者" width="200" align="center"></el-table-column>
+        <el-table-column prop="mapName" label="地图" width="80" align="center"></el-table-column>
+        <el-table-column prop="score" label="得分" width="80" align="center"></el-table-column>
+        <el-table-column prop="time" label="用时" align="center"></el-table-column>
       </el-table>
     </el-card>
   </div>

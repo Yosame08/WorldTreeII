@@ -134,7 +134,7 @@ public class TartsServiceImpl implements TartsService {
             userMapper.updatePoint(userId, pre_point + point);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(point * ratio));
         }
-        System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + map.get("username") + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
+        System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + userId + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
     }
 
 
