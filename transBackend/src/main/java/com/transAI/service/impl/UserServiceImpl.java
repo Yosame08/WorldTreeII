@@ -110,7 +110,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String getCode() {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        Integer id = (Integer) map.get("id");
+        String code = userMapper.getCode(id);
+        return code;
+    }
+
+    @Override
     public User findByRandomString(String randomString) {
-        return userMapper.findByRandomString(randomString);
+        User result = userMapper.findByRandomString(randomString);
+        System.out.println("Using random string to login: " + result.getUsername());
+        return result;
     }
 }

@@ -34,7 +34,7 @@ public class SkittlesServiceImpl implements SkittlesService {
             start = getNext(start);
         }
         Map<String, Object> map = ThreadLocalUtil.get();
-        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] " + map.get("username") + " generated: " + (list.toString().replace(" ,", "")));
+        System.out.println("[" + DateLogger.getTime() + " Bai, Lang and Bocchi the Rock] " + map.get("username") + " generated: " + (list.toString().replace(", ", "")));
         return list;
     }
 

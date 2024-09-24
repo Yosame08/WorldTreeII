@@ -103,6 +103,40 @@ public class TartsServiceImpl implements TartsService {
         }
     }
 
+    public void passPartialTask(int userId, int taskId, int point) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int pre_point = userTotalPointMapper.getMaxPoint(userId);
+        User user = userMapper.getUser(userId);
+
+        Task task = taskMapper.getTask(taskId);
+        double ratio =  (double)task.getTaskCoin() / task.getTaskPoint();
+
+        TaskUser taskUser = taskUserMapper.getTaskUser(userId, taskId);
+        if(taskUser != null) {
+            if (taskUser.getPoint() >= point) return;
+            int delta = point - taskUser.getPoint();
+            taskUser.setPoint(point);
+            taskUser.setTime(LocalDateTime.now());
+
+            taskUserMapper.update(taskUser);
+            userTotalPointMapper.addPoint(userId,pre_point + delta);
+            userMapper.updatePoint(userId, pre_point + delta);
+            userMapper.updateUserCoins(userId, user.getCoin() + (int)(delta * ratio));
+        }
+        else{
+            taskUser = new TaskUser();
+            taskUser.setUserId(userId);
+            taskUser.setTaskId(taskId);
+            taskUser.setPoint(point);
+            taskUser.setTime(LocalDateTime.now());
+            taskUserMapper.insert(taskUser);
+            userTotalPointMapper.addPoint(userId,pre_point + point);
+            userMapper.updatePoint(userId, pre_point + point);
+            userMapper.updateUserCoins(userId, user.getCoin() + (int)(point * ratio));
+        }
+        System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + map.get("username") + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
+    }
+
 
     public void broadcastTask(String taskTitle, String username, int rank) throws IOException {
         String groupId = "148357672";

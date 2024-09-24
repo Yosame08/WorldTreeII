@@ -55,6 +55,7 @@ const app = createApp(App)
 app.component("v-chart", ECharts)
 app.config.globalProperties.$echarts = echarts
 // axios.defaults.baseURL = 'http://localhost:8080/'
+// axios.defaults.baseURL = 'http://192.168.144.8:8080/'
 axios.defaults.baseURL = 'http://10.20.26.32:8080/'
 
 moment.locale("zh-CN");
