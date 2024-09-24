@@ -30,6 +30,7 @@ public class TelegramController {
 
     @PostMapping("/submit")
     public Result submit(@RequestBody TelegramRecord telegramRecord) {
+        System.out.println(telegramRecord);
         if (telegramRecord.getRank() != 998244000) return Result.error("auth error"); // 约定的特殊值
         return telegramService.submit(telegramRecord);
     }
