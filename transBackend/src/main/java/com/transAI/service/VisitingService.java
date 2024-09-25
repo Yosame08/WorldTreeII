@@ -6,4 +6,6 @@ public interface VisitingService {
     void update(Visiting visiting);
 
     Visiting getInfo();
+
+    public void expireAndJudge();
 }

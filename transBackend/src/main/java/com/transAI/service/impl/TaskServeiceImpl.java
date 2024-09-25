@@ -9,6 +9,7 @@ import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,8 @@ public class TaskServeiceImpl implements TaskService {
         List<TaskUser> taskUserList = taskUserMapper.getTaskUserList(id);
         List<Integer> hintList = userHintMapper.getHintList(id);
 
+        LocalDateTime now = LocalDateTime.now();
+
         for(Task task : taskList) {
             boolean flag = false;
             for(TaskUser taskUser : taskUserList) {
@@ -67,6 +70,7 @@ public class TaskServeiceImpl implements TaskService {
             if(!hintFlag) {
                 task.setHintStatus(0);
             }
+            task.setExpired(task.getDateExpire().isBefore(now));
         }
 
         return taskList;

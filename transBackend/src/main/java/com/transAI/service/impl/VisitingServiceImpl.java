@@ -23,6 +23,7 @@ public class VisitingServiceImpl implements VisitingService {
         visitingAnswer.setIndoor(new boolean[]{false, false, true});
         visitingAnswer.setFloor(new int[]{0, 0, 1});
     }
+
     @Override
     public void update(Visiting visiting) {
         Map<String, Object> map = ThreadLocalUtil.get();
@@ -72,5 +73,10 @@ public class VisitingServiceImpl implements VisitingService {
             }
         }
         return visiting;
+    }
+
+    @Override
+    public void expireAndJudge() {
+
     }
 }

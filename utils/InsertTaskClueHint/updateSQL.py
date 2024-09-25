@@ -1,5 +1,6 @@
 import os
 import mysql.connector
+from datetime import datetime
 from mysql.connector import errorcode
 
 def read_file(file_path):
@@ -11,7 +12,8 @@ def read_info_file(file_path):
         lines = file.readlines()
         info_data = [line.strip() for line in lines]
         # Convert the submission field to a boolean
-        info_data[-2] = info_data[-2].lower() == 'true'
+        info_data[-3] = info_data[-3].lower() == 'true'
+        info_data[-1] = datetime.strptime(info_data[-1], '%Y-%m-%d %H:%M:%S')
         return info_data
 
 def connect_db(host, port, user, password, database):
@@ -48,8 +50,8 @@ def get_hint_clue_data(task_id, cursor, hint_clue_table):
 
 def insert_task(data, cursor, task_table):
     cursor.execute(f"""
-        INSERT INTO {task_table} (task_id, task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, remark, task_description, task_description_full)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO {task_table} (task_id, task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, remark, date_expire, task_description, task_description_full)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, data)
 
 def insert_hint_clue(data, cursor, hint_clue_table):
@@ -61,7 +63,7 @@ def insert_hint_clue(data, cursor, hint_clue_table):
 def update_task(data, cursor, task_table):
     cursor.execute(f"""
         UPDATE {task_table}
-        SET task_title = %s, task_pos_x = %s, task_pos_y = %s, uri = %s, task_point = %s, task_coin = %s, hint_price = %s, submission = %s, remark = %s, task_description = %s, task_description_full = %s
+        SET task_title = %s, task_pos_x = %s, task_pos_y = %s, uri = %s, task_point = %s, task_coin = %s, hint_price = %s, submission = %s, remark = %s, date_expire = %s, task_description = %s, task_description_full = %s
         WHERE task_id = %s
     """, data[1:] + [data[0]])
 
@@ -94,7 +96,7 @@ def main():
             task_id = filename[:-4]
 
             info_data = read_info_file(os.path.join(base_dir, 'Info', filename))
-            task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, remark = info_data
+            task_title, task_pos_x, task_pos_y, uri, task_point, task_coin, hint_price, submission, remark, date_expire = info_data
 
             task_description = read_file(os.path.join(base_dir, 'Story', 'base', filename))
             task_description_full = task_description + read_file(os.path.join(base_dir, 'Story', 'pass', filename))
@@ -102,7 +104,7 @@ def main():
             hint = read_file(os.path.join(base_dir, 'Hint', filename))
             clue = read_file(os.path.join(base_dir, 'Clue', filename))
 
-            task_data = [int(task_id), task_title, float(task_pos_x), float(task_pos_y), uri, int(task_point), int(task_coin), int(hint_price), submission, remark, task_description, task_description_full]
+            task_data = [int(task_id), task_title, float(task_pos_x), float(task_pos_y), uri, int(task_point), int(task_coin), int(hint_price), submission, remark, date_expire, task_description, task_description_full]
             hint_clue_data = (int(task_id), hint, clue)
 
             existing_task = get_task_data(task_id, cursor, task_table)
