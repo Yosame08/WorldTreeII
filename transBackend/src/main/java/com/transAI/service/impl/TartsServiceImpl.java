@@ -57,58 +57,58 @@ public class TartsServiceImpl implements TartsService {
         Map<String, Object> map = ThreadLocalUtil.get();
         int id = (int) map.get("id");
         passTaskWithUser(id, taskId, broadcast);
-        User user = userMapper.getUser(id);
         Task task = taskMapper.getTask(taskId);
-        System.out.println("[" + DateLogger.getTime() + " Task Pass] User " + map.get("username") + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ")");
+        System.out.println("[" + DateLogger.getTime() + " Task Pass] User " + map.get("username") + " has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ")");
     }
 
     private void passTaskWithUser(int id, int taskId, boolean broadcast) {
         TaskUser taskUser = taskUserMapper.getTaskUser(id, taskId);
-        if(taskUser != null) {
-            return ;
+        System.out.println(taskUser);
+        if(taskUser == null) {
+            taskUser = new TaskUser();
+            taskUser.setPoint(0);
         }
         Task task = taskMapper.getTask(taskId);
-        taskUser = new TaskUser();
+
         taskUser.setUserId(id);
         taskUser.setTaskId(taskId);
         taskUser.setStatus(1);
-        taskUser.setPoint(task.getTaskPoint());
         taskUser.setTime(LocalDateTime.now());
+
+        int pointDelta = task.getTaskPoint() - taskUser.getPoint();
+        taskUser.setPoint(task.getTaskPoint());
+
         taskUserMapper.insert(taskUser);
 
-        // 播报任务完成
-        int num = taskUserMapper.getTaskUserNum(taskId);
-        User user = userMapper.getUser(id);
-
-        if(num <= 3 && broadcast) {
-            // 播报任务完成
-            try {
-                broadcastTask(task.getTaskTitle(), user.getUsername(), num);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        int pre_point = userTotalPointMapper.getMaxPoint(id);
-        // 输出pre_point
-
-        userTotalPointMapper.addPoint(id,pre_point + task.getTaskPoint());
-
-        userMapper.updatePoint(id, pre_point + task.getTaskPoint());
-
+        int prevPoint = userTotalPointMapper.getMaxPoint(id);
+        userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
+        userMapper.updatePoint(id, prevPoint + task.getTaskPoint());
 
         Sticker sticker = new Sticker();
         sticker.setStkId(taskId);
         sticker.setShow(false);
         sticker.setX(0.5);
         sticker.setY(0.5);
-        // userStickerMapper.modifyStickers(id, sticker);
         userStickerMapper.addSticker(id, sticker);
 
-        int flag = userHintMapper.find(id, taskId);
+        User user = userMapper.getUser(id);
 
+        int flag = userHintMapper.find(id, taskId);
         if(flag == 0 || task.getHintPrice() == 0) {
-            userMapper.updateUserCoins(id, user.getCoin() + task.getTaskCoin());
+            int coinDelta = (int)(pointDelta * task.getTaskCoin() / (double)task.getTaskPoint());
+            userMapper.updateUserCoins(id, user.getCoin() + coinDelta);
+        }
+
+        // 播报任务完成
+        if (broadcast){
+            int num = taskUserMapper.getFullCompletedNum(taskId);
+            if(num <= 3) {
+                try {
+                    broadcastTask(task.getTaskTitle(), user.getUsername(), num);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -144,6 +144,14 @@ public class TartsServiceImpl implements TartsService {
             userTotalPointMapper.addPoint(userId,pre_point + point);
             userMapper.updatePoint(userId, pre_point + point);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(point * ratio));
+        }
+        if(taskUser.getStatus() == 1) {
+            Sticker sticker = new Sticker();
+            sticker.setStkId(taskId);
+            sticker.setShow(false);
+            sticker.setX(0.5);
+            sticker.setY(0.5);
+            userStickerMapper.addSticker(userId, sticker);
         }
         System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + userId + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
     }
