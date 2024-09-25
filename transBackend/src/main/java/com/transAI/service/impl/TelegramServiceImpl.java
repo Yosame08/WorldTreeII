@@ -64,8 +64,8 @@ public class TelegramServiceImpl implements TelegramService {
         int idA = userMapper.getId(telegramRecord.getUsernameA());
         int idB = userMapper.getId(telegramRecord.getUsernameB());
         int score = (int)Math.ceil(200 * Math.tanh((double)telegramRecord.getScore() / 1000));
-        tartsServiceImpl.passPartialTask(idA, 10, score);
-        tartsServiceImpl.passPartialTask(idB, 10, score);
+        tartsServiceImpl.passPartialTask(idA, 10, score, false);
+        tartsServiceImpl.passPartialTask(idB, 10, score, false);
         return Result.success();
     }
 }

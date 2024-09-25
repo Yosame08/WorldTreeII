@@ -21,7 +21,7 @@ public class VisitingController {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime deadline = LocalDateTime.of(2024, 9, 25, 23, 59, 59);
         if (now.isAfter(deadline)) {
-            return Result.error("已过提交截止日期");
+            return Result.error("已超过提交截止日期");
         }
         visitingService.update(visiting);
         return Result.success();

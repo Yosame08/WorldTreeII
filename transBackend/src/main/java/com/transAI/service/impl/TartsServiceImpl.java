@@ -103,7 +103,7 @@ public class TartsServiceImpl implements TartsService {
         }
     }
 
-    public void passPartialTask(int userId, int taskId, int point) {
+    public void passPartialTask(int userId, int taskId, int point, boolean markPassed) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int pre_point = userTotalPointMapper.getMaxPoint(userId);
         User user = userMapper.getUser(userId);
@@ -117,6 +117,7 @@ public class TartsServiceImpl implements TartsService {
             int delta = point - taskUser.getPoint();
             taskUser.setPoint(point);
             taskUser.setTime(LocalDateTime.now());
+            taskUser.setStatus(markPassed ? 1 : 0);
 
             taskUserMapper.update(taskUser);
             userTotalPointMapper.addPoint(userId,pre_point + delta);
@@ -129,6 +130,7 @@ public class TartsServiceImpl implements TartsService {
             taskUser.setTaskId(taskId);
             taskUser.setPoint(point);
             taskUser.setTime(LocalDateTime.now());
+            taskUser.setStatus(markPassed ? 1 : 0);
             taskUserMapper.insert(taskUser);
             userTotalPointMapper.addPoint(userId,pre_point + point);
             userMapper.updatePoint(userId, pre_point + point);

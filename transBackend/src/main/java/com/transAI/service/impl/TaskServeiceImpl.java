@@ -160,6 +160,13 @@ public class TaskServeiceImpl implements TaskService {
     }
 
     @Override
+    public boolean checkExpire(int taskId) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expire = taskMapper.getExpire(taskId);
+        return now.isAfter(expire);
+    }
+
+    @Override
     public String clue(int taskId) {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
