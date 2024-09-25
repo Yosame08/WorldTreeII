@@ -45,14 +45,24 @@ public class TartsServiceImpl implements TartsService {
         int id = (int) map.get("id");
         int taskId = 2;
 
-        passTask(taskId);
+        passTask(taskId, true);
+    }
+
+    public void userPassesTask(int userId, int taskId) {
+        passTaskWithUser(userId, taskId, false);
     }
 
 
-    public void passTask(int taskId) {
+    public void passTask(int taskId, boolean broadcast) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int id = (int) map.get("id");
+        passTaskWithUser(id, taskId, broadcast);
+        User user = userMapper.getUser(id);
+        Task task = taskMapper.getTask(taskId);
+        System.out.println("[" + DateLogger.getTime() + " Task Pass] User " + map.get("username") + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ")");
+    }
 
+    private void passTaskWithUser(int id, int taskId, boolean broadcast) {
         TaskUser taskUser = taskUserMapper.getTaskUser(id, taskId);
         if(taskUser != null) {
             return ;
@@ -70,7 +80,7 @@ public class TartsServiceImpl implements TartsService {
         int num = taskUserMapper.getTaskUserNum(taskId);
         User user = userMapper.getUser(id);
 
-        if(num <= 3) {
+        if(num <= 3 && broadcast) {
             // 播报任务完成
             try {
                 broadcastTask(task.getTaskTitle(), user.getUsername(), num);
@@ -78,7 +88,6 @@ public class TartsServiceImpl implements TartsService {
                 e.printStackTrace();
             }
         }
-        System.out.println("[" + DateLogger.getTime() + " Answer submission] User " + map.get("username") + " (" + user.getUsername() + ") has successfully completed the task " + taskId + " (" + task.getTaskTitle() + ")");
 
         int pre_point = userTotalPointMapper.getMaxPoint(id);
         // 输出pre_point

@@ -84,7 +84,7 @@ public class TaskServeiceImpl implements TaskService {
         if(!taskPass(taskId, flag)) {
             return false;
         }
-        tartsServiceImpl.passTask(taskId);
+        tartsServiceImpl.passTask(taskId, true);
 
         return true;
     }
@@ -105,25 +105,25 @@ public class TaskServeiceImpl implements TaskService {
                 flag = flag.toLowerCase();
                 boolean pass6 = "m5".equals(flag) || "ms".equals(flag);
                 if(pass6) {
-                    tartsServiceImpl.passTask(6);
+                    tartsServiceImpl.passTask(6, true);
                 }
                 return pass6;
             case 7:
                 boolean pass7 = "卷卷更好吃".equals(flag);
                 if(pass7) {
-                    tartsServiceImpl.passTask(7);
+                    tartsServiceImpl.passTask(7, true);
                 }
                 return pass7;
             case 8:
                 boolean pass8 = "sunmoonlightwithhuafu".equals(flag);
                 if(pass8) {
-                    tartsServiceImpl.passTask(8);
+                    tartsServiceImpl.passTask(8, true);
                 }
                 return pass8;
             case 9:
                 boolean pass9 = "Reverse!!!Zh3n9d4n_un1v3r5e".equals(flag);
                 if(pass9){
-                    tartsServiceImpl.passTask(9);
+                    tartsServiceImpl.passTask(9, true);
                 }
                 return pass9;
 //            case 10:

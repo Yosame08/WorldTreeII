@@ -1,7 +1,6 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.BigpotMapper;
-import com.transAI.mapper.UserMapper;
 import com.transAI.pojo.Bigpot;
 import com.transAI.pojo.BigpotResult;
 import com.transAI.utils.DateLogger;
@@ -135,7 +134,7 @@ public class BigpotServiceImpl implements BigpotService {
             if (level != 4) {
                 bigpotMapper.updateLevel(id, level + 1);
             } else {
-                tartsServiceImpl.passTask(3);
+                tartsServiceImpl.passTask(3, true);
             }
         } else {
             bigpotResult.setPass(0);

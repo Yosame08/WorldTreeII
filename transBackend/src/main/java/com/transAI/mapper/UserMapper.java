@@ -59,7 +59,7 @@ public interface UserMapper {
     @Select("select * from user where id=#{id}")
     User getUser(int id);
 
-    @Select("select * from user where username=#{username}")
+    @Select("select id from user where username=#{username}")
     int getId(String username);
 
     @Select("select random_value from user where id=#{id}")
