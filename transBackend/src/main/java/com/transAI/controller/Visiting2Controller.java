@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/api/subtask/visiting")
+@RequestMapping("/api/subtask/visiting2")
 public class Visiting2Controller {
 
     @Autowired
