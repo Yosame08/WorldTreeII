@@ -24,16 +24,19 @@ public class VisitingServiceImpl implements VisitingService {
 
     private final Visiting visitingAnswer = new Visiting();
     {
-        visitingAnswer.setPosition(new double[][]{{121.50209, 31.30552}, {121.50777,31.303138}, {121.50831, 31.30479}});
-        visitingAnswer.setIndoor(new boolean[]{false, false, true});
-        visitingAnswer.setFloor(new int[]{0, 0, 1});
+        visitingAnswer.setPosition(new double[][]{{121.50209, 31.30552}, {121.50777,31.303138}, {121.50831, 31.30479},
+                {121, 31}, {121, 31}, {121, 31}});
+        visitingAnswer.setIndoor(new boolean[]{false, false, true,
+                false, false, false});
+        visitingAnswer.setFloor(new int[]{0, 0, 1,
+                0, 0, 0});
     }
 
     @Override
-    public void update(Visiting visiting) {
+    public void update(Visiting visiting, int version) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
-        for(int i = 0;i < 3;i++){
+        for(int i = version*3; i < version*3+3; i++){
             VisitingUnit visitingUnit = new VisitingUnit();
             visitingUnit.setUserId(userId);
             visitingUnit.setVisitingId(i);
@@ -51,7 +54,7 @@ public class VisitingServiceImpl implements VisitingService {
             }
         }
         StringBuilder info = new StringBuilder("[" + DateLogger.getTime() + " Visiting] User " + map.get("username") + " updated: ");
-        for (int i = 0; i < 3; i++) {
+        for (int i = version*3; i < version*3+3; i++) {
             info.append("[").append(i).append("] ");
             info.append("Dist: ").append(DistCalculator.haversine(visiting.getPosition()[i][0], visiting.getPosition()[i][1], visitingAnswer.getPosition()[i][0], visitingAnswer.getPosition()[i][1])).append(" ");
             info.append("Indoor: ").append(visiting.getIndoor()[i]).append(" ");
@@ -61,14 +64,14 @@ public class VisitingServiceImpl implements VisitingService {
     }
 
     @Override
-    public Visiting getInfo() {
+    public Visiting getInfo(int version) {
         Map<String, Object> map = ThreadLocalUtil.get();
         int userId = (int) map.get("id");
         Visiting visiting = new Visiting();
         visiting.setPosition(new double[3][2]);
         visiting.setIndoor(new boolean[3]);
         visiting.setFloor(new int[3]);
-        for(int i = 0;i < 3;i++){
+        for(int i = version*3; i < version*3+3; i++){
             var tmp = visitingMapper.getVisiting(userId, i);
             if(tmp != null){
                 visiting.getPosition()[i][0] = tmp.getX();
@@ -81,11 +84,11 @@ public class VisitingServiceImpl implements VisitingService {
     }
 
     @Override
-    public void expireAndJudge() {
+    public void expireAndJudge(int version) {
         List<Integer> userIds = visitingMapper.getAllUserIds();
         for (int userId : userIds) {
             double totalScore = 0;
-            for (int i = 0; i < 3; i++) {
+            for (int i = version*3; i < version*3+3; i++) {
                 VisitingUnit userVisiting = visitingMapper.getVisiting(userId, i);
                 if (userVisiting == null) {
                     userVisiting = new VisitingUnit();
@@ -100,8 +103,8 @@ public class VisitingServiceImpl implements VisitingService {
                         visitingAnswer.getPosition()[i][0], visitingAnswer.getPosition()[i][1]
                 );
                 int distanceScore = calculateDistanceScore(distance);
-                int indoorScore = calculateIndoorScore(userVisiting, i);
-                System.out.println("User = " + userId + " Dist = " + distance + " Score = " + calculateDistanceScore(distance) + " Indoor Score = " + calculateIndoorScore(userVisiting, i));
+                int indoorScore = calculateIndoorScore(userVisiting, i, version);
+                System.out.println("User = " + userId + " Dist = " + distance + " Score = " + calculateDistanceScore(distance) + " Indoor Score = " + calculateIndoorScore(userVisiting, i, version));
 
                 totalScore += (distanceScore + indoorScore) * (i < 2 ? 0.3 : 0.4);
             }
@@ -119,7 +122,7 @@ public class VisitingServiceImpl implements VisitingService {
         }
     }
 
-    private int calculateIndoorScore(VisitingUnit userVisiting, int index) {
+    private int calculateIndoorScore(VisitingUnit userVisiting, int index, int version) {
         int score = 0;
         if (userVisiting.isIndoor() == visitingAnswer.getIndoor()[index]) {
             if (userVisiting.isIndoor()) {

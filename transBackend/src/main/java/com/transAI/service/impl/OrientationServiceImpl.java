@@ -1,37 +1,86 @@
 package com.transAI.service.impl;
 
+import com.transAI.mapper.OpenboxMapper;
+import com.transAI.mapper.TaskMapper;
 import com.transAI.pojo.Orientation;
 import com.transAI.pojo.Pos;
 import com.transAI.service.OrientationService;
+import com.transAI.utils.DateLogger;
+import com.transAI.utils.ThreadLocalUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrientationServiceImpl implements OrientationService {
-    private int taskNum = 5;
-    private Pos[] pos = new Pos[5];
 
-    public OrientationServiceImpl() {
-        for (int i = 0; i < taskNum; i++) {
-            pos[i] = new Pos();
-            pos[i].setLevel(i);
-            pos[i].setLng(121);
-            pos[i].setLat(31);
-        }
+    @Autowired
+    private OpenboxMapper openboxMapper;
+
+    private final int taskId = 13;
+    private final int taskNum = 5;
+    private final Pos[] pos = new Pos[taskNum];
+
+    @Autowired
+    private TartsServiceImpl tartsServiceImpl;
+    @Autowired
+    private TaskMapper taskMapper;
+
+    {
+        pos[0] = new Pos(1, 121, 31);
+        pos[1] = new Pos(2, 121, 31);
+        pos[2] = new Pos(3, 121, 31);
+        pos[3] = new Pos(4, 121, 31);
+        pos[4] = new Pos(5, 121, 31);
     }
+
+    @Override
+    public List<Orientation> initOrientation() {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int userId = (Integer)map.get("id");
+        List<Orientation> orientations = new ArrayList<>();
+        for (int i = 0; i < taskNum; i++) {
+            Orientation orientation = new Orientation();
+            orientation.setPass(openboxMapper.queryPass(userId, i) != null);
+            orientation.setDire(0);
+            orientation.setDist(0);
+            orientations.add(orientation);
+        }
+        return orientations;
+    }
+
     @Override
     public Orientation checkOrientation(Pos pos) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        int userId = (Integer)map.get("id");
         Orientation orientation = new Orientation();
         int level = pos.getLevel();
         double dis = calcDis(this.pos[level], pos);
 
         // 判断是否通过
-        if(dis < 20) {
+        if(dis < 30) {
+            var passed = openboxMapper.queryPass(userId, level);
+            if(passed == null) {
+                openboxMapper.insertPass(userId, level);
+                int num = openboxMapper.userPassNum(userId);
+
+                var task = taskMapper.getTask(taskId);
+                if (num == taskNum){
+                    tartsServiceImpl.passTask(taskId, true);
+                }
+                else{
+                    tartsServiceImpl.passPartialTask(userId, taskId, (int)(task.getTaskPoint() * num / (double) taskNum), false);
+                }
+            }
             orientation.setPass(true);
         } else {
             orientation.setPass(false);
-            if(dis < 50) {
+            if(dis < 80) {
                 orientation.setDist(0); // 近
-            } else if(dis < 200) {
+            } else if(dis < 250) {
                 orientation.setDist(1); // 不远
             } else {
                 orientation.setDist(2); // 远
@@ -42,6 +91,8 @@ public class OrientationServiceImpl implements OrientationService {
         double angle = getAngle(this.pos[level], pos);
         int direction = calculateDirection(angle); // 根据角度计算方向
         orientation.setDire(direction);
+
+        System.out.println("[" + DateLogger.getTime() + " Open Box] User " + map.get("username") + " " + pos + " STD:" + this.pos[level].toString() + " Dist=" + dis);
 
         return orientation;
     }

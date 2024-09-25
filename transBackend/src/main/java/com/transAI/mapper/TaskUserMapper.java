@@ -1,6 +1,5 @@
 package com.transAI.mapper;
 
-import com.github.pagehelper.ISelect;
 import com.transAI.pojo.TaskUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,8 +23,8 @@ public interface TaskUserMapper {
     @Update("update task_user set status=#{status}, point=#{point}, time=#{time} where user_id=#{userId} and task_id=#{taskId}")
     void update(TaskUser taskUser);
 
-    @Select("select count(*) from task_user where task_id = #{id}")
-    int getTaskUserNum(int id);
+    @Select("select count(*) from task_user where task_id = #{id} and status = 1")
+    int getFullCompletedNum(int id);
 
     @Select("select count(*) from task_user where task_id = #{taskId} and status = 1 and user_id = #{id}")
     int find(Integer id, int taskId);

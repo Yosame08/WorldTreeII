@@ -13,6 +13,6 @@ public class TaskExpireScheduler {
 
     @Scheduled(cron = "59 59 23 25 9 ?")
     public void markTaskAsExpired() {
-        visitingService.expireAndJudge();
+        visitingService.expireAndJudge(0);
     }
 }
