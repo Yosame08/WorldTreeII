@@ -20,6 +20,7 @@ import TartFinish from "@/components/tasks/TartFinish.vue";
 import Telegram from "@/components/tasks/Telegram.vue";
 import TelegramRank from "@/components/tasks/TelegramRank.vue";
 import OpenBox from "@/components/tasks/OpenBox.vue";
+import HundredUpload from "@/components/tasks/HundredUpload.vue";
 
 const routes = [
     { path: '/', component: Index, meta: { title: "反转！蒸旦宇宙" } },
@@ -40,6 +41,7 @@ const routes = [
     { path: '/tasks/openbox', component: OpenBox, meta: { title: "开盒 - 反转！蒸旦宇宙" } },
 
     { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
+    { path: '/admin/hundred', component: HundredUpload },
 ]
 
 const router = createRouter({

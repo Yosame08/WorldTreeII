@@ -60,7 +60,7 @@ public class BinsearchServiceImpl implements BinsearchService {
         System.out.println("[" + DateLogger.getTime() + " Bin Search] User " + map.get("username") + ": query at " + now.getHour() + ":" + now.getMinute() + " with answer " + answer.getHour() + ":" + answer.getMinute());
         // 如果小时和分钟相同，返回0
         if (now.getHour() == answer.getHour() && now.getMinute() == answer.getMinute()) {
-            tartsServiceImpl.passTask(1);
+            tartsServiceImpl.passTask(1, true);
             return 0;
         }
         // 如果now的小时和分钟早了（不算秒），返回1

@@ -27,7 +27,7 @@ public class CakeServiceImpl implements CakeService {
             }
         }
         if(pass) {
-            tartsServiceImpl.passTask(5);
+            tartsServiceImpl.passTask(5, true);
         }
         Map<String, Object> map = ThreadLocalUtil.get();
         System.out.println("[" + DateLogger.getTime() + " Cake] " + map.get("username") + " got submission: " + answer + " with result " + result);
