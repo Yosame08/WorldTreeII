@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface VisitingMapper {
 
@@ -17,5 +19,8 @@ public interface VisitingMapper {
 
     @Insert("INSERT INTO user_visiting (user_id, visiting_id, x, y, indoor, floor) VALUES (#{userId}, #{visitingId}, #{x}, #{y}, #{indoor}, #{floor})")
     void insertVisiting(VisitingUnit visitingUnit);
+
+    @Select("SELECT DISTINCT user_id FROM user_visiting")
+    List<Integer> getAllUserIds();
 
 }

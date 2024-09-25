@@ -12,5 +12,7 @@ public interface TaskService {
 
     String hint(int taskId);
 
+    boolean checkExpire(int taskId);
+
     String clue(int taskId);
 }

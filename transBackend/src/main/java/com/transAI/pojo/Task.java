@@ -3,6 +3,8 @@ package com.transAI.pojo;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class Task {
 
@@ -22,4 +24,6 @@ public class Task {
     private Integer taskStatus;
     private Integer hintStatus;
     private String remark;
+    private LocalDateTime dateExpire;
+    private boolean expired;
 }

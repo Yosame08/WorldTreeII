@@ -9,7 +9,10 @@
         <el-button type="primary" @click="refreshTasks" style="width: 100%; margin-bottom: 5px;">刷新任务情况</el-button>
       </div>
       <div>
-        <el-switch v-model="showUncompletedOnly" active-text="只显示未完成"></el-switch>
+        <el-switch v-model="showCompleted" active-text="显示已完成"></el-switch>
+      </div>
+      <div>
+        <el-switch v-model="showExpired" active-text="显示已过期"></el-switch>
       </div>
     </div>
 
@@ -43,7 +46,10 @@
             <el-button v-if="taskDetail.uri" type="primary" @click="openUriInNew(taskDetail.uri)">打开链接</el-button>
           </p>
           <!-- 2. 展示提交答案方式 -->
-          <div v-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
+          <div v-if="taskDetail.expired">
+            <p>该任务已于{{ taskDetail.dateExpire }}过期</p>
+          </div>
+          <div v-else-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
             您已经完全解决了该事件！
             <el-button v-if="!noClue.includes(taskDetail.taskId)" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
           </div>
@@ -51,7 +57,7 @@
             <el-button v-if="task1OK" @click="submitId1" style="width: 100%;" type="primary">启动中继器({{task1Times}}/2)</el-button>
             <el-button v-else style="width: 100%;" type="info">当前无法启动中继器({{task1Times}}/2)</el-button>
           </div>
-          <div v-else-if="taskDetail.submission" class="submission-container">
+          <div v-else-if="taskDetail.submission && !taskDetail.expired" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
             <el-button @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
@@ -88,7 +94,8 @@ const translateX = ref(0);
 const translateY = ref(0);
 const dragging = ref(false);
 const touchStartDistance = ref(0);
-const showUncompletedOnly = ref(false);
+const showCompleted = ref(true);
+const showExpired = ref(true);
 // task variables
 const tasks = ref([]);
 const taskDetail = ref(null);
@@ -383,9 +390,11 @@ const checkBounds = () => {
 };
 
 const filteredTasks = computed(() => {
-  return showUncompletedOnly.value
-      ? tasks.value.filter(task => task.taskStatus === 0)
-      : tasks.value;
+  return tasks.value.filter(task => {
+    if (!showCompleted.value && task.taskStatus === 1) return false;
+    if (!showExpired.value && task.expired) return false;
+    return true;
+  });
 });
 
 const showTooltip = (task, event) => {

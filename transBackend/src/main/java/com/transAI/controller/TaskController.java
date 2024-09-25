@@ -27,6 +27,10 @@ public class TaskController {
     public Result<Boolean> submitTask(@RequestBody Map<String, Object> map) {
         int taskId = (int) map.get("taskId");
         String flag = (String) map.get("answer");
+        boolean checkExpire = taskService.checkExpire(taskId);
+        if (checkExpire) {
+            return Result.error("任务已过期");
+        }
         return Result.success(taskService.submitTask(taskId, flag));
     }
 
