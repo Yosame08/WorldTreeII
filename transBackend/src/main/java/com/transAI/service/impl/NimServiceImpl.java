@@ -4,12 +4,10 @@ import com.google.gson.Gson;
 import com.transAI.mapper.NimMapper;
 import com.transAI.pojo.nim.*;
 import com.transAI.service.NimService;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class NimServiceImpl implements NimService {
@@ -55,6 +53,7 @@ public class NimServiceImpl implements NimService {
 
     @Override
     public NimResult step(NimRequest step){
+        Map<String, Object> map = ThreadLocalUtil.get();
         List<Integer> stones = new Gson().fromJson(nimMapper.getStones(step.getGameToken()), List.class);
         NimStep userStep = step.getStep();
         if (userStep.getPos() < 0 || userStep.getPos() >= stones.size() || userStep.getNum() <= 0 || userStep.getNum() > stones.get(userStep.getPos())){
@@ -62,15 +61,30 @@ public class NimServiceImpl implements NimService {
             err.setStep(new NimStep(-1, -1));
             return err;
         }
-        stones.set(step.getStep().getNum(), ;getPos(), stones.get(step.getPos()) - step.getTake());
+        // check user wins
+        if (stones.stream().allMatch(i -> i == 0)){
+            NimResult win = new NimResult();
+            win.setStep(new NimStep(-1, -1));
+            win.setPass(1);
+            win.setGameToken(step.getGameToken());
+            win.setWinner(map.get("username").toString());
+            nimMapper.gameEnd(step.getGameToken());
+            return win;
+        }
+
+        stones.set(userStep.getPos(), stones.get(userStep.getPos()) - userStep.getNum());
         int xor = 0;
         for (int stone : stones) {
             xor ^= stone;
         }
         NimStep next = calcNext(stones, xor);
-        stones.set(next.getPos(), stones.get(next.getPos()) - next.getTake());
-        nimMapper.updateArray(step.getGameToken(), new Gson().toJson(stones));
-        return next;
+        stones.set(next.getPos(), stones.get(next.getPos()) - next.getNum());
+        nimMapper.updateStones(step.getGameToken(), new Gson().toJson(stones));
+        NimResult result = new NimResult();
+        result.setStep(next);
+        result.setPass(0);
+        result.setGameToken(step.getGameToken());
+        return result;
     }
 
     private NimStep calcNext(List<Integer> stones, int xor){

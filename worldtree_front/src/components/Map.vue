@@ -59,7 +59,7 @@
           </div>
           <div v-else-if="taskDetail.submission && !taskDetail.expired" class="submission-container">
             <el-input v-model="taskAnswer" placeholder="输入答案"></el-input>
-            <el-button @click="submitAnswer" type="primary">提交答案</el-button>
+            <el-button :loading="isSubmitting" :disabled="isSubmitting" @click="submitAnswer" type="primary">提交答案</el-button>
           </div>
           <!-- 3. 展示提示按钮 -->
           <div v-if="!noHint.includes(taskDetail.taskId)">
@@ -97,6 +97,7 @@ const touchStartDistance = ref(0);
 const showCompleted = ref(true);
 const showExpired = ref(true);
 // task variables
+const isSubmitting = ref(false);
 const tasks = ref([]);
 const taskDetail = ref(null);
 const discussions = ref([]);
@@ -167,8 +168,10 @@ const submitId1 = async () => {
 };
 
 const submitAnswer = async () => {
+  if (isSubmitting.value) return;
+  isSubmitting.value = true;
   try {
-    const response = await universalPost('/api/task/submit', {taskId: taskDetail.value.taskId, answer: taskAnswer.value});
+    const response = await universalPost('/api/task/submit', { taskId: taskDetail.value.taskId, answer: taskAnswer.value });
     if (response.data.code === 0) {
       let pass = response.data.data;
       if (pass) {
@@ -181,6 +184,8 @@ const submitAnswer = async () => {
     }
   } catch (error) {
     console.error('Error submitting answer:', error);
+  } finally {
+    isSubmitting.value = false;
   }
 };
 
