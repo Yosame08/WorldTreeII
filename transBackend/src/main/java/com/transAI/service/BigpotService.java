@@ -1,7 +1,7 @@
 package com.transAI.service;
 
-import com.transAI.pojo.Bigpot;
-import com.transAI.pojo.BigpotResult;
+import com.transAI.pojo.bigpot.Bigpot;
+import com.transAI.pojo.bigpot.BigpotResult;
 
 public interface BigpotService {
     Bigpot init(int id);

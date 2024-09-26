@@ -1,6 +1,6 @@
 package com.transAI.mapper;
 
-import com.transAI.pojo.VisitingUnit;
+import com.transAI.pojo.visiting.VisitingUnit;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

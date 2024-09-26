@@ -1,7 +1,7 @@
 package com.transAI.controller;
 
-import com.transAI.pojo.Bigpot;
-import com.transAI.pojo.BigpotResult;
+import com.transAI.pojo.bigpot.Bigpot;
+import com.transAI.pojo.bigpot.BigpotResult;
 import com.transAI.pojo.Result;
 import com.transAI.service.BigpotService;
 import com.transAI.utils.ThreadLocalUtil;
