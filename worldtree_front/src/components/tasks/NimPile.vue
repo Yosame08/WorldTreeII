@@ -4,7 +4,7 @@
             <span class="number">{{ counter }}</span>
         </div>
         <div class="actions">
-            <el-button type="primary" @click="take" :disabled="counter <= 0 || !active">拿一个</el-button>
+            <el-button type="primary" @click="take" :disabled="(counter <= 0 || !active) || disabled">拿一个</el-button>
         </div>
     </el-card>
 </template>
@@ -18,6 +18,10 @@ const props = defineProps({
     active: {
         type: Boolean,
         default: true
+    },
+    disabled: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -58,7 +62,7 @@ function resetCounter() {
 
 .container {
     display: flex;
-    margin: 10px;
+    margin: 5px;
     justify-content: center;
     align-items: center;
 }

@@ -123,7 +123,6 @@ const generateQRCode = (qrString) => {
 
 onMounted(async () => {
   let response = await universalGet('/api/user/qrcode');
-  console.log(response);
   generateQRCode(response.data.data);
 });
 </script>

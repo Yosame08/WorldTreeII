@@ -63,8 +63,10 @@ public class TartsServiceImpl implements TartsService {
 
     private void passTaskWithUser(int id, int taskId, boolean broadcast) {
         TaskUser taskUser = taskUserMapper.getTaskUser(id, taskId);
+        boolean update = true;
         System.out.println(taskUser);
         if(taskUser == null) {
+            update = false;
             taskUser = new TaskUser();
             taskUser.setPoint(0);
         }
@@ -76,13 +78,14 @@ public class TartsServiceImpl implements TartsService {
         taskUser.setTime(LocalDateTime.now());
 
         int pointDelta = task.getTaskPoint() - taskUser.getPoint();
-        taskUser.setPoint(task.getTaskPoint());
+        taskUser.setPoint(pointDelta);
 
-        taskUserMapper.insert(taskUser);
+        if (update) taskUserMapper.update(taskUser);
+        else taskUserMapper.insert(taskUser);
 
         int prevPoint = userTotalPointMapper.getMaxPoint(id);
         userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
-        userMapper.updatePoint(id, prevPoint + task.getTaskPoint());
+        userMapper.updatePoint(id, prevPoint + pointDelta);
 
         Sticker sticker = new Sticker();
         sticker.setStkId(taskId);

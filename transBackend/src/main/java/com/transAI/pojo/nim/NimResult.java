@@ -7,7 +7,6 @@ public class NimResult {
 
     private NimStep step;
     private int pass;
-    private String gameToken;
     private String winner;
 
 }

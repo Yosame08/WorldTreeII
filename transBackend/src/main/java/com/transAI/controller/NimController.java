@@ -13,7 +13,7 @@ public class NimController {
     @Autowired
     private NimService nimService;
 
-    @GetMapping("/init")
+    @PostMapping("/init")
     public Result<NimInit> check(@RequestBody NimInitRequest nimInitRequest) {
         return Result.success(nimService.init(nimInitRequest));
     }
