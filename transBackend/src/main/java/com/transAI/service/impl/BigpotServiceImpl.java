@@ -1,8 +1,8 @@
 package com.transAI.service.impl;
 
 import com.transAI.mapper.BigpotMapper;
-import com.transAI.pojo.Bigpot;
-import com.transAI.pojo.BigpotResult;
+import com.transAI.pojo.bigpot.Bigpot;
+import com.transAI.pojo.bigpot.BigpotResult;
 import com.transAI.utils.DateLogger;
 import com.transAI.service.BigpotService;
 import com.transAI.utils.ThreadLocalUtil;

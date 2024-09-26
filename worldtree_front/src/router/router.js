@@ -38,8 +38,8 @@ const routes = [
     { path: '/tasks/waffle', component: Waffle, meta: { title: "华夫饼 - 反转！蒸旦宇宙" } },
     { path: '/inter-universe/paky-and-tarts', component: TartFinish, meta: {title: "蛋挞 - 反转！蒸旦宇宙" } },
 
-    // { path: '/tasks/openbox', component: OpenBox, meta: { title: "开盒 - 反转！蒸旦宇宙" } },
-    // { path: '/tasks/nim', component: Nim, meta: { title: "嗑瓜子 - 反转！蒸旦宇宙"} },
+    { path: '/tasks/openbox', component: OpenBox, meta: { title: "开盒 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/nim', component: Nim, meta: { title: "嗑瓜子 - 反转！蒸旦宇宙"} },
 
     { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
     { path: '/admin/hundred', component: HundredUpload },

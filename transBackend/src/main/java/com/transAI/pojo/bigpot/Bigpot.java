@@ -1,8 +1,6 @@
-package com.transAI.pojo;
+package com.transAI.pojo.bigpot;
 
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class Bigpot {

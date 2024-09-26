@@ -1,4 +1,4 @@
-package com.transAI.pojo;
+package com.transAI.pojo.bigpot;
 
 import lombok.Data;
 

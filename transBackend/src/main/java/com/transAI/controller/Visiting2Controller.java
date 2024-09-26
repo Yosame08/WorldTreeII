@@ -1,7 +1,7 @@
 package com.transAI.controller;
 
 import com.transAI.pojo.Result;
-import com.transAI.pojo.Visiting;
+import com.transAI.pojo.visiting.Visiting;
 import com.transAI.service.VisitingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
