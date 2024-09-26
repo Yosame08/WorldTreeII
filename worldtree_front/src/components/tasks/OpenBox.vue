@@ -61,7 +61,6 @@ export default {
             const response = await universalPost('/api/subtask/orientation/check', pos);
             if (response.data.code === 0) {
               const { dire, dist } = response.data.data;
-              console.log(response.data.data);
               this.cards[index].dire = dire;
               this.cards[index].dist = dist;
             } else {

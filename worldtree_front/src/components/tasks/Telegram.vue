@@ -26,7 +26,6 @@ const generateQRCode = () => {
       qrString += `${entry.code}\`${entry.meaning}\``
     }
   })
-  console.log(qrString)
 
   QRCode.toDataURL(qrString, { width: 500 })
       .then(url => {

@@ -8,7 +8,7 @@
         <el-table-column prop="usernameB" label="操作者" width="200" align="center"></el-table-column>
         <el-table-column prop="mapName" label="地图" width="80" align="center"></el-table-column>
         <el-table-column prop="score" label="得分" width="80" align="center"></el-table-column>
-        <el-table-column prop="time" label="用时" align="center"></el-table-column>
+        <el-table-column prop="time" label="剩余时间" align="center"></el-table-column>
       </el-table>
     </el-card>
   </div>

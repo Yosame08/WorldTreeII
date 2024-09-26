@@ -11,6 +11,9 @@ public interface NimMapper {
     @Select("select stones from nim_game where game_token = #{token}")
     String getStones(String token);
 
+    @Select("select easy from nim_game where game_token = #{token}")
+    boolean getEasy(String token);
+
     @Update("update nim_game set stones = #{stones} where game_token = #{token}")
     void updateStones(String token, String stones);
 
