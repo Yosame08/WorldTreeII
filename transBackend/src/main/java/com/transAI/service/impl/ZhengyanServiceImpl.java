@@ -46,6 +46,11 @@ public class ZhengyanServiceImpl implements ZhengyanService {
             }
         }
 
+        // 查询对角线的和
+        if (list.get(0) + list.get(4) + list.get(8) != 9 || list.get(2) + list.get(4) + list.get(6) != 21) {
+            return 0;
+        }
+
         return 1;
     }
 }

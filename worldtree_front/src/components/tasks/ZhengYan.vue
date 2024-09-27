@@ -20,7 +20,12 @@
         {{ icon }}
       </div>
     </div>
-    <button @click="handleSubmit">输入蒸言程序</button>
+    <button @click="handleSubmit">输入蒸盐程序</button>
+
+    <div id='download-button'>
+      <a href="/static/ZhengYan.pdf" download>蒸盐机器</a>
+      <a href="/static/ZhengYanManual.pdf" download>蒸盐研究记录</a>
+    </div>
   </div>
 </template>
 
@@ -31,7 +36,7 @@ import {universalPost} from "@/services/universalService";
 
 export default {
   setup() {
-    const icons = ['丨零', '丨一', '丨二', '丨三', '丨四', '丨五', '丨六', '丨七', '丨八'];
+    const icons = ['枧攕', '枧露', '枧爵', '枧筩', '枧濖', '枧堇', '枧渏', '枧禎', '枧镩'];
     const grid = ref(Array(9).fill(null));
     const selectedIcon = ref(null);
     const usedIcons = ref([]);
@@ -66,15 +71,15 @@ export default {
     const handleSubmit = async () => {
       try {
         const map = {
-          "丨零": 0,
-          "丨一": 1,
-          "丨二": 2,
-          "丨三": 3,
-          "丨四": 4,
-          "丨五": 5,
-          "丨六": 6,
-          "丨七": 7,
-          "丨八": 8,
+          "枧攕": 0,
+          "枧露": 1,
+          "枧爵": 2,
+          "枧筩": 3,
+          "枧濖": 4,
+          "枧堇": 5,
+          "枧渏": 6,
+          "枧禎": 7,
+          "枧镩": 8,
         };
         const answer = grid.value.map(icon => map[icon]);
         const response = await universalPost('/api/subtask/zhengyan/validate', JSON.stringify({
@@ -109,7 +114,8 @@ export default {
 <style scoped>
 @font-face {
   font-family: 'AncientCube';
-  src: url('@/assets/Ancient_Cube-Regular.woff2') format('woff2');
+  src: url('@/assets/RAC.woff2') format('woff2');
+  /* src: url('@/assets/Ancient_Cube-Regular.woff2') format('woff2'); */
   font-weight: normal;
   font-style: normal;
 }
@@ -165,6 +171,22 @@ export default {
 button {
   padding: 10px 20px;
   font-size: 16px;
+  border: 1px solid black;
 }
+
+#download-button a {
+  padding: 10px 20px;
+  font-size: 16px;
+  display: inline-block;
+  margin: 20px 10px;
+  /* grey */
+  background-color: #eee;
+  color: black;
+  text-decoration: none;
+  border-radius: 2px;
+  border: 1px solid black;
+  transition: background-color 0.3s ease;
+}
+
 </style>
 
