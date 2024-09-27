@@ -22,10 +22,10 @@ export default {
   data() {
     return {
       style: {
-        width: '500px',
-        height: '500px',
+        width: '800px',
+        height: '400px',
         top: '100px',
-        left: '300px',
+        left: '200px',
       },
       isDragging: false,
       isResizing: false,

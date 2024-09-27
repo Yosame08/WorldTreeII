@@ -9,6 +9,8 @@ const times = ref(0);
 const nextLevel = ref(false);
 const banOther = ref(false);
 const loading = ref(false);
+const title = ref('');
+const question = ref('');
 
 const fetchPoem = async () => {
   try {
@@ -25,6 +27,8 @@ const fetchPoem = async () => {
         banOther.value = true;
         alert('这首诗已经全部显示完毕');
       }
+      title.value = response.data.data.title;
+      question.value = response.data.data.question;
       loading.value = false;
     }
     else {
@@ -45,6 +49,7 @@ const submitAnswer = async () => {
         alert('回答正确，可以继续下一首');
       }
       else {
+        nextLevel.value = true;
         alert('回答错误');
       }
       loading.value = false;
@@ -84,11 +89,16 @@ onMounted(() => {
 
 <template>
   <div class="poem-container">
+    <h4 style="margin: 0;">如果你已经找到答案了，就回答下面的问题吧</h4>
+    <p style="margin: 0">全文显示完毕以及回答错误都会导致本题失败</p>
+    <br>
+    <h2>{{title}}</h2>
     <div class="quote">
       <p v-html="poemText.replace(/\n/g, '<br>')"></p>
     </div>
     <el-button @click="fetchPoem" :loading="loading" :disabled="banOther" >Next</el-button>
     <div class="task">
+      <p>{{question}}</p>
       <p>输入你的回答：</p>
       <el-input v-model="inputText" type="text" />
       <div>

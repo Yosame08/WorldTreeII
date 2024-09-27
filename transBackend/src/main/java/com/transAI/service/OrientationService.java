@@ -8,4 +8,5 @@ import java.util.List;
 public interface OrientationService {
     List<Orientation> initOrientation();
     Orientation checkOrientation(Pos pos);
+    Boolean findWebsite();
 }

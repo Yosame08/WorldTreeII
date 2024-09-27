@@ -69,7 +69,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   bottom: 1%;
-  transform: translateY(-50%);
+  //transform: translateY(-50%);
   right: 1%;
   z-index: 1001;
 }
@@ -79,7 +79,6 @@ onMounted(() => {
   width: 200px; /* Adjust the width as needed */
   top: 0;
   height: 340px;
-  transform: translateY(50%);
   background-color: rgba(5, 49, 66, 0.28);
   border-radius: 20px;
   padding: 20px 0 20px 20px;

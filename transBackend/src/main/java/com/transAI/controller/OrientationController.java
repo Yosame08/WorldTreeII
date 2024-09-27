@@ -25,4 +25,9 @@ public class OrientationController {
     public Result<Orientation> checkOrientation(@RequestBody Pos pos) {
         return Result.success(orientationService.checkOrientation(pos));
     }
+
+    @GetMapping("/find")
+    public Result<Boolean> findWebsite() {
+        return Result.success(orientationService.findWebsite());
+    }
 }
