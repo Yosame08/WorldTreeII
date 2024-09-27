@@ -74,7 +74,7 @@ public class TaskServeiceImpl implements TaskService {
         }
 
         // if the user hasn't completed task 22, remove it from the task list
-        if(taskUserMapper.find(id, 22) == 0) {
+        if(taskUserMapper.find(id, 22) == 0 && taskList.size() > 12) { // second phase
             taskList.remove(21);
         }
 
