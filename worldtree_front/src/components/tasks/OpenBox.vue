@@ -44,7 +44,7 @@ export default {
         this.lng = position.coords.longitude;
         this.lat = position.coords.latitude;
       }, (error) => {
-        alert("获取定位失败：" + error);
+        alert("获取定位失败：" + error.message);
       });
     },
     async initOrientation() {
