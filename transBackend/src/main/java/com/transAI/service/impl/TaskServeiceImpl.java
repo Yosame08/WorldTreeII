@@ -84,8 +84,7 @@ public class TaskServeiceImpl implements TaskService {
         if(!taskPass(taskId, flag)) {
             return false;
         }
-        tartsServiceImpl.passTask(taskId, true);
-
+        System.out.println("submitTask returns");
         return true;
     }
 
@@ -126,8 +125,13 @@ public class TaskServeiceImpl implements TaskService {
                     tartsServiceImpl.passTask(9, true);
                 }
                 return pass9;
-//            case 10:
-//                return "10".equals(flag);
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                return false;
             default:
                 return false;
         }
