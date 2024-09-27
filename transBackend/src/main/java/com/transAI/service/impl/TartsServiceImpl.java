@@ -161,6 +161,28 @@ public class TartsServiceImpl implements TartsService {
         System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + userId + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
     }
 
+    public void onlySetFinished(int userId, int taskId) {
+        TaskUser taskUser = taskUserMapper.getTaskUser(userId, taskId);
+        if(taskUser == null) {
+            taskUser = new TaskUser();
+            taskUser.setUserId(userId);
+            taskUser.setTaskId(taskId);
+            taskUser.setPoint(0);
+            taskUser.setTime(LocalDateTime.now());
+            taskUser.setStatus(1);
+            taskUserMapper.insert(taskUser);
+        } else {
+            if (taskUser.getStatus() == 1) return;
+            taskUser.setStatus(1);
+            taskUserMapper.update(taskUser);
+        }
+        Sticker sticker = new Sticker();
+        sticker.setStkId(taskId);
+        sticker.setShow(false);
+        sticker.setX(0.5);
+        sticker.setY(0.5);
+        userStickerMapper.addSticker(userId, sticker);
+    }
 
     public void broadcastTask(String taskTitle, String username, int rank) throws IOException {
         String groupId = "148357672";

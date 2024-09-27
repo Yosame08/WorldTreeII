@@ -90,16 +90,6 @@ public class TaskServeiceImpl implements TaskService {
 
     private boolean taskPass(int taskId, String flag) {
         switch(taskId) {
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-                return false;
-            case 5:
-                return false;
             case 6:
                 flag = flag.toLowerCase();
                 boolean pass6 = "m5".equals(flag) || "ms".equals(flag);
@@ -125,13 +115,24 @@ public class TaskServeiceImpl implements TaskService {
                     tartsServiceImpl.passTask(9, true);
                 }
                 return pass9;
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-                return false;
+            case 16:
+                boolean pass16 = "1".equals(flag);
+                if(pass16) {
+                    tartsServiceImpl.passTask(16, true);
+                }
+                return pass16;
+            case 18:
+                boolean pass18 = "1".equals(flag);
+                if(pass18) {
+                    tartsServiceImpl.passTask(18, true);
+                }
+                return pass18;
+            case 20:
+                boolean pass20 = "1".equals(flag);
+                if(pass20) {
+                    tartsServiceImpl.passTask(20, true);
+                }
+                return pass20;
             default:
                 return false;
         }

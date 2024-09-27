@@ -48,7 +48,7 @@ public class BigpotServiceImpl implements BigpotService {
                 bigpot = new Bigpot(randomToken,3,  4, 7, 25, 27, 29);
                 break;
             case 4:
-                bigpot =new  Bigpot(randomToken,4,  4, 23,43,54,109);
+                bigpot = new Bigpot(randomToken,4,  4, 23,43,54,109);
                 break;
             default:
                 return null; // 或者你可以抛出异常
