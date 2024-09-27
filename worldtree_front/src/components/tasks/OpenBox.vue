@@ -1,12 +1,17 @@
 <template>
   <div>
+    <el-card>
+      <el-button type="primary" @click="getPosition">获取定位</el-button>
+      <h2>{{this.lng}}</h2>
+      <h2>{{this.lat}}</h2>
+    </el-card>
     <el-card v-for="(card, index) in cards" :key="index" class="box-card">
       <div slot="header" class="clearfix" style="margin: 20px;">
         <span>{{ card.title }}</span>
       </div>
       <div v-if="card.pass">已找到该地点</div>
       <div v-else>
-        <el-button type="primary" @click="checkOrientation(index)">获取定位</el-button>
+<!--        <el-button type="primary" @click="checkOrientation(index)">获取定位</el-button>-->
         <p v-if="card.dire !== null && card.dist !== null">
           方向: {{ directions[card.dire] }}, 距离: {{ distances[card.dist] }}
         </p>
@@ -26,12 +31,22 @@ export default {
       descriptions: ['这里', '是', '题目', '的', '描述', '不应该有这张卡片？'],
       directions: ['东', '南', '西', '北'],
       distances: ['近', '不远', '远'],
+      lng: 0,
+      lat: 0,
     };
   },
   created() {
-    this.initOrientation();
+    // this.initOrientation();
   },
   methods: {
+    getPosition() {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        this.lng = position.coords.longitude;
+        this.lat = position.coords.latitude;
+      }, (error) => {
+        alert("获取定位失败：" + error);
+      });
+    },
     async initOrientation() {
       try {
         const response = await universalGet('/api/subtask/orientation/init');
