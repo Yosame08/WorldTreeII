@@ -64,7 +64,6 @@ public class TartsServiceImpl implements TartsService {
     private void passTaskWithUser(int id, int taskId, boolean broadcast) {
         TaskUser taskUser = taskUserMapper.getTaskUser(id, taskId);
         boolean update = true;
-        System.out.println(taskUser);
         if(taskUser == null) {
             update = false;
             taskUser = new TaskUser();
@@ -84,6 +83,7 @@ public class TartsServiceImpl implements TartsService {
         else taskUserMapper.insert(taskUser);
 
         int prevPoint = userTotalPointMapper.getMaxPoint(id);
+        System.out.println("addPoint1");
         userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
         userMapper.updatePoint(id, prevPoint + pointDelta);
 
@@ -132,6 +132,7 @@ public class TartsServiceImpl implements TartsService {
             taskUser.setStatus(markPassed ? 1 : 0);
 
             taskUserMapper.update(taskUser);
+            System.out.println("addPoint2");
             userTotalPointMapper.addPoint(userId,pre_point + delta);
             userMapper.updatePoint(userId, pre_point + delta);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(delta * ratio));
@@ -144,6 +145,7 @@ public class TartsServiceImpl implements TartsService {
             taskUser.setTime(LocalDateTime.now());
             taskUser.setStatus(markPassed ? 1 : 0);
             taskUserMapper.insert(taskUser);
+            System.out.println("addPoint3");
             userTotalPointMapper.addPoint(userId,pre_point + point);
             userMapper.updatePoint(userId, pre_point + point);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(point * ratio));
