@@ -65,9 +65,9 @@ import {universalGet, universalPost} from "@/services/universalService";
 import store from "@/services/storeService";
 
 const images = ref([
-  { src: require('@/assets/visiting2/level1.jpg') },
-  { src: require('@/assets/visiting2/level2.jpg') },
-  { src: require('@/assets/visiting2/level3.jpg') },
+  { src: require('@/assets/visiting/level4.jpg') },
+  { src: require('@/assets/visiting/level5.jpg') },
+  { src: require('@/assets/visiting/level6.jpg') },
 ]);
 
 const clickedMarker = ref(null);
