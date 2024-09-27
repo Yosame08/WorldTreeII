@@ -73,6 +73,11 @@ public class TaskServeiceImpl implements TaskService {
             task.setExpired(task.getDateExpire().isBefore(now));
         }
 
+        // if the user hasn't completed task 22, remove it from the task list
+        if(taskUserMapper.find(id, 22) == 0) {
+            taskList.remove(21);
+        }
+
         return taskList;
     }
 
@@ -115,24 +120,30 @@ public class TaskServeiceImpl implements TaskService {
                     tartsServiceImpl.passTask(9, true);
                 }
                 return pass9;
-            case 16:
-                boolean pass16 = "1".equals(flag);
-                if(pass16) {
-                    tartsServiceImpl.passTask(16, true);
-                }
-                return pass16;
             case 18:
-                boolean pass18 = "1".equals(flag);
+                boolean pass18 = "NOONOPPNOPNPNPONPOPN".equals(flag);
                 if(pass18) {
                     tartsServiceImpl.passTask(18, true);
                 }
                 return pass18;
             case 20:
-                boolean pass20 = "1".equals(flag);
+                boolean pass20 = "QAEIMNHTBSKCLJFPDGOR".equals(flag);
                 if(pass20) {
                     tartsServiceImpl.passTask(20, true);
                 }
                 return pass20;
+            case 21:
+                boolean pass21 = "Reverse!!!2222_2222_2222".equals(flag);
+                if(pass21) {
+                    tartsServiceImpl.passTask(21, true);
+                }
+                return pass21;
+            case 22:
+                boolean pass22 = "三更星光烂漫".equals(flag);
+                if(pass22) {
+                    tartsServiceImpl.passTask(22, true);
+                }
+                return pass22;
             default:
                 return false;
         }

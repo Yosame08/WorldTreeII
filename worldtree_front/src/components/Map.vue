@@ -6,13 +6,25 @@
     <!-- Filter slider -->
     <div class="filter-slider">
       <div>
-        <el-button type="primary" @click="refreshTasks" style="width: 100%; margin-bottom: 5px;">刷新任务情况</el-button>
-      </div>
-      <div>
         <el-switch v-model="showCompleted" active-text="显示已完成"></el-switch>
       </div>
       <div>
         <el-switch v-model="showExpired" active-text="显示已过期"></el-switch>
+      </div>
+      <div>
+        <el-switch v-model="showFirstRound" active-text="显示一周目"></el-switch>
+      </div>
+      <div>
+        <el-switch v-model="showSecondRound" active-text="显示二周目"></el-switch>
+      </div>
+      <div>
+        <el-button type="primary" @click="refreshTasks" style="width: 100%; margin-bottom: 5px;">刷新任务情况</el-button>
+      </div>
+      <div>
+        <el-button type="primary" @click="downloadBanner" style="width: 100%; margin-bottom: 5px;">下载活动横幅</el-button>
+      </div>
+      <div>
+        <el-button type="success" @click="downloadPoster" style="width: 100%;">下载鍘嬬缉鏂囦欢</el-button>
       </div>
     </div>
 
@@ -23,8 +35,8 @@
     </div>
 
     <!-- Task bubbles -->
-    <img v-for="task in filteredTasks" :key="task.taskId" :src="require('@/assets/task_icon.png')" class="task-icon" :style="bubbleStyle(task)"
-         @click="selectTask(task)" @mouseover="(event) => showTooltip(task, event)" @mouseleave="hideTooltip" />
+    <img v-for="task in filteredTasks" :key="task.taskId" :src="require(task.taskId <= 12 ? '@/assets/task_icon.png' : '@/assets/task_icon_2.png')"
+         class="task-icon" :style="bubbleStyle(task)"  @click="selectTask(task)" @mouseover="(event) => showTooltip(task, event)" @mouseleave="hideTooltip" />
 
     <!-- Tooltip -->
     <div v-if="tooltip.visible" :style="tooltipStyle" class="tooltip">
@@ -49,7 +61,7 @@
           <div v-if="taskDetail.expired">
             <p>该任务已于{{ taskDetail.dateExpire }}过期</p>
           </div>
-          <div v-else-if="taskDetail.taskStatus === 1 && taskDetail.getPoint === taskDetail.taskPoint">
+          <div v-else-if="taskDetail.taskStatus === 1">
             您已经完全解决了该事件！
             <el-button v-if="!noClue.includes(taskDetail.taskId)" @click="getClue" class="hint-button" type="primary">查看笔记残页</el-button>
           </div>
@@ -96,6 +108,8 @@ const dragging = ref(false);
 const touchStartDistance = ref(0);
 const showCompleted = ref(true);
 const showExpired = ref(true);
+const showFirstRound = ref(true);
+const showSecondRound = ref(true);
 // task variables
 const isSubmitting = ref(false);
 const tasks = ref([]);
@@ -106,8 +120,8 @@ const taskAnswer = ref('');
 const task1OK = ref(false);
 const task1Times = ref(0);
 // special tasks
-const noHint = ref([9, 10, 11, 12]);
-const noClue = ref([2, 9, 10, 11, 12]); // 蛋挞、问卷
+const noHint = ref([9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]);
+const noClue = ref([2, 9, 10, 11, 12, 20, 21, 22]); // 蛋挞、问卷、百团、上古方块
 // hint and clue
 const mapImage = ref(null);
 const isHintVisible = ref(false);
@@ -398,6 +412,8 @@ const filteredTasks = computed(() => {
   return tasks.value.filter(task => {
     if (!showCompleted.value && task.taskStatus === 1) return false;
     if (!showExpired.value && task.expired) return false;
+    if (!showFirstRound.value && task.taskId <= 12) return false;
+    if (!showSecondRound.value && task.taskId > 12) return false;
     return true;
   });
 });
@@ -417,6 +433,20 @@ const hideTooltip = () => {
 
 const taskStatusText = (status) => {
   return status === 0 ? '未完成' : '已完成';
+};
+
+const downloadBanner = () => {
+  const link = document.createElement('a');
+  link.href = '/static/banner.png';
+  link.download = 'banner.png';
+  link.click();
+};
+
+const downloadPoster = () => {
+  const link = document.createElement('a');
+  link.href = '/static/poster.jpeg';
+  link.download = 'poster.jpeg';
+  link.click();
 };
 
 onMounted(getAllTasks);

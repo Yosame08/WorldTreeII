@@ -62,6 +62,7 @@ public class VisitingServiceImpl implements VisitingService {
             info.append("Floor: ").append(visiting.getFloor()[i%3]).append(" ");
         }
         System.out.println(info);
+        if (version == 1) tartsServiceImpl.passPartialTask(userId, 14, 0, true);
     }
 
     @Override

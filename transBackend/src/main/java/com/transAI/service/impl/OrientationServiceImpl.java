@@ -26,6 +26,7 @@ public class OrientationServiceImpl implements OrientationService {
 
     @Autowired
     private TartsServiceImpl tartsServiceImpl;
+
     @Autowired
     private TaskMapper taskMapper;
 
@@ -35,6 +36,12 @@ public class OrientationServiceImpl implements OrientationService {
         pos[2] = new Pos(3, 121, 31);
         pos[3] = new Pos(4, 121, 31);
         pos[4] = new Pos(5, 121, 31);
+    }
+
+    @Override
+    public Boolean findWebsite() {
+        tartsServiceImpl.passTask(taskId, false);
+        return true;
     }
 
     @Override

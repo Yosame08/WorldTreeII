@@ -24,6 +24,7 @@ import HundredUpload from "@/components/tasks/HundredUpload.vue";
 import Visiting2 from "@/components/tasks/Visiting2.vue";
 import BigPot2 from "@/components/tasks/BigPot2.vue";
 import Poem from "@/components/tasks/Poem.vue";
+import TrueFinal from "@/components/tasks/TrueFinal.vue";
 
 const routes = [
     { path: '/', component: Index, meta: { title: "反转！蒸旦宇宙" } },
@@ -43,10 +44,12 @@ const routes = [
 
     { path: '/tasks/openbox', component: OpenBox, meta: { title: "开盒 - 反转！蒸旦宇宙" } },
     { path: '/tasks/visiting2', component: Visiting2, meta: { title: "探店（Night Version） - 反转！蒸旦宇宙" } },
-    { path: '/tasks/nim', component: Nim, meta: { title: "嗑瓜子 - 反转！蒸旦宇宙"} },
-    { path: '/tasks/zhengyan', component: ZhengYan, meta: { title: "蒸盐 - 反转！蒸旦宇宙"} },
-    { path: '/tasks/xiaolongbao', component: BigPot2, meta: { title: "蒸小笼包 - 反转！蒸旦宇宙"} },
-    { path: '/tasks/poem', component: Poem, meta: { title: "时光的逆行者 - 反转！蒸旦宇宙"} },
+    { path: '/tasks/nim', component: Nim, meta: { title: "嗑瓜子 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/zhengyan', component: ZhengYan, meta: { title: "蒸盐 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/xiaolongbao', component: BigPot2, meta: { title: "蒸小笼包 - 反转！蒸旦宇宙" } },
+    { path: '/tasks/poem', component: Poem, meta: { title: "时光的逆行者 - 反转！蒸旦宇宙" } },
+
+    { path: '/tasks/Tru3_fina1', component: TrueFinal, meta: { title: "上古方块（真） - 反转！蒸旦宇宙" } },
 
     { path: '/hidden_relic/000', component: Hidden_relic, meta: { title: "失落的遗物" } },
     { path: '/admin/hundred', component: HundredUpload },
