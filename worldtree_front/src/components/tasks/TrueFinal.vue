@@ -149,8 +149,16 @@ onUnmounted(() => {
 }
 
 .poem {
-  font-family: '楷体', Courier, monospace;
-  font-style: italic;
+  font-family: 'HYCuZhuanF', sans-serif;
+  font-size: 2em;
   text-align: center;
 }
+
+@font-face {
+  font-family: 'HYCuZhuanF';
+  src: url('@/assets/HYCuZhuanF-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 </style>
