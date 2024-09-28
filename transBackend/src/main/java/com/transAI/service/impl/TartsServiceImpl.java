@@ -16,6 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -107,7 +108,7 @@ public class TartsServiceImpl implements TartsService {
         // 播报任务完成
         if (broadcast){
             int num = taskUserMapper.getFullCompletedNum(taskId);
-            if(num <= 3) {
+            if(num <= 3 || taskId == 22) {
                 try {
                     broadcastTask(task.getTaskTitle(), user.getUsername(), num);
                 } catch (IOException e) {
@@ -184,11 +185,13 @@ public class TartsServiceImpl implements TartsService {
         userStickerMapper.addSticker(userId, sticker);
     }
 
-    public void broadcastTask(String taskTitle, String username, int rank) throws IOException {
+    private void broadcastTask(String taskTitle, String username, int rank) throws IOException {
         String groupId = "148357672";
         // 1st【昵称】成为解决危机【题目名】的第一名外勤员，异常部特此为其颁发精金奖章。
         String message = "";
-        if(rank == 1) {
+        if (Objects.equals(taskTitle, "上古方块（真）")) {
+            message = "【" + username + "】" + "找回了记忆。";
+        } else if(rank == 1) {
             message = rank + "st【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发精金奖章。";
         } else if(rank == 2) {
             message = rank + "nd【" + username + "】成为解决危机【" + taskTitle + "】的第二名外勤员，异常部特此为其颁发秘银奖章。";

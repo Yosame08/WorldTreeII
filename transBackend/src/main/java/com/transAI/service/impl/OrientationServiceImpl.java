@@ -40,7 +40,9 @@ public class OrientationServiceImpl implements OrientationService {
 
     @Override
     public Boolean findWebsite() {
+        Map<String, Object> map = ThreadLocalUtil.get();
         tartsServiceImpl.passTask(taskId, true);
+        System.out.println("[" + DateLogger.getTime() + " Open Box] User " + map.get("username") + " find the website");
         return true;
     }
 
