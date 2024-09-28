@@ -110,7 +110,10 @@ public class TartsServiceImpl implements TartsService {
             int num = taskUserMapper.getFullCompletedNum(taskId);
             if(num <= 3 || taskId == 22) {
                 try {
-                    broadcastTask(task.getTaskTitle(), user.getUsername(), num);
+                    if (taskId == 13){
+                        broadcastTask("???", user.getUsername(), num);
+                    }
+                    else broadcastTask(task.getTaskTitle(), user.getUsername(), num);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -190,7 +193,7 @@ public class TartsServiceImpl implements TartsService {
         // 1st【昵称】成为解决危机【题目名】的第一名外勤员，异常部特此为其颁发精金奖章。
         String message = "";
         if (Objects.equals(taskTitle, "上古方块（真）")) {
-            message = "【" + username + "】" + "找回了记忆。";
+            message = "【" + username + "】" + "找回了记忆，发现了一系列事件的最终真相";
         } else if(rank == 1) {
             message = rank + "st【" + username + "】成为解决危机【" + taskTitle + "】的第一名外勤员，异常部特此为其颁发精金奖章。";
         } else if(rank == 2) {
