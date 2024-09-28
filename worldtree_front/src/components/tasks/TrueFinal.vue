@@ -5,7 +5,7 @@ import store from '@/services/storeService';
 
 const isSubmitting = ref(false);
 const taskAnswer = ref('');
-const showPic = ref(false);
+const showPic = ref(true);
 
 const download = () => {
   const link = document.createElement('a');
@@ -22,6 +22,7 @@ const submitAnswer = async () => {
     if (response.data.code === 0) {
       let pass = response.data.data;
       if (pass) {
+        showPic.value = false;
         store.commit("setSuccessMsg", "答案正确，恭喜通关隐藏关卡！");
       } else {
         store.commit("setErrorMsg", "答案错误");
@@ -48,6 +49,11 @@ const containerWidth = computed(() => {
 const updateDimensions = () => {
   screenHeight.value = window.innerHeight;
   screenWidth.value = window.innerWidth;
+};
+
+const showCredits = () => {
+  // 打开新网页/credits
+  window.open('/credits', '_blank');
 };
 
 onMounted(() => {
@@ -113,7 +119,7 @@ onUnmounted(() => {
       <br>
       “我？不过是另一股模因能量而已。我与‘乐逝’彼此相反，追寻‘乐逝’模因的踪迹而来，追求宿命的湮灭。”
     </p>
-    <el-button type="primary" v-if="!showPic" @click="showImage">下一步</el-button>
+    <el-button type="primary" v-if="!showPic" @click="showCredits">下一步</el-button>
     <img src="/static/Tru3_fina1_Qu3st10n.jpg" v-if="showPic" alt="Final Stage Picture" style="width: 100%; margin: 20px 0;" />
     <el-input v-if="showPic" v-model="taskAnswer" placeholder="输入答案" />
     <el-button v-if="showPic" @click="download" style="margin: 0;" >下载图片</el-button>

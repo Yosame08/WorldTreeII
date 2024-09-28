@@ -83,16 +83,18 @@ public class TartsServiceImpl implements TartsService {
         else taskUserMapper.insert(taskUser);
 
         int prevPoint = userTotalPointMapper.getMaxPoint(id);
-        System.out.println("addPoint1");
         userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
         userMapper.updatePoint(id, prevPoint + pointDelta);
 
-        Sticker sticker = new Sticker();
-        sticker.setStkId(taskId);
-        sticker.setShow(false);
-        sticker.setX(0.5);
-        sticker.setY(0.5);
-        userStickerMapper.addSticker(id, sticker);
+        if (userStickerMapper.findSticker(id, taskId) == null) {
+            Sticker sticker = new Sticker();
+            sticker.setStkId(taskId);
+            sticker.setShow(false);
+            sticker.setX(0.5);
+            sticker.setY(0.5);
+            userStickerMapper.addSticker(id, sticker);
+        }
+        else broadcast = false;
 
         User user = userMapper.getUser(id);
 
@@ -132,7 +134,6 @@ public class TartsServiceImpl implements TartsService {
             taskUser.setStatus(markPassed ? 1 : 0);
 
             taskUserMapper.update(taskUser);
-            System.out.println("addPoint2");
             userTotalPointMapper.addPoint(userId,pre_point + delta);
             userMapper.updatePoint(userId, pre_point + delta);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(delta * ratio));
@@ -145,7 +146,6 @@ public class TartsServiceImpl implements TartsService {
             taskUser.setTime(LocalDateTime.now());
             taskUser.setStatus(markPassed ? 1 : 0);
             taskUserMapper.insert(taskUser);
-            System.out.println("addPoint3");
             userTotalPointMapper.addPoint(userId,pre_point + point);
             userMapper.updatePoint(userId, pre_point + point);
             userMapper.updateUserCoins(userId, user.getCoin() + (int)(point * ratio));
