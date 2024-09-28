@@ -6,6 +6,7 @@ import store from "@/services/storeService";
 const connected = ref(false);
 
 onMounted(async () => {
+  window.location.href = '/static/HL.z01.f7';
   try {
     const response = await universalGet('/api/subtask/tarts/w0w_f1n1sh3d');
     if (response.data.code === 0){
