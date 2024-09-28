@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h4>你是怎么找到我们废弃的关卡的？</h4>
+    <p>既然这样，就送你一张贴纸作为纪念吧</p>
     <el-card>
       <el-button type="primary" @click="getPosition">获取定位</el-button>
       <h2>{{this.lng}}</h2>
@@ -35,7 +37,8 @@ export default {
       lat: 0,
     };
   },
-  created() {
+  async created() {
+    await universalGet("/api/subtask/orientation/find");
     // this.initOrientation();
   },
   methods: {

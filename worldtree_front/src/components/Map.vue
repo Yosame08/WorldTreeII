@@ -444,8 +444,8 @@ const downloadBanner = () => {
 
 const downloadPoster = () => {
   const link = document.createElement('a');
-  link.href = '/static/poster.jpeg';
-  link.download = 'poster.jpeg';
+  link.href = '/static/鍘嬬缉鏂囦欢.png';
+  link.download = '鍘嬬缉鏂囦欢.png';
   link.click();
 };
 

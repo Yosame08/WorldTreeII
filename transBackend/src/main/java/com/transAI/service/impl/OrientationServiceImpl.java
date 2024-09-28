@@ -40,7 +40,7 @@ public class OrientationServiceImpl implements OrientationService {
 
     @Override
     public Boolean findWebsite() {
-        tartsServiceImpl.passTask(taskId, false);
+        tartsServiceImpl.passTask(taskId, true);
         return true;
     }
 
