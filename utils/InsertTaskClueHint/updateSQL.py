@@ -105,7 +105,7 @@ def main():
             clue = read_file(os.path.join(base_dir, 'Clue', filename))
 
             task_data = [int(task_id), task_title, float(task_pos_x), float(task_pos_y), uri, int(task_point), int(task_coin), int(hint_price), submission, remark, date_expire, task_description, task_description_full]
-            hint_clue_data = (int(task_id), hint, clue)
+            hint_clue_data = [int(task_id), hint, clue]
 
             existing_task = get_task_data(task_id, cursor, task_table)
             if existing_task:

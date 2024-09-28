@@ -78,14 +78,16 @@ public class TartsServiceImpl implements TartsService {
         taskUser.setTime(LocalDateTime.now());
 
         int pointDelta = task.getTaskPoint() - taskUser.getPoint();
-        taskUser.setPoint(pointDelta);
+        taskUser.setPoint(task.getTaskPoint());
 
         if (update) taskUserMapper.update(taskUser);
         else taskUserMapper.insert(taskUser);
 
-        int prevPoint = userTotalPointMapper.getMaxPoint(id);
-        userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
-        userMapper.updatePoint(id, prevPoint + pointDelta);
+        if (pointDelta != 0){
+            int prevPoint = userTotalPointMapper.getMaxPoint(id);
+            userTotalPointMapper.addPoint(id, prevPoint + pointDelta);
+            userMapper.updatePoint(id, prevPoint + pointDelta);
+        }
 
         if (userStickerMapper.findSticker(id, taskId) == null) {
             Sticker sticker = new Sticker();

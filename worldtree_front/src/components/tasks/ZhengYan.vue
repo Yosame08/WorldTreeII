@@ -82,18 +82,16 @@ export default {
           "枧镩": 8,
         };
         const answer = grid.value.map(icon => map[icon]);
-        const response = await universalPost('/api/subtask/zhengyan/validate', JSON.stringify({
+        const response = await universalPost('/api/subtask/zhengyan/validate', {
             "answer": answer,
-        }));
-        const result = await response.json();
-        alert(result.message);
+        });
+        if (response.data.data) {
+          alert('程序被成功启动了，你获得了新的笔记残页和贴纸');
+        } else {
+          alert('答案错误');
+        }
       } catch (error) {
         console.error('错误:', error);
-        if (error instanceof Error) {
-          alert('提交失败，错误信息：' + error.message);
-        } else {
-          alert('提交失败，发生未知错误');
-        }
       }
     };
 
