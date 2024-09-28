@@ -63,7 +63,7 @@ public class Bigpot2ServiceImpl implements Bigpot2Service {
                 assert false;
         }
         Map<String, Object> map = ThreadLocalUtil.get();
-        System.out.println("[" + DateLogger.getTime() + " Big Pot] " + map.get("username") + " start a new level " + level + " game with token " + randomToken);
+        System.out.println("[" + DateLogger.getTime() + " Xiaolongbao] " + map.get("username") + " start a new level " + level + " game with token " + randomToken);
         return bigpot;
     }
 
