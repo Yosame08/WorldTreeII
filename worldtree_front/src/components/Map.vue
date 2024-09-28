@@ -120,7 +120,7 @@ const taskAnswer = ref('');
 const task1OK = ref(false);
 const task1Times = ref(0);
 // special tasks
-const noHint = ref([9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]);
+const noHint = ref([9, 10, 11, 12, 21, 22]);
 const noClue = ref([2, 9, 10, 11, 12, 20, 21, 22]); // 蛋挞、问卷、百团、上古方块
 // hint and clue
 const mapImage = ref(null);

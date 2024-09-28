@@ -1,14 +1,19 @@
 package com.transAI.service.impl;
 
 import com.transAI.service.ZhengyanService;
+import com.transAI.utils.DateLogger;
+import com.transAI.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ZhengyanServiceImpl implements ZhengyanService {
     @Override
     public int validate(List<Integer> list) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        System.out.println("[" + DateLogger.getTime() + " Zhengyan] " + map.get("username") + " validates list " + list);
         // 查询是否 0 - 8所有数字都出现一次且仅一次
         boolean[] flag = new boolean[9];
         for (int i = 0; i < 9; i++) {
