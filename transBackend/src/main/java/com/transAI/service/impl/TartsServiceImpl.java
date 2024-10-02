@@ -216,7 +216,7 @@ public class TartsServiceImpl implements TartsService {
         String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8.toString());
 
         // 构造URL
-        String urlString = "http://127.0.0.1:8083/send_group_msg?group_id=" + groupId + "&message=" + encodedMessage;
+        String urlString = "http://127.0.0.1:11450/send_group_msg?group_id=" + groupId + "&message=" + encodedMessage;
 
         URL url = new URL(urlString);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
