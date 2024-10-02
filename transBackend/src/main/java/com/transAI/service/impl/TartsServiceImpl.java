@@ -162,7 +162,13 @@ public class TartsServiceImpl implements TartsService {
             sticker.setShow(false);
             sticker.setX(0.5);
             sticker.setY(0.5);
-            userStickerMapper.addSticker(userId, sticker);
+            try {
+                if (userStickerMapper.findSticker(userId, taskId) == null) {
+                    userStickerMapper.addSticker(userId, sticker);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("[" + DateLogger.getTime() + " Answer partial] User " + userId + " (" + user.getUsername() + ") has get " + point + " points of the task " + taskId + " (" + task.getTaskTitle() + ")");
     }
