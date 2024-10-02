@@ -87,6 +87,7 @@ public class VisitingServiceImpl implements VisitingService {
 
     @Override
     public void expireAndJudge(int version) {
+        System.out.println("[" + DateLogger.getTime() + " Visiting] Task " + version + " expired and judged");
         List<Integer> userIds = visitingMapper.getAllUserIds();
         for (int userId : userIds) {
             double totalScore = 0;
