@@ -20,11 +20,12 @@ public class ZhengyanController {
 
     @PostMapping("/validate")
     public Result<Boolean> validate(@RequestBody Map<String, Object> params) {
-        List<Integer> list = (List<Integer>) params.get("answer");
-        int flag = zhengyanService.validate(list);
-        if(flag < 0) {
-            return Result.error("The answer is invalid");
-        }
-        return Result.success(flag == 1);
+//        List<Integer> list = (List<Integer>) params.get("answer");
+//        int flag = zhengyanService.validate(list);
+//        if(flag < 0) {
+//            return Result.error("The answer is invalid");
+//        }
+//        return Result.success(flag == 1);
+        return Result.error("活动已经结束");
     }
 }

@@ -1,10 +1,10 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/worldtree2_db
+#    url: jdbc:mysql://localhost:3306/worldtree2_db
 #    username: root
 #    password: Hatsune Miku
-#    url: jdbc:mysql://10.20.26.32:3306/worldtree2_db
+    url: jdbc:mysql://10.20.26.32:3306/worldtree2_db
     username: worldtree2
     password: WorldTreeII
   data:

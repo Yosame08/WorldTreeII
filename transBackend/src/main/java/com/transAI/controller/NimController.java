@@ -15,7 +15,8 @@ public class NimController {
 
     @PostMapping("/init")
     public Result<NimInit> check(@RequestBody NimInitRequest nimInitRequest) {
-        return Result.success(nimService.init(nimInitRequest));
+//        return Result.success(nimService.init(nimInitRequest));
+        return Result.error("活动已经结束");
     }
 
     @PostMapping("/step")

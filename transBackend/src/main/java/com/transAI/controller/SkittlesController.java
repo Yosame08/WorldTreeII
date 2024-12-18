@@ -20,7 +20,8 @@ public class SkittlesController {
 
     @PostMapping("/init")
     public Result<List<Integer>> init(@RequestBody Map<String, Integer> params) {
-        Integer start = (Integer) params.get("start");
-        return Result.success(skittlesService.init(start));
+//        Integer start = (Integer) params.get("start");
+//        return Result.success(skittlesService.init(start));
+        return Result.error("活动已经结束");
     }
 }

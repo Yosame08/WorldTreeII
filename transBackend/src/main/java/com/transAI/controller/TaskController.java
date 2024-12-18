@@ -36,6 +36,10 @@ public class TaskController {
     @PostMapping("hint")
     public Result<String> hint(@RequestBody Map<String, Object> map) {
         int taskId = (int) map.get("taskId");
+        boolean checkExpire = taskService.checkExpire(taskId);
+        if (checkExpire) {
+            return Result.error("任务已过期");
+        }
         String tmp = taskService.hint(taskId);
         if(tmp.equals("货币不足")) {
             return Result.error(tmp);

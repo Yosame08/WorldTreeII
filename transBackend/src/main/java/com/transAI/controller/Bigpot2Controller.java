@@ -19,9 +19,10 @@ public class Bigpot2Controller {
     private Bigpot2Service bigpot2Service;
     @GetMapping("/init")
     public Result<Bigpot2> init() {
-        Map<String, Object> map = ThreadLocalUtil.get();
-        int id = (int) map.get("id");
-        return Result.success(bigpot2Service.init(id));
+//        Map<String, Object> map = ThreadLocalUtil.get();
+//        int id = (int) map.get("id");
+//        return Result.success(bigpot2Service.init(id));
+        return Result.error("活动已经结束");
     }
 
     @PostMapping("/cook")
@@ -37,6 +38,5 @@ public class Bigpot2Controller {
             return Result.error("无效的操作");
         }
         return Result.success(bigpotResult);
-
     }
 }

@@ -16,7 +16,8 @@ public class TartsController {
 
     @GetMapping("/w0w_f1n1sh3d")
     public Result checkTarts() {
-        tartsService.add();
-        return Result.success();
+//        tartsService.add();
+//        return Result.success();
+        return Result.error("活动已经结束");
     }
 }

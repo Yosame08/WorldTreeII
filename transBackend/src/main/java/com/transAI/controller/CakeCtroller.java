@@ -19,8 +19,9 @@ public class CakeCtroller {
 
     @RequestMapping("/submit")
     public Result<String> submit(@RequestBody Map<String, String> params) {
-        String answer = params.get("answer");
-        String flag = cakeService.submit(answer);
-        return Result.success(flag);
+//        String answer = params.get("answer");
+//        String flag = cakeService.submit(answer);
+//        return Result.success(flag);
+        return Result.error("活动已经结束");
     }
 }

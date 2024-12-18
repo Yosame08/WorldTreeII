@@ -22,21 +22,24 @@ public class PoemController {
 
     @GetMapping("/next")
     public Result<Boolean> next() {
-        if (poemService.next()) return Result.success(true);
-        else return Result.error("您已经完成了所有的诗");
+//        if (poemService.next()) return Result.success(true);
+//        else return Result.error("您已经完成了所有的诗");
+        return Result.error("活动已经结束");
     }
 
     @PostMapping("/check")
     public Result<PoemCheck> getPoem(@RequestBody SendCheck times) {
-        return Result.success(poemService.getPoem(times.getTimes()));
+//        return Result.success(poemService.getPoem(times.getTimes()));
+        return Result.error("活动已经结束");
     }
 
     @PostMapping("/submit")
     public Result<PoemCheck> submitAnswer(@RequestBody SendSubmit answer) {
-        PoemCheck res = poemService.submitAnswer(answer.getAnswer());
-        if (res.getResult().equals("-1")){
-            return Result.error("您无法继续回答此题");
-        }
-        return Result.success(res);
+//        PoemCheck res = poemService.submitAnswer(answer.getAnswer());
+//        if (res.getResult().equals("-1")){
+//            return Result.error("您无法继续回答此题");
+//        }
+//        return Result.success(res);
+        return Result.error("活动已经结束");
     }
 }

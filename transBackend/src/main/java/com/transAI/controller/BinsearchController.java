@@ -18,6 +18,7 @@ public class BinsearchController {
     @GetMapping("/check")
     public Result<BinsearchStatus> check() {
         return Result.success(binsearchService.check());
+        // return Result.error("活动已经结束");
     }
 
     @GetMapping("query")
